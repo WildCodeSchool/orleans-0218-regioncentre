@@ -1,0 +1,30 @@
+{
+  "name": "orleans-0218-regioncentre",
+  "version": "1.0.0",
+  "description": "orleans-0218-regioncentre =========================",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.20.1",
+    "bootstrap": "^4.1.1",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "webpack-notifier": "^1.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WildCodeSchool/orleans-0218-regioncentre.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WildCodeSchool/orleans-0218-regioncentre/issues"
+  },
+  "homepage": "https://github.com/WildCodeSchool/orleans-0218-regioncentre#readme"
+}
