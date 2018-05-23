@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import "navbar";
+
+body {
+  background-color: #efeeee;
+
+  .container {
+    background-color: white;
+    margin-top: 50px;
+    min-height: 600px;
+  }
+}
+
