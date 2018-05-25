@@ -28,7 +28,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="EMOP", type="boolean")
      */
-    private $eMOP;
+    private $emop;
 
     /**
      * @var string
@@ -47,14 +47,14 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="function", type="string", length=255)
+     * @ORM\Column(name="work", type="string", length=255)
      */
-    private $function;
+    private $work;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phoneNumber", type="string", length=255)
+     * @ORM\Column(name="phoneNumber", type="string", length=30)
      */
     private $phoneNumber;
 
@@ -65,13 +65,6 @@ class User extends BaseUser
      */
     private $mail;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="avatar", type="integer")
-     */
-    private $avatar;
-
     public function __construct()
     {
         parent::__construct();
@@ -79,37 +72,27 @@ class User extends BaseUser
     }
 
     /**
-     * Get id
+     * Set emop
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set eMOP
-     *
-     * @param boolean $eMOP
+     * @param boolean $emop
      *
      * @return User
      */
-    public function setEMOP($eMOP)
+    public function setEmop($emop)
     {
-        $this->eMOP = $eMOP;
+        $this->emop = $emop;
 
         return $this;
     }
 
     /**
-     * Get eMOP
+     * Get emop
      *
      * @return boolean
      */
-    public function getEMOP()
+    public function getEmop()
     {
-        return $this->eMOP;
+        return $this->emop;
     }
 
     /**
@@ -161,27 +144,27 @@ class User extends BaseUser
     }
 
     /**
-     * Set function
+     * Set work
      *
-     * @param string $function
+     * @param string $work
      *
      * @return User
      */
-    public function setFunction($function)
+    public function setWork($work)
     {
-        $this->function = $function;
+        $this->work = $work;
 
         return $this;
     }
 
     /**
-     * Get function
+     * Get work
      *
      * @return string
      */
-    public function getFunction()
+    public function getWork()
     {
-        return $this->function;
+        return $this->work;
     }
 
     /**
@@ -232,27 +215,4 @@ class User extends BaseUser
         return $this->mail;
     }
 
-    /**
-     * Set avatar
-     *
-     * @param integer $avatar
-     *
-     * @return User
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return integer
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
 }

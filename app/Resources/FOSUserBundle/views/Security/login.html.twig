@@ -1,4 +1,4 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "base.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
 {% block fos_user_content %}
     <div class="container">
@@ -31,16 +31,21 @@
                         </div>
                         <div class="row">
                             <div class="rowLine">
-                                <div class="checkbox">
-                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                <div class="row justify-content-around">
+                                    <div class="col-8">
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="submit" class="btn btn-primary pull-right" id="_submit"
+                                               name="_submit"
+                                               value="{{ 'security.login.submit'|trans }}"/>
+                                    </div>
                                 </div>
-
-                                <input type="submit" class="btn btn-primary" id="_submit" name="_submit"
-                                       value="{{ 'security.login.submit'|trans }}"/>
-                            </div>
-                        </div>
             </form>
         </div>
     </div>
+
 {% endblock fos_user_content %}

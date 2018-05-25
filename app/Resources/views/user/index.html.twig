@@ -10,10 +10,9 @@
                 <th>Emop</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
-                <th>Function</th>
+                <th>Work</th>
                 <th>Phonenumber</th>
                 <th>Mail</th>
-                <th>Avatar</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,13 +20,12 @@
         {% for user in users %}
             <tr>
                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{% if user.eMOP %}Yes{% else %}No{% endif %}</td>
+                <td>{% if user.emop %}Yes{% else %}No{% endif %}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.function }}</td>
+                <td>{{ user.work }}</td>
                 <td>{{ user.phoneNumber }}</td>
                 <td>{{ user.mail }}</td>
-                <td>{{ user.avatar }}</td>
                 <td>
                     <ul>
                         <li>

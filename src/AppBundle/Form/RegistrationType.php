@@ -13,7 +13,7 @@ class RegistrationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('eMOP')->add('firstName')->add('lastName')->add('function')->add('phoneNumber')->add('mail')->add('avatar');
+        $builder->add('emop')->add('firstName')->add('lastName')->add('work')->add('phoneNumber')->add('mail');
     }
 
     /**

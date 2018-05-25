@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <th>Emop</th>
-                <td>{% if user.eMOP %}Yes{% else %}No{% endif %}</td>
+                <td>{% if user.emop %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
                 <th>Firstname</th>
@@ -22,8 +22,8 @@
                 <td>{{ user.lastName }}</td>
             </tr>
             <tr>
-                <th>Function</th>
-                <td>{{ user.function }}</td>
+                <th>Work</th>
+                <td>{{ user.work }}</td>
             </tr>
             <tr>
                 <th>Phonenumber</th>
@@ -32,10 +32,6 @@
             <tr>
                 <th>Mail</th>
                 <td>{{ user.mail }}</td>
-            </tr>
-            <tr>
-                <th>Avatar</th>
-                <td>{{ user.avatar }}</td>
             </tr>
         </tbody>
     </table>
