@@ -4,7 +4,6 @@
     <div class="container">
         <div class="formLogin">
             <p>Connection</p>
-
             {% if error %}
                 <div class="alert alert-danger"
                      role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -15,18 +14,17 @@
                     <label for="username">{{ 'security.login.username'|trans }}</label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="material-icons">account_circle</i></div>
+                            <div class="input-group-text"><i class="fas fa-user-circle"></i></div>
                         </div>
                         <input class="form-control" type="text" id="username" name="_username"
                                value="{{ last_username }}"
                                required="required"/>
                     </div>
-
                     <div class="formgroup">
                         <label for="password">{{ 'security.login.password'|trans }}</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="material-icons">https</i></div>
+                                <div class="input-group-text"><i class="fas fa-lock"></i></div>
                             </div>
                             <input class="form-control" type="password" id="password" name="_password"
                                    required="required"/>

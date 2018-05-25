@@ -7,7 +7,6 @@
     "test": "tests"
   },
   "dependencies": {
-    "material-design-icons": "^3.0.1"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.20.1",
