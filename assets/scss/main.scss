@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @import "variables";
+@import "form";
 @import "navbar";
 
 body {
@@ -10,6 +11,7 @@ body {
     background-color: $backgroundContainer;
     margin-top: 50px;
     min-height: 600px;
+    padding-top: 50px;
   }
 }
 

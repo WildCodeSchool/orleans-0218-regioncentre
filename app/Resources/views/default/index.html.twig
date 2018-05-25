@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container"></div>
+        <div class="alert alert-success text-right" role="alert">
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+        </div>
+    <div class="container">
+
+    </div>
+
 {% endblock %}

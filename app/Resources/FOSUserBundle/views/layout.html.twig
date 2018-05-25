@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <link rel="stylesheet" href="{{ asset('build/style.css') }}">
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,7 +11,12 @@
 </head>
 <body>
 {% include '_navbar.html.twig' %}
-{% block body %}{% endblock %}
+{% block body %}
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+{% endblock %}
 <script src="{{ asset('build/app.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>

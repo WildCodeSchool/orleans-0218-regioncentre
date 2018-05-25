@@ -6,7 +6,9 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {},
+  "dependencies": {
+    "material-design-icons": "^3.0.1"
+  },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.20.1",
     "bootstrap": "^4.1.1",

@@ -1,0 +1,7 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+<div class="container">
+{% include "@FOSUser/Registration/register_content.html.twig" %}
+    </div>
+{% endblock fos_user_content %}
