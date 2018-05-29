@@ -22,14 +22,6 @@ class User extends BaseUser
      */
     protected $id;
 
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="EMOP", type="boolean")
-     */
-    private $emop;
-
     /**
      * @var string
      *
@@ -69,30 +61,6 @@ class User extends BaseUser
     {
         parent::__construct();
         // your own logic
-    }
-
-    /**
-     * Set emop
-     *
-     * @param boolean $emop
-     *
-     * @return User
-     */
-    public function setEmop($emop)
-    {
-        $this->emop = $emop;
-
-        return $this;
-    }
-
-    /**
-     * Get emop
-     *
-     * @return boolean
-     */
-    public function getEmop()
-    {
-        return $this->emop;
     }
 
     /**
