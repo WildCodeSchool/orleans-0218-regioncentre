@@ -6,7 +6,8 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.20.1",
     "bootstrap": "^4.1.1",

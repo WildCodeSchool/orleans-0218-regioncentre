@@ -1,0 +1,28 @@
+nav {
+  background-color: $backgroundNav;
+  height: 70px;
+
+  img {
+    margin-top: -15px;
+    height: 60px;
+    margin-left: 30px;
+    box-shadow: 0px 0px 10px $shadow;
+  }
+
+  .text {
+    color: $colorText;
+    font-weight: bold;
+    margin-left: 100px;
+    margin-top: -45px;
+    font-family: 'Roboto', sans-serif;
+  }
+  a {
+    color: $colorText;
+
+    &:hover {
+      color:$colorHover;
+      transition: 3s;
+      text-decoration: none;
+    }
+  }
+}
