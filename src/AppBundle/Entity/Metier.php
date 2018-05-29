@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Metier
@@ -25,6 +26,14 @@ class Metier
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     max = 50,
+     * )
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",+
+     * )
      */
     private $name;
 
