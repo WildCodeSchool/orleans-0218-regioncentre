@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sheet
@@ -25,6 +26,7 @@ class Sheet
      * @var bool
      *
      * @ORM\Column(name="urgent", type="boolean")
+     * @Assert\Choice({1,0})
      */
     private $urgent;
 
@@ -32,6 +34,14 @@ class Sheet
      * @var string
      *
      * @ORM\Column(name="objectRequest", type="text")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 5000,
+     *      minMessage = "Longueur minimum de {{ limit }} caractères",
+     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
+     * )
+     * @Assert\NotNull(message="Le champ ne peut pas être vide !")
+     * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
     private $objectRequest;
 
@@ -39,20 +49,40 @@ class Sheet
      * @var string
      *
      * @ORM\Column(name="buildings", type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Longueur minimum de {{ limit }} caractères",
+     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
+     * )
+     * @Assert\NotNull(message="Le champ ne peut pas être vide !")
+     * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
     private $buildings;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="constraintsBuildings", type="text")
+     * @ORM\Column(name="constraintsBuildings", type="text", nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 5000,
+     *      minMessage = "Longueur minimum de {{ limit }} caractères",
+     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
+     * )
      */
     private $constraintsBuildings;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="constraintsTechnicals", type="text")
+     * @ORM\Column(name="constraintsTechnicals", type="text", nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 5000,
+     *      minMessage = "Longueur minimum de {{ limit }} caractères",
+     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
+     * )
      */
     private $constraintsTechnicals;
 
@@ -60,6 +90,14 @@ class Sheet
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 5000,
+     *      minMessage = "Longueur minimum de {{ limit }} caractères",
+     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
+     * )
+     * @Assert\NotNull(message="Le champ ne peut pas être vide !")
+     * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
     private $description;
 
@@ -67,13 +105,15 @@ class Sheet
      * @var \DateTime
      *
      * @ORM\Column(name="startWork", type="date")
+     * @Assert\Date()
      */
     private $startWork;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="endWork", type="date")
+     * @ORM\Column(name="endWork", type="date", nullable=true)
+     * @Assert\Date()
      */
     private $endWork;
 

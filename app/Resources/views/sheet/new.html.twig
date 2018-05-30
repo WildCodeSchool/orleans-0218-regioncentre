@@ -1,18 +1,63 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
     <div class="container">
-    <h1>Sheet creation</h1>
+        <div class="formSheet">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 titre">
+                    <h1>Formulaire de création de fiche</h1>
+                </div>
+                <div class="ml-auto p-2 d-none d-sm-block d-xs-none">
+                    <a href="{{ path('sheet_index') }}" class="btn btn-warning">Retour à la liste</a>
+                </div>
+            </div>
+            <hr>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+            {{ form_start(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('sheet_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            {{ form_widget(form.urgent) }}
+            {{ form_errors(form.urgent) }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(form.startWork) }}
+                    {{ form_widget(form.startWork) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_label(form.endWork) }}
+                    {{ form_widget(form.endWork) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    {{ form_label(form.objectRequest) }}
+                    {{ form_widget(form.objectRequest) }}
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    {{ form_label(form.buildings) }}
+                    {{ form_widget(form.buildings) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    {{ form_label(form.constraintsBuildings) }}
+                    {{ form_widget(form.constraintsBuildings) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_label(form.constraintsTechnicals) }}
+                    {{ form_widget(form.constraintsTechnicals) }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <input type="submit" value="Envoyer la demande" class="btn btn-dark"/>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
 {% endblock %}
+
+

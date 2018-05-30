@@ -26,8 +26,8 @@
                 <td>{% if sheet.urgent %}Yes{% else %}No{% endif %}</td>
                 <td>{{ sheet.objectRequest }}</td>
                 <td>{{ sheet.buildings }}</td>
-                <td>{{ sheet.constraintsBuildings }}</td>
-                <td>{{ sheet.constraintsTechnicals }}</td>
+                <td>{{ sheet.constraintsBuildings|default('[ Non renseigné ]')  }}</td>
+                <td>{{ sheet.constraintsTechnicals|default('[ Non renseigné ]')  }}</td>
                 <td>{{ sheet.description }}</td>
                 <td>{% if sheet.startWork %}{{ sheet.startWork|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if sheet.endWork %}{{ sheet.endWork|date('Y-m-d') }}{% endif %}</td>
