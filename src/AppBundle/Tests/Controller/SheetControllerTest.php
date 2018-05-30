@@ -14,8 +14,8 @@ class SheetControllerTest extends WebTestCase
 
         // Create a new entry in the database
         $crawler = $client->request('GET', '/sheet/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(),
-        "Unexpected HTTP status code for GET /sheet/");
+        $this->assertEquals(200, $client->getResponse()
+        ->getStatusCode(), "Unexpected HTTP status code for GET /sheet/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
@@ -28,8 +28,8 @@ class SheetControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         // Check data in the show view
-        $this->assertGreaterThan(0,
-        $crawler->filter('td:contains("Test")')->count(), 'Missing element td:contains("Test")');
+        $this->assertGreaterThan(0, $crawler->filter('td:contains("Test")')
+        ->count(), 'Missing element td:contains("Test")');
 
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());

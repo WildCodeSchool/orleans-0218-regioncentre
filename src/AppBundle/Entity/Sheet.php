@@ -33,28 +33,16 @@ class Sheet
     /**
      * @var string
      *
-     * @ORM\Column(name="objectRequest", type="text")
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 5000,
-     *      minMessage = "Longueur minimum de {{ limit }} caractères",
-     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
-     * )
+     * @ORM\Column(name="subject", type="text")
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
-    private $objectRequest;
+    private $subject;
 
     /**
      * @var string
      *
      * @ORM\Column(name="buildings", type="string", length=255)
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 255,
-     *      minMessage = "Longueur minimum de {{ limit }} caractères",
-     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
-     * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
@@ -64,12 +52,6 @@ class Sheet
      * @var string
      *
      * @ORM\Column(name="constraintsBuildings", type="text", nullable=true)
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 5000,
-     *      minMessage = "Longueur minimum de {{ limit }} caractères",
-     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
-     * )
      */
     private $constraintsBuildings;
 
@@ -77,12 +59,6 @@ class Sheet
      * @var string
      *
      * @ORM\Column(name="constraintsTechnicals", type="text", nullable=true)
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 5000,
-     *      minMessage = "Longueur minimum de {{ limit }} caractères",
-     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
-     * )
      */
     private $constraintsTechnicals;
 
@@ -90,12 +66,6 @@ class Sheet
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 5000,
-     *      minMessage = "Longueur minimum de {{ limit }} caractères",
-     *      maxMessage = "Longueur maximum de {{ limit }} caractères"
-     * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
@@ -113,6 +83,10 @@ class Sheet
      * @var \DateTime
      *
      * @ORM\Column(name="endWork", type="date", nullable=true)
+     * @Assert\Expression(
+     *     "this.getStartWork() in ['php', 'symfony'] or value >= this.getStartWork()",
+     *     message="La fin des travaux ne peut être postérieure au début."
+     * )
      * @Assert\Date()
      */
     private $endWork;
@@ -318,5 +292,29 @@ class Sheet
     public function getEndWork()
     {
         return $this->endWork;
+    }
+
+    /**
+     * Set subject
+     *
+     * @param string $subject
+     *
+     * @return Sheet
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 }
