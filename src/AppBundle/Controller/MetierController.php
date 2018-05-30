@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Metier;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Metier controller.
@@ -57,7 +58,7 @@ class MetierController extends Controller
 
         return $this->render('metier/new.html.twig', array(
             'metier' => $metier,
-            'metiers'=> $metiers,
+            'metiers' => $metiers,
             'form' => $form->createView(),
         ));
     }
@@ -135,7 +136,6 @@ class MetierController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('metier_delete', array('id' => $metier->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

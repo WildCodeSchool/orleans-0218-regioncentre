@@ -33,9 +33,9 @@ class Metier
      *     max = 50,
      * )
      * @Assert\Regex(
-     *     pattern     = "/^[a-z]+$/i",
-     *     htmlPattern = "^[a-zA-Z]+$",
-     *     message="Le métier doit uniquement contenir des lettres en majuscule et en minuscule."
+     *     pattern     = "/^[a-zçéè]+$/i",
+     *     htmlPattern = "^[a-zA-Zçéè]+$",
+     *     message="Le métier doit uniquement contenir des lettres.",
      * )
      */
     private $name;
