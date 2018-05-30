@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * User
  *
@@ -26,6 +28,11 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     *
+     *@Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le champs Prénom ne peu dépasser {{ limit }} caractères"
+     * )
      */
     private $firstName;
 
@@ -33,6 +40,11 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
+     *
+     *@Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le champs Fonction / Poste ne peu dépasser {{ limit }} caractères"
+     * )
      */
     private $lastName;
 
@@ -40,6 +52,11 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="work", type="string", length=255)
+     *
+     *@Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le champs Fonction / Poste ne peu dépasser {{ limit }} caractères"
+     * )
      */
     private $work;
 
@@ -47,6 +64,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="phoneNumber", type="string", length=30)
+     *
      */
     private $phoneNumber;
 
@@ -54,13 +72,20 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
+     *
+     * @Assert\Email(
+     *     message = "Le courriel '{{ value }}' ne respecte pas le format")
+     *@Assert\Length(
+     *     max = 255,
+     *     maxMessage = "L\'adresse courriel ne peu dépasser {{ limit }} caractères"
+     * )
+     *
      */
     private $mail;
 
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
 
     /**
