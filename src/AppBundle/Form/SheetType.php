@@ -74,6 +74,4 @@ class SheetType extends AbstractType
     {
         return 'appbundle_sheet';
     }
-
-
 }
