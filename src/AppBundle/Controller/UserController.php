@@ -48,6 +48,10 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
+            $this->addFlash(
+                'notice',
+                'l´Utilisateur a été ajouté avec succes.'
+            );
             return $this->redirectToRoute('user_index');
         }
 
