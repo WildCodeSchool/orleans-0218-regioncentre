@@ -26,13 +26,16 @@ class Metier
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=50)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="Le métier ne doit pas être vide.",
+     * )
      * @Assert\Length(
      *     max = 50,
      * )
      * @Assert\Regex(
      *     pattern     = "/^[a-z]+$/i",
-     *     htmlPattern = "^[a-zA-Z]+$",+
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="Le métier doit uniquement contenir des lettres en majuscule et en minuscule."
      * )
      */
     private $name;

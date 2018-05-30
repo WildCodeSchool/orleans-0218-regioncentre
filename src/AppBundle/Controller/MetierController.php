@@ -48,7 +48,7 @@ class MetierController extends Controller
             $em->persist($metier);
             $em->flush();
 
-            return $this->redirectToRoute('metier_show', array('id' => $metier->getId()));
+            return $this->redirectToRoute('metier_new');
         }
 
         $pm = $this->getDoctrine()->getManager();
