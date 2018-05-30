@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 pt-4 d-inline">
+                <div class="d-inline col-md-4">
+                    <h1 class="d-inline">Lycee creation</h1>
+                </div>
+                <div class="d-inline float-right col-md-2 col-md-offset-3 ">
+                    <input type="button" value="Back to the list" class="btn-warning" onclick="location.href='{{ path('lycee_index') }}'"/>
+                </div>
+                <div class="col-12 col-md-6 mx-auto">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                </div>
+            </div>
+            <div class=" col-12 col-md-4 mx-auto">
+                <input type="submit" value="Create" class=" btn-dark  d-flex justify-content-center"/>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
