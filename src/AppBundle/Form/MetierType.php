@@ -40,6 +40,4 @@ class MetierType extends AbstractType
     {
         return 'appbundle_metier';
     }
-
-
 }
