@@ -7,7 +7,7 @@
                 <div class="col-12 col-md-8 mx-auto">
                     <h1>Ajout de Métiers</h1>
                 </div>
-                <div class="col-12 col-md-2 mx-auto">
+                <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
                     <a class="btn btn-warning" href="{{ path('metier_index') }}">retour a l'acceuil</a>
                 </div>
             </div>
@@ -35,6 +35,11 @@
                             {% endfor %}
                         </ul>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
+                    <a class="btn btn-warning" href="{{ path('metier_index') }}">retour a l'acceuil</a>
                 </div>
             </div>
         </div>
