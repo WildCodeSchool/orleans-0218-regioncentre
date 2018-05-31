@@ -16,13 +16,34 @@ nav {
     margin-top: -45px;
     font-family: 'Roboto', sans-serif;
   }
-  a {
+  .navbar-nav .nav-link {
     color: $colorText;
+    transition: 3s;
 
     &:hover {
-      color:$colorHover;
+      color:$colorHoverMenu;
       transition: 3s;
       text-decoration: none;
     }
+
   }
+  a {
+    color: $colorText;
+    transition: 3s;
+
+    &:hover {
+      color:$colorHoverMenu;
+      transition: 3s;
+      text-decoration: none;
+    }
+
+  }
+  .link{
+    margin-right: 10em;
+  }
+  #navbarSupportedContent{
+    background-color: $backgroundNav;
+    text-align: center;
+  }
+
 }

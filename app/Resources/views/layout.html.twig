@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+            <div class="text">Site de la région</div>
+        </a>
+    </nav>
+
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+{% endblock %}
