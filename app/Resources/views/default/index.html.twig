@@ -1,6 +1,6 @@
 {% include 'layout_admin.html.twig' %}
 
-{% block content %}
+{% block body %}
     <div id="sucess"><div class="alert alert-success text-center" role="alert">
             {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
         </div>
