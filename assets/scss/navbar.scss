@@ -1,49 +1,56 @@
-nav {
+.navbar {
   background-color: $backgroundNav;
-  height: 70px;
+  min-height: 60px;
 
   img {
-    margin-top: -15px;
+    position: absolute;
+    margin-top: -1.5em;
     height: 60px;
-    margin-left: 30px;
+    margin-left: 10px;
     box-shadow: 0px 0px 10px $shadow;
   }
 
   .text {
     color: $colorText;
-    font-weight: bold;
-    margin-left: 100px;
-    margin-top: -45px;
+    position: absolute;
+    margin-top: -0.8em;
+    height: 60px;
+    margin-left: 70px;
+    font-size: 20px;
     font-family: 'Roboto', sans-serif;
   }
-  .navbar-nav .nav-link {
-    color: $colorText;
-    transition: 3s;
 
-    &:hover {
-      color:$colorHoverMenu;
-      transition: 3s;
-      text-decoration: none;
-    }
-
-  }
   a {
     color: $colorText;
     transition: 3s;
 
     &:hover {
-      color:$colorHoverMenu;
+      color: $colorHoverMenu;
       transition: 3s;
       text-decoration: none;
     }
 
   }
-  .link{
-    margin-right: 10em;
+  .deconnect {
+    text-align: right;
   }
-  #navbarSupportedContent{
-    background-color: $backgroundNav;
-    text-align: center;
-  }
+}
 
+.navbar-dark .navbar-nav .nav-link {
+  color: $colorText;
+  white-space: nowrap;
+  padding-right: 20px;
+  padding-left: 20px;
+  text-align: center;
+  transition: 3s;
+
+  &:hover {
+    color: $colorHoverMenu;
+    transition: 3s;
+    text-decoration: none;
+  }
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.6)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }

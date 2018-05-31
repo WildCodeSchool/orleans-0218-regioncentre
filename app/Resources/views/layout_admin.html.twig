@@ -1,25 +1,36 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">
+        <a href="/" class="navbar-brand d-flex w-50 mr-auto">
             <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
-            <div class="text d-none d-sm-block">Site de la région</div>
+            <div class="text d-none d-lg-block">Travaux</div>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav w-100 flex-nowrap link justify-content-center">
-                    <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="#">Historique des fiches</a>
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+            <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('sheet_index') }}">Historique des fiches</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">Gestion</a>
+                </li>
             </ul>
-            <a href="{{ path('fos_user_security_logout') }}">
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>
+            <ul class="nav navbar-nav ml-auto w-100 deconnect justify-content-end">
+                <li class="nav-item">
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 {% endblock %}
+
+
 
 
