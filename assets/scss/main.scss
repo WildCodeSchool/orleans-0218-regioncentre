@@ -10,9 +10,12 @@ body {
   .container {
     background-color: $backgroundContainer;
     margin-top: 50px;
+    margin-bottom: 50px;
     min-height: 600px;
     padding-top: 50px;
+    padding-bottom: 50px;
   }
+
   .alert-success{
     position: absolute;
     margin-top: 10px;
