@@ -18,8 +18,8 @@ class MetierType extends AbstractType
             'label' => 'Nom du métier :',
             'attr' => [
                 'maxlength' => 50,
-                'require'=> true,
-                ]
+                'require' => true,
+            ]
         ]);
     }
 

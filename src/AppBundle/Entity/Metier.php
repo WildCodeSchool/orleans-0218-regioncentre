@@ -75,4 +75,3 @@ class Metier
         return $this->name;
     }
 }
-
