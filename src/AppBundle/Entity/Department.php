@@ -39,9 +39,9 @@ class Department
     /**
      * @var int
      *
-     * @ORM\Column(name="chort_code", type="integer")
+     * @ORM\Column(name="short_code", type="integer")
      */
-    private $chortCode;
+    private $shortCode;
 
 
     /**
@@ -89,27 +89,27 @@ class Department
     }
 
     /**
-     * Set chortCode
+     * Set shortCode
      *
-     * @param integer $chortCode
+     * @param integer $shortCode
      *
      * @return Department
      */
-    public function setChortCode($chortCode)
+    public function setShortCode($shortCode)
     {
-        $this->chortCode = $chortCode;
+        $this->shortCode = $shortCode;
 
         return $this;
     }
 
     /**
-     * Get chortCode
+     * Get shortCode
      *
      * @return int
      */
-    public function getChortCode()
+    public function getShortCode()
     {
-        return $this->chortCode;
+        return $this->shortCode;
     }
 
     /**

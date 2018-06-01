@@ -35,7 +35,7 @@ class Lycee
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Nom de lycee doit être au moins {{ limit }} caractères",
+     *      minMessage = "Le nom du lycée doit être d'au moins {{ limit }} caractères",
      *
      * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
@@ -49,7 +49,7 @@ class Lycee
      * @ORM\Column(name="address", type="string", length=255)
      * @Assert\Length(
      *      min = 5,
-     *      minMessage = "L'addresse doit être au moins {{ limit }} caractères",
+     *      minMessage = "L'adresse doit être d'au moins {{ limit }} caractères",
      * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
@@ -76,8 +76,8 @@ class Lycee
      *@Assert\Length(
      *      min = 2,
      *      max = 100,
-     *      minMessage = "Nom de la ville doit être au moins {{ limit }} caractères",
-     *      maxMessage = "Nom de la ville ne peut pas dépasser les {{limit}} caractères "
+     *      minMessage = "Le nom de la ville doit être d'au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de la ville ne peut pas dépasser les {{limit}} caractères "
      * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")

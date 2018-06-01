@@ -7,7 +7,8 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Chortcode</th>
+                <th>Id</th>
+                <th>Shortcode</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -15,8 +16,8 @@
         {% for department in departments %}
             <tr>
                 <td><a href="{{ path('department_show', { 'id': department.id }) }}">{{ department.name }}</a></td>
-
-                <td>{{ department.chortCode }}</td>
+                <td>{{ department.id }}</td>
+                <td>{{ department.shortCode }}</td>
                 <td>
                     <ul>
                         <li>
