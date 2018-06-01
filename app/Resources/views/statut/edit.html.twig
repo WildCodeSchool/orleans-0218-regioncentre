@@ -4,9 +4,12 @@
 {% block body %}
     <div class="container">
         <div class="formStatut">
+            {{ form_start(edit_form) }}
+
             <div class="row">
+
                 <div class="col-12 col-md-8 mx-auto">
-                    <h1>Edition des statuts</h1>
+                    <h1>Edition du statut "{{ statut.name }}"</h1>
                 </div>
                 <div class="col-12 col-md-3 mx-auto">
                     <a class="btn btn-warning" href="{{ path('statut_index') }}">Liste des statuts</a>
@@ -19,7 +22,6 @@
 
             <div class="row">
                 <div class="col-12 col-md-8 mx-auto">
-                    {{ form_start(edit_form) }}
 
                     <div class="form-row">
 
@@ -31,18 +33,15 @@
                         <div class="form-group form-control-lg col-4 mx-auto">
                             {{ form_label(edit_form.color) }}
                             {{ form_widget(edit_form.color) }}
-
                         </div>
 
                     </div>
 
 
                     <div class="d-flex justify-content-center pt-5">
-
                         {{ form_start(edit_form) }}
-                        <input class="btn btn-dark" type="submit" value="Editer le statut"/>
+                        <input class="btn btn-dark" type="submit" value="Editer ce statut"/>
                         {{ form_end(edit_form) }}
-
                     </div>
 
                     {{ form_end(edit_form) }}
