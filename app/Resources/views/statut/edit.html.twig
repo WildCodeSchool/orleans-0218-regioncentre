@@ -3,7 +3,7 @@
 
 {% block body %}
     <div class="container">
-        <div class="formWork">
+        <div class="formStatut">
             <div class="row">
                 <div class="col-12 col-md-8 mx-auto">
                     <h1>Edition des statuts</h1>
@@ -36,23 +36,17 @@
 
                     </div>
 
+
+                    <div class="d-flex justify-content-center pt-5">
+
+                        {{ form_start(edit_form) }}
+                        <input class="btn btn-dark" type="submit" value="Editer le statut"/>
+                        {{ form_end(edit_form) }}
+
+                    </div>
+
                     {{ form_end(edit_form) }}
 
-                    <ul>
-
-                        <li>
-                            {{ form_start(edit_form) }}
-                                {#{{ form_row(edit_form.edit) }}#}
-
-                            <button type="submit" value="Edit"/>Editer</button>
-                            {{ form_end(edit_form) }}
-                        </li>
-                        <li>
-                            {{ form_start(delete_form) }}
-                            <input type="submit" value="Delete">
-                            {{ form_end(delete_form) }}
-                        </li>
-                    </ul>
                 </div>
             </div>
 
