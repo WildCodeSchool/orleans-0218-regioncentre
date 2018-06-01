@@ -27,12 +27,16 @@ class Statut
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="Le statut ne doit pas être vide.",
+     * )
      * @Assert\Length(
      *     max = 30,
      * )
      * @Assert\Regex(
      *     pattern     = "/^[a-zçéè ]+$/i",
      *     htmlPattern = "^[a-zA-Zçéè ]+$",
+     *     message="Le staut ne doit uniquement contenir que des lettres.",
      * )
      */
     private $name;
