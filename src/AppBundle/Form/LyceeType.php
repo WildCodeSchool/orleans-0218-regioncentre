@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,7 +30,7 @@ class LyceeType extends AbstractType
                     'require' => true
                 ]
             ])
-            ->add('postalCode', TextType::class, [
+            ->add('postalCode', IntegerType::class, [
                 'label' => 'Code postal',
                 'attr' => [
                     'maxlength' => 5,

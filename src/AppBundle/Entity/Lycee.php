@@ -35,9 +35,8 @@ class Lycee
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\Length(
      *      min = 2,
-     *      max = 51,
      *      minMessage = "Nom de lycee doit être au moins {{ limit }} caractères",
-     *      maxMessage = "Nom de lycee ne peut pas dépasser les {{limit}} caractères {{ limit }} caractères"
+     *
      * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
@@ -50,9 +49,7 @@ class Lycee
      * @ORM\Column(name="address", type="string", length=255)
      * @Assert\Length(
      *      min = 5,
-     *      max = 51,
      *      minMessage = "L'addresse doit être au moins {{ limit }} caractères",
-     *      maxMessage = "L'addresse ne peut pas dépasser les {{limit}} caractères "
      * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
@@ -63,7 +60,10 @@ class Lycee
      * @var int
      *
      * @ORM\Column(name="postal_code", type="integer")
-     * @Assert\Length(max=5)
+     * @Assert\Type(
+     *     type="numeric",
+     *     message="La valeur {{ value }} n'est pas un format de code postal."
+     * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
@@ -75,7 +75,7 @@ class Lycee
      * @ORM\Column(name="city", type="string", length=255)
      *@Assert\Length(
      *      min = 2,
-     *      max = 40,
+     *      max = 100,
      *      minMessage = "Nom de la ville doit être au moins {{ limit }} caractères",
      *      maxMessage = "Nom de la ville ne peut pas dépasser les {{limit}} caractères "
      * )
