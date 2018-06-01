@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
+
 {% block fos_user_content %}
     <div class="container">
         <div class="formLogin">
@@ -49,3 +51,4 @@
     </div>
 
 {% endblock fos_user_content %}
+{% endblock %}
