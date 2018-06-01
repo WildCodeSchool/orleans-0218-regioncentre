@@ -88,7 +88,7 @@ class StatutController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('statut_edit', array('id' => $statut->getId()));
+            return $this->redirectToRoute('statut_index');
         }
 
         return $this->render('statut/edit.html.twig', array(
