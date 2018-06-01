@@ -13,8 +13,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-
-
 class UserFixtures extends Fixture
 {
     private $encoder;
@@ -43,5 +41,4 @@ class UserFixtures extends Fixture
         $manager->persist($userSuperAdmin);
         $manager->flush();
     }
-
 }

@@ -20,7 +20,11 @@ class UserType extends AbstractType
             $builder
                 ->add('roles',ChoiceType::class, [
                     'label'=> 'Type d\'utilisateur',
-                    'choices' => ['Administrateur Region' => 'ROLE_SUPER_ADMIN', 'EMOP' => 'ROLE_POWER_USER', 'Lycée'  => 'ROLE_USER'],
+                    'choices' => [
+                        'Administrateur Region' => 'ROLE_SUPER_ADMIN',
+                        'EMOP' => 'ROLE_POWER_USER',
+                        'Lycée'  => 'ROLE_USER',
+                    ],
                     'expanded' => true,
                     'multiple' => true,
                     'required' => true,
@@ -60,6 +64,9 @@ class UserType extends AbstractType
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
