@@ -45,6 +45,4 @@ class StatutType extends AbstractType
     {
         return 'appbundle_statut';
     }
-
-
 }
