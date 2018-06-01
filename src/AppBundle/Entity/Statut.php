@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Statut
@@ -24,21 +26,22 @@ class Statut
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Code", type="string", length=64)
+     * @ORM\Column(name="code", type="string", length=64)
+
      */
     private $code;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Color", type="string", length=64)
+     * @ORM\Column(name="color", type="string", length=7)
      */
     private $color;
 
@@ -46,7 +49,7 @@ class Statut
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -125,4 +128,3 @@ class Statut
         return $this->color;
     }
 }
-

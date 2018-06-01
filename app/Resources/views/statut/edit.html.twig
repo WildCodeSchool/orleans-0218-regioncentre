@@ -1,21 +1,64 @@
 {% extends 'base.html.twig' %}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-    <h1>Statut edit</h1>
+    <div class="container">
+        <div class="formWork">
+            <div class="row">
+                <div class="col-12 col-md-8 mx-auto">
+                    <h1>Edition des statuts</h1>
+                </div>
+                <div class="col-12 col-md-3 mx-auto">
+                    <a class="btn btn-warning" href="{{ path('statut_index') }}">Liste des statuts</a>
+                </div>
+            </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+            <div>
+                <hr>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('statut_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <div class="row">
+                <div class="col-12 col-md-8 mx-auto">
+                    {{ form_start(edit_form) }}
+
+                    <div class="form-row">
+
+                        <div class="form-group form-control-lg col-8 mx-auto ">
+                            {{ form_label(edit_form.name) }}
+                            {{ form_widget(edit_form.name) }}
+                        </div>
+
+                        <div class="form-group form-control-lg col-4 mx-auto">
+                            {{ form_label(edit_form.color) }}
+                            {{ form_widget(edit_form.color) }}
+
+                        </div>
+
+                    </div>
+
+                    {{ form_end(edit_form) }}
+
+                    <ul>
+
+                        <li>
+                            {{ form_start(edit_form) }}
+                                {#{{ form_row(edit_form.edit) }}#}
+
+                            <button type="submit" value="Edit"/>Editer</button>
+                            {{ form_end(edit_form) }}
+                        </li>
+                        <li>
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
 {% endblock %}
