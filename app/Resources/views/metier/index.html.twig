@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Metiers list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for metier in metiers %}
+            <tr>
+                <td><a href="{{ path('metier_show', { 'id': metier.id }) }}">{{ metier.id }}</a></td>
+                <td>{{ metier.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('metier_show', { 'id': metier.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('metier_edit', { 'id': metier.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('metier_new') }}">Create a new metier</a>
+        </li>
+    </ul>
+{% endblock %}
