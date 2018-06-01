@@ -20,13 +20,16 @@ class StatutType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom du statut',
                 'attr' => [
-                    'maxlenght' => 50,
+                    'maxlength' => 50,
                     'require' => true,
                 ]
             ])
 //            ->add('code')
             ->add('color', ColorType::class, [
                 'label' => 'Couleur',
+                'attr' => [
+                    'class' => 'picker-size',
+                ]
             ]);
     }/**
      * {@inheritdoc}

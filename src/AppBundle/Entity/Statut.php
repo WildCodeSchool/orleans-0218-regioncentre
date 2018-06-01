@@ -32,19 +32,17 @@ class Statut
      * @Assert\Length(
      *     max = 30,
      * )
-     * @Assert\Regex(
-     *     pattern     = "/^[a-zçéè ]+$/i",
-     *     htmlPattern = "^[a-zA-Zçéè ]+$",
-     *     message="Le staut ne doit uniquement contenir que des lettres.",
-     * )
      */
     private $name;
 
     /**
      * @var string
      *
+     * @Assert\NotBlank(
+     *     message="Un code est nécessaire",
+     * )
+     *
      * @ORM\Column(name="code", type="string", length=64)
-
      */
     private $code;
 
@@ -52,9 +50,13 @@ class Statut
      * @var string
      *
      * @ORM\Column(name="color", type="string", length=7)
+     * @Assert\Regex(
+     *     pattern     = "/^#(?:(?:[a-f\d]{3}){1,2})$/i",
+     *     htmlPattern = "#(?:(?:[a-f\d]{3}){1,2})$",
+     *     message="Code couleur non valide",
+     * )
      */
     private $color;
-
 
     /**
      * Get id
