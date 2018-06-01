@@ -15,32 +15,32 @@ class LyceeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name' ,TextType::class, [
+            ->add('name', TextType::class, [
                 'label' => 'Nom de Lycee',
                 'attr' => [
                     'maxlength' => 50,
-                    'require'=> true
+                    'require' => true
                 ]
             ])
-            ->add('address',TextType::class, [
+            ->add('address', TextType::class, [
                 'label' => 'Addresse',
                 'attr' => [
                     'maxlength' => 30,
-                    'require'=> true
+                    'require' => true
                 ]
             ])
-            ->add('postalCode',TextType::class, [
+            ->add('postalCode', TextType::class, [
                 'label' => 'Code postal',
                 'attr' => [
                     'maxlength' => 5,
-                    'require'=> true
+                    'require' => true
                 ]
             ])
-            ->add('city',TextType::class, [
+            ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'attr' => [
                     'maxlength' => 28,
-                    'require'=> true
+                    'require' => true
                 ]
             ])
             ->add('departments');

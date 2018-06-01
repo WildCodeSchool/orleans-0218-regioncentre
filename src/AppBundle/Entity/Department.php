@@ -48,6 +48,7 @@ class Department
      * @return string
      * add by ziadoof
      */
+
     public function __toString(){
         return $this->name;
     }
