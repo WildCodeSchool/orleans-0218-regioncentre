@@ -12,7 +12,6 @@
     {% endblock %}
 </head>
 <body>
-{% include '_navbar.html.twig' %}
 {% block body %}
     {% for message in app.flashes('success') %}
         <div id="sucess"><div class="alert alert-success text-center" role="alert">
@@ -20,12 +19,21 @@
             </div>
         </div>
     {% endfor %}
-    <div>
-        {% block fos_user_content %}
-        {% endblock fos_user_content %}
-    </div>
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+    {% endblock %}
 {% endblock %}
 <script src="{{ asset('build/app.js') }}"></script>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
+{% endblock %}
 </body>
 </html>
