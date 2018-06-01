@@ -32,6 +32,7 @@ class User extends BaseUser
      *      max = 255,
      *      maxMessage = "Le champs Prénom ne peu dépasser {{ limit }} caractères"
      * )
+     * @Assert\NotBlank()
      */
     private $firstName;
 
@@ -42,8 +43,9 @@ class User extends BaseUser
      *
      *@Assert\Length(
      *      max = 255,
-     *      maxMessage = "Le champs Fonction / Poste ne peu dépasser {{ limit }} caractères"
+     *      maxMessage = "Le champ Fonction / Poste ne peu dépasser {{ limit }} caractères"
      * )
+     *@Assert\NotBlank()
      */
     private $lastName;
 
@@ -54,8 +56,9 @@ class User extends BaseUser
      *
      *@Assert\Length(
      *      max = 255,
-     *      maxMessage = "Le champs Fonction / Poste ne peu dépasser {{ limit }} caractères"
+     *      maxMessage = "Le champ Fonction / Poste ne peu dépasser {{ limit }} caractères"
      * )
+     *@Assert\NotBlank()
      */
     private $work;
 
@@ -64,6 +67,13 @@ class User extends BaseUser
      *
      * @ORM\Column(name="phoneNumber", type="string", length=30)
      *
+     *@Assert\Length(
+     *      min = 10,
+     *      max = 30,
+     *      maxMessage = "Le numéro ne peu dépasser {{ limit }} caractères"
+     *      minMessage = "Le numéro doit comporter au moins {{ limit }} caractères"
+     * )
+     * @Assert\NotBlank()
      */
     private $phoneNumber;
 
@@ -78,7 +88,7 @@ class User extends BaseUser
      *     max = 255,
      *     maxMessage = "L\'adresse courriel ne peu dépasser {{ limit }} caractères"
      * )
-     *
+     *@Assert\NotBlank()
      */
     private $mail;
 
