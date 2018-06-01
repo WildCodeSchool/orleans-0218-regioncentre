@@ -27,6 +27,13 @@ class Statut
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(
+     *     max = 30,
+     * )
+     * @Assert\Regex(
+     *     pattern     = "/^[a-zçéè ]+$/i",
+     *     htmlPattern = "^[a-zA-Zçéè ]+$",
+     * )
      */
     private $name;
 
