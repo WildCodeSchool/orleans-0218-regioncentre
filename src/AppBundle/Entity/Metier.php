@@ -31,11 +31,7 @@ class Metier
      * )
      * @Assert\Length(
      *     max = 50,
-     * )
-     * @Assert\Regex(
-     *     pattern     = "/^[a-zçéè]+$/i",
-     *     htmlPattern = "^[a-zA-Zçéè]+$",
-     *     message="Le métier doit uniquement contenir des lettres.",
+     *     maxMessage = "Le métier ne doit pas contenir plus de 50 caractère",
      * )
      */
     private $name;
