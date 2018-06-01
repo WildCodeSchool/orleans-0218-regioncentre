@@ -32,6 +32,7 @@ class UserFixtures extends Fixture
         $userSuperAdmin->setLastName('MIN');
         $userSuperAdmin->setWork('SUPER ADMINISTRATEUR TOUT PUISSANT');
         $userSuperAdmin->setMail('admin@region.com');
+        $userSuperAdmin->setPhoneNumber('1234567891');
         $userSuperAdmin->setRoles(['ROLE_SUPER_ADMIN']);
         $userSuperAdmin->setEnabled(true);
 

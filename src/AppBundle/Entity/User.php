@@ -28,7 +28,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="firstName", type="string", length=255)
      *
-     *@Assert\Length(
+     * @Assert\Length(
      *      max = 255,
      *      maxMessage = "Le champs Prénom ne peu dépasser {{ limit }} caractères"
      * )
@@ -41,11 +41,11 @@ class User extends BaseUser
      *
      * @ORM\Column(name="lastName", type="string", length=255)
      *
-     *@Assert\Length(
+     * @Assert\Length(
      *      max = 255,
      *      maxMessage = "Le champ Fonction / Poste ne peu dépasser {{ limit }} caractères"
      * )
-     *@Assert\NotBlank()
+     * @Assert\NotBlank()
      */
     private $lastName;
 
@@ -54,11 +54,11 @@ class User extends BaseUser
      *
      * @ORM\Column(name="work", type="string", length=255)
      *
-     *@Assert\Length(
+     * @Assert\Length(
      *      max = 255,
      *      maxMessage = "Le champ Fonction / Poste ne peu dépasser {{ limit }} caractères"
      * )
-     *@Assert\NotBlank()
+     * @Assert\NotBlank()
      */
     private $work;
 
@@ -67,12 +67,11 @@ class User extends BaseUser
      *
      * @ORM\Column(name="phoneNumber", type="string", length=30)
      *
-     *@Assert\Length(
+     * @Assert\Length(
      *      min = 10,
      *      max = 30,
-     *      maxMessage = "Le numéro ne peu dépasser {{ limit }} caractères"
-     *      minMessage = "Le numéro doit comporter au moins {{ limit }} caractères"
-     * )
+     *      maxMessage = "Le numéro ne peu dépasser {{ limit }} caractères",
+     *      minMessage = "Le numéro doit comporter au moins {{ limit }} caractères")
      * @Assert\NotBlank()
      */
     private $phoneNumber;
@@ -83,12 +82,13 @@ class User extends BaseUser
      * @ORM\Column(name="mail", type="string", length=255)
      *
      * @Assert\Email(
-     *     message = "Le courriel '{{ value }}' ne respecte pas le format")
-     *@Assert\Length(
+     *     message = "Le courriel '{{ value }}' ne respecte pas le format"
+     * )
+     * @Assert\Length(
      *     max = 255,
      *     maxMessage = "L\'adresse courriel ne peu dépasser {{ limit }} caractères"
      * )
-     *@Assert\NotBlank()
+     * @Assert\NotBlank()
      */
     private $mail;
 
