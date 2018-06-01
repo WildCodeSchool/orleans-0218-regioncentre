@@ -48,10 +48,11 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
-            return $this->redirectToRoute('user_show', array(
-                'id' => $user->getId(),
-            ));
+            $this->addFlash(
+                'success',
+                'l´Utilisateur a été ajouté avec succes.'
+            );
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('user/new.html.twig', array(

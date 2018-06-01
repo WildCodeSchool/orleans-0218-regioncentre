@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -22,18 +23,16 @@ class User extends BaseUser
      */
     protected $id;
 
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="EMOP", type="boolean")
-     */
-    private $emop;
-
     /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     *
+     *@Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le champs Prénom ne peu dépasser {{ limit }} caractères"
+     * )
+     * @Assert\NotBlank()
      */
     private $firstName;
 
@@ -41,6 +40,12 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
+     *
+     *@Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le champ Fonction / Poste ne peu dépasser {{ limit }} caractères"
+     * )
+     *@Assert\NotBlank()
      */
     private $lastName;
 
@@ -48,6 +53,12 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="work", type="string", length=255)
+     *
+     *@Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le champ Fonction / Poste ne peu dépasser {{ limit }} caractères"
+     * )
+     *@Assert\NotBlank()
      */
     private $work;
 
@@ -55,6 +66,14 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="phoneNumber", type="string", length=30)
+     *
+     *@Assert\Length(
+     *      min = 10,
+     *      max = 30,
+     *      maxMessage = "Le numéro ne peu dépasser {{ limit }} caractères"
+     *      minMessage = "Le numéro doit comporter au moins {{ limit }} caractères"
+     * )
+     * @Assert\NotBlank()
      */
     private $phoneNumber;
 
@@ -62,37 +81,20 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
+     *
+     * @Assert\Email(
+     *     message = "Le courriel '{{ value }}' ne respecte pas le format")
+     *@Assert\Length(
+     *     max = 255,
+     *     maxMessage = "L\'adresse courriel ne peu dépasser {{ limit }} caractères"
+     * )
+     *@Assert\NotBlank()
      */
     private $mail;
 
     public function __construct()
     {
         parent::__construct();
-        // your own logic
-    }
-
-    /**
-     * Set emop
-     *
-     * @param boolean $emop
-     *
-     * @return User
-     */
-    public function setEmop($emop)
-    {
-        $this->emop = $emop;
-
-        return $this;
-    }
-
-    /**
-     * Get emop
-     *
-     * @return boolean
-     */
-    public function getEmop()
-    {
-        return $this->emop;
     }
 
     /**
