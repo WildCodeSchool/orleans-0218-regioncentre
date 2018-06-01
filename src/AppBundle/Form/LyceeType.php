@@ -16,12 +16,12 @@ class LyceeType extends AbstractType
     {
         $builder
             ->add('name' ,TextType::class, [
-                   'label' => 'Nom de Lycee',
-                   'attr' => [
-                               'maxlength' => 50,
-                                'require'=> true
-                               ]
-                  ])
+                'label' => 'Nom de Lycee',
+                'attr' => [
+                    'maxlength' => 50,
+                    'require'=> true
+                ]
+            ])
             ->add('address',TextType::class, [
                 'label' => 'Addresse',
                 'attr' => [
@@ -44,7 +44,9 @@ class LyceeType extends AbstractType
                 ]
             ])
             ->add('departments');
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -61,6 +63,4 @@ class LyceeType extends AbstractType
     {
         return 'appbundle_lycee';
     }
-
-
 }

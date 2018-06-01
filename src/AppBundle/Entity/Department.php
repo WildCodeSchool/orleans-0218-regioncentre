@@ -49,9 +49,9 @@ class Department
      * add by ziadoof
      */
     public function __toString(){
-
         return $this->name;
     }
+
     /**
      * Get id
      *

@@ -14,7 +14,9 @@ class DepartmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name')->add('chortCode');
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -31,6 +33,4 @@ class DepartmentType extends AbstractType
     {
         return 'appbundle_department';
     }
-
-
 }
