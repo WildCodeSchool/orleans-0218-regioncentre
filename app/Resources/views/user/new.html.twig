@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-9 text-center">
+                <h1>FORMULAIRE DE CRÉATION D'UTILISATEURS</h1>
+            </div>
+            <div class="col-3">
+                <div class="d-flex justify-content-start"></div>
+                <a class="btn btn-lg btn-warning" href="{{ path('user_index') }}" role="button">
+                    <i class="fas fa-arrow-left"></i>
+                    <strong>Retour a la liste</strong>
+                </a>
+            </div>
+        </div>
+        <hr class="p-3" width="90%">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12 col-lg-6 mb-2">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="col-md-12 col-lg-6 mb-2">
+                {{ form_row(form.username) }}
+            </div>
+            <div class="col-md-12 col-lg-6 mb-5">
+                {{ form_row(form.plainPassword.first) }}
+            </div>
+            <div class="col-md-12 col-lg-6 mb-5">
+                {{ form_row(form.plainPassword.second) }}
+            </div>
+            <div class="col-md-12 col-lg-6">
+                {{ form_row(form.firstName) }}
+            </div>
+            <div class="col-md-12 col-lg-6">
+                {{ form_row(form.lastName) }}
+            </div>
+            <div class="col-md-12 col-lg-6">
+                {{ form_row(form.mail) }}
+            </div>
+            <div class="col-md-12 col-lg-6">
+                {{ form_row(form.phoneNumber) }}
+            </div>
+            <div class="col-md-12 col-lg-6">
+                {{ form_row(form.work) }}
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="mx-3">
+                    {{ form_label(form.roles) }}
+                </div>
+                <div class="d-inline-flex">
+                    <div class="mx-3">
+                        {{ form_row(form.roles.0) }}
+                    </div>
+                    <div class="mx-3">
+                        {{ form_row(form.roles.1) }}
+                    </div>
+                    <div class="mx-3">
+                        {{ form_row(form.roles.2) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-lg btn-block btn-dark px-5 m-5" type="submit" value="Create">Créer
+                        l'utilisateur
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

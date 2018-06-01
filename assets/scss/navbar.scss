@@ -1,0 +1,60 @@
+.navbar {
+  background-color: $backgroundNav;
+  padding-top: 10px;
+
+  img {
+    position: absolute;
+    margin-top: -1.5em;
+    height: 60px;
+    margin-left: 10px;
+    box-shadow: 0px 0px 10px $shadow;
+  }
+
+  .text {
+    color: $colorText;
+    position: absolute;
+    margin-top: -0.8em;
+    height: 60px;
+    margin-left: 70px;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  a {
+    color: $colorText;
+    transition: 3s;
+
+    &:hover {
+      color: $colorHoverMenu;
+      transition: 3s;
+      text-decoration: none;
+    }
+
+  }
+  .deconnect {
+    text-align: right;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: $colorText;
+  white-space: nowrap;
+
+  text-align: center;
+  transition: 3s;
+
+  &:hover {
+    color: $colorHoverMenu;
+    transition: 3s;
+    text-decoration: none;
+  }
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.6)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+#navLogin{
+  min-height: 60px;
+}
+

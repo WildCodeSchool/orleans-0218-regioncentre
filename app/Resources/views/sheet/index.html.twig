@@ -1,0 +1,54 @@
+{% include 'layout_admin.html.twig' %}
+{% block content %}
+    <div class="container">
+        <h1>Sheets list</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Urgent</th>
+                <th>Subject</th>
+                <th>Buildings</th>
+                <th>Constraintsbuildings</th>
+                <th>Constraintstechnicals</th>
+                <th>Description</th>
+                <th>Startwork</th>
+                <th>Endwork</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sheet in sheets %}
+                <tr>
+                    <td><a href="{{ path('sheet_show', { 'id': sheet.id }) }}">{{ sheet.id }}</a></td>
+                    <td>{% if sheet.urgent %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ sheet.subject }}</td>
+                    <td>{{ sheet.buildings }}</td>
+                    <td>{{ sheet.constraintsBuildings|default('Non renseigné') }}</td>
+                    <td>{{ sheet.constraintsTechnicals|default('Non renseigné') }}</td>
+                    <td>{{ sheet.description }}</td>
+                    <td>{% if sheet.startWork %}{{ sheet.startWork|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if sheet.endWork %}{{ sheet.endWork|date('Y-m-d') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('sheet_show', { 'id': sheet.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('sheet_edit', { 'id': sheet.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('sheet_new') }}">Create a new sheet</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

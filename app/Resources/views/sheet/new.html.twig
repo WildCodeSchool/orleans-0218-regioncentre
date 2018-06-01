@@ -1,0 +1,56 @@
+{% include 'layout_admin.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="formSheet">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 titre">
+                    <h1>Formulaire de création de fiche</h1>
+                </div>
+                <div class="ml-auto p-2 d-none d-sm-block d-xs-none">
+                    <a href="{{ path('sheet_index') }}" class="btn btn-warning">Retour à la liste</a>
+                </div>
+            </div>
+            <hr>
+
+            {{ form_start(form) }}
+
+            {{ form_widget(form.urgent) }}
+            {{ form_errors(form.urgent) }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.startWork) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.endWork) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    {{ form_row(form.subject) }}
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    {{ form_row(form.description) }}
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    {{ form_row(form.buildings) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.constraintsBuildings) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.constraintsTechnicals) }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <input type="submit" value="Envoyer la demande" class="btn btn-dark"/>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

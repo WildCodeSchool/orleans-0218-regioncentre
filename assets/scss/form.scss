@@ -1,0 +1,136 @@
+.formLogin {
+  background-color: $backgroundForm;
+  width: 30em;
+  padding: 2% 4% 2% 4%;
+  color: $colorTextForm;
+  border-radius: 1em;
+  margin-left: auto;
+  margin-right: auto;
+
+  p {
+
+    text-align: center;
+    font-size: 20px;
+  }
+
+  input[type="submit"] {
+    background-color: $colorSubmit;
+    border: 0;
+    margin-left: -2.2em;
+    width: 10em;
+
+    &:hover {
+      background-color: $colorHover;
+      color: $colorTextHover;
+      transition: 3s;
+    }
+  }
+
+  input[type="checkbox"] {
+    margin-left: 1em;
+  }
+
+  .rowLine {
+    margin-top: 0.8em;
+  }
+}
+
+.formSheet {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .form-control {
+    border: 1px solid $colorBorder;
+  }
+
+  label {
+    margin-top: 5px;
+  }
+
+  .btn-warning {
+    margin-left: -0.5em;
+    margin-top: 15px;
+  }
+
+  .btn-dark {
+    margin-right: -0.5em;
+    margin-top: 15px;
+    width: 20em;
+    height: 3em;
+  }
+
+  .titre {
+    margin-top: 15px;
+  }
+}
+
+.formWork {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .form-control {
+    border: 1px solid $colorBorder;
+  }
+  label {
+    margin-top: 5px;
+  }
+  .btn-warning {
+    margin-left: -0.5em;
+    margin-top: 15px;
+  }
+  .btn-dark {
+    margin-right: -0.5em;
+    margin-top: 15px;
+    width: 20em;
+    height: 3em;
+  }
+  h1 {
+    margin-top: 15px;
+    font-size: calc(25px + 6 * (100vw - 400px) / 1200);
+  }
+
+  ul {
+    columns: 2;
+    list-style: none;
+
+  }
+}
+  
+.formStatut {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .form-control {
+    border: 1px solid $colorBorder;
+  }
+  
+  label {
+    margin-top: 5px;
+  }
+
+  .btn-warning {
+    margin-left: -0.5em;
+    margin-top: 15px;
+  }
+
+  .btn-dark {
+    margin-right: -0.5em;
+    margin-top: 15px;
+    width: 20em;
+    height: 3em;
+  }
+
+  .titre {
+    margin-top: 15px;
+  }
+  h1 {
+    margin-top: 15px;
+    font-size: calc(25px + 6 * (100vw - 400px) / 1200);
+  }
+  .picker-size {
+    height: 2.35em;
+  }
+}
