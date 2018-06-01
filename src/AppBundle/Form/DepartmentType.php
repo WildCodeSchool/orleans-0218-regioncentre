@@ -31,6 +31,4 @@ class DepartmentType extends AbstractType
     {
         return 'appbundle_department';
     }
-
-
 }
