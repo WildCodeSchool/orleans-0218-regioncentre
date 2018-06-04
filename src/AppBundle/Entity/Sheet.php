@@ -93,13 +93,13 @@ class Sheet
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Metier")
-     * @var id
+     * @var int
      */
     private $metiers;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Statut")
-     * @var id
+     * @var int
      */
     private $status;
 
