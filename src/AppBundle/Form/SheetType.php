@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Metier;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -61,6 +63,14 @@ class SheetType extends AbstractType
                 'label' => 'Fin des travaux',
                 'widget' => 'single_text',
                 'html5' => true
+            ])
+            ->add('metiers', EntityType::class, [
+                'class' => Metier::class,
+                'label' => 'Metier concerné',
+                'choice_label' => function ($name) {
+                    return $name->getName();
+                }
+
             ]);
     }
 

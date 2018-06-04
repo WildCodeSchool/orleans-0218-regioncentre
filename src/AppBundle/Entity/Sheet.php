@@ -91,7 +91,11 @@ class Sheet
      */
     private $endWork;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Metier")
+     * @var
+     */
+    private $metiers;
     /**
      * Get id
      *
@@ -316,5 +320,29 @@ class Sheet
     public function getSubject()
     {
         return $this->subject;
+    }
+
+    /**
+     * Set metiers
+     *
+     * @param \AppBundle\Entity\Metier $metiers
+     *
+     * @return Sheet
+     */
+    public function setMetiers(\AppBundle\Entity\Metier $metiers = null)
+    {
+        $this->metiers = $metiers;
+
+        return $this;
+    }
+
+    /**
+     * Get metiers
+     *
+     * @return \AppBundle\Entity\Metier
+     */
+    public function getMetiers()
+    {
+        return $this->metiers;
     }
 }
