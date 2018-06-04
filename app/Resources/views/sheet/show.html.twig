@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% include 'layout_admin.html.twig' %}
+{% block content %}
+    <div class="container">
+        <h1>Sheet</h1>
 
-{% block body %}
-    <h1>Sheet</h1>
-
-    <table>
-        <tbody>
+        <table>
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ sheet.id }}</td>
@@ -41,20 +41,21 @@
                 <th>Endwork</th>
                 <td>{% if sheet.endWork %}{{ sheet.endWork|date('Y-m-d') }}{% endif %}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('sheet_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('sheet_edit', { 'id': sheet.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
+        <ul>
+            <li>
+                <a href="{{ path('sheet_index') }}">Back to the list</a>
+            </li>
+            <li>
+                <a href="{{ path('sheet_edit', { 'id': sheet.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </div>
 {% endblock %}

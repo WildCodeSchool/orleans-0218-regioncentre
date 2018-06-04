@@ -49,6 +49,7 @@ class SheetController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($sheet);
+            $this->addFlash('success', 'La fiche vient d\'être ajoutée !');
             $em->flush();
 
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
