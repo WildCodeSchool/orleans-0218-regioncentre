@@ -93,9 +93,16 @@ class Sheet
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Metier")
-     * @var
+     * @var id
      */
     private $metiers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Statut")
+     * @var id
+     */
+    private $status;
+
     /**
      * Get id
      *
@@ -344,5 +351,29 @@ class Sheet
     public function getMetiers()
     {
         return $this->metiers;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \AppBundle\Entity\Statut $status
+     *
+     * @return Sheet
+     */
+    public function setStatus(\AppBundle\Entity\Statut $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \AppBundle\Entity\Statut
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
