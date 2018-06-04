@@ -5,7 +5,7 @@
         <div class="editFormWork">
             <div class="row">
                 <div class="col-12 col-md-8 mx-auto">
-                    <h1>Edition d'un Métiers</h1>
+                    <h1>Edition de {{ metier.name }}</h1>
                 </div>
                 <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
                     <a class="btn btn-warning" href="{{ path('metier_index') }}">retour a l'acceuil</a>
@@ -15,7 +15,7 @@
                 <hr>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6 mx-auto order-1 order-md-0">
+                <div class="col-12 col-md-5 mx-auto order-1 order-md-0">
                     {{ form_start(edit_form.name) }}
                     <div class="p-2">
                         {{ form_row(edit_form.name) }}
@@ -28,12 +28,15 @@
                     {{ form_end(edit_form.name) }}
 
                 </div>
-                <div class="col-12 col-md-4 mx-auto order-0 order-md-1">
+                <div class="col-12 col-md-5 mx-auto order-0 order-md-1">
                     <div class="pt-2">
                         <ul>
                             {% for metier in metiers %}
                                 <li>
                                     {{ metier.name }}
+                                    <a class="ml-5" href="{{ path('metier_edit', { 'id': metier.id }) }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
                                 </li>
                             {% endfor %}
                         </ul>
