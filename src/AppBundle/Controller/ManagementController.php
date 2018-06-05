@@ -24,5 +24,4 @@ class ManagementController extends Controller
     {
         return $this->render('admin/management.html.twig');
     }
-
 }
