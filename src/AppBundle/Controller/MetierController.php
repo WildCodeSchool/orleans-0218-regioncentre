@@ -97,9 +97,9 @@ class MetierController extends Controller
             return $this->redirectToRoute('metier_edit', array('id' => $metier->getId()));
         }
 
-        $pm = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-        $metiers = $pm->getRepository('AppBundle:Metier')->findAll();
+        $metiers = $em->getRepository('AppBundle:Metier')->findAll();
 
         return $this->render('metier/edit.html.twig', array(
             'metier' => $metier,

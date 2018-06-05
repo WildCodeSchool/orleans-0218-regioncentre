@@ -5,10 +5,10 @@
         <div class="editFormWork">
             <div class="row">
                 <div class="col-12 col-md-8 mx-auto">
-                    <h1>Edition de {{ metier.name }}</h1>
+                    <h1>Édition de {{ metier.name }}</h1>
                 </div>
                 <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
-                    <a class="btn btn-warning" href="{{ path('metier_index') }}">retour a l'acceuil</a>
+                    <a class="btn btn-warning" href="/">retour a l'acceuil</a>
                 </div>
             </div>
             <div>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="pt-2">
                             {{ form_start(edit_form) }}
-                            <input class="btn btn-dark" type="submit" value="Editer ce statut"/>
+                            <input class="btn btn-dark" type="submit" value="Éditer ce statut"/>
                             {{ form_end(edit_form) }}
                     </div>
                     {{ form_end(edit_form.name) }}
@@ -45,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
-                    <a class="btn btn-warning" href="{{ path('metier_index') }}">retour a l'acceuil</a>
+                    <a class="btn btn-warning" href="/">retour a l'acceuil</a>
                 </div>
             </div>
         </div>
