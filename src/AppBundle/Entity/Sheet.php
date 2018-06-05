@@ -93,7 +93,6 @@ class Sheet
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Metier")
-     * @ORM\Column(name="job_id", nullable=true)
      * @var int
      */
     private $job;
