@@ -91,6 +91,17 @@ class Sheet
      */
     private $endWork;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Metier")
+     * @var int
+     */
+    private $job;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Statut")
+     * @var int
+     */
+    private $status;
 
     /**
      * Get id
@@ -316,5 +327,53 @@ class Sheet
     public function getSubject()
     {
         return $this->subject;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \AppBundle\Entity\Statut $status
+     *
+     * @return Sheet
+     */
+    public function setStatus(\AppBundle\Entity\Statut $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \AppBundle\Entity\Statut
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set job
+     *
+     * @param \AppBundle\Entity\Metier $job
+     *
+     * @return Sheet
+     */
+    public function setJob(\AppBundle\Entity\Metier $job = null)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return \AppBundle\Entity\Metier
+     */
+    public function getJob()
+    {
+        return $this->job;
     }
 }

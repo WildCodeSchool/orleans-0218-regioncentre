@@ -41,12 +41,15 @@ class SheetController extends Controller
     public function newAction(Request $request)
     {
         $sheet = new Sheet();
+        $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode('waiting');
+        $sheet->setStatus($status);
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($sheet);
+            $this->addFlash('success', 'La fiche vient d\'être ajoutée !');
             $em->flush();
 
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
