@@ -93,9 +93,10 @@ class Sheet
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Metier")
+     * @ORM\Column(name="job_id", nullable=true)
      * @var int
      */
-    private $metiers;
+    private $job;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Statut")
@@ -330,30 +331,6 @@ class Sheet
     }
 
     /**
-     * Set metiers
-     *
-     * @param \AppBundle\Entity\Metier $metiers
-     *
-     * @return Sheet
-     */
-    public function setMetiers(\AppBundle\Entity\Metier $metiers = null)
-    {
-        $this->metiers = $metiers;
-
-        return $this;
-    }
-
-    /**
-     * Get metiers
-     *
-     * @return \AppBundle\Entity\Metier
-     */
-    public function getMetiers()
-    {
-        return $this->metiers;
-    }
-
-    /**
      * Set status
      *
      * @param \AppBundle\Entity\Statut $status
@@ -375,5 +352,29 @@ class Sheet
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set job
+     *
+     * @param \AppBundle\Entity\Metier $job
+     *
+     * @return Sheet
+     */
+    public function setJob(\AppBundle\Entity\Metier $job = null)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return \AppBundle\Entity\Metier
+     */
+    public function getJob()
+    {
+        return $this->job;
     }
 }

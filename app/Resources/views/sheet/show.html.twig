@@ -2,48 +2,46 @@
 {% block content %}
     <div class="container">
         <h1>Sheet</h1>
-
         <table>
             <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sheet.id }}</td>
-            </tr>
-            <tr>
-                <th>Urgent</th>
-                <td>{% if sheet.urgent %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Subject</th>
-                <td>{{ sheet.subject }}</td>
-            </tr>
-            <tr>
-                <th>Buildings</th>
-                <td>{{ sheet.buildings }}</td>
-            </tr>
-            <tr>
-                <th>Constraintsbuildings</th>
-                <td>{{ sheet.constraintsBuildings }}</td>
-            </tr>
-            <tr>
-                <th>Constraintstechnicals</th>
-                <td>{{ sheet.constraintsTechnicals }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ sheet.description }}</td>
-            </tr>
-            <tr>
-                <th>Startwork</th>
-                <td>{% if sheet.startWork %}{{ sheet.startWork|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Endwork</th>
-                <td>{% if sheet.endWork %}{{ sheet.endWork|date('Y-m-d') }}{% endif %}</td>
-            </tr>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ sheet.id }}</td>
+                </tr>
+                <tr>
+                    <th>Urgent</th>
+                    <td>{% if sheet.urgent %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Subject</th>
+                    <td>{{ sheet.subject }}</td>
+                </tr>
+                <tr>
+                    <th>Buildings</th>
+                    <td>{{ sheet.buildings }}</td>
+                </tr>
+                <tr>
+                    <th>Constraintsbuildings</th>
+                    <td>{{ sheet.constraintsBuildings }}</td>
+                </tr>
+                <tr>
+                    <th>Constraintstechnicals</th>
+                    <td>{{ sheet.constraintsTechnicals }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ sheet.description }}</td>
+                </tr>
+                <tr>
+                    <th>Startwork</th>
+                    <td>{% if sheet.startWork %}{{ sheet.startWork|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Endwork</th>
+                    <td>{% if sheet.endWork %}{{ sheet.endWork|date('Y-m-d') }}{% endif %}</td>
+                </tr>
             </tbody>
         </table>
-
         <ul>
             <li>
                 <a href="{{ path('sheet_index') }}">Back to the list</a>

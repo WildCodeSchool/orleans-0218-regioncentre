@@ -64,13 +64,14 @@ class SheetType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => true
             ])
-            ->add('metiers', EntityType::class, [
+            ->add('job', EntityType::class, [
+                'required' => false,
                 'class' => Metier::class,
                 'label' => 'Metier concerné',
+                'placeholder' => 'Choisir un métier',
                 'choice_label' => function ($name) {
                     return $name->getName();
                 }
-
             ]);
     }
 
