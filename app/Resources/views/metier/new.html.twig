@@ -8,14 +8,14 @@
                     <h1>Ajout de Métiers</h1>
                 </div>
                 <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
-                    <a class="btn btn-warning" href="{{ path('metier_index') }}">Retour à l'accueil</a>
+                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
                 </div>
             </div>
             <div>
                 <hr>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6 mx-auto order-1 order-md-0">
+                <div class="col-12 col-md-5 mx-auto order-1 order-md-0">
                     {{ form_start(form.name) }}
                     <div class="p-2">
                         {{ form_row(form.name) }}
@@ -27,11 +27,16 @@
                     {{ form_end(form.name) }}
 
                 </div>
-                <div class="col-12 col-md-4 mx-auto order-0 order-md-1">
+                <div class="col-12 col-md-5 mx-auto order-0 order-md-1">
                     <div class="pt-2">
                         <ul>
                             {% for metier in metiers %}
-                                <li>{{ metier.name }}</li>
+                                <li>
+                                    {{ metier.name }}
+                                    <a class="ml-5" href="{{ path('metier_edit', { 'id': metier.id }) }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -39,7 +44,7 @@
             </div>
             <div class="row">
                 <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
-                    <a class="btn btn-warning" href="{{ path('metier_index') }}">Retour à l'accueil</a>
+                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
                 </div>
             </div>
         </div>
