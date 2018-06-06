@@ -126,7 +126,7 @@ class MetierController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('metier_index');
+        return $this->redirectToRoute('metier_new');
     }
 
     /**

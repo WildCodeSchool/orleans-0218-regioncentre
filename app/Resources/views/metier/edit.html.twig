@@ -8,7 +8,7 @@
                     <h1>Édition de {{ metier.name }}</h1>
                 </div>
                 <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
-                    <a class="btn btn-warning" href="/">Retour à l'acceuil</a>
+                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
                 </div>
             </div>
             <div>
@@ -20,10 +20,15 @@
                     <div class="p-2">
                         {{ form_row(edit_form.name) }}
                     </div>
-                    <div class="pt-2">
+                    <div class="row pt-2">
+                        <div>
                             {{ form_start(edit_form) }}
-                            <input class="btn btn-dark" type="submit" value="Éditer ce statut"/>
+                            <input class="btn btn-dark" type="submit" value="Éditer ce métier"/>
                             {{ form_end(edit_form) }}
+                        </div>
+                        <div class="col-4 ml-4">
+                            <a href="#deleteModal" class="btn btn-danger" data-toggle="modal">Supprimer ce métier</a>
+                        </div>
                     </div>
                     {{ form_end(edit_form.name) }}
 
@@ -35,6 +40,7 @@
                                 <li>
                                     {{ metier.name }}
                                     <a class="ml-5" href="{{ path('metier_edit', { 'id': metier.id }) }}">
+                                        <span class="sr-only">Éditer {{ metier.name }}</span>
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </li>
@@ -45,7 +51,32 @@
             </div>
             <div class="row">
                 <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
-                    <a class="btn btn-warning" href="/">Retour à l'acceuil</a>
+                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+        <div id="deleteModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmation</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Voulez-vous vraiment supprimer "{{ metier.name }}" ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row mx-auto">
+                            <div class="col-4 mr-4">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            </div>
+                            <div class="col-4 ml-4">
+                                {{ form_start(delete_form) }}
+                                <input class="btn btn-danger" type="submit" value="Supprimer">
+                                {{ form_end(delete_form) }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
