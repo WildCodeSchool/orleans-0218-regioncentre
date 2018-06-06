@@ -1,21 +1,53 @@
-{% extends 'base.html.twig' %}
-
+{% include 'layout_admin.html.twig' %}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-    <h1>Metier edit</h1>
+    <div class="container">
+        <div class="editFormWork">
+            <div class="row">
+                <div class="col-12 col-md-8 mx-auto">
+                    <h1>Édition de {{ metier.name }}</h1>
+                </div>
+                <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
+                    <a class="btn btn-warning" href="/">Retour à l'acceuil</a>
+                </div>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-5 mx-auto order-1 order-md-0">
+                    {{ form_start(edit_form.name) }}
+                    <div class="p-2">
+                        {{ form_row(edit_form.name) }}
+                    </div>
+                    <div class="pt-2">
+                            {{ form_start(edit_form) }}
+                            <input class="btn btn-dark" type="submit" value="Éditer ce statut"/>
+                            {{ form_end(edit_form) }}
+                    </div>
+                    {{ form_end(edit_form.name) }}
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input type="submit" value="Edit"/>
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('metier_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                </div>
+                <div class="col-12 col-md-5 mx-auto order-0 order-md-1">
+                    <div class="pt-2">
+                        <ul>
+                            {% for metier in metiers %}
+                                <li>
+                                    {{ metier.name }}
+                                    <a class="ml-5" href="{{ path('metier_edit', { 'id': metier.id }) }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
+                    <a class="btn btn-warning" href="/">Retour à l'acceuil</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
