@@ -49,6 +49,11 @@ class LyceeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($lycee);
             $em->flush();
+            $this->addFlash(
+                'success',
+                'Le lycée a été ajouté!'
+            );
+
 
             return $this->redirectToRoute('lycee_show', array('id' => $lycee->getId()));
         }
@@ -89,10 +94,13 @@ class LyceeController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash(
+                'success',
+                'Vos modifications ont été enregistrées!'
+            );
 
             return $this->redirectToRoute('lycee_edit', array('id' => $lycee->getId()));
         }
-
         return $this->render('lycee/edit.html.twig', array(
             'lycee' => $lycee,
             'edit_form' => $editForm->createView(),
@@ -115,6 +123,10 @@ class LyceeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($lycee);
             $em->flush();
+            $this->addFlash(
+                'success',
+                'Le lycéé a été supprimé'
+            );
         }
 
         return $this->redirectToRoute('lycee_index');

@@ -40,7 +40,7 @@ class LyceeType extends AbstractType
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'attr' => [
-                    'maxlength' => 28,
+                    'maxlength' => 100,
                     'require' => true
                 ]
             ])

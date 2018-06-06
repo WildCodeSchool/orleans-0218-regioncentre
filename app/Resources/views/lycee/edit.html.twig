@@ -1,21 +1,51 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Lycee edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('lycee_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% include 'layout_admin.html.twig' %}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+{% block contant %}
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-md-12 pt-4 d-inline">
+                <div class="d-inline col-md-4">
+                    <h1 class="d-inline ">Lycee edit</h1>
+                </div>
+                <div class="col-md-4 d-sm-block d-none float-md-right ">
+                    <a class="btn btn-warning" href="{{ path('lycee_index') }}">Retour à la liste des lycées</a>
+                </div>
+                <hr/>
+                <div class="col-12 col-md-6 mx-auto form-lycee">
+                    {{ form_start(edit_form, {'attr':{'class':'d-inline col-m-3'}}) }}
+                    {{ form_widget(edit_form) }}
+                        <input class="btn btn-dark col-md-3 " type="submit" value="Edit" />
+                            <div class="col-4 ml-4 float-right">
+                                <a href="#deleteModal" class="btn btn-danger d-inline" data-toggle="modal">Supprimer ce lycée</a>
+                            </div>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="deleteModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment supprimer "{{ lycee.name }}" ?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row mx-auto">
+                        <div class="col-4 mr-4">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        </div>
+                        <div class="col-4 ml-4">
+                            {{ form_start(delete_form) }}
+                            <input class="btn btn-danger" type="submit" value="Supprimer">
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
