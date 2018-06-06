@@ -24,5 +24,24 @@ body {
     height: 2em;
     line-height: 0.05em;
   }
+
+  thead{
+    border-left:0.15em solid #dee2e6;
+    border-right:0.15em solid #dee2e6;
+    tr{
+      th{
+        font-family: roboto;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .badge{
+    font-family:Roboto;
+    font-weight: 400;
+    padding-top: 0.7em;
+    min-height: 2.5em;
+    min-width: 5.5em;
+  }
 }
 
