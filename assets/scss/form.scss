@@ -10,7 +10,7 @@
   p {
 
     text-align: center;
-    font-size: 20px;
+    font-size: 2em;
   }
 
   input[type="submit"] {
@@ -35,37 +35,63 @@
   }
 }
 
-.formSheet {
-  width: 80%;
+.default-form {
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 
   .form-control {
-    border: 1px solid $colorBorder;
+    border: 0.05em solid $colorBorder;
   }
 
   label {
-    margin-top: 5px;
+    margin-top: 0.5em;
   }
 
   .btn-warning {
     margin-left: -0.5em;
-    margin-top: 15px;
+    margin-top: 0.5em;
   }
 
   .btn-dark {
     margin-right: -0.5em;
-    margin-top: 15px;
+    margin-top: 0.5em;
     width: 20em;
     height: 3em;
   }
 
-  .titre {
-    margin-top: 15px;
+  .title {
+    margin-top: 0.5em;
+  }
+
+  h1 {
+    margin-top: 0.5em;
+    font-size: calc(25px + 6 * (100vw - 400px) / 1200);
   }
 }
 
+.formSheet {
+  @extend .default-form;
+}
+
 .formWork {
+  @extend .default-form;
+
+  ul {
+    columns: 2;
+    list-style: none;
+  }
+}
+  
+.formStatut {
+  @extend .default-form;
+
+  .picker-size {
+    height: 2.35em;
+  }
+}
+
+.editFormWork {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -81,7 +107,7 @@
     margin-top: 15px;
   }
   .btn-dark {
-    margin-right: -0.5em;
+    margin-left: 1em;
     margin-top: 15px;
     width: 20em;
     height: 3em;
@@ -94,43 +120,5 @@
   ul {
     columns: 2;
     list-style: none;
-
-  }
-}
-  
-.formStatut {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-
-  .form-control {
-    border: 1px solid $colorBorder;
-  }
-  
-  label {
-    margin-top: 5px;
-  }
-
-  .btn-warning {
-    margin-left: -0.5em;
-    margin-top: 15px;
-  }
-
-  .btn-dark {
-    margin-right: -0.5em;
-    margin-top: 15px;
-    width: 20em;
-    height: 3em;
-  }
-
-  .titre {
-    margin-top: 15px;
-  }
-  h1 {
-    margin-top: 15px;
-    font-size: calc(25px + 6 * (100vw - 400px) / 1200);
-  }
-  .picker-size {
-    height: 2.35em;
   }
 }

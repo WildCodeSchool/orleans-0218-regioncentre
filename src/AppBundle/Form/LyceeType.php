@@ -17,14 +17,14 @@ class LyceeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de Lycee',
+                'label' => 'Nom du lycée',
                 'attr' => [
                     'maxlength' => 50,
                     'require' => true
                 ]
             ])
             ->add('address', TextType::class, [
-                'label' => 'Addresse',
+                'label' => 'Adresse',
                 'attr' => [
                     'maxlength' => 30,
                     'require' => true

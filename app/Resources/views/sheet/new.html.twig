@@ -5,7 +5,7 @@
         <div class="formSheet">
             <div class="row">
                 <div class="col-md-12 col-lg-8 titre">
-                    <h1>Formulaire de création de fiche</h1>
+                    <h1>Formulaire de création d'une fiche</h1>
                 </div>
                 <div class="ml-auto p-2 d-none d-sm-block d-xs-none">
                     <a href="{{ path('sheet_index') }}" class="btn btn-warning">Retour à la liste</a>
@@ -34,6 +34,9 @@
                     {{ form_row(form.description) }}
                 </div>
                 <div class="col-md-12 col-lg-12">
+                    {{ form_row(form.job) }}
+                </div>
+                <div class="col-md-12 col-lg-12">
                     {{ form_row(form.buildings) }}
                 </div>
             </div>
@@ -50,6 +53,7 @@
                 {{ form_end(form) }}
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
 

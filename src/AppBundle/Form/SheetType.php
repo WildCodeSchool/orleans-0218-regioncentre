@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Metier;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -23,31 +25,31 @@ class SheetType extends AbstractType
                 'choices' => array(
                     'Cette demande est urgente' => 1,
                     'Cette demande n\'est pas urgente' => 0),
-                'placeholder' => 'La demande est elle urgente ?'
+                'placeholder' => 'La demande est-elle urgente ?'
             ])
             ->add('subject', TextType::class, [
                 'required' => true,
-                'label' => 'Objet de la demande:',
+                'label' => 'Objet de la demande',
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
             ->add('buildings', TextareaType::class, [
                 'required' => true,
-                'label' => 'Batiment concerné:',
+                'label' => 'Bâtiment concerné',
                 'attr' => array('rows' => '2', 'cols' => '10')
             ])
             ->add('constraintsBuildings', TextareaType::class, [
                 'required' => false,
-                'label' => 'Contraintes de fonctionnement de l\'établissement:',
+                'label' => 'Contraintes de fonctionnement de l\'établissement',
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
             ->add('constraintsTechnicals', TextareaType::class, [
                 'required' => false,
-                'label' => 'Contraintes techniques:',
+                'label' => 'Contraintes techniques',
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
             ->add('description', TextareaType::class, [
                 'required' => true,
-                'label' => 'Description de la demande:',
+                'label' => 'Description de la demande',
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
             ->add('startWork', DateType::class, [
@@ -61,6 +63,15 @@ class SheetType extends AbstractType
                 'label' => 'Fin des travaux',
                 'widget' => 'single_text',
                 'html5' => true
+            ])
+            ->add('job', EntityType::class, [
+                'required' => false,
+                'class' => Metier::class,
+                'label' => 'Métier concerné',
+                'placeholder' => 'Choisir un métier',
+                'choice_label' => function ($name) {
+                    return $name->getName();
+                }
             ]);
     }
 
