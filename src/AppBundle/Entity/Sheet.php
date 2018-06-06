@@ -390,7 +390,7 @@ class Sheet
      *
      * @return Sheet
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\AppBundle\Entity\User $user)
     {
         $this->user = $user;
 

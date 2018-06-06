@@ -39,7 +39,7 @@ class SheetController extends Controller
      * @Route("/new", name="sheet_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, SessionInterface $session)
+    public function newAction(Request $request)
     {
         $sheet = new Sheet();
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
