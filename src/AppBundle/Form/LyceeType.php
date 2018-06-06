@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Department;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -44,7 +46,14 @@ class LyceeType extends AbstractType
                     'require' => true
                 ]
             ])
-            ->add('departments');
+            ->add('departments',EntityType::class, [
+                'required' => false,
+                'class' => Department::class,
+                'label' => 'Département',
+                'placeholder' => 'Choisir un département',
+                'choice_label' => function($name) {
+                    return $name->getName();
+                }]);
     }
 
     /**

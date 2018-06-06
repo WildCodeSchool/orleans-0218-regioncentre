@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12 pt-4 d-inline">
                 <div class="d-inline col-md-4">
-                    <h1 class="d-inline ">Lycee edit</h1>
+                    <h1 class="d-inline ">Modifier d'un lycée</h1>
                 </div>
                 <div class="col-md-4 d-sm-block d-none float-md-right ">
                     <a class="btn btn-warning" href="{{ path('lycee_index') }}">Retour à la liste des lycées</a>
@@ -14,7 +14,7 @@
                 <div class="col-12 col-md-6 mx-auto form-lycee">
                     {{ form_start(edit_form, {'attr':{'class':'d-inline col-m-3'}}) }}
                     {{ form_widget(edit_form) }}
-                        <input class="btn btn-dark col-md-3 " type="submit" value="Edit" />
+                        <input class="btn btn-dark col-md-3 " type="submit" value="Modifier" />
                             <div class="col-4 ml-4 float-right">
                                 <a href="#deleteModal" class="btn btn-danger d-inline" data-toggle="modal">Supprimer ce lycée</a>
                             </div>
