@@ -82,11 +82,27 @@
     list-style: none;
   }
 }
-  
+
 .formStatut {
   @extend .default-form;
 
   .picker-size {
     height: 2.35em;
+  }
+}
+
+.editFormWork {
+  @extend .default-form;
+
+  ul {
+    columns: 2;
+    list-style: none;
+  }
+
+  .btn-danger {
+    margin-left: 1em;
+    margin-top: 0.5em;
+    width: 12em;
+    height: 3em;
   }
 }

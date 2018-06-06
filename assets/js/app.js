@@ -1,7 +1,7 @@
 import $ from "jquery"
 
 $(document).ready(function () {
-    $("#sucess").fadeOut(6000);
+    $(".alert-success").fadeOut(6000);
 });
 
 

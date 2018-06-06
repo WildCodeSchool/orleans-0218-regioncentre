@@ -18,13 +18,13 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $metier = new Metier();
-        $metier->setName('Sérrurier');
+        $metier->setName('Serrurier');
 
         $metier2 = new Metier();
         $metier2->setName('Plombier');
 
         $metier3 = new Metier();
-        $metier3->setName('Eléctricien');
+        $metier3->setName('Électricien');
 
         $manager->persist($metier);
         $manager->persist($metier2);

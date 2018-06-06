@@ -97,8 +97,13 @@ class MetierController extends Controller
             return $this->redirectToRoute('metier_edit', array('id' => $metier->getId()));
         }
 
+        $em = $this->getDoctrine()->getManager();
+
+        $metiers = $em->getRepository('AppBundle:Metier')->findAll();
+
         return $this->render('metier/edit.html.twig', array(
             'metier' => $metier,
+            'metiers' => $metiers,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -121,7 +126,7 @@ class MetierController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('metier_index');
+        return $this->redirectToRoute('metier_new');
     }
 
     /**
