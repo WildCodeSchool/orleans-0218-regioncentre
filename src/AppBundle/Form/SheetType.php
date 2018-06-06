@@ -34,7 +34,7 @@ class SheetType extends AbstractType
             ])
             ->add('buildings', TextareaType::class, [
                 'required' => true,
-                'label' => 'Batiment concerné',
+                'label' => 'Bâtiment concerné',
                 'attr' => array('rows' => '2', 'cols' => '10')
             ])
             ->add('constraintsBuildings', TextareaType::class, [
