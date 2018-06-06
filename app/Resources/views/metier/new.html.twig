@@ -34,6 +34,7 @@
                                 <li>
                                     {{ metier.name }}
                                     <a class="ml-5" href="{{ path('metier_edit', { 'id': metier.id }) }}">
+                                        <span class="sr-only">Éditer {{ metier.name }}</span>
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </li>
