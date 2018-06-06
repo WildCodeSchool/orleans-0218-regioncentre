@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Sheet;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -21,7 +20,7 @@ class HistorySheetController extends Controller
      * @Route("/history", name="admin_history_sheets")
      * @Method("GET")
      */
-    public function IndexAction()
+    public function indexAction()
     {
         $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)->findAll();
         return $this->render('admin/history.html.twig', [
