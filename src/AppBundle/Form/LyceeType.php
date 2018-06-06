@@ -46,12 +46,12 @@ class LyceeType extends AbstractType
                     'require' => true
                 ]
             ])
-            ->add('departments',EntityType::class, [
+            ->add('departments', EntityType::class, [
                 'required' => true,
                 'class' => Department::class,
                 'label' => 'Département',
                 'placeholder' => 'Choisir un département',
-                'choice_label' => function($name) {
+                'choice_label' => function ($name) {
                     return $name->getName();
                 }]);
     }
