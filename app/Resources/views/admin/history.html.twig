@@ -11,22 +11,22 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">Date de réation</th>
+                    <th scope="col" class="t-date">Date de création</th>
                     <th scope="col">Lycée</th>
                     <th scope="col">Ville</th>
                     <th scope="col">Type de travaux</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="t-date">Date</th>
                     <th scope="col">Analyse de la demande</th>
-                    <th scope="col" class="text-center">Statuts</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="text-center t-status">Statuts</th>
+                    <th scope="col" class="t-button"></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for sheet in sheets %}
                     <tr>
-                        <td width="auto"></td>
-                        <td width="auto"></td>
-                        <td width="auto"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>{{ sheet.job.name }}</td>
                         <td></td>
                         <td></td>
@@ -36,7 +36,7 @@
                             {% endif %}
                                 <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
                         </td>
-                        <td width="3%">
+                        <td>
                             <button class="btn btn-sm btn-dark text-warning">Voir</button>
                         </td>
                     </tr>

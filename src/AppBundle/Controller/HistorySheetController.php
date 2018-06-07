@@ -24,6 +24,7 @@ class HistorySheetController extends Controller
     {
         $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)->findAll();
         return $this->render('admin/history.html.twig', [
-            'sheets' => $sheets,]);
+            'sheets' => $sheets,
+            ]);
     }
 }
