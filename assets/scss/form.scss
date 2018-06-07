@@ -1,37 +1,28 @@
 .formLogin {
   background-color: $backgroundForm;
-  width: 30em;
+  max-width: 30em;
   padding: 2% 4% 2% 4%;
   color: $colorTextForm;
   border-radius: 1em;
   margin-left: auto;
   margin-right: auto;
-
   p {
-
     text-align: center;
     font-size: 2em;
   }
-
   input[type="submit"] {
     background-color: $colorSubmit;
     border: 0;
-    margin-left: -2.2em;
     width: 10em;
-
     &:hover {
       background-color: $colorHover;
       color: $colorTextHover;
       transition: 3s;
     }
   }
-
-  input[type="checkbox"] {
-    margin-left: 1em;
-  }
-
   .rowLine {
     margin-top: 0.8em;
+    margin-right: 6em;
   }
 }
 
