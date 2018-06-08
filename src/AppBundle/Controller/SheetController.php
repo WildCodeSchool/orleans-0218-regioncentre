@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class SheetController extends Controller
 {
+    const WAITING = 'waiting';
     /**
      * Lists all sheet entities.
      *
@@ -42,6 +43,8 @@ class SheetController extends Controller
     public function newAction(Request $request)
     {
         $sheet = new Sheet();
+        $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
+        $sheet->setStatus($status);
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
         $form->handleRequest($request);
 
