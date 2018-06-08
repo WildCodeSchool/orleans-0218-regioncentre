@@ -1,37 +1,28 @@
 .formLogin {
   background-color: $backgroundForm;
-  width: 30em;
+  max-width: 30em;
   padding: 2% 4% 2% 4%;
   color: $colorTextForm;
   border-radius: 1em;
   margin-left: auto;
   margin-right: auto;
-
   p {
-
     text-align: center;
     font-size: 2em;
   }
-
   input[type="submit"] {
     background-color: $colorSubmit;
     border: 0;
-    margin-left: -2.2em;
     width: 10em;
-
     &:hover {
       background-color: $colorHover;
       color: $colorTextHover;
       transition: 3s;
     }
   }
-
-  input[type="checkbox"] {
-    margin-left: 1em;
-  }
-
   .rowLine {
     margin-top: 0.8em;
+    margin-right: 6em;
   }
 }
 
@@ -82,7 +73,7 @@
     list-style: none;
   }
 }
-  
+
 .formStatut {
   @extend .default-form;
 
@@ -92,33 +83,18 @@
 }
 
 .editFormWork {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-
-  .form-control {
-    border: 1px solid $colorBorder;
-  }
-  label {
-    margin-top: 5px;
-  }
-  .btn-warning {
-    margin-left: -0.5em;
-    margin-top: 15px;
-  }
-  .btn-dark {
-    margin-left: 1em;
-    margin-top: 15px;
-    width: 20em;
-    height: 3em;
-  }
-  h1 {
-    margin-top: 15px;
-    font-size: calc(25px + 6 * (100vw - 400px) / 1200);
-  }
+  @extend .default-form;
 
   ul {
     columns: 2;
     list-style: none;
+  }
+
+  .btn-danger {
+    padding-top: 0.7em;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    width: 12em;
+    height: 3em;
   }
 }

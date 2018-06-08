@@ -104,6 +104,12 @@ class Sheet
     private $status;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @var int
+     */
+    private $user;
+
+    /**
      * Get id
      *
      * @return int
@@ -375,5 +381,29 @@ class Sheet
     public function getJob()
     {
         return $this->job;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Sheet
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

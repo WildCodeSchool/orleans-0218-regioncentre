@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Sheet controller.
@@ -15,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class SheetController extends Controller
 {
+    const WAITING = 'waiting';
     /**
      * Lists all sheet entities.
      *
@@ -41,15 +43,15 @@ class SheetController extends Controller
     public function newAction(Request $request)
     {
         $sheet = new Sheet();
-        $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode('waiting');
+        $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
         $sheet->setStatus($status);
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $sheet->setUser($this->getUser());
             $em->persist($sheet);
-            $this->addFlash('success', 'La fiche vient d\'être ajoutée !');
             $em->flush();
 
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
@@ -134,7 +136,6 @@ class SheetController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('sheet_delete', array('id' => $sheet->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
