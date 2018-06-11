@@ -110,6 +110,13 @@ class Sheet
     private $user;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creationDate", type="date")
+     */
+    private $creationDate;
+
+    /**
      * Get id
      *
      * @return int
@@ -405,5 +412,29 @@ class Sheet
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     *
+     * @return Sheet
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
     }
 }
