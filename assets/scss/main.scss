@@ -17,7 +17,7 @@ body {
     padding-bottom: 5em;
   }
 
-  .alert-success{
+  .alert-success {
     position: absolute;
     margin-top: 0.6em;
     width: 100%;
@@ -26,34 +26,43 @@ body {
   }
 
   //TABLE
-  thead{
-    border-left:0.15em solid #dee2e6;
-    border-right:0.15em solid #dee2e6;
-    tr{
-      th{
+  thead {
+    border-left: 0.15em solid #dee2e6;
+    border-right: 0.15em solid #dee2e6;
+    tr {
+      th {
         font-family: roboto;
         font-weight: 400;
       }
     }
   }
-  .t-date{
+  .t-date {
     width: 7.5vw;
   }
 
-  .t-status{
+  .t-status {
     width: 10vw;
   }
-  .t-button{
+  .t-button {
     width: 3vw;
   }
 
   //BADGE AND PILLS
-  .badge{
-    font-family:Roboto;
+  .badge {
+    font-family: Roboto;
     font-weight: 400;
     padding-top: 0.7em;
     min-height: 2.5em;
     min-width: 5.5em;
   }
+
+
+  // PAGE LOGIN/ACCUEIL
+  .text-accueil {
+    font-size: calc(25px + 6 * (100vw - 400px) / 1200);
+    color: rgb(40, 34, 93);
+
+  }
+
 }
 
