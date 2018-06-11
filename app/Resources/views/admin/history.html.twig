@@ -28,7 +28,7 @@
                         <td></td>
                         <td></td>
                         <td>{{ sheet.job.name }}</td>
-                        <td></td>
+                        <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
                         <td></td>
                         <td class="text-right" width="auto">
                             {% if sheet.urgent == true %}
