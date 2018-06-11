@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SheetController extends Controller
 {
     const WAITING = 'waiting';
+
     /**
      * Lists all sheet entities.
      *
@@ -42,6 +43,8 @@ class SheetController extends Controller
      */
     public function newAction(Request $request)
     {
+        $dateNow = new \DateTime('now');
+
         $sheet = new Sheet();
         $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
         $sheet->setStatus($status);
@@ -51,6 +54,7 @@ class SheetController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $sheet->setUser($this->getUser());
+            $sheet->setCreationDate($dateNow);
             $em->persist($sheet);
             $em->flush();
 
