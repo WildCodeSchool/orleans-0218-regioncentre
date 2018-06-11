@@ -16,7 +16,6 @@ class Analysis
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Statut")
-     * @ORM\Column(nullable=true)
      */
     private $status;
 
