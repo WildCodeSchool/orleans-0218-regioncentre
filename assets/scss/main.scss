@@ -56,12 +56,11 @@ body {
     min-width: 5.5em;
   }
 
-
   // PAGE LOGIN/ACCUEIL
-  .text-accueil {
-    font-size: calc(25px + 6 * (100vw - 400px) / 1200);
-    color: rgb(40, 34, 93);
-
+  .welcome-text {
+    font-size: calc(25px + 30 * (100vw - 400px) / 1200);
+    text-align: center;
+    color: $colorTitle;
   }
 
 }
