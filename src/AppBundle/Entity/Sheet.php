@@ -437,4 +437,9 @@ class Sheet
     {
         return $this->creationDate;
     }
+
+    public function __construct()
+    {
+        $this->setCreationDate(new \DateTime('now'));
+    }
 }
