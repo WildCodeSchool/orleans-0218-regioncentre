@@ -7,8 +7,11 @@
                 <div class="col-md-12 col-lg-8 titre">
                     <h1>Formulaire de création d'une fiche</h1>
                 </div>
-                <div class="ml-auto p-2 d-none d-sm-block d-xs-none">
-                    <a href="{{ path('sheet_index') }}" class="btn btn-warning">Retour à la liste</a>
+                <div class="ml-auto p-2 d-none d-md-block d-xs-none">
+                    <a href="{{ path('sheet_index') }}" class="btn btn-warning">
+                        Retour à la liste
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
                 </div>
             </div>
             <hr>
@@ -52,9 +55,15 @@
                 <input type="submit" value="Envoyer la demande" class="btn btn-dark"/>
                 {{ form_end(form) }}
             </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
+                    <a class="btn btn-warning" href="{{ path('sheet_index') }}">
+                        Retour à l'accueil
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    </div>
 {% endblock %}
-
-
