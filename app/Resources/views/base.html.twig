@@ -13,15 +13,16 @@
 </head>
 <body>
 {% block body %}
-    {% for message in app.flashes('success') %}
-        <div id="sucess"><div class="alert alert-success text-center" role="alert">
-                {{ message }}
-            </div>
-        </div>
-    {% endfor %}
     {% block header %}
     {% endblock %}
     {% block content %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
     {% endblock %}
     {% block footer %}
     {% endblock %}

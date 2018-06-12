@@ -11,8 +11,8 @@ body {
     background-color: $backgroundContainer;
     margin-top: 3em;
     margin-bottom: 5em;
-    min-width: 80vw;
-    min-height: 35vw;
+    min-width: 87vw;
+    min-height: 40vw;
     padding-top: 4em;
     padding-bottom: 5em;
   }
@@ -23,6 +23,37 @@ body {
     width: 100%;
     height: 2em;
     line-height: 0.05em;
+  }
+
+  //TABLE
+  thead{
+    border-left:0.15em solid #dee2e6;
+    border-right:0.15em solid #dee2e6;
+    tr{
+      th{
+        font-family: roboto;
+        font-weight: 400;
+      }
+    }
+  }
+  .t-date{
+    width: 7.5vw;
+  }
+
+  .t-status{
+    width: 10vw;
+  }
+  .t-button{
+    width: 3vw;
+  }
+
+  //BADGE AND PILLS
+  .badge{
+    font-family:Roboto;
+    font-weight: 400;
+    padding-top: 0.7em;
+    min-height: 2.5em;
+    min-width: 5.5em;
   }
 }
 

@@ -15,7 +15,7 @@ class MetierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', TextType::class, [
-            'label' => 'Nom du métier :',
+            'label' => 'Nom du métier',
             'attr' => [
                 'maxlength' => 50,
                 'require' => true,

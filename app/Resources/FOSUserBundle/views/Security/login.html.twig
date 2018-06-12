@@ -1,54 +1,52 @@
 {% extends "layout.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
 {% block content %}
-
-{% block fos_user_content %}
-    <div class="container">
-        <div class="formLogin">
-            <p>Connection</p>
-            {% if error %}
-                <div class="alert alert-danger"
-                     role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-            <form action="{{ path("fos_user_security_check") }}" method="post">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-                <div class="formgroup">
-                    <label for="username">{{ 'security.login.username'|trans }}</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-user-circle"></i></div>
-                        </div>
-                        <input class="form-control" type="text" id="username" name="_username"
-                               value="{{ last_username }}"
-                               required="required"/>
-                    </div>
+    {% block fos_user_content %}
+        <div class="container">
+            <div class="formLogin">
+                <p>Connexion</p>
+                {% if error %}
+                    <div class="alert alert-danger"
+                         role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
                     <div class="formgroup">
-                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                        <label for="username">{{ 'security.login.username'|trans }}</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                                <div class="input-group-text"><i class="fas fa-user-circle"></i></div>
                             </div>
-                            <input class="form-control" type="password" id="password" name="_password"
+                            <input class="form-control" type="text" id="username" name="_username"
+                                   value="{{ last_username }}"
                                    required="required"/>
                         </div>
-                        <div class="row">
-                            <div class="rowLine">
-                                <div class="row justify-content-around">
-                                    <div class="col-8">
-                                        <div class="checkbox">
-                                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <input type="submit" class="btn btn-primary pull-right" id="_submit"
+                        <div class="formgroup">
+                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                                </div>
+                                <input class="form-control" type="password" id="password" name="_password"
+                                       required="required"/>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="checkbox mt-3 mr-3">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mt-2">
+                                        <input type="submit" class="btn btn-primary" id="_submit"
                                                name="_submit"
                                                value="{{ 'security.login.submit'|trans }}"/>
                                     </div>
                                 </div>
-            </form>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-
-{% endblock fos_user_content %}
+    {% endblock fos_user_content %}
 {% endblock %}
