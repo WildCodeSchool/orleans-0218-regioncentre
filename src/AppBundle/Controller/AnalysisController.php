@@ -48,7 +48,7 @@ class AnalysisController extends Controller
             $em->persist($analysis);
             $em->flush();
 
-            return $this->redirectToRoute('analysis_show', array('id' => $analysis->getId()));
+            return $this->redirectToRoute('analysis_index');
         }
 
         return $this->render('analysis/new.html.twig', array(
