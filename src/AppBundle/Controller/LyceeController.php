@@ -49,6 +49,11 @@ class LyceeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($lycee);
             $em->flush();
+            $this->addFlash(
+                'success',
+                'Le lycée a été ajouté!'
+            );
+
 
             return $this->redirectToRoute('lycee_show', array('id' => $lycee->getId()));
         }
@@ -67,11 +72,10 @@ class LyceeController extends Controller
      */
     public function showAction(Lycee $lycee)
     {
-        $deleteForm = $this->createDeleteForm($lycee);
 
         return $this->render('lycee/show.html.twig', array(
             'lycee' => $lycee,
-            'delete_form' => $deleteForm->createView(),
+
         ));
     }
 
@@ -83,56 +87,20 @@ class LyceeController extends Controller
      */
     public function editAction(Request $request, Lycee $lycee)
     {
-        $deleteForm = $this->createDeleteForm($lycee);
         $editForm = $this->createForm('AppBundle\Form\LyceeType', $lycee);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash(
+                'success',
+                'Vos modifications ont été enregistrées!'
+            );
             return $this->redirectToRoute('lycee_edit', array('id' => $lycee->getId()));
         }
-
         return $this->render('lycee/edit.html.twig', array(
             'lycee' => $lycee,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
-    }
-
-    /**
-     * Deletes a lycee entity.
-     *
-     * @Route("/{id}", name="lycee_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Lycee $lycee)
-    {
-        $form = $this->createDeleteForm($lycee);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($lycee);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('lycee_index');
-    }
-
-    /**
-     * Creates a form to delete a lycee entity.
-     *
-     * @param Lycee $lycee The lycee entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Lycee $lycee)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('lycee_delete', array('id' => $lycee->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

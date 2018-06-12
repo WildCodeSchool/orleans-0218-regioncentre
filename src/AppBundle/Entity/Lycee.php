@@ -17,7 +17,7 @@ class Lycee
     /**
      * add by ziadoof
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="department")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $departments;
 
@@ -64,6 +64,12 @@ class Lycee
      *     type="numeric",
      *     message="La valeur {{ value }} n'est pas un format de code postal."
      * )
+     * @Assert\Regex(
+     *     pattern     ="#^[0-9]{5}$#",
+     *     htmlPattern = "#^[0-9]{5}$#"
+     * )
+     *
+     *
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
