@@ -5,48 +5,44 @@
     <div class="container">
         <div class="formStatut">
             {{ form_start(edit_form) }}
-
             <div class="row">
-
-                <div class="col-12 col-md-8 mx-auto">
+                <div class="col-12 col-md-9 mx-auto">
                     <h1>Edition du statut "{{ statut.name }}"</h1>
                 </div>
-                <div class="col-12 col-md-3 mx-auto">
-                    <a class="btn btn-warning" href="{{ path('statut_index') }}">
+                <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('statut_index') }}">
+                        <i class="fas fa-arrow-left"></i>
                         Liste des statuts
-                        <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
             </div>
-
             <hr>
-
             <div class="row">
                 <div class="col-12 col-md-8 mx-auto">
-
                     <div class="form-row">
-
                         <div class="form-group form-control-lg col-8 mx-auto ">
                             {{ form_label(edit_form.name) }}
                             {{ form_widget(edit_form.name) }}
                         </div>
-
                         <div class="form-group form-control-lg col-4 mx-auto">
                             {{ form_label(edit_form.color) }}
                             {{ form_widget(edit_form.color) }}
                         </div>
-
                     </div>
-
-
                     <div class="d-flex justify-content-center pt-5">
                         {{ form_start(edit_form) }}
                         <input class="btn btn-dark" type="submit" value="Editer ce statut"/>
                         {{ form_end(edit_form) }}
                     </div>
-
                     {{ form_end(edit_form) }}
-
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                    <a class="btn btn-warning" href="/">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à l'accueil
+                    </a>
                 </div>
             </div>
 

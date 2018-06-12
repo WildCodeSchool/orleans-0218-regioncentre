@@ -2,18 +2,20 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 pt-4 d-inline">
-                <div class="d-inline col-md-4">
-                    <h1 class="d-inline">Création d'un lycée</h1>
+        <div class="default-form">
+            <div class="row">
+                <div class="col-12 col-md-9 mx-auto">
+                    <h1>Création d'un lycée</h1>
                 </div>
-                <div class="col-md-4 d-sm-block d-none float-md-right ">
-                    <a class="btn btn-warning" href="{{ path('lycee_index') }}">
+                <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('lycee_index') }}" role="button">
+                        <i class="fas fa-arrow-left"></i>
                         Retour à la liste des lycées
-                        <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
-                <hr/>
+            </div>
+            <hr/>
+            <div class="row">
                 <div class="col-12 col-md-6 mx-auto">
                     {{ form_start(form) }}
                     <div class="p-2">
@@ -23,11 +25,19 @@
                         {{ form_row(form.city) }}
                         {{ form_row(form.departments) }}
                     </div>
+                    <div class="d-flex justify-content-center pt-5">
+                        <input class="btn btn-dark" type="submit" value="Ajouter un lycée"/>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
-                <div class="d-flex justify-content-center pt-5">
-                    <input class="btn btn-dark" type="submit" value="Ajouter un lycée"/>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                    <a class="btn btn-warning" href="/">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à l'accueil
+                    </a>
                 </div>
-                {{ form_end(form) }}
             </div>
         </div>
     </div>
