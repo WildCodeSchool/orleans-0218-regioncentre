@@ -8,7 +8,6 @@
 
 namespace AppBundle\DataFixtures;
 
-
 use AppBundle\Entity\Analysis;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;

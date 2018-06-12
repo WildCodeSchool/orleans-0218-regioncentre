@@ -8,7 +8,6 @@
 
 namespace AppBundle\DataFixtures;
 
-
 use AppBundle\Entity\Statut;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -41,6 +40,5 @@ class StatusFixtures extends Fixture
         $this->addReference('statusOne', $statusOne);
         $this->addReference('statusTwo', $statusTwo);
         $this->addReference('statusThree', $statusThree);
-
     }
 }

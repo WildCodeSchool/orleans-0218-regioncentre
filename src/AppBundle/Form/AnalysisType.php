@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Statut;
@@ -27,6 +26,7 @@ class AnalysisType extends AbstractType
                 'required' => false,
             ]);
     }
+
     /**
      * {@inheritdoc}
      */
@@ -44,6 +44,4 @@ class AnalysisType extends AbstractType
     {
         return 'appbundle_analysis';
     }
-
-
 }
