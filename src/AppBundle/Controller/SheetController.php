@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SheetController extends Controller
 {
     const WAITING = 'waiting';
+
     /**
      * Lists all sheet entities.
      *
