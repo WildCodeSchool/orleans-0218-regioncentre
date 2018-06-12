@@ -14,36 +14,8 @@
                 <div class="col-12 col-md-6 mx-auto form-lycee">
                     {{ form_start(edit_form, {'attr':{'class':'d-inline col-m-3'}}) }}
                     {{ form_widget(edit_form) }}
-                        <input class="btn btn-dark col-md-3 " type="submit" value="Modifier" />
-                            <div class="col-4 ml-4 float-right">
-                                <a href="#deleteModal" class="btn btn-danger d-inline" data-toggle="modal">Supprimer ce lycée</a>
-                            </div>
+                        <input class="btn btn-dark col-md-3 float-md-right" type="submit" value="Modifier" />
                     {{ form_end(edit_form) }}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="deleteModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Confirmation</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>Voulez-vous vraiment supprimer "{{ lycee.name }}" ?</p>
-                </div>
-                <div class="modal-footer">
-                    <div class="row mx-auto">
-                        <div class="col-4 mr-4">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                        </div>
-                        <div class="col-4 ml-4">
-                            {{ form_start(delete_form) }}
-                            <input class="btn btn-danger" type="submit" value="Supprimer">
-                            {{ form_end(delete_form) }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

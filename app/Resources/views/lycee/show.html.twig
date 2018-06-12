@@ -2,7 +2,6 @@
 
 {% block body %}
     <h1>Lycee</h1>
-
     <table>
         <tbody>
             <tr>
@@ -27,18 +26,12 @@
             </tr>
         </tbody>
     </table>
-
     <ul>
         <li>
             <a href="{{ path('lycee_index') }}">Retour à la liste des lycées</a>
         </li>
         <li>
             <a href="{{ path('lycee_edit', { 'id': lycee.id }) }}">Éditer</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}
