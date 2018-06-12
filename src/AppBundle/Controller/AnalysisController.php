@@ -50,7 +50,7 @@ class AnalysisController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'l\'analyse de demande a été ajouté avec succes.'
+                'l\'analyse de la demande à été ajouté avec succes.'
             );
 
             return $this->redirectToRoute('analysis_index');
