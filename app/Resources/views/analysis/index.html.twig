@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date</th>
                 <th>Name</th>
                 <th>Actions</th>
             </tr>
@@ -16,7 +15,6 @@
         {% for analysis in analyzes %}
             <tr>
                 <td><a href="{{ path('analysis_show', { 'id': analysis.id }) }}">{{ analysis.id }}</a></td>
-                <td>{% if analysis.date %}{{ analysis.date|date('d/m/Y') }}{% endif %}</td>
                 <td>{{ analysis.name }}</td>
                 <td>
                     <ul>

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Analysis
@@ -33,16 +34,17 @@ class Analysis
     private $id;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="date", type="date", nullable=true)
-     */
-    private $date;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=64, unique=true)
+     *
+     * @Assert\length(
+     *     min = 2,
+     *     max = 64,
+     *      minMessage = "Le texte doit comporter au moins {{ limit }} caractères",
+     *      maxMessage = "Le texte ne peu dépasser {{ limit }} caractères"
+     * )
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -55,30 +57,6 @@ class Analysis
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set date.
-     *
-     * @param \DateTime|null $date
-     *
-     * @return Analysis
-     */
-    public function setDate($date = null)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date.
-     *
-     * @return \DateTime|null
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**

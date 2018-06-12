@@ -47,6 +47,10 @@ class AnalysisController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($analysis);
             $em->flush();
+            $this->addFlash(
+                'success',
+                'l\'analyse de demande a été ajouté avec succes.'
+            );
 
             return $this->redirectToRoute('analysis_index');
         }
