@@ -27,6 +27,12 @@
                         {{ form_widget(form) }}
                         <input class="btn btn-dark" type="submit" value="Ajouter un métier"/>
                     </div>
+                    <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                        <a class="btn btn-warning w-500" href="{{ path('admin_management') }}">
+                            <i class="fas fa-arrow-left"></i>
+                            Retour
+                        </a>
+                    </div>
                     {{ form_end(form.name) }}
                 </div>
                 <div class="col-12 col-md-5 mx-auto order-0 order-md-1">
@@ -50,12 +56,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
-                    <a class="btn btn-warning" href="/">
-                        <i class="fas fa-arrow-left"></i>
-                        Retour à l'accueil
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>
