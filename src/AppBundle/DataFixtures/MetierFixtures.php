@@ -13,7 +13,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Metier;
 use AppBundle\Entity\Role;
 
-class AppFixtures extends Fixture
+class MetierFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
