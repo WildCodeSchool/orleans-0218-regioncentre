@@ -1,4 +1,6 @@
+@import "~bootswatch/dist/lux/variables";
 @import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/lux/bootswatch";
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @import "variables";
 @import "form";
@@ -17,7 +19,7 @@ body {
     padding-bottom: 5em;
   }
 
-  .alert-success{
+  .alert-success {
     position: absolute;
     margin-top: 0.6em;
     width: 100%;
@@ -25,35 +27,60 @@ body {
     line-height: 0.05em;
   }
 
+  //TEXT
+  .w-300 {
+    font-weight: 300;
+  }
+
+    .w-400 {
+    font-weight: 400;
+  }
+
+    .w-500 {
+    font-weight: 500;
+  }
+
+
   //TABLE
-  thead{
-    border-left:0.15em solid #dee2e6;
-    border-right:0.15em solid #dee2e6;
-    tr{
-      th{
+  thead {
+    border-left: 0.15em solid #dee2e6;
+    border-right: 0.15em solid #dee2e6;
+    tr {
+      th {
         font-family: roboto;
         font-weight: 400;
       }
     }
   }
-  .t-date{
+  .t-date {
     width: 7.5vw;
   }
 
-  .t-status{
+  .t-status {
     width: 10vw;
   }
-  .t-button{
+  .t-button {
     width: 3vw;
   }
 
   //BADGE AND PILLS
-  .badge{
-    font-family:Roboto;
+  .badge {
+    font-family: Roboto;
     font-weight: 400;
     padding-top: 0.7em;
     min-height: 2.5em;
     min-width: 5.5em;
   }
+
+  // PAGE LOGIN/ACCUEIL
+  .welcome-text {
+    font-size: calc(20px + 30 * (100vw - 400px) / 1200);
+    text-align: center;
+    color: $colorTitle;
+  }
+  .region{
+    text-wrap: none;
+  }
+
 }
 

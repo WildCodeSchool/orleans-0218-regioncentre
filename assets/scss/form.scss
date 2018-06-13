@@ -68,9 +68,8 @@
 .formWork {
   @extend .default-form;
 
-  ul {
-    columns: 2;
-    list-style: none;
+  .btn-edit {
+    margin-top: -0.4em;
   }
 }
 
@@ -96,5 +95,9 @@
     margin-top: 0.5em;
     width: 12em;
     height: 3em;
+  }
+
+  .btn-edit {
+    margin-top: -0.4em;
   }
 }

@@ -2,7 +2,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block content %}
     {% block fos_user_content %}
-        <div class="container">
+        <div class="container pt-0 pt-md-3 pt-lg-5">
+
+
+    <div class="row mx-auto mb-0 mb-md-3 mb-lg-5">
+        <div class="col-12">
+            <h1 class="welcome-text">Bienvenue sur le système de gestion des fiches travaux de la région <div class="region">Centre-Val de Loire</div></h1>
+        </div>
+    </div>
+
             <div class="formLogin">
                 <p>Connexion</p>
                 {% if error %}
