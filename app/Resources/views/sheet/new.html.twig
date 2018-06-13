@@ -4,11 +4,14 @@
     <div class="container">
         <div class="formSheet">
             <div class="row">
-                <div class="col-md-12 col-lg-8 titre">
+                <div class="col-md-12 col-lg-9 titre">
                     <h1>Formulaire de création d'une fiche</h1>
                 </div>
-                <div class="ml-auto p-2 d-none d-sm-block d-xs-none">
-                    <a href="{{ path('sheet_index') }}" class="btn btn-warning">Retour à la liste</a>
+                <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('sheet_index') }}">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à la liste
+                    </a>
                 </div>
             </div>
             <hr>
@@ -52,9 +55,15 @@
                 <input type="submit" value="Envoyer la demande" class="btn btn-dark"/>
                 {{ form_end(form) }}
             </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                    <a class="btn btn-warning" href="{{ path('sheet_index') }}">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à la liste
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    </div>
 {% endblock %}
-
-

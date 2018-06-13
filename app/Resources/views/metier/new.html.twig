@@ -4,11 +4,14 @@
     <div class="container">
         <div class="formWork">
             <div class="row">
-                <div class="col-12 col-md-8 mx-auto">
+                <div class="col-12 col-md-9 mx-auto">
                     <h1>Ajout de Métiers</h1>
                 </div>
-                <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
-                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
+                <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_management') }}" role="button">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour
+                    </a>
                 </div>
             </div>
             <div>
@@ -24,29 +27,36 @@
                         {{ form_widget(form) }}
                         <input class="btn btn-dark" type="submit" value="Ajouter un métier"/>
                     </div>
+                    <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                        <a class="btn btn-warning w-500" href="{{ path('admin_management') }}">
+                            <i class="fas fa-arrow-left"></i>
+                            Retour
+                        </a>
+                    </div>
                     {{ form_end(form.name) }}
-
                 </div>
                 <div class="col-12 col-md-5 mx-auto order-0 order-md-1">
                     <div class="pt-2">
-                        <ul>
+                        <table class="table">
+                            <tbody>
                             {% for metier in metiers %}
-                                <li>
-                                    {{ metier.name }}
-                                    <a class="ml-5" href="{{ path('metier_edit', { 'id': metier.id }) }}">
-                                        <span class="sr-only">Éditer {{ metier.name }}</span>
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </li>
+                                <tr>
+                                    <td>{{ metier.name }}</td>
+                                    <td>
+                                        <a class="btn btn-edit" href="{{ path('metier_edit', { 'id': metier.id }) }}">
+                                            <span>Éditer </span>
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                        </ul>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
-                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
-                </div>
+
             </div>
         </div>
     </div>

@@ -7,8 +7,11 @@
                 <div class="col-12 col-md-8 mx-auto">
                     <h1>Édition de {{ metier.name }}</h1>
                 </div>
-                <div class="col-12 col-md-2 mx-auto d-sm-block d-none">
-                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
+                <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_management') }}">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour
+                    </a>
                 </div>
             </div>
             <div>
@@ -17,41 +20,45 @@
             <div class="row">
                 <div class="col-12 col-md-5 mx-auto order-1 order-md-0">
                     {{ form_start(edit_form.name) }}
-                    <div class="p-2">
+                    <div class="">
                         {{ form_row(edit_form.name) }}
                     </div>
-                    <div class="row pt-2">
-                        <div>
-                            {{ form_start(edit_form) }}
-                            <input class="btn btn-dark" type="submit" value="Éditer ce métier"/>
-                            {{ form_end(edit_form) }}
-                        </div>
-                        <div class="col-4 ml-4">
-                            <a href="#deleteModal" class="btn btn-danger" data-toggle="modal">Supprimer ce métier</a>
-                        </div>
+
+                    <div class="col mx-auto d-flex justify-content-center">
+                        {{ form_start(edit_form) }}
+                        <input class="btn btn-dark " type="submit" value="Éditer ce métier"/>
+                        {{ form_end(edit_form) }}
+                    </div>
+                    <div class="col mx-auto d-flex justify-content-center">
+                        <a href="#deleteModal" class="btn btn-danger" data-toggle="modal">Supprimer ce métier
+                            <i class="fas fa-trash-alt"></i></a>
                     </div>
                     {{ form_end(edit_form.name) }}
-
+                    <div class="col mx-auto d-flex justify-content-center d-lg-none">
+                        <a class="btn btn-warning" href="{{ path('admin_management') }}">
+                            <i class="fas fa-arrow-left"></i>
+                            Retour
+                        </a>
+                    </div>
                 </div>
                 <div class="col-12 col-md-5 mx-auto order-0 order-md-1">
                     <div class="pt-2">
-                        <ul>
+                        <table class="table">
+                            <tbody>
                             {% for metier in metiers %}
-                                <li>
-                                    {{ metier.name }}
-                                    <a class="ml-5" href="{{ path('metier_edit', { 'id': metier.id }) }}">
-                                        <span class="sr-only">Éditer {{ metier.name }}</span>
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </li>
+                                <tr>
+                                    <td>{{ metier.name }}</td>
+                                    <td>
+                                        <a class="btn btn-edit" href="{{ path('metier_edit', { 'id': metier.id }) }}">
+                                            <span>Éditer </span>
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                        </ul>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 mx-auto d-flex justify-content-center d-sm-block d-md-none">
-                    <a class="btn btn-warning" href="/">Retour à l'accueil</a>
                 </div>
             </div>
         </div>
@@ -72,7 +79,7 @@
                             </div>
                             <div class="col-4 ml-4">
                                 {{ form_start(delete_form) }}
-                                <input class="btn btn-danger" type="submit" value="Supprimer">
+                                <input class="btn btn-danger w-500" type="submit" value="Supprimer">
                                 {{ form_end(delete_form) }}
                             </div>
                         </div>
