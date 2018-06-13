@@ -21,9 +21,9 @@ class UserType extends AbstractType
             ->add('roles', ChoiceType::class, [
                 'label' => 'Type d\'utilisateur',
                 'choices' => [
-                    'Administrateur Region' => 'ROLE_SUPER_ADMIN',
-                    'EMOP' => 'ROLE_POWER_USER',
-                    'Lycée' => 'ROLE_USER',
+                    'Administrateur Region' => 'ROLE_ADMIN',
+                    'EMOP' => 'ROLE_EMOP',
+                    'Lycée' => 'ROLE_LYCEE',
                 ],
                 'expanded' => true,
                 'multiple' => true,
