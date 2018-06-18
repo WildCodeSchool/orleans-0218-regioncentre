@@ -50,4 +50,5 @@ class DepartmentFixtures extends Fixture
         $manager->persist($DepartmentSix);
         $manager->flush();
     }
+
 }
