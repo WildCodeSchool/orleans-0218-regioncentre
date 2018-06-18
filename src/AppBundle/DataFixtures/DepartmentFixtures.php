@@ -16,37 +16,37 @@ class DepartmentFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $DepartmentOne = new Department();
-        $DepartmentTwo = new Department();
-        $DepartmentThree = new Department();
-        $DepartmentFour = new Department();
-        $DepartmentFive = new Department();
-        $DepartmentSix = new Department();
+        $departmentOne = new Department();
+        $departmentTwo = new Department();
+        $departmentThree = new Department();
+        $departmentFour = new Department();
+        $departmentFive = new Department();
+        $departmentSix = new Department();
 
-        $DepartmentOne->setName('Loiret');
-        $DepartmentOne->setshortCode(45);
+        $departmentOne->setName('Loiret');
+        $departmentOne->setshortCode(45);
 
-        $DepartmentTwo->setName('loire et cher');
-        $DepartmentTwo->setshortCode(41);
+        $departmentTwo->setName('loire et cher');
+        $departmentTwo->setshortCode(41);
 
-        $DepartmentThree->setName('Indre et loire');
-        $DepartmentThree->setshortCode(37);
+        $departmentThree->setName('Indre et loire');
+        $departmentThree->setshortCode(37);
 
-        $DepartmentFour->setName('Cher');
-        $DepartmentFour->setshortCode(18);
+        $departmentFour->setName('Cher');
+        $departmentFour->setshortCode(18);
 
-        $DepartmentFive->setName('Eure-et-Loir');
-        $DepartmentFive->setshortCode(28);
+        $departmentFive->setName('Eure-et-Loir');
+        $departmentFive->setshortCode(28);
 
-        $DepartmentSix->setName('Indre');
-        $DepartmentSix->setshortCode(36);
+        $departmentSix->setName('Indre');
+        $departmentSix->setshortCode(36);
 
-        $manager->persist($DepartmentOne);
-        $manager->persist($DepartmentTwo);
-        $manager->persist($DepartmentThree);
-        $manager->persist($DepartmentFour);
-        $manager->persist($DepartmentFive);
-        $manager->persist($DepartmentSix);
+        $manager->persist($departmentOne);
+        $manager->persist($departmentTwo);
+        $manager->persist($departmentThree);
+        $manager->persist($departmentFour);
+        $manager->persist($departmentFive);
+        $manager->persist($departmentSix);
         $manager->flush();
     }
 }
