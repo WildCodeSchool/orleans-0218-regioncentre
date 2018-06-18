@@ -19,7 +19,7 @@ class SheetController extends Controller
     /**
      * Lists all sheet entities.
      *
-     * @Route("/admin/sheet/", name="sheet_index")
+     * @Route("/sheet/", name="sheet_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -28,7 +28,7 @@ class SheetController extends Controller
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
 
-        return $this->render('/admin/sheet/index.html.twig', array(
+        return $this->render('/sheet/index.html.twig', array(
             'sheets' => $sheets,
         ));
     }
@@ -81,7 +81,7 @@ class SheetController extends Controller
     /**
      * Displays a form to edit an existing sheet entity.
      *
-     * @Route("emop/sheet/{id}/edit", name="sheet_edit")
+     * @Route("emop/sheet/{id}/edit", name="/emop/sheet_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Sheet $sheet)

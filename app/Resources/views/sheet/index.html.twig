@@ -35,7 +35,7 @@
                             <a href="{{ path('sheet_show', { 'id': sheet.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('sheet_edit', { 'id': sheet.id }) }}">edit</a>
+                            <a href="{{ path('/emop/sheet_edit', { 'id': sheet.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -46,7 +46,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('sheet_new') }}">Create a new sheet</a>
+            <a href="{{ path('/lycee/sheet_new') }}">Create a new sheet</a>
         </li>
     </ul>
 {% endblock %}
