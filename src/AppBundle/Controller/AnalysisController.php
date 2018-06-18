@@ -96,7 +96,7 @@ class AnalysisController extends Controller
             return $this->redirectToRoute('admin_analysis_edit', array('id' => $analysis->getId()));
         }
 
-        return $this->render('analysis/edit.html.twig', array(
+        return $this->render('analysis/sheet_edit.html.twig', array(
             'analysis' => $analysis,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

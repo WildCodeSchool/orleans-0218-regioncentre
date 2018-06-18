@@ -98,7 +98,7 @@ class LyceeController extends Controller
             );
             return $this->redirectToRoute('lycee_edit', array('id' => $lycee->getId()));
         }
-        return $this->render('lycee/edit.html.twig', array(
+        return $this->render('lycee/sheet_edit.html.twig', array(
             'lycee' => $lycee,
             'edit_form' => $editForm->createView(),
         ));

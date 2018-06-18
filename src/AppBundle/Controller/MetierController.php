@@ -101,7 +101,7 @@ class MetierController extends Controller
 
         $metiers = $em->getRepository('AppBundle:Metier')->findAll();
 
-        return $this->render('metier/edit.html.twig', array(
+        return $this->render('metier/sheet_edit.html.twig', array(
             'metier' => $metier,
             'metiers' => $metiers,
             'edit_form' => $editForm->createView(),

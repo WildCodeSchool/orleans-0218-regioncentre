@@ -93,10 +93,10 @@ class SheetController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('emop/sheet/sheet_edit', array('id' => $sheet->getId()));
+            return $this->redirectToRoute('sheet_edit', array('id' => $sheet->getId()));
         }
 
-        return $this->render('emop/sheet/edit.html.twig', array(
+        return $this->render('emop/sheet_edit.html.twig', array(
             'sheet' => $sheet,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
