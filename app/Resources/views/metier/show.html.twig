@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% include 'layout_admin.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Metier</h1>
 
     <table>
@@ -18,10 +18,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('metier_index') }}">Back to the list</a>
+            <a href="{{ path('admin_metier_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('metier_edit', { 'id': metier.id }) }}">Edit</a>
+            <a href="{{ path('admin_metier_edit', { 'id': metier.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
