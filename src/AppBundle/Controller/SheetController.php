@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /**
  * Sheet controller.
  *
- * @Route("sheet")
  */
 class SheetController extends Controller
 {
@@ -21,7 +20,7 @@ class SheetController extends Controller
     /**
      * Lists all sheet entities.
      *
-     * @Route("/", name="sheet_index")
+     * @Route("/admin/sheet/", name="sheet_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -30,7 +29,7 @@ class SheetController extends Controller
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
 
-        return $this->render('sheet/index.html.twig', array(
+        return $this->render('/admin/sheet/index.html.twig', array(
             'sheets' => $sheets,
         ));
     }
@@ -38,7 +37,7 @@ class SheetController extends Controller
     /**
      * Creates a new sheet entity.
      *
-     * @Route("/new", name="sheet_new")
+     * @Route("lycee/sheet/new", name="/lycee/sheet_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -67,7 +66,7 @@ class SheetController extends Controller
     /**
      * Finds and displays a sheet entity.
      *
-     * @Route("/{id}", name="sheet_show")
+     * @Route("sheet/{id}", name="sheet_show")
      * @Method("GET")
      */
     public function showAction(Sheet $sheet)
@@ -83,7 +82,7 @@ class SheetController extends Controller
     /**
      * Displays a form to edit an existing sheet entity.
      *
-     * @Route("/{id}/edit", name="sheet_edit")
+     * @Route("emop/sheet/{id}/edit", name="sheet_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Sheet $sheet)
@@ -95,10 +94,10 @@ class SheetController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('sheet_edit', array('id' => $sheet->getId()));
+            return $this->redirectToRoute('emop/sheet/sheet_edit', array('id' => $sheet->getId()));
         }
 
-        return $this->render('sheet/edit.html.twig', array(
+        return $this->render('emop/sheet/edit.html.twig', array(
             'sheet' => $sheet,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -108,7 +107,7 @@ class SheetController extends Controller
     /**
      * Deletes a sheet entity.
      *
-     * @Route("/{id}", name="sheet_delete")
+     * @Route("admin/sheet/{id}", name="sheet_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Sheet $sheet)
@@ -122,7 +121,7 @@ class SheetController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('sheet_index');
+        return $this->redirectToRoute('/admin/sheet/sheet_index');
     }
 
     /**
