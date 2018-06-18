@@ -8,7 +8,6 @@
 
 namespace AppBundle\DataFixtures;
 
-
 use AppBundle\Entity\Department;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -50,5 +49,4 @@ class DepartmentFixtures extends Fixture
         $manager->persist($DepartmentSix);
         $manager->flush();
     }
-
 }
