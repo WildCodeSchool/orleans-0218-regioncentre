@@ -78,6 +78,5 @@ class UserFixtures extends Fixture
         $manager->flush();
 
         $this->addReference('Admin', $userSuperAdmin);
-
     }
 }

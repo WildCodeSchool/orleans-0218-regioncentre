@@ -35,6 +35,5 @@ class MetierFixtures extends Fixture
         $this->addReference('Serrurier', $metier);
         $this->addReference('Plombier', $metier2);
         $this->addReference('Électricien', $metier3);
-
     }
 }
