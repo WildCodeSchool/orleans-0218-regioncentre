@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * Class ManagementController
  * @package AppBundle\Controller
- * @Route("gestion")
+ * @Route("admin/gestion")
  */
 class ManagementController extends Controller
 {

@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% include 'layout_admin.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Lycee</h1>
     <table>
         <tbody>
@@ -28,10 +28,10 @@
     </table>
     <ul>
         <li>
-            <a href="{{ path('lycee_index') }}">Retour à la liste des lycées</a>
+            <a href="{{ path('admin_lycee_index') }}">Retour à la liste des lycées</a>
         </li>
         <li>
-            <a href="{{ path('lycee_edit', { 'id': lycee.id }) }}">Éditer</a>
+            <a href="{{ path('admin_lycee_edit', { 'id': lycee.id }) }}">Éditer</a>
         </li>
     </ul>
 {% endblock %}

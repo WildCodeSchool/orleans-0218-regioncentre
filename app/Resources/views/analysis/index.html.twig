@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% include 'layout_admin.html.twig' %}
 
 {% block body %}
     <h1>Analyzes list</h1>
@@ -14,15 +14,15 @@
         <tbody>
         {% for analysis in analyzes %}
             <tr>
-                <td><a href="{{ path('analysis_show', { 'id': analysis.id }) }}">{{ analysis.id }}</a></td>
+                <td><a href="{{ path('admin_analysis_show', { 'id': analysis.id }) }}">{{ analysis.id }}</a></td>
                 <td>{{ analysis.name }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('analysis_show', { 'id': analysis.id }) }}">show</a>
+                            <a href="{{ path('admin_analysis_show', { 'id': analysis.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('analysis_edit', { 'id': analysis.id }) }}">edit</a>
+                            <a href="{{ path('admin_analysis_edit', { 'id': analysis.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -33,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('analysis_new') }}">Create a new analysi</a>
+            <a href="{{ path('admin_analysis_new') }}">Create a new analysi</a>
         </li>
     </ul>
 {% endblock %}
