@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Sheet controller.
- *
  */
 class SheetController extends Controller
 {
