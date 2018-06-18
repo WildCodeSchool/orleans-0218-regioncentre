@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{% include 'layou_admin.html.twig' %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <div class="container">
         <h1>Création d'un statut</h1>
 
@@ -12,7 +12,7 @@
 
         <ul>
             <li>
-                <a href="{{ path('statut_index') }}">Retour à la liste des statuts</a>
+                <a href="{{ path('admin_statut_index') }}">Retour à la liste des statuts</a>
             </li>
         </ul>
     </div>

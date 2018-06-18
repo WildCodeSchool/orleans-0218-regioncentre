@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{% include 'layout_admin.html.twig' %}
 {% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <div class="container">
         <div class="formStatut">
             {{ form_start(edit_form) }}
@@ -10,7 +10,7 @@
                     <h1>Edition du statut "{{ statut.name }}"</h1>
                 </div>
                 <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
-                    <a class="btn btn-lg btn-warning w-500" href="{{ path('statut_index') }}">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_statut_index') }}">
                         <i class="fas fa-arrow-left"></i>
                         Liste des statuts
                     </a>
