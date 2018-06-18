@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Metier controller.
  *
- * @Route("metier")
+ * @Route("admin/metier")
  */
 class MetierController extends Controller
 {
     /**
      * Lists all metier entities.
      *
-     * @Route("/", name="metier_index")
+     * @Route("/", name="admin_metier_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +35,7 @@ class MetierController extends Controller
     /**
      * Creates a new metier entity.
      *
-     * @Route("/new", name="metier_new")
+     * @Route("/new", name="admin_metier_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -66,7 +66,7 @@ class MetierController extends Controller
     /**
      * Finds and displays a metier entity.
      *
-     * @Route("/{id}", name="metier_show")
+     * @Route("/{id}", name="admin_metier_show")
      * @Method("GET")
      */
     public function showAction(Metier $metier)
@@ -82,7 +82,7 @@ class MetierController extends Controller
     /**
      * Displays a form to edit an existing metier entity.
      *
-     * @Route("/{id}/edit", name="metier_edit")
+     * @Route("/{id}/edit", name="admin_metier_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Metier $metier)
@@ -112,7 +112,7 @@ class MetierController extends Controller
     /**
      * Deletes a metier entity.
      *
-     * @Route("/{id}", name="metier_delete")
+     * @Route("/{id}", name="admin_metier_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Metier $metier)
@@ -139,7 +139,7 @@ class MetierController extends Controller
     private function createDeleteForm(Metier $metier)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('metier_delete', array('id' => $metier->getId())))
+            ->setAction($this->generateUrl('admin_metier_delete', array('id' => $metier->getId())))
             ->setMethod('DELETE')
             ->getForm();
     }

@@ -12,14 +12,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Lycee controller.
  *
- * @Route("lycee")
+ * @Route("admin/lycee")
  */
 class LyceeController extends Controller
 {
     /**
      * Lists all lycee entities.
      *
-     * @Route("/", name="lycee_index")
+     * @Route("/", name="admin_lycee_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -36,7 +36,7 @@ class LyceeController extends Controller
     /**
      * Creates a new lycee entity.
      *
-     * @Route("/new", name="lycee_new")
+     * @Route("/new", name="admin_lycee_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -55,7 +55,7 @@ class LyceeController extends Controller
             );
 
 
-            return $this->redirectToRoute('lycee_show', array('id' => $lycee->getId()));
+            return $this->redirectToRoute('admin_lycee_show', array('id' => $lycee->getId()));
         }
 
         return $this->render('lycee/new.html.twig', array(
@@ -67,7 +67,7 @@ class LyceeController extends Controller
     /**
      * Finds and displays a lycee entity.
      *
-     * @Route("/{id}", name="lycee_show")
+     * @Route("/{id}", name="admin_lycee_show")
      * @Method("GET")
      */
     public function showAction(Lycee $lycee)
