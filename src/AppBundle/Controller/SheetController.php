@@ -36,7 +36,7 @@ class SheetController extends Controller
     /**
      * Creates a new sheet entity.
      *
-     * @Route("lycee/sheet/new", name="/lycee/sheet_new")
+     * @Route("lycee/sheet/new", name="lycee_sheet_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -81,7 +81,7 @@ class SheetController extends Controller
     /**
      * Displays a form to edit an existing sheet entity.
      *
-     * @Route("emop/sheet/{id}/edit", name="/emop/sheet_edit")
+     * @Route("emop/sheet/{id}/edit", name="emop_sheet_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Sheet $sheet)
@@ -120,7 +120,7 @@ class SheetController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('/admin/sheet/sheet_index');
+        return $this->redirectToRoute('admin_sheet_sheet_index');
     }
 
     /**

@@ -11,18 +11,54 @@
             </button>
             <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
                 <ul class="navbar-nav w-100 justify-content-center">
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
                     </li>
+
+                    {# HISTORIQUE DES FICHES #}
+                    {% if app.user.hasRole('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_history_sheets') }}">Historique des fiches</a>
+                        </li>
+                    {% endif %}
+
+                    {% if app.user.hasRole('ROLE_EMOP') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('history_emop_sheets') }}">Historique des fiches</a>
+                        </li>
+                    {% endif %}
+
+                    {% if app.user.hasRole('ROLE_LYCEE') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('sheet_index') }}">Historique des fiches</a>
+                        </li>
+                    {% endif %}
+                    {# FIN HISTORIQUE DES FICHES #}
+
+                    {# DEBUT GESTION #}
+                    {% if app.user.hasRole('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
+                        </li>
+                    {% endif %}
+
+                    {% if app.user.hasRole('ROLE_EMOP') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
+                        </li>
+                    {% endif %}
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('sheet_index') }}">Historique des fiches</a>
+                        <a href="{{ path('fos_user_profile_show') }}" class="nav-link">
+                            Mon compte
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
-                    </li>
+                    {# FIN GESTION #}
+
                 </ul>
                 <ul class="nav navbar-nav ml-auto w-100 deconnect justify-content-end">
-                    <li class="nav-item">
+                      <li class="nav-item">
                         <a href="{{ path('fos_user_security_logout') }}">
                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                         </a>
