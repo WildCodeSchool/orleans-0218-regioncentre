@@ -14,39 +14,20 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class DepartmentFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $om)
     {
-        $departmentOne = new Department();
-        $departmentTwo = new Department();
-        $departmentThree = new Department();
-        $departmentFour = new Department();
-        $departmentFive = new Department();
-        $departmentSix = new Department();
-
-        $departmentOne->setName('Loiret');
-        $departmentOne->setshortCode(45);
-
-        $departmentTwo->setName('loire et cher');
-        $departmentTwo->setshortCode(41);
-
-        $departmentThree->setName('Indre et loire');
-        $departmentThree->setshortCode(37);
-
-        $departmentFour->setName('Cher');
-        $departmentFour->setshortCode(18);
-
-        $departmentFive->setName('Eure-et-Loir');
-        $departmentFive->setshortCode(28);
-
-        $departmentSix->setName('Indre');
-        $departmentSix->setshortCode(36);
-
-        $manager->persist($departmentOne);
-        $manager->persist($departmentTwo);
-        $manager->persist($departmentThree);
-        $manager->persist($departmentFour);
-        $manager->persist($departmentFive);
-        $manager->persist($departmentSix);
-        $manager->flush();
+        $departments = [45 => 'Loiret'
+            , 41 => 'loire et cher'
+            , 37 => 'Indre et loire'
+            , 18 => 'Cher'
+            , 28 => 'Eure-et-Loir'
+            , 36 => 'Indre'
+        ];
+        foreach ($departments as $shortCode => $name) {
+            $department = new Department();
+            $department->setShortCode($shortCode)->setName($name);
+            $om->persist($department);
+            $om->flush();
+        }
     }
 }
