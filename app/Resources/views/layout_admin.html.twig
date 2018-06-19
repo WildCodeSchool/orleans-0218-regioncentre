@@ -16,7 +16,7 @@
                         <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
                     </li>
 
-                    {# HISTORIQUE DES FICHES #}
+                    {# START SHEET HISTORY #}
                     {% if app.user.hasRole('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_history_sheets') }}">Historique des fiches</a>
@@ -34,9 +34,9 @@
                             <a class="nav-link" href="{{ path('sheet_index') }}">Historique des fiches</a>
                         </li>
                     {% endif %}
-                    {# FIN HISTORIQUE DES FICHES #}
+                    {# END SHEE HISTORY #}
 
-                    {# DEBUT GESTION #}
+                    {# START GESTION #}
                     {% if app.user.hasRole('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
@@ -54,7 +54,7 @@
                             Mon compte
                         </a>
                     </li>
-                    {# FIN GESTION #}
+                    {# END GESTION #}
 
                 </ul>
                 <ul class="nav navbar-nav ml-auto w-100 deconnect justify-content-end">
