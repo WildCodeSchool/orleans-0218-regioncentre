@@ -27,7 +27,7 @@ class DepartmentFixtures extends Fixture
             $department = new Department();
             $department->setShortCode($shortCode)->setName($name);
             $om->persist($department);
-            $om->flush();
         }
+        $om->flush();
     }
 }
