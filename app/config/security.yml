@@ -21,7 +21,8 @@ security:
             form_login:
                 provider: fos_userbundle
 
-            logout:       true
+            logout:
+                 target: /login
             anonymous:    true
             # activate different ways to authenticate
 
