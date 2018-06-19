@@ -2,9 +2,12 @@
 
 {% block body %}
     <div class="container">
-        <div class="row px-2 justify-content-center mb-5">
-            <div>
-                <h1>ACCUEIL</h1>
+        <div class="row px-5 mb-5 mx-auto">
+            <div class="col-12 col-md-9 pl-5">
+                <h1 class="pl-5">ACCUEIL</h1>
+            </div>
+            <div class="col-12 col-md-3 justify-content-end">
+                <a class="btn btn-primary" href="{{ path('lycee_sheet_new') }}">Créée une nouvelle fiche</a>
             </div>
         </div>
         {% for sheet in sheets %}
