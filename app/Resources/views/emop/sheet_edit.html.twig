@@ -1,7 +1,11 @@
-{% include 'layout_emop.html.twig' %}
+{% include 'layout_admin.html.twig' %}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+
 
 {% block content %}
-    <h1>Sheet edit</h1>
+<div class="container p-5">
+
+<h1>Edition de la fiche de travaux "{{ sheet.subject }}" {% if sheet.urgent == 1 %} {{ ' - URGENT' }}{% endif %}</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -18,4 +22,5 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+</div>
 {% endblock %}
