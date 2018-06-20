@@ -1,7 +1,35 @@
-{% include "layout_admin.html.twig" %}
-
-<div class="container">
+{% extends "layout_admin.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
     {% block fos_user_content %}
-        {% include "@FOSUser/Profile/show_content.html.twig" %}
+        <div class="container">
+            <div class="formWork">
+                <div class="row">
+                    <div class="col-12 col-md-9 mr-3">
+                        <h1>Ajout de Métiers</h1>
+                    </div>
+                </div>
+                <hr>
+                <div class="row d-flex justify-content-center">
+                    <img src="https://via.placeholder.com/200x200" alt="logo" class="mb-3"/>
+                    <div class="ml-3 mt-2">
+                        <p>Nom du profil: {{ user.username }}</p>
+                        <p>Adresse mail: {{ user.email }}</p>
+                        <p>Fonction: {{ user.work }}</p>
+                        <p>Téléphone: {{ user.phoneNumber }}</p>
+                        <p>Dernière connexion: {{ user.lastLogin|date("m/d/Y") }}</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-primary"><i
+                                class="fas fa-address-card"></i>
+                        Editer le profil</a>
+                </div>
+            </div>
+        </div>
     {% endblock fos_user_content %}
-</div>
+{% endblock %}
+
+
+
+
