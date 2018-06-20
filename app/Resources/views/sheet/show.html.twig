@@ -4,7 +4,7 @@
         <div class="row mx-5">
             <div class="col d-flex text-center">
                 <h1 class="align-self-baseline">FICHE DE TRAVAUX</h1>
-                <h4 class="align-self-baseline ml-5 w-400">Nom du lycée</h4>
+                <p class="align-self-baseline ml-5 w-400 h4">{{ 'Nom du lycée'|upper }}</p>
             </div>
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
                 <a class="btn btn-warning w-500" href="{{ path('sheet_index') }}">
@@ -17,81 +17,89 @@
             <div class="col jumbotron d-inline-flex px-1 py-4 mx-3 mt-4">
                 {% if sheet.urgent %}
                 <div class="col-auto ml-5">
-                    <h5 class="d-flex justify-content-center badge badge-pill badge-warning text-dark pr-2 pb-2">
-                        <span class="align-self-center pl-3">urgent</span>
-                        <i class="fas fa-exclamation-circle align-self-center mx-1"></i>
-                    </h5>
+                    <span class="d-flex justify-content-center badge badge-pill badge-warning text-dark pr-3">
+                        <span class="align-self-end pl-3 h5 w-400">Urgent</span>
+                        <i class="fas fa-exclamation-circle align-self-center mx-1 pt-1 h5"></i>
+                    </span>
                     {% endif %}
                 </div>
                 <div class="col d-flex">
-                    <h4 class="align-self-center mx-5 w-400">
+                    <p class="align-self-center mx-5 w-400 h4">
                         {{ sheet.subject }}
-                    </h4>
+                    </p>
                 </div>
             </div>
         </div>
         <div class="row text-center mt-5">
             <div class="col-lg-6">
-                <h5>Bâtiment concerné</h5>
+                <p class="h5">{{ 'Bâtiment concerné'|upper }}</p>
                 <p>{{ sheet.buildings }}</p>
             </div>
 
             <div class="col-lg-6">
-                <h5>metier concerné</h5>
+                <p class="h5">{{ 'metier concerné'|upper }}</p>
                 <p>{{ sheet.job.name }}</p>
             </div>
         </div>
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-3">
+
             <div class="card m-2 mr-lg-4">
                 <div class="card-header text-center">
-                    <h5>Contraintes de fonctionnement de l'établissement</h5>
+                    <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
                 </div>
                 <div class="m-2 my-lg-3 mx-lg-5">
                     <p>{{ sheet.constraintsBuildings }}</p>
                 </div>
             </div>
+
             <div class="card m-2 ml-lg-4">
                 <div class="card-header text-center">
-                    <h5>Contraintes techniques</h5>
+                    <p class="h5">{{ 'Contraintes techniques'|upper }}</p>
                 </div>
                 <div class="m-3 my-lg-3 mx-lg-5">
                     <p>{{ sheet.constraintsTechnicals }}</p>
                 </div>
             </div>
+
         </div>
+
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
 
             <div class="card m-2">
                 <div class="card-header text-center">
-                    <h5>Description de la demande</h5>
+                    <p class="h5">{{ 'Description de la demande'|upper }}</p>
                 </div>
                 <div class="m-2 my-lg-3 mx-lg-5">
                     <p>{{ sheet.description }}</p>
                 </div>
             </div>
+
         </div>
+
+
         <div class="row text-center my-5">
             <div class="col-lg-6">
-                <h5>Date de début des travaux</h5>
+                <p class="h5">{{ 'Date de début des travaux'|upper }}</p>
                 <p>{% if sheet.startWork %}{{ sheet.startWork|date('d / m / Y') }}{% endif %}</p>
             </div>
             <div class="col-lg-6">
-                <h5>Date de fin des travaux</h5>
+                <p class="h5">{{ 'Date de fin des travaux'|upper }}</p>
                 <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
             </div>
         </div>
         <div class="row jumbotron p-0 mx-1 mt-5" style="background-color: rgba(0, 0, 0, 0.03); border-style: solid; border-color: {{ sheet.status.color }}">
 
             <div class="col-lg-auto col-12 d-flex justify-content-center align-self-center py-2" style="background-color: {{ sheet.status.color }}">
-                    <h5 class="text-light pr-2 pt-2">
-                        <span class="pl-3">{{ sheet.status.name }}</span>
+                    <span class="text-light pr-2 pt-2 h5">
+                        <span class="pl-3">{{ sheet.status.name|upper }}</span>
                         <i class="far fa-clock mx-1"></i>
-                    </h5>
+                    </span>
             </div>
             <div class="col text-center align-self-end py-2">
-                    <h5 class="mx-5 w-400">
-                        {{ sheet.analysis.name }}
-                    </h5>
+                <p class="mx-5 w-400 h5">
+                    {{ sheet.analysis.name|upper }}
+                </p>
+
             </div>
         </div>
     </div>
