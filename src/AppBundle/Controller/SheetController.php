@@ -19,7 +19,7 @@ class SheetController extends Controller
     /**
      * Lists all sheet entities.
      *
-     * @Route("/sheet/", name="sheet_index")
+     * @Route("/sheet/", name="lycee_sheet_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -27,8 +27,8 @@ class SheetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
-
-        return $this->render('sheet/index.html.twig', array(
+      
+        return $this->render('/school/index.html.twig', array(
             'sheets' => $sheets,
         ));
     }
@@ -120,7 +120,7 @@ class SheetController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('/admin/sheet/sheet_index');
+        return $this->redirectToRoute('admin_sheet_sheet_index');
     }
 
     /**
