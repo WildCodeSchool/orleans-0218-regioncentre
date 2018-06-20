@@ -3,24 +3,76 @@
 
 
 {% block content %}
-<div class="container p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 col-md-8 mx-auto">
+                <h1>
+                    Edition de la fiche : "<span class="font-italic">{{ sheet.subject }}</span>"
+                    {% if sheet.urgent == true %}
+                        <span class="badge badge-pill badge-warning text-dark"> URGENT </span>
+                    {% endif %}
+                </h1>
+            </div>
+            <div class="col-4 col-md-4 justify-content-end d-none d-lg-flex d-xs-none align-middle">
+                <a class="btn btn-lg btn-warning w-500 " href="{{ path('sheet_index') }}">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
 
-<h1>Edition de la fiche de travaux "{{ sheet.subject }}" {% if sheet.urgent == 1 %} {{ ' - URGENT' }}{% endif %}</h1>
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <div class="card mt-5 mb-5">
+                    <div class="card-body">
+                        <ul>
+                            <li><span class="font-weight-bold">Sujet :</span> {{ sheet.subject }}</li>
+                            <li><span class="font-weight-bold">Description :</span> {{ sheet.description }}</li>
+                            <li><span class="font-weight-bold">Métier concerné :</span> {{ sheet.job.name }}</li>
+                            <li><span class="font-weight-bold">Bâtiment concerné :</span> {{ sheet.buildings }}</li>
+                            <li><span class="font-weight-bold">Contraintes de fonctionnement de l'établissement
+                    :</span> {{ sheet.constraintsBuildings }}</li>
+                            <li>
+                                <span class="font-weight-bold">Contraintes techniques :</span> {{ sheet.constraintsTechnicals }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_start(edit_form) }}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        <div class="row">
+            <div class="col-12">
 
-    <ul>
-        <li>
-            <a href="{{ path('sheet_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(edit_form.startWork) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(edit_form.endWork) }}
+                    </div>
+
+                    <div class="col-md-6 col-lg-6">
+                        {{ form_row(edit_form.status) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-6 mx-auto">
+                {{ form_widget(edit_form) }}
+                <input class="btn btn-dark col-md-3     " type="submit" value="Modifier"/>
+                {{ form_end(edit_form) }}
+            </div>
+
+            <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                <a class="btn btn-warning" href="{{ path('sheet_index') }}">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Metier;
+use AppBundle\Entity\Statut;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -69,6 +70,14 @@ class SheetType extends AbstractType
                 'class' => Metier::class,
                 'label' => 'Métier concerné',
                 'placeholder' => 'Choisir un métier',
+                'choice_label' => function ($name) {
+                    return $name->getName();
+                }
+            ])
+            ->add('status', EntityType::class, [
+                'required' => false,
+                'class' => Statut::class,
+                'label' => 'Statut',
                 'choice_label' => function ($name) {
                     return $name->getName();
                 }

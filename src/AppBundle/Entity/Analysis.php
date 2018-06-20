@@ -14,6 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Analysis
 {
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creationDate", type="date", nullable=true)
+     */
+    private $updateDate;
+
+    /**
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Statut")
@@ -105,5 +112,29 @@ class Analysis
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set updateDate
+     *
+     * @param \DateTime $updateDate
+     *
+     * @return Analysis
+     */
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = $updateDate;
+
+        return $this;
+    }
+
+    /**
+     * Get updateDate
+     *
+     * @return \DateTime
+     */
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
     }
 }

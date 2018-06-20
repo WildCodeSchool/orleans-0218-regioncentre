@@ -89,6 +89,15 @@ class SheetController extends Controller
         $deleteForm = $this->createDeleteForm($sheet);
         $editForm = $this->createForm('AppBundle\Form\SheetType', $sheet);
         $editForm->handleRequest($request);
+        $editForm
+            ->remove("urgent")
+            ->remove("subject")
+            ->remove("job")
+            ->remove("buildings")
+            ->remove("constraintsBuildings")
+            ->remove("constraintsTechnicals")
+            ->remove("description");
+
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
