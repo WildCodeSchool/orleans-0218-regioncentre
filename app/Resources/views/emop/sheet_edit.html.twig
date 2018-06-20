@@ -14,7 +14,7 @@
                 </h1>
             </div>
             <div class="col-4 col-md-4 justify-content-end d-none d-lg-flex d-xs-none align-middle">
-                <a class="btn btn-lg btn-warning w-500 " href="{{ path('sheet_index') }}">
+                <a class="btn btn-warning w-500 " href="{{ path('sheet_index') }}">
                     <i class="fas fa-arrow-left"></i>
                     Retour à l'accueil
                 </a>
@@ -59,9 +59,9 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-6 mx-auto">
+            <div class="col-lg-12 col-md-6 mb-1 d-flex justify-content-center mx-auto">
                 {{ form_widget(edit_form) }}
-                <input class="btn btn-dark col-md-3     " type="submit" value="Modifier"/>
+                <input class="btn btn-dark" type="submit" value="Modifier"/>
                 {{ form_end(edit_form) }}
             </div>
 
