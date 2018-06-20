@@ -23,8 +23,9 @@ class Sheet
     private $id;
 
     /**
-     * @var
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\analysis", inversedBy="sheet")
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Analysis", inversedBy="sheet")
      */
     private $analysis;
 
@@ -452,11 +453,11 @@ class Sheet
     /**
      * Set analysis
      *
-     * @param \AppBundle\Entity\analysis $analysis
+     * @param \AppBundle\Entity\Analysis $analysis
      *
      * @return Sheet
      */
-    public function setAnalysis(\AppBundle\Entity\analysis $analysis = null)
+    public function setAnalysis(\AppBundle\Entity\Analysis $analysis = null)
     {
         $this->analysis = $analysis;
 
@@ -466,7 +467,7 @@ class Sheet
     /**
      * Get analysis
      *
-     * @return \AppBundle\Entity\analysis
+     * @return \AppBundle\Entity\Analysis
      */
     public function getAnalysis()
     {

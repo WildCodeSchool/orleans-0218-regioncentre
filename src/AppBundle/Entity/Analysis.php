@@ -23,7 +23,7 @@ class Analysis
     /**
      * @var
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\sheet", mappedBy ="analysis")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Sheet", mappedBy="analysis")
      */
     private $sheet;
 
@@ -124,11 +124,11 @@ class Analysis
     /**
      * Add sheet
      *
-     * @param \AppBundle\Entity\sheet $sheet
+     * @param \AppBundle\Entity\Sheet $sheet
      *
      * @return Analysis
      */
-    public function addSheet(\AppBundle\Entity\sheet $sheet)
+    public function addSheet(\AppBundle\Entity\Sheet $sheet)
     {
         $this->sheet[] = $sheet;
 
@@ -138,9 +138,9 @@ class Analysis
     /**
      * Remove sheet
      *
-     * @param \AppBundle\Entity\sheet $sheet
+     * @param \AppBundle\Entity\Sheet $sheet
      */
-    public function removeSheet(\AppBundle\Entity\sheet $sheet)
+    public function removeSheet(\AppBundle\Entity\Sheet $sheet)
     {
         $this->sheet->removeElement($sheet);
     }
