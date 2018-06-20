@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Statut controller.
  *
- * @Route("statut")
+ * @Route("admin/statut")
  */
 class StatutController extends Controller
 {
     /**
      * Lists all statut entities.
      *
-     * @Route("/", name="statut_index")
+     * @Route("/", name="admin_statut_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +35,7 @@ class StatutController extends Controller
     /**
      * Creates a new statut entity.
      *
-     * @Route("/new", name="statut_new")
+     * @Route("/new", name="admin_statut_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -49,7 +49,7 @@ class StatutController extends Controller
             $em->persist($statut);
             $em->flush();
 
-            return $this->redirectToRoute('statut_show', array('id' => $statut->getId()));
+            return $this->redirectToRoute('admin_statut_show', array('id' => $statut->getId()));
         }
 
         return $this->render('statut/new.html.twig', array(
@@ -61,7 +61,7 @@ class StatutController extends Controller
     /**
      * Finds and displays a statut entity.
      *
-     * @Route("/{id}", name="statut_show")
+     * @Route("/{id}", name="admin_statut_show")
      * @Method("GET")
      */
     public function showAction(Statut $statut)
@@ -77,7 +77,7 @@ class StatutController extends Controller
     /**
      * Displays a form to edit an existing statut entity.
      *
-     * @Route("/{id}/edit", name="statut_edit")
+     * @Route("/{id}/edit", name="admin_statut_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Statut $statut)
@@ -89,10 +89,10 @@ class StatutController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('statut_index');
+            return $this->redirectToRoute('admin_statut_index');
         }
 
-        return $this->render('statut/edit.html.twig', array(
+        return $this->render('statut/sheet_edit.html.twig', array(
             'statut' => $statut,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -102,7 +102,7 @@ class StatutController extends Controller
     /**
      * Deletes a statut entity.
      *
-     * @Route("/{id}", name="statut_delete")
+     * @Route("/{id}", name="admin_statut_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Statut $statut)
@@ -116,7 +116,7 @@ class StatutController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('statut_index');
+        return $this->redirectToRoute('admin_statut_index');
     }
 
     /**
@@ -129,7 +129,7 @@ class StatutController extends Controller
     private function createDeleteForm(Statut $statut)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('statut_delete', array('id' => $statut->getId())))
+            ->setAction($this->generateUrl('admin_statut_delete', array('id' => $statut->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

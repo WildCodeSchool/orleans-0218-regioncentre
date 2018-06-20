@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * analysis controller.
  *
- * @Route("analysis")
+ * @Route("admin/analysis")
  */
 class AnalysisController extends Controller
 {
     /**
      * Lists all analysis entities.
      *
-     * @Route("/", name="analysis_index")
+     * @Route("/", name="admin_analysis_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +35,7 @@ class AnalysisController extends Controller
     /**
      * Creates a new analysis entity.
      *
-     * @Route("/new", name="analysis_new")
+     * @Route("/new", name="admin_analysis_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -53,7 +53,7 @@ class AnalysisController extends Controller
                 'l\'analyse de la demande a été ajoutée avec succès.'
             );
 
-            return $this->redirectToRoute('analysis_index');
+            return $this->redirectToRoute('admin_analysis_index');
         }
 
         return $this->render('analysis/new.html.twig', array(
@@ -65,7 +65,7 @@ class AnalysisController extends Controller
     /**
      * Finds and displays a analysis entity.
      *
-     * @Route("/{id}", name="analysis_show")
+     * @Route("/{id}", name="admin_analysis_show")
      * @Method("GET")
      */
     public function showAction(Analysis $analysis)
@@ -81,7 +81,7 @@ class AnalysisController extends Controller
     /**
      * Displays a form to edit an existing analysis entity.
      *
-     * @Route("/{id}/edit", name="analysis_edit")
+     * @Route("/{id}/edit", name="admin_analysis_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Analysis $analysis)
@@ -93,10 +93,10 @@ class AnalysisController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('analysis_edit', array('id' => $analysis->getId()));
+            return $this->redirectToRoute('admin_analysis_edit', array('id' => $analysis->getId()));
         }
 
-        return $this->render('analysis/edit.html.twig', array(
+        return $this->render('analysis/sheet_edit.html.twig', array(
             'analysis' => $analysis,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -106,7 +106,7 @@ class AnalysisController extends Controller
     /**
      * Deletes a analysis entity.
      *
-     * @Route("/{id}", name="analysis_delete")
+     * @Route("/{id}", name="admin_analysis_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Analysis $analysis)
@@ -120,7 +120,7 @@ class AnalysisController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('analysis_index');
+        return $this->redirectToRoute('admin_analysis_index');
     }
 
     /**
@@ -133,7 +133,7 @@ class AnalysisController extends Controller
     private function createDeleteForm(Analysis $analysis)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('analysis_delete', array('id' => $analysis->getId())))
+            ->setAction($this->generateUrl('admin_analysis_delete', array('id' => $analysis->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -1,0 +1,48 @@
+{% include 'layout_emop.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row px-2 justify-content-center mb-5">
+            <div>
+                <h1>LISTE DES FICHES</h1>
+            </div>
+        </div>
+        <div class="row px-4">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="t-date">Date de création</th>
+                    <th scope="col">Lycée</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Type de travaux</th>
+                    <th scope="col" class="t-date">Date</th>
+                    <th scope="col">Analyse de la demande</th>
+                    <th scope="col" class="text-center t-status">Statuts</th>
+                    <th scope="col" class="t-button"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for sheet in sheets %}
+                    <tr>
+                        <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ sheet.job.name }}</td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right" width="auto">
+                            {% if sheet.urgent == true %}
+                                <span class="badge badge-pill badge-warning text-dark mx-1"> URGENT </span>
+                            {% endif %}
+                                <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-dark text-warning">Voir</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

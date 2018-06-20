@@ -17,13 +17,26 @@ class HistorySheetController extends Controller
 {
     /**
      *
-     * @Route("/history", name="admin_history_sheets")
+     * @Route("/admin/history", name="admin_history_sheets")
      * @Method("GET")
      */
     public function indexAction()
     {
         $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)->findAll();
         return $this->render('admin/history.html.twig', [
+            'sheets' => $sheets,
+            ]);
+    }
+
+    /**
+     *
+     * @Route("/emop/history", name="emop_history_sheets")
+     * @Method("GET")
+     */
+    public function indexEmopAction()
+    {
+        $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)->findAll();
+        return $this->render('emop/history_emop.html.twig', [
             'sheets' => $sheets,
             ]);
     }

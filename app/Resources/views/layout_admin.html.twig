@@ -14,15 +14,38 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
                     </li>
+                    {# START SHEET HISTORY #}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('sheet_index') }}">Historique des fiches</a>
+                    {% if app.user.hasRole('ROLE_ADMIN') %}
+                            <a class="nav-link" href="{{ path('admin_history_sheets') }}">Historique des fiches</a>
+                    {% endif %}
+
+                    {% if app.user.hasRole('ROLE_EMOP') %}
+                            <a class="nav-link" href="{{ path('emop_history_sheets') }}">Historique des fiches</a>
+                    {% endif %}
+
+                    {% if app.user.hasRole('ROLE_LYCEE') %}
+                            <a class="nav-link" href="{{ path('lycee_sheet_index') }}">Historique des fiches</a>
+                    {% endif %}
                     </li>
+                    {# END SHEE HISTORY #}
+                    {# START GESTION #}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
+                        {% if app.user.hasRole('ROLE_ADMIN') %}
+                            <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
+                    {% endif %}
+                    {% if app.user.hasRole('ROLE_EMOP') %}
+                            <a class="nav-link" href="#">Gestion</a>
+                    {% endif %}
                     </li>
+                    {# END GESTION #}
                 </ul>
-                <ul class="nav navbar-nav ml-auto w-100 deconnect justify-content-end">
-                    <li class="nav-item">
+                <ul class="nav navbar-nav w-100 deconnect justify-content-end">
+                    <li class="nav-link flex-nowrap mr-sm-4">
+                        <a href="{{ path('fos_user_profile_show') }}">
+                            Mon compte
+                        </a>
+                            |
                         <a href="{{ path('fos_user_security_logout') }}">
                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                         </a>
