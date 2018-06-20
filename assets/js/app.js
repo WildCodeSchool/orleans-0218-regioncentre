@@ -1,7 +1,6 @@
 import $ from "jquery"
 
-$(document).ready(function () {
-    $(".alert-success").fadeOut(6000);
+$('#myAlert').on('closed.bs.alert', function () {
+    $(".alert").alert('close')
 });
-
 
