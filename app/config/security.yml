@@ -21,7 +21,8 @@ security:
             form_login:
                 provider: fos_userbundle
 
-            logout:       true
+            logout:
+                 target: /login
             anonymous:    true
             # activate different ways to authenticate
 
@@ -36,5 +37,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/, role: ROLE_USER }
-        - { path: ^/sheet/new, role: ROLE_ADMIN }
+        - { path: ^/lycee/, role: ROLE_LYCEE }
+        - { path: ^/emop/, role: ROLE_EMOP }
