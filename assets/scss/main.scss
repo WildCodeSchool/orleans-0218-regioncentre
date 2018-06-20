@@ -8,6 +8,7 @@
 
 body {
   background-color: $backgroundBody;
+  font-family: Roboto;
 
   .container {
     background-color: $backgroundContainer;
@@ -27,8 +28,16 @@ body {
     line-height: 0.05em;
   }
 
+  .jumbotron {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .card {
+    min-width: 300px;
+  }
+
   //TEXT
-  .w-300 {
+    .w-300 {
     font-weight: 300;
   }
 
