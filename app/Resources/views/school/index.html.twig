@@ -40,16 +40,13 @@
                                 </div>
                                 <div class="card-text row justify-content-between pt-3">
                                     <div class="col-12 col-md-4">
-                                        <p>Ici sera présent la date de l'analyse </p>
+                                        {#date de la derniére analyse#}
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <p class="text-center">{{ sheet.status.name }}</p>
                                     </div>
                                     <div class="col-12 col-md-4">
-                                        <p>
-                                            Ici sera présent l'analyse de la demande quand le PO aura fini d'aller fumée
-                                            tout les 30 minute.
-                                        </p>
+                                        {#analyse de la demande #}
                                     </div>
                                 </div>
 
@@ -57,10 +54,7 @@
                             <div id="cardCommentair{{ sheet.id }}" role="tabpanel" class="tab-pane">
                                 <h4 class="card-title text-center">{{ sheet.subject }}</h4>
                                 <div class="card-text row justify-content-center pt-3">
-                                    <p>
-                                        Ici sera présent le dernier commentaire, en attendant je vous propose se petit
-                                        texte pour avoir un aperçu des furture commentaire.
-                                    </p>
+                                    {#commentaire#}
                                 </div>
                             </div>
                         </div>
