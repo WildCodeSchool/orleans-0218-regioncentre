@@ -13,7 +13,8 @@
                 <div class="row d-flex justify-content-center">
                     <img src="https://via.placeholder.com/200x200" alt="logo" class="mb-3"/>
                     <div class="ml-3 mt-2">
-                        <p>Nom du profil: {{ user.username }}</p>
+                        <p>Nom: {{ user.firstName }}</p>
+                        <p>Prénom: {{ user.lastName }}</p>
                         <p>Adresse mail: {{ user.email }}</p>
                         <p>Fonction: {{ user.work }}</p>
                         <p>Téléphone: {{ user.phoneNumber }}</p>
