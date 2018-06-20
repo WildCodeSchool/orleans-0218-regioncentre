@@ -1,40 +1,59 @@
 {% extends "layout_admin.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     {% block fos_user_content %}
-        {% form_theme form 'bootstrap_4_layout.html.twig' %}
         <div class="container">
             <div class="formWork">
                 <div class="row">
                     <div class="col-12 col-md-9 mx-auto">
-                        <h1>Editer mon compte</h1>
+                        <h1>EDITER MON COMPTE</h1>
                     </div>
                     <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
                         <a class="btn btn-warning w-500" href="{{ path('fos_user_profile_show') }}" role="button">
                             <i class="fas fa-arrow-left"></i>
-                            Retour
+                            Retour a la liste
                         </a>
                     </div>
                 </div>
-                <hr>
-                <div class="row d-flex justify-content-center">
-                    <img src="https://via.placeholder.com/300x300" alt="logo" class="mb-3 mt-4"/>
-                    <div class="ml-3 mt-2">
-                        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-                        {{ form_widget(form) }}
-                        <div>
-                            <input type="submit" value="Envoyer" class="btn btn-primary w-100"/>
-                        </div>
-                        {{ form_end(form) }}
-                        <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
-                            <a class="btn btn-warning w-500" href="{{ path('admin_management') }}">
-                                <i class="fas fa-arrow-left"></i>
-                                Retour
-                            </a>
+                <hr class="p-3" width="90%">
+                {{ form_start(form) }}
+                <div class="row">
+                     <div class="col-md-12 col-lg-6">
+                        {{ form_row(form.firstName) }}
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        {{ form_row(form.lastName) }}
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        {{ form_row(form.phoneNumber) }}
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        {{ form_row(form.work) }}
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        {{ form_row(form.current_password) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <input class="btn btn-dark h-100" type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                    <a class="btn btn-warning" href="/">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à l'accueil
+                    </a>
+                </div>
             </div>
         </div>
-    {% endblock fos_user_content %}
+    {% endblock %}
 {% endblock %}
