@@ -27,7 +27,7 @@ class SheetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
-
+      
         return $this->render('/school/index.html.twig', array(
             'sheets' => $sheets,
         ));
