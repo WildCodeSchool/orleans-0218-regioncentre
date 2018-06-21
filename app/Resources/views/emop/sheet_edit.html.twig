@@ -7,18 +7,28 @@
         <div class="row">
             <div class="col-8 col-md-8 mx-auto">
                 <h1>
-                    Edition de la fiche : "<span class="font-italic">{{ sheet.subject }}</span>"
+                    Edition de la fiche
+                    {#"<span class="font-italic">{{ sheet.subject }}</span>"#}
                     {% if sheet.urgent == true %}
-                        <span class="badge badge-pill badge-warning text-dark"> URGENT </span>
+                        <span class="badge badge-pill badge-warning text-dark align-self-center"> URGENT </span>
                     {% endif %}
                 </h1>
+
+
+
             </div>
-            <div class="col-4 col-md-4 justify-content-end d-none d-lg-flex d-xs-none align-middle">
+            <div class="col-4 col-md-4 justify-content-end d-none d-xl-flex d-xs-none align-middle align-self-center">
                 <a class="btn btn-warning w-500 " href="{{ path('sheet_index') }}">
                     <i class="fas fa-arrow-left"></i>
                     Retour à l'accueil
                 </a>
             </div>
+            <div class="text-center">
+
+
+
+        </div>
+
         </div>
 
         <div class="row">
@@ -26,7 +36,7 @@
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
                         <ul>
-                            <li><span class="font-weight-bold">Sujet :</span> {{ sheet.subject }}</li>
+                            <li class="pb-1 text-uppercase h5"><span class="font-weight-bold">Sujet :</span> {{ sheet.subject }}</li>
                             <li><span class="font-weight-bold">Description :</span> {{ sheet.description }}</li>
                             <li><span class="font-weight-bold">Métier concerné :</span> {{ sheet.job.name }}</li>
                             <li><span class="font-weight-bold">Bâtiment concerné :</span> {{ sheet.buildings }}</li>
@@ -65,7 +75,7 @@
                 {{ form_end(edit_form) }}
             </div>
 
-            <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+            <div class="col-12 mx-auto d-flex justify-content-center d-xl-none">
                 <a class="btn btn-warning" href="{{ path('sheet_index') }}">
                     <i class="fas fa-arrow-left"></i>
                     Retour à l'accueil
