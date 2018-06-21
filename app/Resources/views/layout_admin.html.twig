@@ -2,10 +2,26 @@
 {% block header %}
     <header>
         <nav class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">
-            <a href="/" class="navbar-brand d-flex w-50 mr-auto">
-                <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
-                <div class="text d-none d-lg-block">Travaux</div>
-            </a>
+            {% if app.user.hasRole('ROLE_ADMIN') %}
+                <a href="{{ path('admin_history_sheets') }}" class="navbar-brand d-flex w-50 mr-auto">
+                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+                    <div class="text d-none d-lg-block">Travaux</div>
+                </a>
+            {% endif %}
+
+            {% if app.user.hasRole('ROLE_EMOP') %}
+                <a href="{{ path('emop_history_sheets') }}" class="navbar-brand d-flex w-50 mr-auto">
+                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+                    <div class="text d-none d-lg-block">Travaux</div>
+                </a>
+            {% endif %}
+
+            {% if app.user.hasRole('ROLE_LYCEE') %}
+                <a href="{{ path('lycee_sheet_index') }}" class="navbar-brand d-flex w-50 mr-auto">
+                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+                    <div class="text d-none d-lg-block">Travaux</div>
+                </a>
+            {% endif %}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
                 <span class="navbar-toggler-icon"></span>
             </button>
