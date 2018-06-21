@@ -8,10 +8,6 @@
             <div class="col-8 col-md-8 mx-auto">
                 <h1>
                     Edition de la fiche
-                    {#"<span class="font-italic">{{ sheet.subject }}</span>"#}
-                    {% if sheet.urgent == true %}
-                        <span class="badge badge-pill badge-warning text-dark align-self-center"> URGENT </span>
-                    {% endif %}
                 </h1>
 
 
@@ -36,7 +32,9 @@
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
                         <ul>
-                            <li class="pb-1 text-uppercase h5"><span class="font-weight-bold">Sujet :</span> {{ sheet.subject }}</li>
+                            <li class="pb-1 text-uppercase h5"><span class="font-weight-bold">Sujet :</span> {{ sheet.subject }}                    {% if sheet.urgent == true %}
+                                    <span class="badge badge-pill badge-warning text-dark align-self-center"> URGENT </span>
+                                {% endif %}</li>
                             <li><span class="font-weight-bold">Description :</span> {{ sheet.description }}</li>
                             <li><span class="font-weight-bold">Métier concerné :</span> {{ sheet.job.name }}</li>
                             <li><span class="font-weight-bold">Bâtiment concerné :</span> {{ sheet.buildings }}</li>
