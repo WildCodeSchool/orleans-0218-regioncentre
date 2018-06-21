@@ -81,6 +81,10 @@ body {
     min-width: 5.5em;
   }
 
+  .badge-urgent {
+    font-size: 1.2rem;
+  }
+
   // PAGE LOGIN/ACCUEIL
   .welcome-text {
     font-size: calc(20px + 30 * (100vw - 400px) / 1200);

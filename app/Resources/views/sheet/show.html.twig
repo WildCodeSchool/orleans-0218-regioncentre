@@ -7,8 +7,8 @@
                 <p class="align-self-baseline ml-5 w-400 h4">{{ 'Nom du lycée'|upper }}</p>
             </div>
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
-                <a class="btn btn-warning w-500"href="{{ path('school_sheet_index') }}">
-                    <i class="fas fa-arrow-left mr-4"></i>
+                <a class="btn btn-warning w-500"href="">
+                    <i class="fas fa-arrow-left mr-4">{{ path('school_sheet_index') }}</i>
                     Retour à la liste
                 </a>
             </div>
@@ -16,13 +16,13 @@
         <div class="row">
             <div class="col jumbotron d-inline-flex px-1 pt-4 pb-2 mx-3 mt-4">
                 {% if sheet.urgent %}
-                <div class="col-auto ml-lg-5">
-                    <p class="badge badge-pill badge-warning pr-3">
-                        <span class="pl-3 h5 w-400">Urgent</span>
-                        <i class="fas fa-exclamation-circle mx-1 pt-1 h5"></i>
-                    </p>
-                    {% endif %}
-                </div>
+                    <div class="col-auto ml-lg-5 mb-3">
+                    <span class="badge badge-pill badge-urgent badge-warning mx-1">
+                        Urgent
+                        <i class="fas fa-exclamation-circle"></i>
+                    </span>
+                    </div>
+                {% endif %}
                 <div class="col d-flex">
                     <p class="align-self-center mx-5 w-400 h4">
                         {{ sheet.subject }}
