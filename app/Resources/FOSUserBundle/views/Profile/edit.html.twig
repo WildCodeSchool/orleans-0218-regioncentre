@@ -12,7 +12,7 @@
                     <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
                         <a class="btn btn-warning w-500" href="{{ path('fos_user_profile_show') }}" role="button">
                             <i class="fas fa-arrow-left"></i>
-                            Retour a la liste
+                            Retour au profil
                         </a>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         {{ form_row(form.work) }}
                     </div>
                     <div class="col-md-12 col-lg-12">
-                        {{ form_row(form.current_password) }}
+                        {{ form_row(form.current_password, { 'label': 'Merci de confirmer votre mot de passe' }) }}
                     </div>
                 </div>
                 <div class="row">

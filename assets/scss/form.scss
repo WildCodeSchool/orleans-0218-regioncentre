@@ -1,24 +1,13 @@
 .formLogin {
   background-color: $backgroundForm;
-  max-width: 30em;
+  max-width: 40em;
   padding: 2% 4% 2% 4%;
   color: $colorTextForm;
-  border-radius: 1em;
   margin-left: auto;
   margin-right: auto;
   p {
     text-align: center;
-    font-size: 2em;
-  }
-  input[type="submit"] {
-    background-color: $colorSubmit;
-    border: 0;
-    width: 10em;
-    &:hover {
-      background-color: $colorHover;
-      color: $colorTextHover;
-      transition: 3s;
-    }
+    font-size: calc(20px + 6 * (100vw - 400px) / 1200);
   }
   .rowLine {
     margin-top: 0.8em;

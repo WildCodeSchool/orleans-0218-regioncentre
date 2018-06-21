@@ -78,7 +78,7 @@ body {
 
   // PAGE LOGIN/ACCUEIL
   .welcome-text {
-    font-size: calc(20px + 30 * (100vw - 400px) / 1200);
+    font-size: calc(20px + 10 * (100vw - 200px) / 1200);
     text-align: center;
     color: $colorTitle;
   }
