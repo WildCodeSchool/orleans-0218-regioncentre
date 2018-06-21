@@ -9,6 +9,7 @@
 body {
   background-color: $backgroundBody;
   font-family: Roboto;
+  font-size: 1em;
 
   .container {
     background-color: $backgroundContainer;
@@ -48,6 +49,9 @@ body {
     .w-500 {
     font-weight: 500;
   }
+  p{
+    color:$colorText;
+  }
 
 
   //TABLE
@@ -83,7 +87,7 @@ body {
 
   // PAGE LOGIN/ACCUEIL
   .welcome-text {
-    font-size: calc(20px + 30 * (100vw - 400px) / 1200);
+    font-size: calc(20px + 10 * (100vw - 200px) / 1200);
     text-align: center;
     color: $colorTitle;
   }
