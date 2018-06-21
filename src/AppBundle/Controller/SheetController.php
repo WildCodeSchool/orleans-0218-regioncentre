@@ -81,14 +81,14 @@ class SheetController extends Controller
     /**
      * Displays a form to edit an existing sheet entity.
      *
-     * @Route("emop/sheet/{id}/edit", name="/emop/sheet_edit")
+     * @Route("emop/sheet/{id}/edit", name="emop_sheet_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Sheet $sheet)
     {
+
         $deleteForm = $this->createDeleteForm($sheet);
         $editForm = $this->createForm('AppBundle\Form\SheetType', $sheet);
-        $editForm->handleRequest($request);
         $editForm
             ->remove("urgent")
             ->remove("subject")
@@ -97,12 +97,13 @@ class SheetController extends Controller
             ->remove("constraintsBuildings")
             ->remove("constraintsTechnicals")
             ->remove("description");
-
+        $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $sheet->setAnalyseDate(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('sheet_edit', array('id' => $sheet->getId()));
+            return $this->redirectToRoute('emop_sheet_edit', array('id' => $sheet->getId()));
         }
 
         return $this->render('emop/sheet_edit.html.twig', array(
@@ -146,4 +147,7 @@ class SheetController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
+
+
+
 }

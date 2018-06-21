@@ -117,6 +117,13 @@ class Sheet
     private $creationDate;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="analyseDate", type="datetime", nullable=true)
+     */
+    private $analyseDate;
+
+    /**
      * Get id
      *
      * @return int
@@ -441,5 +448,29 @@ class Sheet
     public function __construct()
     {
         $this->setCreationDate(new \DateTime('now'));
+    }
+
+    /**
+     * Set analyseDate
+     *
+     * @param \DateTime $analyseDate
+     *
+     * @return Sheet
+     */
+    public function setAnalyseDate($analyseDate)
+    {
+        $this->analyseDate = $analyseDate;
+
+        return $this;
+    }
+
+    /**
+     * Get analyseDate
+     *
+     * @return \DateTime
+     */
+    public function getAnalyseDate()
+    {
+        return $this->analyseDate;
     }
 }
