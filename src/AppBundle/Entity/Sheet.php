@@ -23,6 +23,13 @@ class Sheet
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Analysis", inversedBy="sheet")
+     */
+    private $analysis;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="urgent", type="boolean")
@@ -441,5 +448,29 @@ class Sheet
     public function __construct()
     {
         $this->setCreationDate(new \DateTime('now'));
+    }
+
+    /**
+     * Set analysis
+     *
+     * @param \AppBundle\Entity\Analysis $analysis
+     *
+     * @return Sheet
+     */
+    public function setAnalysis(\AppBundle\Entity\Analysis $analysis = null)
+    {
+        $this->analysis = $analysis;
+
+        return $this;
+    }
+
+    /**
+     * Get analysis
+     *
+     * @return \AppBundle\Entity\Analysis
+     */
+    public function getAnalysis()
+    {
+        return $this->analysis;
     }
 }
