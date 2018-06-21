@@ -1,23 +1,21 @@
-{% include 'layout_admin.html.twig' %}
-{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
-{% block contant %}
-    <div class="container p-5">
-        <div class="row">
-            <div class="col-md-12 pt-4 d-inline">
-                <div class="d-inline col-md-4">
-                    <h1 class="d-inline ">Modification de "{{ lycee.name }}"</h1>
-                </div>
-                <div class="col-md-4 d-sm-block d-none float-md-right ">
-                    <a class="btn btn-warning" href="{{ path('admin_lycee_index') }}">Retour à la liste des lycées</a>
-                </div>
-                <hr/>
-                <div class="col-12 col-md-6 mx-auto form-lycee">
-                    {{ form_start(edit_form, {'attr':{'class':'d-inline col-m-3'}}) }}
-                    {{ form_widget(edit_form) }}
-                        <input class="btn btn-dark col-md-3 float-md-right" type="submit" value="Modifier" />
-                    {{ form_end(edit_form) }}
-                </div>
-            </div>
-        </div>
-    </div>
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lycee edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('lycee_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
 {% endblock %}

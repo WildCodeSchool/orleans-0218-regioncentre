@@ -1,7 +1,8 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
     <h1>Lycee</h1>
+
     <table>
         <tbody>
             <tr>
@@ -26,12 +27,18 @@
             </tr>
         </tbody>
     </table>
+
     <ul>
         <li>
-            <a href="{{ path('admin_lycee_index') }}">Retour à la liste des lycées</a>
+            <a href="{{ path('lycee_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('admin_lycee_edit', { 'id': lycee.id }) }}">Éditer</a>
+            <a href="{{ path('lycee_edit', { 'id': lycee.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}

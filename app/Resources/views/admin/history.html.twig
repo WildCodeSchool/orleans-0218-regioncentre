@@ -1,11 +1,18 @@
 {% include 'layout_admin.html.twig' %}
-
-{% block body %}
+{% block content %}
     <div class="container">
         <div class="row px-2 justify-content-center mb-5">
             <div>
                 <h1>LISTE DES FICHES</h1>
             </div>
+        </div>
+        <div class="row px-4 mb-2">
+            <select>
+                <option value="">sort by department</option>
+                {% for department in departments %}
+                    <option value="{{ path('admin_history_sheets_sort', { 'department': '{{ department.name }}' }) }}">{{ department.name }}</option>
+            {% endfor %}
+            </select>
         </div>
         <div class="row px-4">
             <table class="table">
@@ -25,10 +32,10 @@
                 {% for sheet in sheets %}
                     <tr>
                         <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ sheet.user.lycee(sheet.user.id) }}</td>
+                        <td>{{ sheet.user.lycee(sheet.user.id).city }}</td>
                         <td>{{ sheet.job.name }}</td>
-                        <td></td>
+                        <td>{{ sheet.user.lycee(sheet.user.id).departments }}</td>
                         <td></td>
                         <td class="text-right" width="auto">
                             {% if sheet.urgent == true %}
