@@ -14,8 +14,8 @@ class SheetRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('s')
             ->join('s.user', 'u')
-            ->join('u.lycee','l')
-            ->join('l.department','d')
+            ->join('u.lycee', 'l')
+            ->join('l.department', 'd')
             ->where('d.name = :department')
             ->setParameter(':department', $department)
             ->getQuery()

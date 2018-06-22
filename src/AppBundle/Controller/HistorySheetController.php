@@ -60,5 +60,4 @@ class HistorySheetController extends Controller
             'sheets' => $sheets,
         ]);
     }
-
 }

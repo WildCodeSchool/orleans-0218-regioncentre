@@ -300,5 +300,4 @@ class Lycee
     {
         return $this->name;
     }
-
 }
