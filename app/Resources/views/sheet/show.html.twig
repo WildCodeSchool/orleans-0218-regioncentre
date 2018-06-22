@@ -8,7 +8,7 @@
             </div>
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
                 <a class="btn btn-warning w-500"href="">
-                    <i class="fas fa-arrow-left mr-4">{{ path('school_sheet_index') }}</i>
+                    <i class="fas fa-arrow-left mr-4">{#{{ path('school_sheet_index') }}#}</i>
                     Retour à la liste
                 </a>
             </div>
@@ -46,7 +46,11 @@
                     <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
                 </div>
                 <div class="m-2 my-lg-3 mx-lg-5">
-                    <p>{{ sheet.constraintsBuildings }}</p>
+                    {% if sheet.constraintsBuildings %}
+                        <p>{{ sheet.constraintsBuildings }}</p>
+                    {% else %}
+                        <p>non renseigné</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="card m-2 ml-lg-4">
@@ -54,8 +58,12 @@
                     <p class="h5">{{ 'Contraintes techniques'|upper }}</p>
                 </div>
                 <div class="m-3 my-lg-3 mx-lg-5">
+                {% if sheet.constraintsTechnicals %}
                     <p>{{ sheet.constraintsTechnicals }}</p>
-                </div>
+                {% else %}
+                    <p>non renseigné</p>
+                {% endif %}
+            </div>
             </div>
         </div>
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
@@ -88,9 +96,13 @@
                     </span>
             </div>
             <div class="col text-center align-self-end py-2">
+                {% if sheet.analysis %}
                 <p class="mx-5 w-400 h5">
                     {{ sheet.analysis.name|upper }}
                 </p>
+                {% else %}
+                    La fiche n'a pas encore été analysée.
+                {% endif %}
             </div>
         </div>
     </div>
