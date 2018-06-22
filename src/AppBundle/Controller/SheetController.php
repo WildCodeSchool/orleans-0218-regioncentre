@@ -19,7 +19,7 @@ class SheetController extends Controller
     /**
      * Lists all sheet entities.
      *
-     * @Route("/sheet/", name="lycee_sheet_index")
+     * @Route("lycee/sheet/", name="lycee_sheet_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -52,6 +52,10 @@ class SheetController extends Controller
             $sheet->setUser($this->getUser());
             $em->persist($sheet);
             $em->flush();
+            $this->addFlash(
+                'success',
+                'La fiche a été ajoutée avec succès.'
+            );
 
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
         }

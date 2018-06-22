@@ -21,6 +21,10 @@ body {
     padding-bottom: 5em;
   }
 
+  .alert-dismissible .close {
+    top:-8px;
+}
+
   .alert-success {
     position: absolute;
     margin-top: 0.6em;
@@ -52,7 +56,6 @@ body {
   p{
     color:$colorText;
   }
-
 
   //TABLE
   thead {
