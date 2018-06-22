@@ -8,7 +8,7 @@ security:
         in_memory:
             memory: ~
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -20,8 +20,11 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-
-            logout:       true
+                login_path: /
+                csrf_token_generator: security.csrf.token_manager
+                success_handler: redirect.after.login
+            logout:
+                 target: /login
             anonymous:    true
             # activate different ways to authenticate
 

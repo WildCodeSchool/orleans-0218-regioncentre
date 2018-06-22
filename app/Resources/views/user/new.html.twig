@@ -1,16 +1,84 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>User creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% include 'layout_admin.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="formWork">
+            <div class="row">
+                <div class="col-12 col-md-9 mx-auto">
+                    <h1>FORMULAIRE DE CRÉATION D'UTILISATEURS</h1>
+                </div>
+                <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_management') }}" role="button">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour
+                    </a>
+                </div>
+            </div>
+            <hr class="p-3" width="90%">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-12 col-lg-6 mb-2">
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="col-md-12 col-lg-6 mb-2">
+                    {{ form_row(form.username) }}
+                </div>
+                <div class="col-md-12 col-lg-6 mb-5">
+                    {{ form_row(form.plainPassword.first) }}
+                </div>
+                <div class="col-md-12 col-lg-6 mb-5">
+                    {{ form_row(form.plainPassword.second) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.firstName) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.lastName) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.mail) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.phoneNumber) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.work) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="mx-3">
+                        {{ form_label(form.roles) }}
+                    </div>
+                    <div class="d-inline-flex">
+                        <div class="mx-3">
+                            {{ form_row(form.roles.0) }}
+                        </div>
+                        <div class="mx-3">
+                            {{ form_row(form.roles.1) }}
+                        </div>
+                        <div class="mx-3">
+                            {{ form_row(form.roles.2) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <div>
+                            <input class="btn btn-dark" type="submit" value="Créer l'utilisateur"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                <a class="btn btn-warning" href="{{ path('admin_management') }}">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
