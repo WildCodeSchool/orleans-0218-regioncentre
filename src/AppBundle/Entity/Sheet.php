@@ -492,3 +492,4 @@ class Sheet
         return $this->analysis;
     }
 
+}
