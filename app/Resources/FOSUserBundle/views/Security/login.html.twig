@@ -2,16 +2,14 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block content %}
     {% block fos_user_content %}
-        <div class="container pt-0 pt-md-3 pt-lg-5">
-
-
-    <div class="row mx-auto mb-0 mb-md-3 mb-lg-5">
-        <div class="col-12">
-            <h1 class="welcome-text">Bienvenue sur le système de gestion des fiches travaux de la région <div class="region">Centre-Val de Loire</div></h1>
-        </div>
-    </div>
-
-            <div class="formLogin">
+        <div class="container pt-lg-5 pt-3">
+            <div class="row mb-md-3 mb-lg-5">
+                <div class="col-12">
+                    <h1 class="welcome-text mt-3">Bienvenue sur le site de gestion des fiches travaux.</h1>
+                </div>
+            </div>
+            <hr>
+            <div class="formLogin mt-5">
                 <p>Connexion</p>
                 {% if error %}
                     <div class="alert alert-danger"
@@ -20,7 +18,7 @@
                 <form action="{{ path("fos_user_security_check") }}" method="post">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
                     <div class="formgroup">
-                        <label for="username">{{ 'security.login.username'|trans }}</label>
+                        <label for="email">Votre email</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-user-circle"></i></div>
