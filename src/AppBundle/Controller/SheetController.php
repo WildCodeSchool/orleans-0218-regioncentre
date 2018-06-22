@@ -151,7 +151,4 @@ class SheetController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
-
-
-
 }
