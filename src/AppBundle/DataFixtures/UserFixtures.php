@@ -28,9 +28,9 @@ class UserFixtures extends Fixture
 
         $userSuperAdmin->setEmail('admin@region.com');
         $userSuperAdmin->setUsername('admin');
-        $userSuperAdmin->setFirstName('Ad');
-        $userSuperAdmin->setLastName('MIN');
-        $userSuperAdmin->setWork('ADMINISTRATEUR TOUT PUISSANT');
+        $userSuperAdmin->setFirstName('Yann');
+        $userSuperAdmin->setLastName('Baduel');
+        $userSuperAdmin->setWork('Administrateur du site');
         $userSuperAdmin->setMail('admin@region.com');
         $userSuperAdmin->setPhoneNumber('1234567891');
         $userSuperAdmin->setRoles(['ROLE_ADMIN']);
@@ -45,9 +45,9 @@ class UserFixtures extends Fixture
 
         $userEmop->setEmail('emop@region.com');
         $userEmop->setUsername('emop');
-        $userEmop->setFirstName('Em');
-        $userEmop->setLastName('OP');
-        $userEmop->setWork('SUPER EMOP PAS TOUT PUISSANT');
+        $userEmop->setFirstName('Prenom de l\'emop');
+        $userEmop->setLastName('Nom de l\'emop');
+        $userEmop->setWork('Emop');
         $userEmop->setMail('emp@region.com');
         $userEmop->setPhoneNumber('1234547891');
         $userEmop->setRoles(['ROLE_EMOP']);
@@ -60,12 +60,12 @@ class UserFixtures extends Fixture
 
         $userSchool = new User();
 
-        $userSchool->setEmail('school@region.com');
-        $userSchool->setUsername('school');
-        $userSchool->setFirstName('Sc');
-        $userSchool->setLastName('OOL');
-        $userSchool->setWork('SUPER SCHOOL PAS TOUT PUISSANT');
-        $userSchool->setMail('school@region.com');
+        $userSchool->setEmail('lycee@region.com');
+        $userSchool->setUsername('lycee');
+        $userSchool->setFirstName('Prenom du responsable lycée');
+        $userSchool->setLastName('Nom du responsable lycée');
+        $userSchool->setWork('Lycée');
+        $userSchool->setMail('lycee@region.com');
         $userSchool->setPhoneNumber('1234568891');
         $userSchool->setRoles(['ROLE_LYCEE']);
         $userSchool->setEnabled(true);
