@@ -13,7 +13,7 @@ class LyceeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('address')->add('postalCode')->add('city')->add('departments');
+        $builder->add('name')->add('address')->add('postalCode')->add('city')->add('department');
     }/**
      * {@inheritdoc}
      */

@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class SheetRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findSheetsByDepartment(string $department)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.user', 'u')
+            ->join('u.lycee','l')
+            ->join('l.department','d')
+            ->where('d.name = :department')
+            ->setParameter(':department', $department)
+            ->getQuery()
+            ->getResult();
+    }
 }
