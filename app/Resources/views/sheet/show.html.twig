@@ -1,5 +1,6 @@
 {% include 'layout_admin.html.twig' %}
 {% block content %}
+
     <div class="container">
         <div class="row mx-5">
             <div class="col d-flex text-center">
@@ -7,8 +8,8 @@
                 <p class="align-self-baseline ml-5 w-400 h4">{{ 'Nom du lycée'|upper }}</p>
             </div>
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
-                <a class="btn btn-warning w-500"href="">
-                    <i class="fas fa-arrow-left mr-4">{#{{ path('school_sheet_index') }}#}</i>
+                <a class="btn btn-warning w-500" href="">
+                    <i class="fas fa-arrow-left mr-4">{{ path('school_sheet_index') }}</i>
                     Retour à la liste
                 </a>
             </div>
@@ -30,6 +31,7 @@
                 </div>
             </div>
         </div>
+        {{ dump( sheet.constraintsBuildings) }}
         <div class="row text-center mt-5">
             <div class="col-lg-6">
                 <p class="h5">{{ 'Bâtiment concerné'|upper }}</p>
@@ -46,11 +48,7 @@
                     <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
                 </div>
                 <div class="m-2 my-lg-3 mx-lg-5">
-                    {% if sheet.constraintsBuildings %}
-                        <p>{{ sheet.constraintsBuildings }}</p>
-                    {% else %}
-                        <p>non renseigné</p>
-                    {% endif %}
+                    <p>{{ sheet.constraintsBuildings ?? 'Non renseigné' }}</p>
                 </div>
             </div>
             <div class="card m-2 ml-lg-4">
@@ -58,12 +56,8 @@
                     <p class="h5">{{ 'Contraintes techniques'|upper }}</p>
                 </div>
                 <div class="m-3 my-lg-3 mx-lg-5">
-                {% if sheet.constraintsTechnicals %}
-                    <p>{{ sheet.constraintsTechnicals }}</p>
-                {% else %}
-                    <p>non renseigné</p>
-                {% endif %}
-            </div>
+                    <p>{{ sheet.constraintsTechnicals ?? 'Non renseigné' }}</p>
+                </div>
             </div>
         </div>
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
@@ -97,9 +91,9 @@
             </div>
             <div class="col text-center align-self-end py-2">
                 {% if sheet.analysis %}
-                <p class="mx-5 w-400 h5">
-                    {{ sheet.analysis.name|upper }}
-                </p>
+                    <p class="mx-5 w-400 h5">
+                        {{ sheet.analysis.name|upper }}
+                    </p>
                 {% else %}
                     La fiche n'a pas encore été analysée.
                 {% endif %}
