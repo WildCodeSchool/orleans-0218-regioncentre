@@ -2,18 +2,46 @@
 {% block header %}
     <header>
         <nav class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">
-            <a href="/" class="navbar-brand d-flex w-50 mr-auto">
-                <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
-                <div class="text d-none d-lg-block">Travaux</div>
-            </a>
+            {% if app.user.hasRole('ROLE_ADMIN') %}
+                <a href="{{ path('admin_history_sheets') }}" class="navbar-brand d-flex w-50 mr-auto">
+                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+                    <div class="text d-none d-lg-block">Travaux</div>
+                </a>
+            {% endif %}
+
+            {% if app.user.hasRole('ROLE_EMOP') %}
+                <a href="{{ path('emop_history_sheets') }}" class="navbar-brand d-flex w-50 mr-auto">
+                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+                    <div class="text d-none d-lg-block">Travaux</div>
+                </a>
+            {% endif %}
+
+            {% if app.user.hasRole('ROLE_LYCEE') %}
+                <a href="{{ path('lycee_sheet_index') }}" class="navbar-brand d-flex w-50 mr-auto">
+                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+                    <div class="text d-none d-lg-block">Travaux</div>
+                </a>
+            {% endif %}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
                 <ul class="navbar-nav w-100 justify-content-center">
+                    {# START HOMEPAGE #}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
+                        {% if app.user.hasRole('ROLE_ADMIN') %}
+                            <a class="nav-link" href="{{ path('admin_history_sheets') }}">Accueil</a>
+                        {% endif %}
+
+                        {% if app.user.hasRole('ROLE_EMOP') %}
+                            <a class="nav-link" href="{{ path('emop_history_sheets') }}">Accueil</a>
+                        {% endif %}
+
+                        {% if app.user.hasRole('ROLE_LYCEE') %}
+                            <a class="nav-link" href="{{ path('lycee_sheet_index') }}">Accueil</a>
+                        {% endif %}
                     </li>
+                    {# END HOMEPAGE #}
                     {# START SHEET HISTORY #}
                     <li class="nav-item">
                     {% if app.user.hasRole('ROLE_ADMIN') %}
@@ -33,9 +61,6 @@
                     <li class="nav-item">
                         {% if app.user.hasRole('ROLE_ADMIN') %}
                             <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
-                    {% endif %}
-                    {% if app.user.hasRole('ROLE_EMOP') %}
-                            <a class="nav-link" href="#">Gestion</a>
                     {% endif %}
                     </li>
                     {# END GESTION #}

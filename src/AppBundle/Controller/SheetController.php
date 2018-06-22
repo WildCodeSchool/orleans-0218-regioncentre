@@ -19,7 +19,7 @@ class SheetController extends Controller
     /**
      * Lists all sheet entities.
      *
-     * @Route("/sheet/", name="lycee_sheet_index")
+     * @Route("lycee/sheet/", name="lycee_sheet_index")
      * @Method("GET")
      */
     public function indexAction()
