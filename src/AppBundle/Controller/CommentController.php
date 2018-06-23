@@ -45,6 +45,7 @@ class CommentController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $comment->setUser($this->getUser());
             $em->persist($comment);
             $em->flush();
 

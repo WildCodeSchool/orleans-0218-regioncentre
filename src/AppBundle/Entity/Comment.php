@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -22,16 +23,18 @@ class Comment
     private $id;
 
     /**
-     * @var
+     * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sheet", inversedBy="comments")
+     * @ORM\Column(nullable=false)
      */
     private $sheet;
 
     /**
-     * @var
+     * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
+     * @ORM\Column(nullable=false)
      */
     private $user;
 
@@ -46,9 +49,19 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     *
+     * @Assert\NotNull(message="Le champ ne peut pas être vide.")
+     * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace.")
      */
     private $content;
 
+    /**
+     * Comment constructor.
+     */
+    public function __construct()
+    {
+        $this->setDate(new \DateTime('now'));
+    }
 
     /**
      * Get id
