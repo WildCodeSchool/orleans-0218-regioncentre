@@ -22,6 +22,20 @@ class Comment
     private $id;
 
     /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sheet", inversedBy="comments")
+     */
+    private $sheet;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
+     */
+    private $user;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -93,5 +107,52 @@ class Comment
     {
         return $this->content;
     }
-}
 
+    /**
+     * Set sheet
+     *
+     * @param \AppBundle\Entity\Sheet $sheet
+     *
+     * @return Comment
+     */
+    public function setSheet(\AppBundle\Entity\Sheet $sheet = null)
+    {
+        $this->sheet = $sheet;
+
+        return $this;
+    }
+
+    /**
+     * Get sheet
+     *
+     * @return \AppBundle\Entity\Sheet
+     */
+    public function getSheet()
+    {
+        return $this->sheet;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Comment
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}
