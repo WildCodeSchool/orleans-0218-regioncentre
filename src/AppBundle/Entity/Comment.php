@@ -26,7 +26,6 @@ class Comment
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sheet", inversedBy="comments")
-     * @ORM\Column(nullable=false)
      */
     private $sheet;
 
@@ -34,7 +33,6 @@ class Comment
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
-     * @ORM\Column(nullable=false)
      */
     private $user;
 
