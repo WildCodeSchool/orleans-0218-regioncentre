@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * User controller.
  *
- * @Route("admin/user")
+ * @Route("user")
  */
 class UserController extends Controller
 {
     /**
      * Lists all user entities.
      *
-     * @Route("/", name="admin_user_index")
+     * @Route("/", name="user_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +35,7 @@ class UserController extends Controller
     /**
      * Creates a new user entity.
      *
-     * @Route("/new", name="admin_user_new")
+     * @Route("/new", name="user_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,11 +48,8 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $this->addFlash(
-                'success',
-                'l´Utilisateur a été ajouté avec succes.'
-            );
-            return $this->redirectToRoute('admin_user_index');
+
+            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
         }
 
         return $this->render('user/new.html.twig', array(
@@ -64,7 +61,7 @@ class UserController extends Controller
     /**
      * Finds and displays a user entity.
      *
-     * @Route("/{id}", name="admin_user_show")
+     * @Route("/{id}", name="user_show")
      * @Method("GET")
      */
     public function showAction(User $user)
@@ -80,7 +77,7 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/edit", name="admin_user_edit")
+     * @Route("/{id}/edit", name="user_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, User $user)
@@ -92,10 +89,10 @@ class UserController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_user_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
         }
 
-        return $this->render('user/sheet_edit.html.twig', array(
+        return $this->render('user/edit.html.twig', array(
             'user' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -105,7 +102,7 @@ class UserController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="admin_user_delete")
+     * @Route("/{id}", name="user_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, User $user)
@@ -119,7 +116,7 @@ class UserController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_user_index');
+        return $this->redirectToRoute('user_index');
     }
 
     /**
@@ -132,8 +129,9 @@ class UserController extends Controller
     private function createDeleteForm(User $user)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_user_delete', array('id' => $user->getId())))
+            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
             ->setMethod('DELETE')
-            ->getForm();
+            ->getForm()
+        ;
     }
 }

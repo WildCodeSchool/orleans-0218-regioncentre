@@ -16,10 +16,10 @@ class Lycee
 
     /**
      * add by ziadoof
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="department")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="lycees")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $departments;
+    private $department;
 
     /**
      * @var int
@@ -79,7 +79,7 @@ class Lycee
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255)
-     *@Assert\Length(
+     * @Assert\Length(
      *      min = 2,
      *      max = 100,
      *      minMessage = "Le nom de la ville doit être d'au moins {{ limit }} caractères",
@@ -89,7 +89,6 @@ class Lycee
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
     private $city;
-
 
     /**
      * Get id
@@ -220,6 +219,7 @@ class Lycee
     {
         return $this->department;
     }
+
     /**
      * Constructor
      */
@@ -274,5 +274,30 @@ class Lycee
         $this->departments = $departments;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * name de lycee
+     *
+     */
+    public function __toString()
+    {
+        return $this->name;
     }
 }
