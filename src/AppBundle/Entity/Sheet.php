@@ -73,7 +73,7 @@ class Sheet
     private $description;
 
     /**
-     *
+     * @Assert\Date()
      * @ORM\Column(name="startWork", type="date")
      * @Assert\GreaterThanOrEqual("today")
      */
@@ -116,7 +116,7 @@ class Sheet
     private $creationDate;
 
     /**
-     *
+     * @Assert\Date()
      * @Assert\GreaterThanOrEqual("today")
      *
      * @ORM\Column(name="analysisDate", type="date", nullable=true)
