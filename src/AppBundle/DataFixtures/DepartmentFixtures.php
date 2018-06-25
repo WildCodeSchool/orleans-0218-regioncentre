@@ -17,7 +17,7 @@ class DepartmentFixtures extends Fixture
     public function load(ObjectManager $om)
     {
         $departments = [45 => 'Loiret'
-            , 41 => 'loire et cher'
+            , 41 => 'Loire et cher'
             , 37 => 'Indre et loire'
             , 18 => 'Cher'
             , 28 => 'Eure-et-Loir'
@@ -26,8 +26,10 @@ class DepartmentFixtures extends Fixture
         foreach ($departments as $shortCode => $name) {
             $department = new Department();
             $department->setShortCode($shortCode)->setName($name);
+            $this->addReference($name, $department);
             $om->persist($department);
         }
         $om->flush();
+
     }
 }
