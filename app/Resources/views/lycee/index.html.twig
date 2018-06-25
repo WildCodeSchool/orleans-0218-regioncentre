@@ -1,52 +1,45 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="">
-                <h1>Liste des lycées</h1>
+    <h1>Lycees list</h1>
 
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Adresse</th>
-                        <th>Code postal</th>
-                        <th>Ville</th>
-                        <th>Département</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for lycee in lycees %}
-                        <tr>
-                            <td>{{ lycee.name }}</td>
-                            <td>{{ lycee.address }}</td>
-                            <td>{{ lycee.postalCode }}</td>
-                            <td>{{ lycee.city }}</td>
-                            <td>{{ lycee.departments }}</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('admin_lycee_show', { 'id': lycee.id }) }}">show</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('admin_lycee_edit', { 'id': lycee.id }) }}">edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Postalcode</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lycee in lycees %}
+            <tr>
+                <td><a href="{{ path('lycee_show', { 'id': lycee.id }) }}">{{ lycee.id }}</a></td>
+                <td>{{ lycee.name }}</td>
+                <td>{{ lycee.address }}</td>
+                <td>{{ lycee.postalCode }}</td>
+                <td>{{ lycee.city }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('lycee_show', { 'id': lycee.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('lycee_edit', { 'id': lycee.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_lycee_new') }}">Ajouter un lycée</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <ul>
+        <li>
+            <a href="{{ path('lycee_new') }}">Create a new lycee</a>
+        </li>
+    </ul>
 {% endblock %}

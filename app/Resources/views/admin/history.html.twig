@@ -1,12 +1,16 @@
 {% include 'layout_admin.html.twig' %}
-
-{% block body %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block content %}
+    {{ dump(sheets) }}
     <div class="container">
         <div class="row px-2 justify-content-center mb-5">
             <div>
                 <h1>LISTE DES FICHES</h1>
             </div>
         </div>
+        {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
+        {{ form_widget(form ) }}
+        {{ form_end(form) }}
         <div class="row px-4">
             <table class="table">
                 <thead class="thead-light">
@@ -25,8 +29,8 @@
                 {% for sheet in sheets %}
                     <tr>
                         <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ sheet.user.lycee(sheet.user.id).name }}</td>
+                        <td>{{ sheet.user.lycee(sheet.user.id).city }}</td>
                         <td>{{ sheet.job.name }}</td>
                         <td></td>
                         <td></td>
@@ -34,10 +38,11 @@
                             {% if sheet.urgent == true %}
                                 <span class="badge badge-pill badge-warning text-dark mx-1"> URGENT </span>
                             {% endif %}
-                                <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
+                            <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-dark text-warning" href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
+                            <a class="btn btn-sm btn-dark text-warning"
+                               href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -45,4 +50,9 @@
             </table>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+
+    </script>
 {% endblock %}
