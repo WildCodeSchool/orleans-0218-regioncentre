@@ -30,6 +30,5 @@ class DepartmentFixtures extends Fixture
             $om->persist($department);
         }
         $om->flush();
-
     }
 }
