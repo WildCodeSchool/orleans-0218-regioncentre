@@ -31,6 +31,4 @@ class LyceeType extends AbstractType
     {
         return 'appbundle_lycee';
     }
-
-
 }
