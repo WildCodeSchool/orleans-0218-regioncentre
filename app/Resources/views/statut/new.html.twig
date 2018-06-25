@@ -1,4 +1,4 @@
-{% include 'layou_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block content %}
@@ -12,7 +12,7 @@
 
         <ul>
             <li>
-                <a href="{{ path('admin_statut_index') }}">Retour à la liste des statuts</a>
+                <a href="{{ path('admin_management') }}">Retour à la liste des statuts</a>
             </li>
         </ul>
     </div>

@@ -1,6 +1,7 @@
 {% extends 'layout_admin.html.twig' %}
 {% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 
+
 {% block content %}
     <div class="container">
         <div class="row">
@@ -25,7 +26,7 @@
             <div class="col-10 mx-auto">
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
-                        <ul>
+                        <ul>raie
                             <li class="pb-1 text-uppercase h5"><span
                                         class="font-weight-bold">Sujet :</span> {{ sheet.subject }}
                                 {% if sheet.urgent == true %}
@@ -40,7 +41,7 @@
                                 <span class="font-weight-bold">Contraintes techniques :</span> {{ sheet.constraintsTechnicals }}
                             </li>
                         </ul>
-                    </div>
+                    </div>raie
                 </div>
             </div>
         </div>
@@ -57,7 +58,7 @@
                         {{ form_row(edit_form.endWork) }}
                     </div>
 
-                    <div class="col-md-6 col-lg-6">
+                    <div class="col-raiemd-6 col-lg-6">
                         {{ form_row(edit_form.status) }}
                     </div>
                 </div>
