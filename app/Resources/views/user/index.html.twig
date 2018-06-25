@@ -1,5 +1,4 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'layout_admin.html.twig' %}
 {% block body %}
     <h1>Users list</h1>
 
@@ -30,7 +29,7 @@
                             <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>>>>>>>> dev
                         </li>
                     </ul>
                 </td>
