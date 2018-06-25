@@ -84,6 +84,9 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($sheet4);
 
         $manager->flush();
+
+        $this->addReference('sheetOne', $sheet );
+        $this->addReference('sheetTwo', $sheet2 );
     }
 
     public function getDependencies()
