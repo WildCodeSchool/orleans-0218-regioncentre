@@ -78,9 +78,7 @@ class SheetType extends AbstractType
                 'required' => false,
                 'class' => Statut::class,
                 'label' => 'Statut',
-                'choice_label' => function ($name) {
-                    return $name->getName();
-                }
+                'choice_label' => 'name'
             ]);
     }
 

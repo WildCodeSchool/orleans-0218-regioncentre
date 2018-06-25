@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * Sheet
  *
@@ -72,15 +73,13 @@ class Sheet
     private $description;
 
     /**
-     * @var \DateTime
      *
      * @ORM\Column(name="startWork", type="date")
-     * @Assert\Date()
+     * @Assert\GreaterThanOrEqual("today")
      */
     private $startWork;
 
     /**
-     * @var \DateTime
      *
      * @ORM\Column(name="endWork", type="date", nullable=true)
      * @Assert\Expression(
@@ -117,11 +116,13 @@ class Sheet
     private $creationDate;
 
     /**
-     * @var \DateTime
      *
-     * @ORM\Column(name="analyseDate", type="datetime", nullable=true)
+     * @Assert\GreaterThanOrEqual("today")
+     *
+     * @ORM\Column(name="analysisDate", type="date", nullable=true)
+     *
      */
-    private $analyseDate;
+    private $analysisDate;
 
     /**
      * Get id
@@ -472,5 +473,29 @@ class Sheet
     public function getAnalyseDate()
     {
         return $this->analyseDate;
+    }
+
+    /**
+     * Set analysisDate
+     *
+     * @param \DateTime $analysisDate
+     *
+     * @return Sheet
+     */
+    public function setAnalysisDate($analysisDate)
+    {
+        $this->analysisDate = $analysisDate;
+
+        return $this;
+    }
+
+    /**
+     * Get analysisDate
+     *
+     * @return \DateTime
+     */
+    public function getAnalysisDate()
+    {
+        return $this->analysisDate;
     }
 }

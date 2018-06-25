@@ -45,6 +45,8 @@ class SheetController extends Controller
         $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
         $sheet->setStatus($status);
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
+        $form
+            ->remove("status");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -97,6 +99,7 @@ class SheetController extends Controller
             ->remove("constraintsBuildings")
             ->remove("constraintsTechnicals")
             ->remove("description");
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
