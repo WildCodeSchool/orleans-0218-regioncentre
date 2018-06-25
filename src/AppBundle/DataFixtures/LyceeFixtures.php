@@ -42,7 +42,7 @@ class LyceeFixtures extends Fixture implements DependentFixtureInterface
         $lycee2->setAddress('45 Rue de la Gitonnière');
         $lycee2->setPostalCode(37300);
         $lycee2->setCity('Joué-lès-Tours');
-       $lycee2->setDepartment($this->getReference('Indre et loire'));
+        $lycee2->setDepartment($this->getReference('Indre et loire'));
 
         $manager->persist($lycee2);
 
@@ -51,7 +51,7 @@ class LyceeFixtures extends Fixture implements DependentFixtureInterface
         $lycee3->setAddress('25 Avenue Henri Brisson');
         $lycee3->setPostalCode(18100);
         $lycee3->setCity('Vierzon');
-       $lycee3->setDepartment($this->getReference('Cher'));
+        $lycee3->setDepartment($this->getReference('Cher'));
 
         $manager->persist($lycee3);
 
