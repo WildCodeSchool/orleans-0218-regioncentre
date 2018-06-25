@@ -16,10 +16,10 @@ class Lycee
 
     /**
      * add by ziadoof
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="department")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="lycee")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $departments;
+    private $department;
 
     /**
      * @var int

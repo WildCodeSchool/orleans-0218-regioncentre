@@ -2,24 +2,22 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Department;
 use AppBundle\Entity\Lycee;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Lycee controller.
  *
- * @Route("admin/lycee")
+ * @Route("lycee")
  */
 class LyceeController extends Controller
 {
     /**
      * Lists all lycee entities.
      *
-     * @Route("/", name="admin_lycee_index")
+     * @Route("/", name="lycee_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -36,7 +34,7 @@ class LyceeController extends Controller
     /**
      * Creates a new lycee entity.
      *
-     * @Route("/new", name="admin_lycee_new")
+     * @Route("/new", name="lycee_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -49,13 +47,8 @@ class LyceeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($lycee);
             $em->flush();
-            $this->addFlash(
-                'success',
-                'Le lycée a été ajouté!'
-            );
 
-
-            return $this->redirectToRoute('admin_lycee_show', array('id' => $lycee->getId()));
+            return $this->redirectToRoute('lycee_show', array('id' => $lycee->getId()));
         }
 
         return $this->render('lycee/new.html.twig', array(
@@ -67,15 +60,16 @@ class LyceeController extends Controller
     /**
      * Finds and displays a lycee entity.
      *
-     * @Route("/{id}", name="admin_lycee_show")
+     * @Route("/{id}", name="lycee_show")
      * @Method("GET")
      */
     public function showAction(Lycee $lycee)
     {
+        $deleteForm = $this->createDeleteForm($lycee);
 
         return $this->render('lycee/show.html.twig', array(
             'lycee' => $lycee,
-
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -87,20 +81,56 @@ class LyceeController extends Controller
      */
     public function editAction(Request $request, Lycee $lycee)
     {
+        $deleteForm = $this->createDeleteForm($lycee);
         $editForm = $this->createForm('AppBundle\Form\LyceeType', $lycee);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            $this->addFlash(
-                'success',
-                'Vos modifications ont été enregistrées!'
-            );
+
             return $this->redirectToRoute('lycee_edit', array('id' => $lycee->getId()));
         }
-        return $this->render('lycee/sheet_edit.html.twig', array(
+
+        return $this->render('lycee/edit.html.twig', array(
             'lycee' => $lycee,
             'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    /**
+     * Deletes a lycee entity.
+     *
+     * @Route("/{id}", name="lycee_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, Lycee $lycee)
+    {
+        $form = $this->createDeleteForm($lycee);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($lycee);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('lycee_index');
+    }
+
+    /**
+     * Creates a form to delete a lycee entity.
+     *
+     * @param Lycee $lycee The lycee entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Lycee $lycee)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('lycee_delete', array('id' => $lycee->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
     }
 }

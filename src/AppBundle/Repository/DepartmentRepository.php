@@ -1,7 +1,5 @@
 <?php
-
 namespace AppBundle\Repository;
-
 /**
  * DepartmentRepository
  *
