@@ -45,6 +45,8 @@ class SheetController extends Controller
         $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
         $sheet->setStatus($status);
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
+        $form
+            ->remove("status");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,14 +92,25 @@ class SheetController extends Controller
      */
     public function editAction(Request $request, Sheet $sheet)
     {
+
         $deleteForm = $this->createDeleteForm($sheet);
         $editForm = $this->createForm('AppBundle\Form\SheetType', $sheet);
+        $editForm
+            ->remove("urgent")
+            ->remove("subject")
+            ->remove("job")
+            ->remove("buildings")
+            ->remove("constraintsBuildings")
+            ->remove("constraintsTechnicals")
+            ->remove("description");
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $sheet->setAnalysisDate(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('sheet_edit', array('id' => $sheet->getId()));
+            return $this->redirectToRoute('emop_sheet_edit', array('id' => $sheet->getId()));
         }
 
         return $this->render('emop/sheet_edit.html.twig', array(
