@@ -19,7 +19,7 @@ class SheetController extends Controller
     /**
      * Lists all sheet entities.
      *
-     * @Route("/sheet/", name="sheet_index")
+     * @Route("lycee/sheet/", name="lycee_sheet_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -27,8 +27,8 @@ class SheetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
-
-        return $this->render('/sheet/index.html.twig', array(
+      
+        return $this->render('/school/index.html.twig', array(
             'sheets' => $sheets,
         ));
     }
@@ -36,7 +36,7 @@ class SheetController extends Controller
     /**
      * Creates a new sheet entity.
      *
-     * @Route("lycee/sheet/new", name="/lycee/sheet_new")
+     * @Route("lycee/sheet/new", name="lycee_sheet_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -54,6 +54,10 @@ class SheetController extends Controller
             $sheet->setUser($this->getUser());
             $em->persist($sheet);
             $em->flush();
+            $this->addFlash(
+                'success',
+                'La fiche a été ajoutée avec succès.'
+            );
 
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
         }
@@ -103,7 +107,7 @@ class SheetController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $sheet->setAnalyseDate(new \DateTime('now'));
+            $sheet->setAnalysisDate(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('emop_sheet_edit', array('id' => $sheet->getId()));
@@ -133,7 +137,7 @@ class SheetController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('/admin/sheet/sheet_index');
+        return $this->redirectToRoute('admin_sheet_sheet_index');
     }
 
     /**
@@ -150,7 +154,4 @@ class SheetController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
-
-
-
 }

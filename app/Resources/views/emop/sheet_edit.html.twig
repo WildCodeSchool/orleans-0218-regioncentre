@@ -1,7 +1,6 @@
 {% include 'layout_admin.html.twig' %}
 {% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 
-
 {% block content %}
     <div class="container">
         <div class="row">
@@ -14,7 +13,7 @@
 
             </div>
             <div class="col-4 col-md-4 justify-content-end d-none d-xl-flex d-xs-none align-middle align-self-center">
-                <a class="btn btn-warning w-500 " href="{{ path('sheet_index') }}">
+                <a class="btn btn-warning w-500 " href="{{ path('lycee_sheet_index') }}">
                     <i class="fas fa-arrow-left"></i>
                     Retour à l'accueil
                 </a>
@@ -23,7 +22,7 @@
 
 
 
-        </div>
+            </div>
 
         </div>
 
@@ -32,7 +31,8 @@
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
                         <ul>
-                            <li class="pb-1 text-uppercase h5"><span class="font-weight-bold">Sujet :</span> {{ sheet.subject }}                    {% if sheet.urgent == true %}
+                            <li class="pb-1 text-uppercase h5"><span class="font-weight-bold">Sujet :</span> {{ sheet.subject }}
+                                {% if sheet.urgent == true %}
                                     <span class="badge badge-pill badge-warning text-dark align-self-center"> URGENT </span>
                                 {% endif %}</li>
                             <li><span class="font-weight-bold">Description :</span> {{ sheet.description }}</li>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-12 mx-auto d-flex justify-content-center d-xl-none">
-                <a class="btn btn-warning" href="{{ path('sheet_index') }}">
+                <a class="btn btn-warning" href="{{ path('lycee_sheet_index') }}">
                     <i class="fas fa-arrow-left"></i>
                     Retour à l'accueil
                 </a>

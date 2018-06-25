@@ -26,13 +26,18 @@ class MetierFixtures extends Fixture
         $metier3 = new Metier();
         $metier3->setName('Électricien');
 
+        $metier4 = new Metier();
+        $metier4->setName('Peintre');
+
         $manager->persist($metier);
         $manager->persist($metier2);
         $manager->persist($metier3);
+        $manager->persist($metier4);
 
         $manager->flush();
 
         $this->addReference('Serrurier', $metier);
+        $this->addReference('Peintre', $metier);
         $this->addReference('Plombier', $metier2);
         $this->addReference('Électricien', $metier3);
     }

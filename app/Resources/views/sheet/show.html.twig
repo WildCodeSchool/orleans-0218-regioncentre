@@ -1,59 +1,97 @@
 {% include 'layout_admin.html.twig' %}
 {% block content %}
     <div class="container">
-        <h1>Sheet</h1>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ sheet.id }}</td>
-                </tr>
-                <tr>
-                    <th>Urgent</th>
-                    <td>{% if sheet.urgent %}Yes{% else %}No{% endif %}</td>
-                </tr>
-                <tr>
-                    <th>Subject</th>
-                    <td>{{ sheet.subject }}</td>
-                </tr>
-                <tr>
-                    <th>Buildings</th>
-                    <td>{{ sheet.buildings }}</td>
-                </tr>
-                <tr>
-                    <th>Constraintsbuildings</th>
-                    <td>{{ sheet.constraintsBuildings }}</td>
-                </tr>
-                <tr>
-                    <th>Constraintstechnicals</th>
-                    <td>{{ sheet.constraintsTechnicals }}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{{ sheet.description }}</td>
-                </tr>
-                <tr>
-                    <th>Startwork</th>
-                    <td>{% if sheet.startWork %}{{ sheet.startWork|date('Y-m-d') }}{% endif %}</td>
-                </tr>
-                <tr>
-                    <th>Endwork</th>
-                    <td>{% if sheet.endWork %}{{ sheet.endWork|date('Y-m-d') }}{% endif %}</td>
-                </tr>
-            </tbody>
-        </table>
-        <ul>
-            <li>
-                <a href="{{ path('sheet_index') }}">Back to the list</a>
-            </li>
-            <li>
-                <a href="{{ path('emop_sheet_edit', { 'id': sheet.id }) }}">Edit</a>
-            </li>
-            <li>
-                {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-                {{ form_end(delete_form) }}
-            </li>
-        </ul>
+        <div class="row mx-5">
+            <div class="col d-flex text-center">
+                <h1 class="align-self-baseline">FICHE DE TRAVAUX</h1>
+                <p class="align-self-baseline ml-5 w-400 h4">{{ 'Nom du lycée'|upper }}</p>
+            </div>
+            <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
+                <a class="btn btn-warning w-500"href="">
+                    <i class="fas fa-arrow-left mr-4">{{ path('school_sheet_index') }}</i>
+                    Retour à la liste
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col jumbotron d-inline-flex px-1 pt-4 pb-2 mx-3 mt-4">
+                {% if sheet.urgent %}
+                    <div class="col-auto ml-lg-5 mb-3">
+                    <span class="badge badge-pill badge-urgent badge-warning mx-1">
+                        Urgent
+                        <i class="fas fa-exclamation-circle"></i>
+                    </span>
+                    </div>
+                {% endif %}
+                <div class="col d-flex">
+                    <p class="align-self-center mx-5 w-400 h4">
+                        {{ sheet.subject }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center mt-5">
+            <div class="col-lg-6">
+                <p class="h5">{{ 'Bâtiment concerné'|upper }}</p>
+                <p>{{ sheet.buildings }}</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="h5">{{ 'metier concerné'|upper }}</p>
+                <p>{{ sheet.job.name }}</p>
+            </div>
+        </div>
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-3">
+            <div class="card m-2 mr-lg-4">
+                <div class="card-header text-center">
+                    <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
+                </div>
+                <div class="m-2 my-lg-3 mx-lg-5">
+                    <p>{{ sheet.constraintsBuildings }}</p>
+                </div>
+            </div>
+            <div class="card m-2 ml-lg-4">
+                <div class="card-header text-center">
+                    <p class="h5">{{ 'Contraintes techniques'|upper }}</p>
+                </div>
+                <div class="m-3 my-lg-3 mx-lg-5">
+                    <p>{{ sheet.constraintsTechnicals }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
+            <div class="card m-2">
+                <div class="card-header text-center">
+                    <p class="h5">{{ 'Description de la demande'|upper }}</p>
+                </div>
+                <div class="m-2 my-lg-3 mx-lg-5">
+                    <p>{{ sheet.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center my-5">
+            <div class="col-lg-6">
+                <p class="h5">{{ 'Date de début des travaux'|upper }}</p>
+                <p>{% if sheet.startWork %}{{ sheet.startWork|date('d / m / Y') }}{% endif %}</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="h5">{{ 'Date de fin des travaux'|upper }}</p>
+                <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
+            </div>
+        </div>
+        <div class="row jumbotron p-0 mx-1 mt-5"
+             style="border-style: solid; border-color: {{ sheet.status.color }}">
+            <div class="col-lg-auto col-12 d-flex justify-content-center align-self-center py-2"
+                 style="background-color: {{ sheet.status.color }}">
+                    <span class="text-light pr-2 pt-2 h5">
+                        {{ sheet.status.name|upper }}
+                        <i class="far fa-clock mx-1"></i>
+                    </span>
+            </div>
+            <div class="col text-center align-self-end py-2">
+                <p class="mx-5 w-400 h5">
+                    {{ sheet.analysis.name|upper }}
+                </p>
+            </div>
+        </div>
     </div>
 {% endblock %}
