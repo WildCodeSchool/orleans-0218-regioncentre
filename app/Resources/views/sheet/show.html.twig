@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <div class="row mx-5">
-            <div class="col d-flex text-center">
+            <div class="col d-flex">
                 <h1 class="align-self-baseline">FICHE DE TRAVAUX</h1>
                 <p class="align-self-baseline ml-5 w-400 h4">{{ 'Nom du lycée'|upper }}</p>
             </div>
@@ -149,9 +149,15 @@
                     {% endfor %}
                 </div>
             </div>
-        <div class="text-center">
-            <h1> NOUVEAU COMMENTAIRE </h1>
+        <div class="row mx-5">
+            <div class="col d-flex">
+                <h1> NOUVEAU COMMENTAIRE </h1>
+            </div>
+            <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
+                <a class="btn btn-primary w-500" href="#"><i class="fas fa-arrow-up mr-4"></i>Retour aux informations de la fiche</a>
+            </div>
         </div>
+        <hr>
         {{ form_start(form) }}
         <div id="msg_anchor" class="mx-4 py-4 row flex-row-reverse comments">
             <div class="col-auto">
