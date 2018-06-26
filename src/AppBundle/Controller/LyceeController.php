@@ -74,7 +74,7 @@ class LyceeController extends Controller
     /**
      * Displays a form to edit an existing lycee entity.
      *
-     * @Route("/{id}/edit", name="lycee_edit")
+     * @Route("/{id}/edit",  name="admin_lycee_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Lycee $lycee)
@@ -89,7 +89,7 @@ class LyceeController extends Controller
             );
             return $this->redirectToRoute('lycee_edit', array('id' => $lycee->getId()));
         }
-        return $this->render('lycee/sheet_edit.html.twig', array(
+        return $this->render('lycee/edit.html.twig', array(
             'lycee' => $lycee,
             'edit_form' => $editForm->createView(),
         ));
