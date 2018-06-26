@@ -88,6 +88,7 @@ class SheetController extends Controller
             $comment->setSheet($sheet);
             $em->persist($comment);
             $em->flush();
+            $this->addFlash('comment', 'Nouveau message ajouté avec succès.');
 
             return $this->redirectToRoute('sheet_show', [
                 'id' => $sheet->getId(),

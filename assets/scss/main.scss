@@ -84,8 +84,23 @@ body {
     border-radius: 15px;
   }
 
+  .comment-flash {
+    min-height: 4rem;
+    padding-top: 2em;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+  .comment-flash-container {
+    position: relative;
+    z-index: 0;
+    top: -20px;
+    height: 100px;
+  }
+
   .comment-container {
     border-radius: 25px;
+    position: relative;
+    z-index: 1;
   }
     .comment-small {
       border-radius: 8px;

@@ -16,7 +16,7 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        {% for label, messages in app.flashes %}
+        {% for label, messages in app.flashes(['warning', 'error', 'success']) %}
             {% for message in messages %}
                 <div class="alert alert-{{ label }} alert-dismissible fade show text-center">
                     {{ message }}

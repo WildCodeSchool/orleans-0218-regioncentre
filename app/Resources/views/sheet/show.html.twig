@@ -8,7 +8,15 @@
                 <p class="align-self-baseline ml-5 w-400 h4">{{ 'Nom du lycée'|upper }}</p>
             </div>
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
-                <a class="btn btn-warning w-500" href="{{ path('lycee_sheet_index') }}">
+                <a class="btn btn-warning w-500" href="
+                {% if app.user.hasRole('ROLE_ADMIN') %}
+                {{ path('admin_history_sheets') }}
+                {% elseif app.user.hasRole('ROLE_EMOP') %}
+                {{ path('emop_history_sheets') }}
+                {% elseif app.user.hasRole('ROLE_LYCEE') %}
+                {{ path('lycee_sheet_index') }}
+                {% endif %}
+                ">
                     <i class="fas fa-arrow-left mr-4"></i>
                     Retour à la liste
                 </a>
@@ -118,7 +126,7 @@
                         <div class="card mb-4 my-lg-4 comment {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
                             <div class="card-header {% if comment.user.id == app.user.id %}justify-content-end {% endif %} text-light d-inline-flex border-0 pb-0">
                                 <p class="w-500 mx-2 text-light">{{ comment.user.username|upper }}</p>
-                                <p class="mx-2 text-light">{{ "now"|date('d/m/Y') }}</p> <strong>{{ comment.date|date('d M Y') }}</strong>
+                                <p class="mx-2 text-light"><strong>{{ comment.date|date('d M Y') }}</strong></p>
                             </div>
                             <div class="card-body comment-small bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
                                 <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo" {% if comment.user.id == app.user.id %}style="float: right"{% else %} style="float: left"{% endif %} />
@@ -129,7 +137,19 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="text-center pt-3">
+            <div class="row justify-content-center">
+                <div class="col comment-flash-container">
+                    {% for message in app.flashes('comment') %}
+                    <div class="alert alert-info alert-dismissible fade show text-center comment-flash">
+                        {{ message }}
+                        <button type="button" class="close position-relative" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        <div class="text-center">
             <h1> NOUVEAU COMMENTAIRE </h1>
         </div>
         {{ form_start(form) }}
