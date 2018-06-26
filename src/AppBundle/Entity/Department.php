@@ -15,9 +15,9 @@ class Department
 
     /**
      * add by ziadoof
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lycee", mappedBy ="departments")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lycee", mappedBy ="lycees")
      */
-    private $department;
+    private $departmen;
 
     /**
      * @var string
@@ -189,5 +189,41 @@ class Department
     public function removeDepartment(\AppBundle\Entity\Lycee $department)
     {
         $this->department->removeElement($department);
+    }
+
+    /**
+     * Add departman.
+     *
+     * @param \AppBundle\Entity\Lycee $departman
+     *
+     * @return Department
+     */
+    public function addDepartman(\AppBundle\Entity\Lycee $departman)
+    {
+        $this->departmen[] = $departman;
+
+        return $this;
+    }
+
+    /**
+     * Remove departman.
+     *
+     * @param \AppBundle\Entity\Lycee $departman
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeDepartman(\AppBundle\Entity\Lycee $departman)
+    {
+        return $this->departmen->removeElement($departman);
+    }
+
+    /**
+     * Get departmen.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDepartmen()
+    {
+        return $this->departmen;
     }
 }

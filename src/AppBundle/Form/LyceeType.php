@@ -46,7 +46,7 @@ class LyceeType extends AbstractType
                     'require' => true
                 ]
             ])
-            ->add('departments', EntityType::class, [
+            ->add('department', EntityType::class, [
                 'required' => true,
                 'class' => Department::class,
                 'label' => 'Département',

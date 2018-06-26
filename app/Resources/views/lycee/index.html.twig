@@ -1,6 +1,5 @@
-{% extends 'layout_admin.html.twig' %}
-
-{% block content %}
+{% include 'layout_admin.html.twig' %}
+{% block body %}
     <div class="container">
         <div class="row">
             <div class="">
@@ -24,7 +23,7 @@
                             <td>{{ lycee.address }}</td>
                             <td>{{ lycee.postalCode }}</td>
                             <td>{{ lycee.city }}</td>
-                            <td>{{ lycee.departments }}</td>
+                            <td>{{ lycee.department }}</td>
                             <td>
                                 <ul>
                                     <li>
@@ -48,5 +47,5 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
+

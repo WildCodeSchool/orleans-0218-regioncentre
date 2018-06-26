@@ -25,9 +25,7 @@ class LyceeController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $lycees = $em->getRepository('AppBundle:Lycee')->findAll();
-
         return $this->render('lycee/index.html.twig', array(
             'lycees' => $lycees,
         ));
@@ -44,7 +42,6 @@ class LyceeController extends Controller
         $lycee = new Lycee();
         $form = $this->createForm('AppBundle\Form\LyceeType', $lycee);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($lycee);
@@ -53,11 +50,8 @@ class LyceeController extends Controller
                 'success',
                 'Le lycée a été ajouté!'
             );
-
-
             return $this->redirectToRoute('admin_lycee_show', array('id' => $lycee->getId()));
         }
-
         return $this->render('lycee/new.html.twig', array(
             'lycee' => $lycee,
             'form' => $form->createView(),
@@ -72,10 +66,8 @@ class LyceeController extends Controller
      */
     public function showAction(Lycee $lycee)
     {
-
         return $this->render('lycee/show.html.twig', array(
             'lycee' => $lycee,
-
         ));
     }
 
@@ -89,7 +81,6 @@ class LyceeController extends Controller
     {
         $editForm = $this->createForm('AppBundle\Form\LyceeType', $lycee);
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(

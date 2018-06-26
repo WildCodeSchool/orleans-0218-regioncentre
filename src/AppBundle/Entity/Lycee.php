@@ -19,7 +19,7 @@ class Lycee
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department", inversedBy="department")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $departments;
+    private $lycees;
 
     /**
      * @var int
@@ -274,5 +274,29 @@ class Lycee
         $this->departments = $departments;
 
         return $this;
+    }
+
+    /**
+     * Set lycees.
+     *
+     * @param \AppBundle\Entity\Department|null $lycees
+     *
+     * @return Lycee
+     */
+    public function setLycees(\AppBundle\Entity\Department $lycees = null)
+    {
+        $this->lycees = $lycees;
+
+        return $this;
+    }
+
+    /**
+     * Get lycees.
+     *
+     * @return \AppBundle\Entity\Department|null
+     */
+    public function getLycees()
+    {
+        return $this->lycees;
     }
 }
