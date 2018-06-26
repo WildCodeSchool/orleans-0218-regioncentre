@@ -79,6 +79,12 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationType
+    resetting:
+        email:
+            from_email:
+                address:        "%mailer_user%"
+                sender_name:    Demo Resetting
+            template:   '@FOSUser/Resetting/email.txt.twig'
     profile:
         form:
             type: AppBundle\Form\ProfilType
