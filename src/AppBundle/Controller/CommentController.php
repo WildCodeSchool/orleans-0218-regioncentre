@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Comment controller.
@@ -52,10 +53,10 @@ class CommentController extends Controller
             return $this->redirectToRoute('comment_show', array('id' => $comment->getId()));
         }
 
-        return $this->render('comment/new.html.twig', array(
+        return [
             'comment' => $comment,
             'form' => $form->createView(),
-        ));
+        ];
     }
 
     /**
