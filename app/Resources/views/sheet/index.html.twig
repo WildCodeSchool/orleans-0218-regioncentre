@@ -1,4 +1,4 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 {% block content %}
     <h1>Sheets list</h1>
 
@@ -46,7 +46,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('lycee_sheet_new') }}">Create a new sheet</a>
+            <a href="{{ path('sheet_new') }}">Create a new sheet</a>
         </li>
     </ul>
 {% endblock %}
