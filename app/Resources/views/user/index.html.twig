@@ -1,6 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
-
-{% block content %}
+{% block body %}
     <h1>Users list</h1>
 
     <table>
@@ -18,7 +17,7 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.work }}</td>
@@ -27,10 +26,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_user_show', { 'id': user.id }) }}">show</a>
+                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('admin_user_edit', { 'id': user.id }) }}">edit</a>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +40,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_user_new') }}">Create a new user</a>
+            <a href="{{ path('user_new') }}">Create a new user</a>
         </li>
     </ul>
 {% endblock %}

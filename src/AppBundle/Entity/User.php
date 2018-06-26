@@ -92,6 +92,12 @@ class User extends BaseUser
      */
     private $mail;
 
+    /**
+     * add by ziadoof
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lycee")
+     */
+    private $lycee;
+
     public function __construct()
     {
         parent::__construct();
@@ -205,6 +211,22 @@ class User extends BaseUser
         $this->mail = $mail;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLycee()
+    {
+        return $this->lycee;
+    }
+
+    /**
+     * @param mixed $lycee
+     */
+    public function setLycee($lycee): void
+    {
+        $this->lycee = $lycee;
     }
 
     /**

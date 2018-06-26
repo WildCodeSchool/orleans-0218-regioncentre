@@ -15,9 +15,9 @@ class Department
 
     /**
      * add by ziadoof
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lycee", mappedBy ="departments")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lycee", mappedBy ="department")
      */
-    private $department;
+    private $lycees;
 
     /**
      * @var string
@@ -159,6 +159,7 @@ class Department
     {
         return $this->departments;
     }
+
     /**
      * Constructor
      */
