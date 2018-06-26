@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use FOS\UserBundle\Model\UserManager;
+use FOS\UserBundle\Controller\ResettingController;
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Util\TokenGenerator;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
@@ -12,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+
 
 /**
  * User controller.
@@ -73,29 +75,6 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/activate/{token}", name="user_activate")
-     */
-    public function confirmAction(Request $request, $token)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('AppBundle:User');
-        $user = $repository->findOneBy($token);
-
-        if (!$user)
-        {
-            throw $this->createNotFoundException('We couldn\'t find an account for that confirmation token');
-        }
-
-        $user->setConfirmationToken(null);
-        $user->setEnabled(true);
-
-        $em->persist($user);
-        $em->flush();
-
-        return $this->redirectToRoute('user_registration_confirmed');
-    }
-
-    /**
      * Creates a new user entity.
      *
      * @Route("/new", name="admin_user_new")
@@ -112,6 +91,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $user->setPlainPassword(uniqid());
+            $user->setPasswordRequestedAt(new \DateTime('NOW'));
 
             $userManager->updateUser($user);
             $user->setConfirmationToken($token->generateToken());
