@@ -86,15 +86,13 @@ class Sheet
     private $description;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="startWork", type="date")
      * @Assert\Date()
+     * @ORM\Column(name="startWork", type="date")
+     * @Assert\GreaterThanOrEqual("today")
      */
     private $startWork;
 
     /**
-     * @var \DateTime
      *
      * @ORM\Column(name="endWork", type="date", nullable=true)
      * @Assert\Expression(
@@ -129,6 +127,15 @@ class Sheet
      * @ORM\Column(name="creationDate", type="date")
      */
     private $creationDate;
+
+    /**
+     * @Assert\Date()
+     * @Assert\GreaterThanOrEqual("today")
+     *
+     * @ORM\Column(name="analysisDate", type="date", nullable=true)
+     *
+     */
+    private $analysisDate;
 
     /**
      * Get id
@@ -430,21 +437,17 @@ class Sheet
 
     /**
      * Set creationDate
-     *
      * @param \DateTime $creationDate
-     *
      * @return Sheet
      */
     public function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
-
         return $this;
     }
 
     /**
      * Get creationDate
-     *
      * @return \DateTime
      */
     public function getCreationDate()
@@ -458,22 +461,42 @@ class Sheet
     }
 
     /**
-     * Set analysis
+     * Set analysisDate
      *
-     * @param \AppBundle\Entity\Analysis $analysis
+     * @param \DateTime $analysisDate
      *
      * @return Sheet
      */
-    public function setAnalysis(\AppBundle\Entity\Analysis $analysis = null)
+    public function setAnalysisDate($analysisDate)
     {
-        $this->analysis = $analysis;
+        $this->analysisDate = $analysisDate;
 
         return $this;
     }
 
     /**
-     * Get analysis
+     * Get analysisDate
      *
+     * @return \DateTime
+     */
+    public function getAnalysisDate()
+    {
+        return $this->analysisDate;
+    }
+
+     /**
+     * Set analysis
+     * @param \AppBundle\Entity\Analysis $analysis
+     * @return Sheet
+     */
+    public function setAnalysis(\AppBundle\Entity\Analysis $analysis = null)
+    {
+        $this->analysis = $analysis;
+        return $this;
+    }
+
+     /**
+     * Get analysis
      * @return \AppBundle\Entity\Analysis
      */
     public function getAnalysis()

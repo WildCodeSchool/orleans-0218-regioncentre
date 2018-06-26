@@ -1,21 +1,83 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+
 
 {% block content %}
-    <h1>Sheet edit</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 col-md-8 mx-auto">
+                <h1>
+                    Edition de la fiche
+                </h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('sheet_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            </div>
+            <div class="col-4 col-md-4 justify-content-end d-none d-xl-flex d-xs-none align-middle align-self-center">
+                <a class="btn btn-warning w-500 " href="{{ path('emop_history_sheets') }}">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour à l'accueil
+                </a>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <div class="card mt-5 mb-5">
+                    <div class="card-body">
+                        <ul>raie
+                            <li class="pb-1 text-uppercase h5"><span
+                                        class="font-weight-bold">Sujet :</span> {{ sheet.subject }}
+                                {% if sheet.urgent == true %}
+                                    <span class="badge badge-pill badge-warning text-dark align-self-center"> URGENT </span>
+                                {% endif %}</li>
+                            <li><span class="font-weight-bold">Description :</span> {{ sheet.description }}</li>
+                            <li><span class="font-weight-bold">Métier concerné :</span> {{ sheet.job.name }}</li>
+                            <li><span class="font-weight-bold">Bâtiment concerné :</span> {{ sheet.buildings }}</li>
+                            <li><span class="font-weight-bold">Contraintes de fonctionnement de l'établissement
+                    :</span> {{ sheet.constraintsBuildings }}</li>
+                            <li>
+                                <span class="font-weight-bold">Contraintes techniques :</span> {{ sheet.constraintsTechnicals }}
+                            </li>
+                        </ul>
+                    </div>raie
+                </div>
+            </div>
+        </div>
+        {{ form_start(edit_form) }}
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(edit_form.startWork) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(edit_form.endWork) }}
+                    </div>
+
+                    <div class="col-raiemd-6 col-lg-6">
+                        {{ form_row(edit_form.status) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-6 mb-1 d-flex justify-content-center mx-auto">
+                {{ form_widget(edit_form) }}
+                <input class="btn btn-dark" type="submit" value="Modifier"/>
+                {{ form_end(edit_form) }}
+            </div>
+
+            <div class="col-12 mx-auto d-flex justify-content-center d-xl-none">
+                <a class="btn btn-warning" href="{{ path('emop_history_sheets') }}">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
