@@ -77,9 +77,6 @@ class SheetController extends Controller
      */
     public function showAction(Sheet $sheet, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $comments = $em->getRepository('AppBundle:Comment')->findBySheet($sheet);
-
         $comment = new Comment();
         $form = $this->createForm('AppBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
@@ -101,7 +98,6 @@ class SheetController extends Controller
         return $this->render('sheet/show.html.twig', array(
             'sheet' => $sheet,
             'comment' => $comment,
-            'comments' => $comments,
             'form' => $form->createView(),
         ));
     }

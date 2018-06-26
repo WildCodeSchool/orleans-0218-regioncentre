@@ -109,26 +109,26 @@
         <div class="col text-center mt-5 mt-lg-5 pt-lg-5">
             <h1> COMMENTAIRES </h1>
         </div>
-        <div class="bg-comments comment-container mt-5 pt-5">
+        <div class="bg-comments my-5 pt-5">
             <div class="row">
-                {% if comments is empty %}
+                {% if sheet.comments is empty %}
                 <div class="col-12 text-center pb-3">
                     <p>aucun commentaire pour le moment</p>
                 </div>
                 {% endif %}
             </div>
-            {% for comment in comments %}
-                <div class="mx-2 mx-lg-4 py-lg-4 row {% if comment.user.id == app.user.id %}flex-row-reverse{% endif %} comments">
+            {% for comment in sheet.comments %}
+                <div class="mx-2 mx-lg-4 py-lg-4 row {% if comment.user.id == app.user.id %}flex-row-reverse{% endif %}">
                     <div class="col-auto d-none d-lg-block">
                         <img class="" src="https://via.placeholder.com/150x150" alt="logo"/>
                     </div>
                     <div class="col col-lg-9">
-                        <div class="card mb-4 my-lg-4 comment {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
+                        <div class="card mb-4 my-lg-4 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
                             <div class="card-header {% if comment.user.id == app.user.id %}justify-content-end {% endif %} text-light d-inline-flex border-0 pb-0">
                                 <p class="w-500 mx-2 text-light">{{ comment.user.username|upper }}</p>
                                 <p class="mx-2 text-light"><strong>{{ comment.date|date('d M Y') }}</strong></p>
                             </div>
-                            <div class="card-body comment-small bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
+                            <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
                                 <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo" {% if comment.user.id == app.user.id %}style="float: right"{% else %} style="float: left"{% endif %} />
                                 <div class="col">{{ comment.content }}</div>
                             </div>
@@ -136,19 +136,20 @@
                     </div>
                 </div>
             {% endfor %}
-        </div>
             <div class="row justify-content-center">
-                <div class="col comment-flash-container">
+                <div class="col px-5">
                     {% for message in app.flashes('comment') %}
-                    <div class="alert alert-info alert-dismissible fade show text-center comment-flash">
-                        {{ message }}
-                        <button type="button" class="close position-relative" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                        <div class="alert alert-warning alert-dismissible fade show text-center">
+                            {{ message }}
+                            <button type="button" class="close position-relative" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
+        </div>
+
         <div class="row mx-5">
             <div class="col d-flex">
                 <h1> NOUVEAU COMMENTAIRE </h1>
@@ -171,8 +172,8 @@
             <div class="col">
                 <div class="d-flex justify-content-center">
                     <input type="submit" value="Envoyer le commentaire" class="btn btn-dark h-100"/>
-                    {{ form_end(form) }}
                 </div>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
