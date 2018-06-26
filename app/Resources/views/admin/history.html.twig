@@ -28,8 +28,8 @@
                 {% for sheet in sheets %}
                     <tr>
                         <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
-                        <td>{{ sheet.user.lycee(sheet.user.id).name }}</td>
-                        <td>{{ sheet.user.lycee(sheet.user.id).city }}</td>
+                        <td>{{ sheet.user.lycee.name }}</td>
+                        <td>{{ sheet.user.lycee.city }}</td>
                         <td>{{ sheet.job.name }}</td>
                         <td></td>
                         <td></td>
