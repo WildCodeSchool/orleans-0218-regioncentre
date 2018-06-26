@@ -3,17 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
-use FOS\UserBundle\Model\UserManager;
-use FOS\UserBundle\Controller\ResettingController;
 use FOS\UserBundle\Model\UserManagerInterface;
-use FOS\UserBundle\Util\TokenGenerator;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-
 
 /**
  * User controller.
@@ -67,8 +62,8 @@ class UserController extends Controller
 
         ));
 
-        $message = (new \Swift_Message('Entrer votre mot de passe'))
-            ->setFrom('test@test.fr')
+        $message = (new \Swift_Message('Bienvenue sur E-Maintenance'))
+            ->setFrom($email)
             ->setTo($email)
             ->setBody($renderedTemplate, "text/html");
         $this->mailer->send($message);

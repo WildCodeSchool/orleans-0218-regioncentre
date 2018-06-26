@@ -2,16 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
-use FOS\UserBundle\Model\UserManager;
-use FOS\UserBundle\Model\UserManagerInterface;
-use FOS\UserBundle\Util\TokenGenerator;
-use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
  * User controller.
@@ -28,8 +22,7 @@ class MaillerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:User')->findOneByConfirmationToken($token);
-        if (!$user)
-        {
+        if (!$user) {
             return $this->redirectToRoute('fos_user_security_login');
         }
 
@@ -39,7 +32,5 @@ class MaillerController extends Controller
         $em->persist($user);
         $em->flush();
         return $this->redirectToRoute('fos_user_resetting_reset');
-
     }
-
 }
