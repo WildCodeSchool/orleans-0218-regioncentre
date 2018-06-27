@@ -74,6 +74,9 @@ class LyceeFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($lycee5);
 
         $manager->flush();
+
+        $this->addReference('lyceeOne', $lycee);
+
     }
 
     public function getDependencies()

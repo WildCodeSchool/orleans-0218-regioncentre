@@ -23,8 +23,8 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $commentTwoSheetTwo = new Comment();
 
         $commentOneSheetOne->setContent("lorem ipsum short comment");
-        $commentOneSheetOne->setSheet($this->getReference('sheet'));
-        $commentOneSheetOne->setUser($this->getReference('admin'));
+        $commentOneSheetOne->setSheet($this->getReference('sheetOne'));
+        $commentOneSheetOne->setUser($this->getReference('Admin'));
         $commentOneSheetOne->setDate(new \DateTime(2018-06-29));
 
         $commentTwoSheetOne->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -42,7 +42,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
                  id semper tellus blandit ac. Pellentesque ornare sem ut justo feugiat pulvinar. Morbi lobortis
                   tristique sapien ut pharetra. Aenean eget lacinia justo. Proin dignissim risus eget
                    imperdiet bibendum. Phasellus tincidunt. long comment");
-        $commentTwoSheetOne->setSheet($this->getReference('sheet'));
+        $commentTwoSheetOne->setSheet($this->getReference('sheetOne'));
         $commentTwoSheetOne->setUser($this->getReference('lycee'));
         $commentTwoSheetOne->setDate(new \DateTime(2018-06-30));
 

@@ -101,7 +101,7 @@ class User extends BaseUser
 
     /**
      * add by ziadoof
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lycee")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lycee" )
      */
     private $lycee;
 
