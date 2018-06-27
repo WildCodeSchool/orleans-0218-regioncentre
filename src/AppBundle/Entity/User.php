@@ -99,6 +99,12 @@ class User extends BaseUser
      */
     private $mail;
 
+    /**
+     * add by ziadoof
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lycee")
+     */
+    private $lycee;
+
     public function __construct()
     {
         parent::__construct();
@@ -224,7 +230,7 @@ class User extends BaseUser
         return $this->mail;
     }
 
-    /**
+     /**
      * Add comment
      *
      * @param \AppBundle\Entity\Comment $comment
@@ -234,11 +240,11 @@ class User extends BaseUser
     public function addComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
-
+      
         return $this;
     }
-
-    /**
+  
+     /**
      * Remove comment
      *
      * @param \AppBundle\Entity\Comment $comment
@@ -247,8 +253,8 @@ class User extends BaseUser
     {
         $this->comments->removeElement($comment);
     }
-
-    /**
+  
+     /**
      * Get comments
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -256,5 +262,29 @@ class User extends BaseUser
     public function getComments()
     {
         return $this->comments;
+    }
+  
+     /**
+     * Set lycee.
+     *
+     * @param \AppBundle\Entity\Lycee|null $lycee
+     *
+     * @return User
+     */
+    public function setLycee(\AppBundle\Entity\Lycee $lycee = null)
+    {
+        $this->lycee = $lycee;
+
+        return $this;
+    }
+      
+     /**
+     * Get lycee.
+     *
+     * @return \AppBundle\Entity\Lycee|null
+     */
+    public function getLycee()
+    {
+        return $this->lycee;
     }
 }

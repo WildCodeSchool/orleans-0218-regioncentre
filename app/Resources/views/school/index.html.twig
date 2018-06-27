@@ -46,7 +46,11 @@
                                         <p class="text-center">{{ sheet.status.name }}</p>
                                     </div>
                                     <div class="col-12 col-md-4">
+                                        {% if sheet.analysis %}
                                             {{ sheet.analysis.name }}
+                                        {% else %}
+                                            La fiche n'a pas encore été analysée.
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
