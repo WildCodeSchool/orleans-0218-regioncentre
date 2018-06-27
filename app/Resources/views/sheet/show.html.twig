@@ -30,6 +30,26 @@
                 </div>
             </div>
         </div>
+        <div class="row text-center my-5">
+            <div class="col-lg-6">
+                <p class="h5">{{ 'Date souhaitée de début des travaux'|upper }}</p>
+                <p>{% if sheet.startWork %}{{ sheet.startWork|date('d / m / Y') }}{% endif %}</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="h5">{{ 'Date souhaitée de fin des travaux'|upper }}</p>
+                <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
+            </div>
+        </div>
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
+            <div class="card m-2">
+                <div class="card-header text-center">
+                    <p class="h5">{{ 'Description de la demande'|upper }}</p>
+                </div>
+                <div class="m-3 my-lg-3 mx-lg-5">
+                    <p>{{ sheet.description }}</p>
+                </div>
+            </div>
+        </div>
         <div class="row text-center mt-5">
             <div class="col-lg-6">
                 <p class="h5">{{ 'Bâtiment concerné'|upper }}</p>
@@ -45,7 +65,7 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
                 </div>
-                <div class="m-2 my-lg-3 mx-lg-5">
+                <div class="m-3 my-lg-3 mx-lg-5">
                     <p>{{ sheet.constraintsBuildings ?? 'Non renseigné' }}</p>
                 </div>
             </div>
@@ -56,26 +76,6 @@
                 <div class="m-3 my-lg-3 mx-lg-5">
                     <p>{{ sheet.constraintsTechnicals ?? 'Non renseigné' }}</p>
                 </div>
-            </div>
-        </div>
-        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
-            <div class="card m-2">
-                <div class="card-header text-center">
-                    <p class="h5">{{ 'Description de la demande'|upper }}</p>
-                </div>
-                <div class="m-2 my-lg-3 mx-lg-5">
-                    <p>{{ sheet.description }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="row text-center my-5">
-            <div class="col-lg-6">
-                <p class="h5">{{ 'Date de début des travaux'|upper }}</p>
-                <p>{% if sheet.startWork %}{{ sheet.startWork|date('d / m / Y') }}{% endif %}</p>
-            </div>
-            <div class="col-lg-6">
-                <p class="h5">{{ 'Date de fin des travaux'|upper }}</p>
-                <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
             </div>
         </div>
         <div class="row jumbotron p-0 mx-1 mt-5"
