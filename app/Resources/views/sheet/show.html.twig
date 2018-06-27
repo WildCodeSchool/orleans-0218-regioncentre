@@ -37,6 +37,18 @@
                         {{ sheet.subject }}
                     </p>
                 </div>
+                {% if app.user.hasRole('ROLE_EMOP') %}
+
+                    <div class="col-auto ml-lg-5 mb-3">
+                    <span>
+                        <a class="badge badge-primary badge-urgent mr-5"
+                           href="
+                            {{ path('emop_sheet_edit', { 'id': sheet.id }) }}
+                            ">Modifier cette fiche</a>
+                    </span>
+                    </div>
+
+                {% endif %}
             </div>
         </div>
         <div class="row text-center mt-5">
