@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,6 +17,16 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UserController extends Controller
 {
+    private $mailer;
+
+    private $templating;
+
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $templating)
+    {
+        $this->mailer = $mailer;
+        $this->templating = $templating;
+    }
+
     /**
      * Lists all user entities.
      *
@@ -30,21 +42,53 @@ class UserController extends Controller
         ));
     }
 
+    public function sendPasswordReset(User $user)
+    {
+        $confirmationToken = $user->getConfirmationToken();
+
+        $username = $user->getUsername();
+        $email = $user->getEmail();
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->findOneByConfirmationToken($confirmationToken);
+
+        $renderedTemplate = $this->render('email/password_resetting.html.twig', array(
+            'username' => $username,
+            'token' => $confirmationToken,
+            'email' => $email,
+            'user' => $users,
+
+        ));
+
+        $message = (new \Swift_Message('Bienvenue sur E-Maintenance'))
+            ->setFrom($email)
+            ->setTo($email)
+            ->setBody($renderedTemplate, "text/html");
+        $this->mailer->send($message);
+    }
+
     /**
      * Creates a new user entity.
      *
      * @Route("/new", name="admin_user_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, UserManagerInterface $userManager, TokenGeneratorInterface $token)
     {
         $user = new User();
         $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form->remove('plainPassword');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+
+            $user->setPlainPassword(uniqid());
+            $user->setPasswordRequestedAt(new \DateTime('NOW'));
+
+            $userManager->updateUser($user);
+            $user->setConfirmationToken($token->generateToken());
             $em->flush();
+            $this->sendPasswordReset($user);
             $this->addFlash(
                 'success',
                 'l´Utilisateur a été ajouté avec succes.'
