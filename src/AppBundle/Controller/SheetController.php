@@ -47,7 +47,8 @@ class SheetController extends Controller
         $sheet->setStatus($status);
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
         $form
-            ->remove("status");
+            ->remove("status")
+            ->remove("analysis");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
