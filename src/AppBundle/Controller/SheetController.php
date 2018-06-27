@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Sheet;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -72,15 +73,32 @@ class SheetController extends Controller
      * Finds and displays a sheet entity.
      *
      * @Route("sheet/{id}", name="sheet_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Sheet $sheet)
+    public function showAction(Sheet $sheet, Request $request)
     {
-        $deleteForm = $this->createDeleteForm($sheet);
+        $comment = new Comment();
+        $form = $this->createForm('AppBundle\Form\CommentType', $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $comment->setUser($this->getUser());
+            $comment->setSheet($sheet);
+            $em->persist($comment);
+            $em->flush();
+            $this->addFlash('comment', 'Nouveau message ajouté avec succès.');
+
+            return $this->redirectToRoute('sheet_show', [
+                'id' => $sheet->getId(),
+                '_fragment' => 'msg_anchor'
+                ]);
+        }
 
         return $this->render('sheet/show.html.twig', array(
             'sheet' => $sheet,
-            'delete_form' => $deleteForm->createView(),
+            'comment' => $comment,
+            'form' => $form->createView(),
         ));
     }
 

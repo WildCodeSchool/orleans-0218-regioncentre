@@ -8,8 +8,6 @@
 
 namespace AppBundle\DataFixtures;
 
-use AppBundle\Entity\Metier;
-use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -84,6 +82,9 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($sheet4);
 
         $manager->flush();
+
+        $this->addReference('sheetOne', $sheet);
+        $this->addReference('sheetTwo', $sheet2);
     }
 
     public function getDependencies()
