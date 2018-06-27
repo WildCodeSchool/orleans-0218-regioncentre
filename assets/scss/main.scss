@@ -103,4 +103,10 @@ body {
   }
 
 }
+//gestion//
+.blanc  a {
+color:#F5F5F5 ;
+  font-size:  calc(12px + 11 * (40vw - 900px) / 1200);
+  letter-spacing: 0px;
+}
 

@@ -3,18 +3,37 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-9 mx-auto">
-                <h1>Gestion des fiches</h1>
-            </div>
-            <div>
-                <div>
-                    <button type="button" class="btn btn-primary">Ajouter un nouvel utilisateur</button>
+            <div class="col-md-12 col-sm-12 blanc">
+                <div class="text-center">
+                    <h1>Gestion des fiches</h1>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-primary">Ajouter un nouveau lycée</button>
+                <div class="row ">
+                   <div class=" col-12 col-md-4 col-sm-12 my-auto ">
+                       <a class="btn btn-info btn-block my-2 "
+                          href="{{ path('admin_user_new') }}">Ajouter un nouvel utilisateur</a>
+                   </div>
+                   <div class="col-12 col-md-4 col-sm-12 my-auto ">
+                       <a class="btn btn-info btn-block my-2 "
+                          href="{{ path('admin_lycee_new') }}">Ajouter un nouveau lycée </a>
+                   </div>
+                   <div class="col-12 col-md-4 col-sm-12 my-auto ">
+                       <a class="btn btn-info btn-block  my-2 "
+                          href="{{ path('admin_metier_new') }}">Ajouter un metier à la list</a>
+                   </div>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-primary">Ajouter un metier à la liste</button>
+                <div class="row my-4 ">
+                    <div class="col-12 col-md-4 my-1 d-inline ">
+                        <a href="{{ path('admin_user_index') }}"
+                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les utilisateurs</a>
+                    </div>
+                    <div class="col-12 col-md-4 my-1 d-inline ">
+                        <a href="{{ path('admin_lycee_index') }}"
+                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les lycées</a>
+                    </div>
+                    <div class="col-12 col-md-4 my-1 d-inline ">
+                        <a href="{{ path('admin_metier_index') }}"
+                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les coups metiers</a>
+                    </div>
                 </div>
             </div>
         </div>
