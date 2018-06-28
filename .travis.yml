@@ -3,5 +3,7 @@ php:
   - '7.1'
 install:
   - composer require squizlabs/php_codesniffer
+  - composer require --dev symfony/phpunit-bridge
 script:
 - vendor/bin/phpcs --standard=PSR2 src/AppBundle/
+- vendor/bin/simple-phpunit

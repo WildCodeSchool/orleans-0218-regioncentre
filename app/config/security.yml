@@ -25,6 +25,7 @@ security:
                 success_handler: redirect.after.login
             logout:
                  target: /login
+            logout_on_user_change: true
             anonymous:    true
             # activate different ways to authenticate
 
