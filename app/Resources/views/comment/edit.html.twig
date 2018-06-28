@@ -1,7 +1,7 @@
-{% extends 'layout_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
-    <h1>Analysis edit</h1>
+{% block body %}
+    <h1>Comment edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_analysis_index') }}">Back to the list</a>
+            <a href="{{ path('comment_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

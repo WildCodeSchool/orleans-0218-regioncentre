@@ -1,6 +1,6 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
-{% block body %}
+{% block content %}
     <div class="container">
         <div class="row mb-5 mx-auto">
             <div class="col-12 col-sm-6 col-md-6 col-lg-8 col-xl-9 pl-5">
@@ -46,7 +46,11 @@
                                         <p class="text-center">{{ sheet.status.name }}</p>
                                     </div>
                                     <div class="col-12 col-md-4">
-                                        {{ sheet.analysis.name }}
+                                        {% if sheet.analysis %}
+                                            {{ sheet.analysis.name }}
+                                        {% else %}
+                                            La fiche n'a pas encore été analysée.
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

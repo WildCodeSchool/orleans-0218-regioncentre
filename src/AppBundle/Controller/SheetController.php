@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Sheet;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -45,6 +46,8 @@ class SheetController extends Controller
         $status = $this->getDoctrine()->getManager()->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
         $sheet->setStatus($status);
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
+        $form
+            ->remove("status");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,15 +73,32 @@ class SheetController extends Controller
      * Finds and displays a sheet entity.
      *
      * @Route("sheet/{id}", name="sheet_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Sheet $sheet)
+    public function showAction(Sheet $sheet, Request $request)
     {
-        $deleteForm = $this->createDeleteForm($sheet);
+        $comment = new Comment();
+        $form = $this->createForm('AppBundle\Form\CommentType', $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $comment->setUser($this->getUser());
+            $comment->setSheet($sheet);
+            $em->persist($comment);
+            $em->flush();
+            $this->addFlash('comment', 'Nouveau message ajouté avec succès.');
+
+            return $this->redirectToRoute('sheet_show', [
+                'id' => $sheet->getId(),
+                '_fragment' => 'msg_anchor'
+                ]);
+        }
 
         return $this->render('sheet/show.html.twig', array(
             'sheet' => $sheet,
-            'delete_form' => $deleteForm->createView(),
+            'comment' => $comment,
+            'form' => $form->createView(),
         ));
     }
 
@@ -90,14 +110,25 @@ class SheetController extends Controller
      */
     public function editAction(Request $request, Sheet $sheet)
     {
+
         $deleteForm = $this->createDeleteForm($sheet);
         $editForm = $this->createForm('AppBundle\Form\SheetType', $sheet);
+        $editForm
+            ->remove("urgent")
+            ->remove("subject")
+            ->remove("job")
+            ->remove("buildings")
+            ->remove("constraintsBuildings")
+            ->remove("constraintsTechnicals")
+            ->remove("description");
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $sheet->setAnalysisDate(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('sheet_edit', array('id' => $sheet->getId()));
+            return $this->redirectToRoute('emop_sheet_edit', array('id' => $sheet->getId()));
         }
 
         return $this->render('emop/sheet_edit.html.twig', array(

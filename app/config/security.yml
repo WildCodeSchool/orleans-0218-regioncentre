@@ -20,7 +20,7 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                login_path: /
+                login_path: /login
                 csrf_token_generator: security.csrf.token_manager
                 success_handler: redirect.after.login
             logout:
@@ -35,7 +35,9 @@ security:
             #form_login: ~
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_USER }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }

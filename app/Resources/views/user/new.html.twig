@@ -1,4 +1,4 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     <div class="container">
@@ -22,12 +22,6 @@
                 </div>
                 <div class="col-md-12 col-lg-6 mb-2">
                     {{ form_row(form.username) }}
-                </div>
-                <div class="col-md-12 col-lg-6 mb-5">
-                    {{ form_row(form.plainPassword.first) }}
-                </div>
-                <div class="col-md-12 col-lg-6 mb-5">
-                    {{ form_row(form.plainPassword.second) }}
                 </div>
                 <div class="col-md-12 col-lg-6">
                     {{ form_row(form.firstName) }}

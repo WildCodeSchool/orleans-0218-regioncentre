@@ -9,11 +9,12 @@
 namespace AppBundle\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     private $encoder;
 
@@ -67,6 +68,7 @@ class UserFixtures extends Fixture
         $userSchool->setWork('Lycée');
         $userSchool->setMail('lycee@region.com');
         $userSchool->setPhoneNumber('1234568891');
+        $userSchool->setLycee($this->getReference('lyceeOne'));
         $userSchool->setRoles(['ROLE_LYCEE']);
         $userSchool->setEnabled(true);
 
@@ -78,5 +80,14 @@ class UserFixtures extends Fixture
         $manager->flush();
 
         $this->addReference('Admin', $userSuperAdmin);
+        $this->addReference('emop', $userEmop);
+        $this->addReference('lycee', $userSchool);
+    }
+
+    public function getDependencies()
+    {
+        return [
+            LyceeFixtures::class,
+        ];
     }
 }

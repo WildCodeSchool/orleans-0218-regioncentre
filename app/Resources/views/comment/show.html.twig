@@ -1,31 +1,31 @@
-{% extends 'layout_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
-    <h1>Analysis</h1>
+{% block body %}
+    <h1>Comment</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ analysis.id }}</td>
+                <td>{{ comment.id }}</td>
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{% if analysis.date %}{{ analysis.date|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if comment.date %}{{ comment.date|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ analysis.name }}</td>
+                <th>Content</th>
+                <td>{{ comment.content }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('admin_analysis_index') }}">Back to the list</a>
+            <a href="{{ path('comment_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('admin_analysis_edit', { 'id': analysis.id }) }}">Edit</a>
+            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

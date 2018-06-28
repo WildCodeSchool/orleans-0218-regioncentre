@@ -24,6 +24,13 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
+     */
+    private $comments;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
@@ -91,6 +98,12 @@ class User extends BaseUser
      * @Assert\NotBlank()
      */
     private $mail;
+
+    /**
+     * add by ziadoof
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lycee" )
+     */
+    private $lycee;
 
     public function __construct()
     {
@@ -215,5 +228,63 @@ class User extends BaseUser
     public function getMail()
     {
         return $this->mail;
+    }
+
+     /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+      
+        return $this;
+    }
+  
+     /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+  
+     /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+  
+     /**
+     * Set lycee.
+     *
+     * @param \AppBundle\Entity\Lycee|null $lycee
+     *
+     * @return User
+     */
+    public function setLycee(\AppBundle\Entity\Lycee $lycee = null)
+    {
+        $this->lycee = $lycee;
+
+        return $this;
+    }
+      
+     /**
+     * Get lycee.
+     *
+     * @return \AppBundle\Entity\Lycee|null
+     */
+    public function getLycee()
+    {
+        return $this->lycee;
     }
 }

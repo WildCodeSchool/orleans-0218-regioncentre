@@ -79,6 +79,44 @@ body {
     width: 3vw;
   }
 
+  //COMMENTS
+    .comment-small {
+      font-size: calc(10px + 5px * (100vw - 200px) / 1200);
+      word-break: break-all;
+  }
+
+  .bg-admin {
+    background-color: $region;
+  }
+
+  .bg-emop {
+    background-color: $emop;
+  }
+
+  .bg-site {
+    background-color: $site;
+  }
+
+  .border-admin {
+    border-color: $region;
+  }
+
+  .border-emop {
+    border-color: $emop;
+  }
+
+  .border-site {
+    border-color: $site;
+  }
+
+  .bg-comments {
+    background-color: lighten($backgroundForm, 11%) ;
+  }
+  .bg-content {
+    background-color: $backgroundContainer;
+  }
+
+
   //BADGE AND PILLS
   .badge {
     font-family: Roboto;

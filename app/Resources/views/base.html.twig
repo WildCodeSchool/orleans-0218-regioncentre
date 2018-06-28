@@ -18,14 +18,16 @@
     {% block content %}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
+                {% if label != 'comment' %}
                 <div class="alert alert-{{ label }} alert-dismissible fade show text-center">
                     {{ message }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            {% endfor %}
+                {% endif %}
         {% endfor %}
+    {% endfor %}
     {% endblock %}
     {% block footer %}
     {% endblock %}

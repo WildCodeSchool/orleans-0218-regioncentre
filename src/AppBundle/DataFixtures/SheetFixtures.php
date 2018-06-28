@@ -8,8 +8,6 @@
 
 namespace AppBundle\DataFixtures;
 
-use AppBundle\Entity\Metier;
-use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -31,7 +29,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $sheet->setCreationDate(new \DateTime('NOW'));
         $sheet->setJob($this->getReference('Plombier'));
         $sheet->setStatus($this->getReference('statusOne'));
-        $sheet->setUser($this->getReference('Admin'));
+        $sheet->setUser($this->getReference('lycee'));
 
         $manager->persist($sheet);
 
@@ -47,7 +45,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $sheet2->setCreationDate(new \DateTime('NOW'));
         $sheet2->setJob($this->getReference('Électricien'));
         $sheet2->setStatus($this->getReference('statusOne'));
-        $sheet2->setUser($this->getReference('Admin'));
+        $sheet2->setUser($this->getReference('lycee'));
 
         $manager->persist($sheet2);
 
@@ -63,7 +61,7 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $sheet3->setCreationDate(new \DateTime('NOW'));
         $sheet3->setJob($this->getReference('Peintre'));
         $sheet3->setStatus($this->getReference('statusOne'));
-        $sheet3->setUser($this->getReference('Admin'));
+        $sheet3->setUser($this->getReference('lycee'));
 
         $manager->persist($sheet3);
 
@@ -79,11 +77,16 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $sheet4->setCreationDate(new \DateTime('NOW'));
         $sheet4->setJob($this->getReference('Plombier'));
         $sheet4->setStatus($this->getReference('statusOne'));
-        $sheet4->setUser($this->getReference('Admin'));
+        $sheet4->setUser($this->getReference('lycee'));
 
         $manager->persist($sheet4);
 
         $manager->flush();
+
+        $this->addReference('sheetOne', $sheet);
+        $this->addReference('sheetTwo', $sheet2);
+        $this->addReference('sheetThree', $sheet3);
+        $this->addReference('sheetFour', $sheet4);
     }
 
     public function getDependencies()

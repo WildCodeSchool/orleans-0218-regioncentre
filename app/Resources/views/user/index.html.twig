@@ -1,19 +1,19 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
 {% block content %}
     <h1>Users list</h1>
 
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Work</th>
-                <th>Phonenumber</th>
-                <th>Mail</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Work</th>
+            <th>Phonenumber</th>
+            <th>Mail</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for user in users %}

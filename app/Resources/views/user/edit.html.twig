@@ -1,11 +1,11 @@
-{% include 'layout_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
 {% block content %}
     <h1>User edit</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
     <ul>
@@ -14,7 +14,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

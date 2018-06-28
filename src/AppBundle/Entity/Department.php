@@ -15,9 +15,9 @@ class Department
 
     /**
      * add by ziadoof
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lycee", mappedBy ="departments")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lycee", mappedBy ="department")
      */
-    private $department;
+    private $lycees;
 
     /**
      * @var string
@@ -189,5 +189,77 @@ class Department
     public function removeDepartment(\AppBundle\Entity\Lycee $department)
     {
         $this->department->removeElement($department);
+    }
+
+    /**
+     * Add departman.
+     *
+     * @param \AppBundle\Entity\Lycee $departman
+     *
+     * @return Department
+     */
+    public function addDepartman(\AppBundle\Entity\Lycee $departman)
+    {
+        $this->departmen[] = $departman;
+
+        return $this;
+    }
+
+    /**
+     * Remove departman.
+     *
+     * @param \AppBundle\Entity\Lycee $departman
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeDepartman(\AppBundle\Entity\Lycee $departman)
+    {
+        return $this->departmen->removeElement($departman);
+    }
+
+    /**
+     * Get departmen.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDepartmen()
+    {
+        return $this->departmen;
+    }
+
+    /**
+     * Add lycee.
+     *
+     * @param \AppBundle\Entity\Lycee $lycee
+     *
+     * @return Department
+     */
+    public function addLycee(\AppBundle\Entity\Lycee $lycee)
+    {
+        $this->lycees[] = $lycee;
+
+        return $this;
+    }
+
+    /**
+     * Remove lycee.
+     *
+     * @param \AppBundle\Entity\Lycee $lycee
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeLycee(\AppBundle\Entity\Lycee $lycee)
+    {
+        return $this->lycees->removeElement($lycee);
+    }
+
+    /**
+     * Get lycees.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLycees()
+    {
+        return $this->lycees;
     }
 }
