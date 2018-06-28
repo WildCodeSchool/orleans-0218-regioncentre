@@ -30,11 +30,11 @@
                     {# START HOMEPAGE #}
                     <li class="nav-item">
                         {% if app.user.hasRole('ROLE_ADMIN') %}
-                            <a class="nav-link" href="{{ path('admin_history_sheets') }}">Accueil</a>
+                            <a class="nav-link" href="{{ path('admin_home_sheets') }}">Accueil</a>
                         {% endif %}
 
                         {% if app.user.hasRole('ROLE_EMOP') %}
-                            <a class="nav-link" href="{{ path('emop_history_sheets') }}">Accueil</a>
+                            <a class="nav-link" href="{{ path('emop_home_sheets') }}">Accueil</a>
                         {% endif %}
 
                         {% if app.user.hasRole('ROLE_LYCEE') %}
