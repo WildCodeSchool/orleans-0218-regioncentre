@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Analysis;
 use AppBundle\Entity\Metier;
 use AppBundle\Entity\Statut;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -73,6 +74,12 @@ class SheetType extends AbstractType
                 'choice_label' => function ($name) {
                     return $name->getName();
                 }
+            ])
+            ->add('analysis', EntityType::class, [
+                'required' => false,
+                'class' => Analysis::class,
+                'label' => 'Votre analyse',
+                'choice_label' => 'name'
             ])
             ->add('status', EntityType::class, [
                 'required' => false,
