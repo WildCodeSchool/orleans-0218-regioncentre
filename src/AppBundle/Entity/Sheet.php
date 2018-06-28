@@ -130,7 +130,6 @@ class Sheet
 
     /**
      * @Assert\Date()
-     * @Assert\GreaterThanOrEqual("today")
      *
      * @ORM\Column(name="analysisDate", type="date", nullable=true)
      *

@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 {% block header %}
-    <nav class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center" id="navLogin">
-        <a href="#" class="navbar-brand d-flex w-50 mr-auto">
-            <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-            <ul class="nav navbar-nav ml-auto w-100 deconnect justify-content-end">
-                <li class="nav-item">
-                    <a href="{{ path('fos_user_security_login') }}">
-                        {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <nav class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">
+                <a href="{{ path('admin_history_sheets') }}" class="navbar-brand d-flex w-50 mr-auto">
+                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+                    <div class="text d-none d-lg-block pl-3">E-MAINTENANCE</div>
+                </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+                <ul class="nav navbar-nav w-100 deconnect justify-content-end">
+                    <li class="nav-link flex-nowrap mr-sm-4">
+                        <a href="{{ path('fos_user_security_login') }}">
+                            {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 {% endblock %}
+
+
+
+
