@@ -11,15 +11,15 @@
             <div class="row">
                 <div class="table-responsive-xl mx-auto">
                     <table class="table table-sm table-light d-none d-xl-block">
-                        <thead class="thead-light">
+                        <thead class="thead-light border-0">
                         <tr>
                             <th></th>
                             <th scope="col">Date de création</th>
                             <th scope="col">Objet de la demande</th>
+                            <th scope="col">Analyse de la demande</th>
                             <th scope="col">Lycée</th>
                             <th scope="col">Ville</th>
-                            <th scope="col" class="t-date">Date</th>
-                            <th scope="col">Analyse de la demande</th>
+                            <th scope="col" class="t-date">Modifiée le</th>
                             <th scope="col" class="t-button"></th>
                         </tr>
                         </thead>
@@ -35,16 +35,15 @@
                                 </td>
                                 <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
                                 <td>{{ sheet.subject }}</td>
-                                <td>{{ sheet.user.lycee.name }}</td>
-                                <td>{{ sheet.user.lycee.city }}</td>
-                                <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
                                 {% if sheet.analysis %}
                                     <td>{{ sheet.analysis.name }}</td>
                                 {% else %}
                                     <td>A venir</td>
                                 {% endif %}
+                                <td>{{ sheet.user.lycee.name }}</td>
+                                <td>{{ sheet.user.lycee.city }}</td>
+                                <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
                                 <td>
-
                                     <a class="badge badge-dark mx-1"
                                        href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
                                 </td>
@@ -67,14 +66,15 @@
                             </div>
                             <div class="card-body">
                                 <p><strong>Date de création:</strong> {{ sheet.creationDate|date("d/m/Y") }}</p>
-                                <p><strong>Nom du lycée:</strong> {{ sheet.user.lycee.name }}</p>
-                                <p><strong>Ville:</strong> {{ sheet.user.lycee.city }}</p>
+                                <p><strong>Objet de la demande:</strong> {{ sheet.subject }}</p>
                                 <p><strong>Analyse de la demande:</strong>
                                     {% if sheet.analysis %}
                                         {{ sheet.analysis.name }}
                                     {% else %}A venir
-                                    {% endif %}
-                                </p>
+                                    {% endif %}</p>
+                                <p><strong>Nom du lycée:</strong> {{ sheet.user.lycee.name }}</p>
+                                <p><strong>Ville:</strong> {{ sheet.user.lycee.city }}</p>
+                                <p><strong>Modifiée le:</strong>  {{ sheet.creationDate|date("d/m/Y") }}</p>
                             </div>
                             <div class="card-footer text-muted text-center">
                                 <a class="badge badge-dark mx-auto w-50"
