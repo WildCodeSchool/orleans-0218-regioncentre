@@ -58,9 +58,9 @@
                     {# END GESTION #}
                 </ul>
                 <ul class="nav navbar-nav w-100 deconnect justify-content-end">
-                    <li class="nav-link float-md-right">Profil
+                    <li class="nav-link float-md-right">
                         <a href="{{ path('fos_user_profile_show') }}" class="{% if app.user.hasRole('ROLE_ADMIN') %}text_admin{% endif %}{% if app.user.hasRole('ROLE_EMOP') %}text_emop{% endif %}{% if app.user.hasRole('ROLE_LYCEE') %}text_site{% endif %}">
-                              {{ app.user.username }}
+                            Profil {{ app.user.username }}
                         </a>
                         |
                         <a href="{{ path('fos_user_security_logout') }}">
