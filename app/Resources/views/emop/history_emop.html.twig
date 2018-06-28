@@ -14,11 +14,11 @@
                         <tr>
                             <th></th>
                             <th scope="col">Date de création</th>
+                            <th scope="col">Objet de la demande</th>
                             <th scope="col">Lycée</th>
                             <th scope="col">Ville</th>
                             <th scope="col" class="t-date">Date</th>
                             <th scope="col">Analyse de la demande</th>
-                            <th scope="col" class="text-center t-status">Statuts</th>
                             <th scope="col" class="t-button"></th>
                         </tr>
                         </thead>
@@ -29,8 +29,11 @@
                                     {% if sheet.urgent == true %}
                                         <span class="badge badge-warning text-dark mx-1"> URGENT </span>
                                     {% endif %}
+                                    <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
+
                                 </td>
                                 <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
+                                <td>{{ sheet.subject }}</td>
                                 <td>{{ sheet.user.lycee.name }}</td>
                                 <td>{{ sheet.user.lycee.city }}</td>
                                 <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
@@ -40,9 +43,7 @@
                                     <td>A venir</td>
                                 {% endif %}
                                 <td>
-                                    <span class="badge badge-info mx-auto ml-lg-4">{{ sheet.status.name }}</span>
-                                </td>
-                                <td>
+
                                     <a class="badge badge-dark mx-1"
                                        href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
                                 </td>
