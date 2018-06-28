@@ -2,50 +2,90 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     <div class="container">
-        <div class="row px-2 justify-content-center mb-5">
-            <div>
-                <h1>LISTE DES FICHES</h1>
+        <div class="formSheet">
+            <div class="row">
+                <div class="col-md-12 col-lg-9 titre">
+                    <h1>Fiches récemment ajoutées</h1>
+                </div>
+            </div>
+            <hr>
+            {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
+            {{ form_widget(form ) }}
+            {{ form_end(form) }}
+            <div class="row">
+                <div class="table-responsive-xl mx-auto">
+                    <table class="table table-sm table-light d-none d-xl-block">
+                        <tr>
+                            <th></th>
+                            <th scope="col">Date de création</th>
+                            <th scope="col">Lycée</th>
+                            <th scope="col">Ville</th>
+                            <th scope="col" class="t-date">Date</th>
+                            <th scope="col">Analyse de la demande</th>
+                            <th scope="col" class="text-center t-status">Statuts</th>
+                            <th scope="col" class="t-button"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for sheet in sheets %}
+                            <tr>
+                                <td>
+                                    {% if sheet.urgent == true %}
+                                        <span class="badge badge-warning text-dark mx-1"> URGENT </span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
+                                <td>{{ sheet.user.lycee.name }}</td>
+                                <td>{{ sheet.user.lycee.city }}</td>
+                                <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
+                                {% if sheet.analysis %}
+                                    <td>{{ sheet.analysis.name }}</td>
+                                {% else %}
+                                    <td>A venir</td>
+                                {% endif %}
+                                <td>
+                                    <span class="badge badge-info mx-auto ml-lg-4">{{ sheet.status.name }}</span>
+                                </td>
+                                <td>
+                                    <a class="badge badge-dark mx-1"
+                                       href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row ">
+                {% for sheet in sheets %}
+                    <div class="col-12 col-md-6 mx-auto">
+                        <div class="card mr-2 ml-2 mt-4 d-xl-none">
+                            <div class="card-header text-center">
+                                {% if sheet.urgent == true %}
+                                    <span class="badge badge-warning text-dark mx-1 w-25 mt-1"> URGENT </span>
+                                {% endif %}
+                                <span class="badge badge-info mx-1 mb-2 w-25 mt-1">{{ sheet.status.name }}</span>
+
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Date de création:</strong> {{ sheet.creationDate|date("d/m/Y") }}</p>
+                                <p><strong>Nom du lycée:</strong> {{ sheet.user.lycee.name }}</p>
+                                <p><strong>Ville:</strong> {{ sheet.user.lycee.city }}</p>
+                                <p><strong>Analyse de la demande:</strong>
+                                    {% if sheet.analysis %}
+                                        {{ sheet.analysis.name }}
+                                    {% else %}A venir
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="card-footer text-muted text-center">
+                                <a class="badge badge-dark mx-auto w-50"
+                                   href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a></div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-        {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
-        {{ form_widget(form ) }}
-        {{ form_end(form) }}
-        <div class="row px-4">
-            <table class="table">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col" class="t-date">Date de création</th>
-                    <th scope="col">Lycée</th>
-                    <th scope="col">Ville</th>
-                    <th scope="col">Type de travaux</th>
-                    <th scope="col" class="t-date">Date</th>
-                    <th scope="col">Analyse de la demande</th>
-                    <th scope="col" class="text-center t-status">Statuts</th>
-                    <th scope="col" class="t-button"></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for sheet in sheets %}
-                    <tr>
-                        <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
-                        <td>{{ sheet.user.lycee.name }}</td>
-                        <td>{{ sheet.user.lycee.city }}</td>
-                        <td>{{ sheet.job.name }}</td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-right" width="auto">
-                            {% if sheet.urgent == true %}
-                                <span class="badge badge-pill badge-warning text-dark mx-1"> URGENT </span>
-                            {% endif %}
-                            <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
-                        </td>
-                        <td>
-                            <a class="btn btn-sm btn-dark text-warning" href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    </div>
     </div>
 {% endblock %}

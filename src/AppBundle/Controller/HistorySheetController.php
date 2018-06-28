@@ -38,7 +38,7 @@ class HistorySheetController extends Controller
         if ($form->isSubmitted() && $form->isValid() && $department != null) {
             $sheets = $em->getRepository(Sheet::class)->findSheetsByDepartment($department->getName());
         } else {
-            $sheets = $em->getRepository(Sheet::class)->findAll();
+            $sheets = $em->getRepository(Sheet::class)->findBy([],['creationDate'=>'ASC'],5);
         }
 
         return $this->render('admin/history.html.twig', [
@@ -55,7 +55,7 @@ class HistorySheetController extends Controller
      */
     public function indexEmopAction()
     {
-        $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)->findAll();
+        $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)->findBy([],['creationDate'=>'ASC'],5);
         return $this->render('emop/history_emop.html.twig', [
             'sheets' => $sheets,
         ]);
