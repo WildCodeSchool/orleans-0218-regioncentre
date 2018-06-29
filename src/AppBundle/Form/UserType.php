@@ -2,7 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Department;
+use AppBundle\Entity\Lycee;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -53,6 +56,24 @@ class UserType extends AbstractType
                 'attr' => ['maxlength' => '255'],
                 'label' => 'Courriel',
                 'required' => true,
+            ])
+            ->add('lycee', EntityType::class, [
+                'required' => false,
+                'class' => Lycee::class,
+                'label' => 'Lycée',
+                'placeholder' => 'Choisir un Lycée',
+                'choice_label' => function ($name) {
+                    return $name->getName();
+                }
+            ])
+            ->add('department', EntityType::class, [
+                'required' => false,
+                'class' => Department::class,
+                'label' => 'Departement',
+                'placeholder' => 'Choisir un département',
+                'choice_label' => function ($name) {
+                    return $name->getName();
+                }
             ]);
     }
 
