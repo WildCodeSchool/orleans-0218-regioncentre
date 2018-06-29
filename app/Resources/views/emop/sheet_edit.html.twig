@@ -26,7 +26,7 @@
             <div class="col-10 mx-auto">
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
-                        <ul>raie
+                        <ul>
                             <li class="pb-1 text-uppercase h5"><span
                                         class="font-weight-bold">Sujet :</span> {{ sheet.subject }}
                                 {% if sheet.urgent == true %}
@@ -41,7 +41,7 @@
                                 <span class="font-weight-bold">Contraintes techniques :</span> {{ sheet.constraintsTechnicals }}
                             </li>
                         </ul>
-                    </div>raie
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,6 +60,9 @@
 
                     <div class="col-raiemd-6 col-lg-6">
                         {{ form_row(edit_form.status) }}
+                    </div>
+                    <div class="col-raiemd-6 col-lg-6">
+                        {{ form_row(edit_form.analysis) }}
                     </div>
                 </div>
             </div>

@@ -105,6 +105,11 @@ class User extends BaseUser
      */
     private $lycee;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Department")
+     */
+    private $department;
+
     public function __construct()
     {
         parent::__construct();
@@ -286,5 +291,29 @@ class User extends BaseUser
     public function getLycee()
     {
         return $this->lycee;
+    }
+
+    /**
+     * Set department
+     *
+     * @param \AppBundle\Entity\Department $department
+     *
+     * @return User
+     */
+    public function setDepartment(\AppBundle\Entity\Department $department = null)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return \AppBundle\Entity\Department
+     */
+    public function getDepartment()
+    {
+        return $this->department;
     }
 }

@@ -94,7 +94,7 @@ class MetierController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('metier_edit', array('id' => $metier->getId()));
+            return $this->redirectToRoute('admin_metier_new');
         }
 
         $em = $this->getDoctrine()->getManager();

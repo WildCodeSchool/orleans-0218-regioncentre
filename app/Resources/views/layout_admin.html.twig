@@ -2,75 +2,54 @@
 {% block header %}
     <header>
         <nav class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">
-            {% if app.user.hasRole('ROLE_ADMIN') %}
-                <a href="{{ path('admin_history_sheets') }}" class="navbar-brand d-flex w-50 mr-auto">
-                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
-                    <div class="text d-none d-lg-block">Travaux</div>
-                </a>
-            {% endif %}
-
-            {% if app.user.hasRole('ROLE_EMOP') %}
-                <a href="{{ path('emop_history_sheets') }}" class="navbar-brand d-flex w-50 mr-auto">
-                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
-                    <div class="text d-none d-lg-block">Travaux</div>
-                </a>
-            {% endif %}
-
-            {% if app.user.hasRole('ROLE_LYCEE') %}
-                <a href="{{ path('lycee_sheet_index') }}" class="navbar-brand d-flex w-50 mr-auto">
-                    <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
-                    <div class="text d-none d-lg-block">Travaux</div>
-                </a>
-            {% endif %}
+            <a class="navbar-brand d-flex w-50 mr-auto" href=
+            {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_history_sheets') }}"{% endif %}
+            {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_history_sheets') }}"{% endif %}
+            {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_sheet_index') }}"{% endif %}>
+            <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
+            <div class="text d-none d-lg-block">E-MAINTENANCE</div>
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-                <ul class="navbar-nav w-100 justify-content-center">
+                <ul class="navbar-nav w-100 justify-content-center pl-sm-5 ml-lg-0">
                     {# START HOMEPAGE #}
-                    <li class="nav-item">
-                        {% if app.user.hasRole('ROLE_ADMIN') %}
-                            <a class="nav-link" href="{{ path('admin_history_sheets') }}">Accueil</a>
-                        {% endif %}
-
-                        {% if app.user.hasRole('ROLE_EMOP') %}
-                            <a class="nav-link" href="{{ path('emop_history_sheets') }}">Accueil</a>
-                        {% endif %}
-
-                        {% if app.user.hasRole('ROLE_LYCEE') %}
-                            <a class="nav-link" href="{{ path('lycee_sheet_index') }}">Accueil</a>
-                        {% endif %}
+                    <li class="nav-item mr-0">
+                        <a class="nav-link" href=
+                        {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_history_sheets') }}"{% endif %}
+                        {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_history_sheets') }}"{% endif %}
+                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_sheet_index') }}"{% endif %}>
+                        Accueil</a>
                     </li>
                     {# END HOMEPAGE #}
                     {# START SHEET HISTORY #}
                     <li class="nav-item">
-                    {% if app.user.hasRole('ROLE_ADMIN') %}
-                            <a class="nav-link" href="{{ path('admin_history_sheets') }}">Historique des fiches</a>
-                    {% endif %}
-
-                    {% if app.user.hasRole('ROLE_EMOP') %}
-                            <a class="nav-link" href="{{ path('emop_history_sheets') }}">Historique des fiches</a>
-                    {% endif %}
-
-                    {% if app.user.hasRole('ROLE_LYCEE') %}
-                            <a class="nav-link" href="{{ path('lycee_sheet_index') }}">Historique des fiches</a>
-                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href=
+                        {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_history_sheets') }}"{% endif %}
+                        {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_history_sheets') }}"{% endif %}
+                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_sheet_index') }}"{% endif %}>
+                        Historique des fiches</a>
                     </li>
                     {# END SHEE HISTORY #}
                     {# START GESTION #}
                     <li class="nav-item">
                         {% if app.user.hasRole('ROLE_ADMIN') %}
                             <a class="nav-link" href="{{ path('admin_management') }}">Gestion</a>
-                    {% endif %}
+                        {% endif %}
                     </li>
                     {# END GESTION #}
                 </ul>
                 <ul class="nav navbar-nav w-100 deconnect justify-content-end">
-                    <li class="nav-link flex-nowrap mr-sm-4">
-                        <a href="{{ path('fos_user_profile_show') }}">
-                            Mon compte
+                    <li class="nav-link  float-md-right">
+                        <a href="{{ path('fos_user_profile_show') }}"
+                           class="{% if app.user.hasRole('ROLE_ADMIN') %}text_admin{% endif %}
+                                    {% if app.user.hasRole('ROLE_EMOP') %}text_emop{% endif %}
+                                    {% if app.user.hasRole('ROLE_LYCEE') %}text_site{% endif %}">
+                            Profil {{ app.user.username }}
                         </a>
-                            |
+                        |
                         <a href="{{ path('fos_user_security_logout') }}">
                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                         </a>

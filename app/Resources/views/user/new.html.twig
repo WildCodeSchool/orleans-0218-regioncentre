@@ -8,7 +8,7 @@
                     <h1>FORMULAIRE DE CRÉATION D'UTILISATEURS</h1>
                 </div>
                 <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
-                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_management') }}" role="button">
+                    <a class="btn btn-warning w-500" href="{{ path('admin_management') }}" role="button">
                         <i class="fas fa-arrow-left"></i>
                         Retour
                     </a>
@@ -38,11 +38,11 @@
                 <div class="col-md-12 col-lg-6">
                     {{ form_row(form.work) }}
                 </div>
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-12 col-lg-6 pt-3">
                     <div class="mx-3">
                         {{ form_label(form.roles) }}
                     </div>
-                    <div class="d-inline-flex">
+                    <div class="d-inline-flex pt-2">
                         <div class="mx-3">
                             {{ form_row(form.roles.0) }}
                         </div>
@@ -54,12 +54,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.lycee) }}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {{ form_row(form.department) }}
+                </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-center">
                         <div>
-                            <input class="btn btn-dark" type="submit" value="Créer l'utilisateur"/>
+                            <input class="btn btn-dark h-100 mt-3" type="submit" value="Créer l'utilisateur"/>
                         </div>
                     </div>
                 </div>
