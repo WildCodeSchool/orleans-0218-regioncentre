@@ -50,7 +50,7 @@ class LyceeController extends Controller
                 'success',
                 'Le lycée a été ajouté!'
             );
-            return $this->redirectToRoute('admin_lycee_show', array('id' => $lycee->getId()));
+            return $this->redirectToRoute('admin_lycee_index');
         }
         return $this->render('lycee/new.html.twig', array(
             'lycee' => $lycee,
