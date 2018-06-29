@@ -25,7 +25,7 @@ class HistorySheetController extends Controller
      * @Route("/admin/history", name="admin_history_sheets")
      * @Method({"GET", "POST"})
      */
-    public function indexAction(Request $request)
+    public function historyAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $departments = $em->getRepository(Department::class)->findAll();
@@ -47,16 +47,60 @@ class HistorySheetController extends Controller
             'form' => $form->createView(),
         ]);
     }
+    /**
+     *
+     * @Route("/admin/home", name="admin_home_sheets")
+     * @Method({"GET", "POST"})
+     */
+    public function homeAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $departments = $em->getRepository(Department::class)->findAll();
+
+        $form = $this->createForm('AppBundle\Form\HistorySheetType');
+        $form->handleRequest($request);
+
+        $data = $form->getData();
+        $department = $data['filter'];
+        if ($form->isSubmitted() && $form->isValid() && $department != null) {
+            $sheets = $em->getRepository(Sheet::class)->findSheetsByDepartment($department->getName());
+        } else {
+            $sheets = $em->getRepository(Sheet::class)->findBy([], ['creationDate' => 'ASC'], 5);
+        }
+
+        return $this->render('admin/home.html.twig', [
+            'sheets' => $sheets,
+            'departments' => $departments,
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      *
      * @Route("/emop/history", name="emop_history_sheets")
      * @Method("GET")
      */
-    public function indexEmopAction()
+    public function historyEmopAction()
     {
         $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)->findAll();
         return $this->render('emop/history_emop.html.twig', [
+            'sheets' => $sheets,
+        ]);
+    }
+    /**
+     *
+     * @Route("/emop/home", name="emop_home_sheets")
+     * @Method("GET")
+     */
+    public function homeEmopAction()
+    {
+        $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)
+            ->findBy(
+                [],
+                ['creationDate' => 'ASC'],
+                5
+            );
+        return $this->render('emop/home.html.twig', [
             'sheets' => $sheets,
         ]);
     }
