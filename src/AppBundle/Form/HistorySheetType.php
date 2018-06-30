@@ -18,7 +18,7 @@ class HistorySheetType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('filter', EntityType::class, array(
+        $builder->add('Filtrer', EntityType::class, array(
             'class' => Department::class,
             'choice_label' => 'name',
             'required' => false,
