@@ -125,7 +125,7 @@
             <div class="row">
                 {% if sheet.comments is empty %}
                     <div class="col-12 text-center pb-3">
-                        <p>aucun commentaire pour le moment</p>
+                        <p>Aucun commentaire pour le moment</p>
                     </div>
                 {% endif %}
             </div>
@@ -135,7 +135,7 @@
                         <img class="" src="https://via.placeholder.com/150x150" alt="logo"/>
                     </div>
                     <div class="col col-lg-9">
-                        <div class="card mb-4 my-lg-4 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
+                        <div class="card mb-4 my-lg-4 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
                             <div class="card-header {% if comment.user.id == app.user.id %}justify-content-end {% endif %} text-light d-inline-flex border-0 pb-0">
                                 <p class="w-500 mx-2 text-light">{{ comment.user.username|upper }}</p>
                                 <p class="mx-2 text-light"><strong>{{ comment.date|date('d M Y') }}</strong></p>
@@ -174,9 +174,9 @@
                                     </div>
                                 {% endif %}
                             </div>
-                            <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
+                            <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
                                 <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo"
-                                     {% if comment.user.id == app.user.id %}style="float: right"{% else %} style="float: left"{% endif %} />
+                                     {% if comment.user.id == app.user.id %}class="float-right"{% else %} class="float-left"{% endif %} />
                                 <div class="col">{{ comment.content }}</div>
                             </div>
                         </div>
