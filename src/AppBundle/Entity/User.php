@@ -106,7 +106,7 @@ class User extends BaseUser
     private $lycee;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Department")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Department", mappedBy="user")
      */
     private $department;
 
@@ -315,5 +315,29 @@ class User extends BaseUser
     public function getDepartment()
     {
         return $this->department;
+    }
+
+    /**
+     * Add department
+     *
+     * @param \AppBundle\Entity\Department $department
+     *
+     * @return User
+     */
+    public function addDepartment(\AppBundle\Entity\Department $department)
+    {
+        $this->department[] = $department;
+
+        return $this;
+    }
+
+    /**
+     * Remove department
+     *
+     * @param \AppBundle\Entity\Department $department
+     */
+    public function removeDepartment(\AppBundle\Entity\Department $department)
+    {
+        $this->department->removeElement($department);
     }
 }
