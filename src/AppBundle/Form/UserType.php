@@ -66,7 +66,7 @@ class UserType extends AbstractType
                     return $name->getName();
                 }
             ])
-            ->add('department', EntityType::class, [
+            ->add('departments', EntityType::class, [
                 'required' => false,
                 'class' => Department::class,
                 'label' => 'Departement',

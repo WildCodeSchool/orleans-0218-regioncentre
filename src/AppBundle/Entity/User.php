@@ -106,7 +106,7 @@ class User extends BaseUser
     private $lycee;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Department", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Department", inversedBy="users")
      */
     private $departments;
 

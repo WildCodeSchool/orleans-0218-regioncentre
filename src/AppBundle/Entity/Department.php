@@ -46,7 +46,7 @@ class Department
     /**
      * @var int
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="sheet")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="departments")
      */
     private $users;
 
