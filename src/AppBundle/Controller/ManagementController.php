@@ -81,4 +81,3 @@ class ManagementController extends Controller
         ));
     }
 }
-
