@@ -52,7 +52,11 @@ class ManagementController extends Controller
             }
         }
         if ($list = 'user') {
-            $user = $em->getRepository(User::class)->findAll();
+            if ($form->isSubmitted() && $form->isValid() && $department != null) {
+                $user = $em->getRepository(User::class)->findByDepartment($department);
+            } else {
+                $user = $em->getRepository(User::class)->findAll();
+            }
         }
         if ($list = 'job') {
             $job = $em->getRepository(Metier::class)->findAll();
@@ -72,7 +76,6 @@ class ManagementController extends Controller
             'job' => $job,
             'status' => $status,
             'analysis' => $analysis,
-
             'departments' => $departments,
             'form' => $form->createView(),
         ));

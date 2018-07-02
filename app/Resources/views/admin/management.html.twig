@@ -25,29 +25,32 @@
                     </div>
                 </div>
                 <div class="row my-4 ">
-                    <div class="col-12 col-md-4 my-1 d-inline ">
+                    <div class="col-12 col-md-4 my-1 d-inline">
                         <a href="/admin/gestion/user" id="user"
                            class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les utilisateurs</a>
                     </div>
-                    <div class="col-12 col-md-4 my-1 d-inline ">
+                    <div class="col-12 col-md-4 my-1 d-inline">
                         <a href="/admin/gestion/school" id="school"
                            class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les lycées</a>
                     </div>
-                    <div class="col-12 col-md-4 my-1 d-inline ">
+                    <div class="col-12 col-md-4 my-1 d-inline">
                         <a href="/admin/gestion/job" id="job"
                            class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les corps metiers</a>
                     </div>
-                    <div class="col-12 col-md-4 my-1 d-inline ">
-                        <a href="/admin/gestion/statut" id="status"
+                    <div class="col-12 col-lg-6 mx-auto col-md-4 my-3 d-inline">
+                        <a href="/admin/gestion/status" id="status"
                            class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les statuts</a>
                     </div>
-                    <div class="col-12 col-md-4 my-1 d-inline ">
+                    <div class="col-12 col-lg-6 mx-auto col-md-4 my-3 d-inline">
                         <a href="/admin/gestion/analysis" id="status"
                            class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir toutes les analyses</a>
                     </div>
                 </div>
             </div>
             {% if app.request.attributes.get("list") == 'user' %}
+                {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
+                {{ form_widget(form ) }}
+                {{ form_end(form) }}
                 <div class="row">
                     <div class="table-responsive-xl mx-auto w-100">
                         <table class="table table-sm table-light">
@@ -96,7 +99,7 @@
                                     <td>{{ school.address }},<strong> {{ school.postalCode }} {{ school.city }}</strong>
                                     </td>
                                     <td>
-                                        <a class="badge badge-dark mx-1 w-100"
+                                        <a class="badge badge-dark mx-1 w-auto p-3"
                                            href="{{ path('admin_lycee_edit', { 'id': school.id }) }}">Modifier le
                                             site</a>
                                     </td>
@@ -113,6 +116,8 @@
                         <table class="table table-sm table-light">
                             <thead class="thead-light border-0 mx-auto">
                             <tr>
+                                <th></th>
+                                <th></th>
                                 <th scope="col">Metier</th>
                                 <th scope="col">Modifier le metier</th>
                             </tr>
@@ -120,9 +125,11 @@
                             <tbody>
                             {% for job in job %}
                                 <tr>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ job.name }}</td>
                                     <td>
-                                        <a class="badge badge-dark mx-1 w-25"
+                                        <a class="badge badge-dark mx-1 w-auto p-3"
                                            href="{{ path('admin_metier_edit', { 'id': job.id }) }}">Modifier le
                                             metier</a>
                                     </td>
@@ -139,18 +146,22 @@
                         <table class="table table-sm table-light">
                             <thead class="thead-light border-0 mx-auto">
                             <tr>
-                                <th scope="col">Metier</th>
-                                <th scope="col">Modifier le metier</th>
+                                <th></th>
+                                <th></th>
+                                <th scope="col">Statut</th>
+                                <th scope="col">Modifier le statut</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for status in status %}
                                 <tr>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ status.name }}</td>
                                     <td>
-                                        <a class="badge badge-dark mx-1 w-25"
+                                        <a class="badge badge-dark mx-1 w-auto p-3"
                                            href="{{ path('admin_statut_edit', { 'id': status.id }) }}">Modifier le
-                                            metier</a>
+                                            statut</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -165,17 +176,22 @@
                         <table class="table table-sm table-light">
                             <thead class="thead-light border-0 mx-auto">
                             <tr>
-                                <th scope="col">Metier</th>
-                                <th scope="col">Modifier le metier</th>
+                                <th></th>
+                                <th></th>
+                                <th scope="col">Analyse</th>
+                                <th scope="col">Modifier l'analyse</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for analysis in analysis %}
                                 <tr>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ analysis.name }}</td>
                                     <td>
-                                        <a class="badge badge-dark mx-1 w-25"
-                                           href="{{ path('admin_analysis_edit', { 'id': analysis.id }) }}">Modifier l'analyse</a>
+                                        <a class="badge badge-dark mx-1 w-auto p-3"
+                                           href="{{ path('admin_analysis_edit', { 'id': analysis.id }) }}">Modifier
+                                            l'analyse</a>
                                     </td>
                                 </tr>
                             {% endfor %}
