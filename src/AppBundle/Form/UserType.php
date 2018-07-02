@@ -72,7 +72,7 @@ class UserType extends AbstractType
                 'label' => 'Departement',
                 'placeholder' => 'Choisir un département',
                 'choice_label' => function ($number) {
-                    return $number->getShortCode();
+                    return $number->getname(). ' ' .$number->getShortCode();
                 },
                 'expanded' => true,
                 'multiple' => true,
