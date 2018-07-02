@@ -48,7 +48,7 @@ class Department
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="sheet")
      */
-    private $user;
+    private $users;
 
     /**
      * @return string
@@ -259,8 +259,9 @@ class Department
         return $this->lycees->removeElement($lycee);
     }
 
+
     /**
-     * Get lycees.
+     * Get lycees
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -278,7 +279,7 @@ class Department
      */
     public function addUser(\AppBundle\Entity\User $user)
     {
-        $this->user[] = $user;
+        $this->users[] = $user;
 
         return $this;
     }
@@ -290,16 +291,16 @@ class Department
      */
     public function removeUser(\AppBundle\Entity\User $user)
     {
-        $this->user->removeElement($user);
+        $this->users->removeElement($user);
     }
 
     /**
-     * Get user
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUser()
+    public function getUsers()
     {
-        return $this->user;
+        return $this->users;
     }
 }
