@@ -6,6 +6,7 @@ use AppBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -108,6 +109,10 @@ class CommentController extends Controller
      */
     public function deleteAction(Request $request, Comment $comment)
     {
+        if ($this->getUser() !== $comment->getUser()) {
+            throw new AccessDeniedException('Impossible de supprimer ce commentaire');
+        }
+
         $deleteform = $this->createDeleteForm($comment);
         $deleteform->handleRequest($request);
 
