@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Sheet;
+use AppBundle\Controller\CommentController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,7 +29,7 @@ class SheetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
-      
+
         return $this->render('/school/index.html.twig', array(
             'sheets' => $sheets,
         ));
@@ -75,9 +76,13 @@ class SheetController extends Controller
      *
      * @Route("sheet/{id}", name="sheet_show")
      * @Method({"GET", "POST"})
+     * @param Sheet $sheet
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Sheet $sheet, Request $request)
     {
+
         $comment = new Comment();
         $form = $this->createForm('AppBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
@@ -93,7 +98,7 @@ class SheetController extends Controller
             return $this->redirectToRoute('sheet_show', [
                 'id' => $sheet->getId(),
                 '_fragment' => 'msg_anchor'
-                ]);
+            ]);
         }
 
         return $this->render('sheet/show.html.twig', array(

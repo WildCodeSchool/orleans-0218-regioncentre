@@ -124,9 +124,9 @@
         <div class="bg-comments my-5 pt-5">
             <div class="row">
                 {% if sheet.comments is empty %}
-                <div class="col-12 text-center pb-3">
-                    <p>aucun commentaire pour le moment</p>
-                </div>
+                    <div class="col-12 text-center pb-3">
+                        <p>aucun commentaire pour le moment</p>
+                    </div>
                 {% endif %}
             </div>
             {% for comment in sheet.comments %}
@@ -139,9 +139,44 @@
                             <div class="card-header {% if comment.user.id == app.user.id %}justify-content-end {% endif %} text-light d-inline-flex border-0 pb-0">
                                 <p class="w-500 mx-2 text-light">{{ comment.user.username|upper }}</p>
                                 <p class="mx-2 text-light"><strong>{{ comment.date|date('d M Y') }}</strong></p>
+                                {% if loop.last and comment.user.id == app.user.id %}
+                                    <div class="col mx-auto d-flex justify-content-end">
+                                        <a href="#deleteModal{{ comment.id }}" data-toggle="modal" class="text-light">Supprimer
+                                            ce commentaire
+                                            <i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                    <div id="deleteModal{{ comment.id }}" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Confirmation</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">&times;
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Voulez-vous vraiment supprimer le message ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="row mx-auto">
+                                                        <div class="col-4 mr-4">
+                                                            <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Annuler
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-4 ml-4">
+                                                            {{ render(controller('AppBundle:Comment:delete', {'id':comment.id})) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
-                                <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo" {% if comment.user.id == app.user.id %}style="float: right"{% else %} style="float: left"{% endif %} />
+                                <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo"
+                                     {% if comment.user.id == app.user.id %}style="float: right"{% else %} style="float: left"{% endif %} />
                                 <div class="col">{{ comment.content }}</div>
                             </div>
                         </div>
@@ -153,7 +188,8 @@
                     {% for message in app.flashes('comment') %}
                         <div class="alert alert-warning alert-dismissible fade show text-center">
                             {{ message }}
-                            <button type="button" class="close position-relative" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="close position-relative" data-dismiss="alert"
+                                    aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -167,7 +203,8 @@
                 <h1> NOUVEAU COMMENTAIRE </h1>
             </div>
             <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
-                <a class="btn btn-primary w-500" href="#"><i class="fas fa-arrow-up mr-4"></i>Retour aux informations de la fiche</a>
+                <a class="btn btn-primary w-500" href="#"><i class="fas fa-arrow-up mr-4"></i>Retour aux informations de
+                    la fiche</a>
             </div>
         </div>
         <hr>

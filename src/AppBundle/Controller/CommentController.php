@@ -108,16 +108,27 @@ class CommentController extends Controller
      */
     public function deleteAction(Request $request, Comment $comment)
     {
-        $form = $this->createDeleteForm($comment);
-        $form->handleRequest($request);
+        $deleteform = $this->createDeleteForm($comment);
+        $deleteform->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $oldComment = $comment;
+
+        if ($deleteform->isSubmitted() && $deleteform->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($comment);
             $em->flush();
+            $this->addFlash(
+                'comment',
+                'Le message a été supprimé avec succès.'
+            );
+            return $this->redirectToRoute('sheet_show', [
+                'id'=>$oldComment->getSheet()->getId(),
+                '_fragment' => 'msg_anchor',
+            ]);
         }
-
-        return $this->redirectToRoute('comment_index');
+        return $this->render('comment/delete.html.twig', array(
+            'delete_form' => $deleteform->createView(),
+        ));
     }
 
     /**
