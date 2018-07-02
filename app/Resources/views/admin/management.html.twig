@@ -51,6 +51,7 @@
                 {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
                 {{ form_widget(form ) }}
                 {{ form_end(form) }}
+
                 <div class="row">
                     <div class="table-responsive-xl mx-auto w-100">
                         <table class="table table-sm table-light">
@@ -75,6 +76,11 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                        {% if user is empty %}
+                            <div class="col-12 text-center pb-3">
+                                <p>Aucun utilisateur dans ce département</p>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
@@ -107,6 +113,11 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                        {% if school is empty %}
+                            <div class="col-12 text-center pb-3">
+                                <p>Aucun site dans ce département</p>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
