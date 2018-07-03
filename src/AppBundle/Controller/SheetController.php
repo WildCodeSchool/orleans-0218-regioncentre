@@ -4,11 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Sheet;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Sheet controller.
@@ -16,6 +16,20 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SheetController extends Controller
 {
     const WAITING = 'waiting';
+
+    private $mailer;
+    private $templating;
+
+    /**
+     * SheetController constructor.
+     * @param \Swift_Mailer $mailer
+     * @param \Twig_Environment $templating
+     */
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $templating)
+    {
+        $this->mailer = $mailer;
+        $this->templating = $templating;
+    }
 
     /**
      * Lists all sheet entities.
@@ -28,7 +42,7 @@ class SheetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
-      
+
         return $this->render('/school/index.html.twig', array(
             'sheets' => $sheets,
         ));
@@ -93,7 +107,7 @@ class SheetController extends Controller
             return $this->redirectToRoute('sheet_show', [
                 'id' => $sheet->getId(),
                 '_fragment' => 'msg_anchor'
-                ]);
+            ]);
         }
 
         return $this->render('sheet/show.html.twig', array(
@@ -128,6 +142,7 @@ class SheetController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $sheet->setAnalysisDate(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
+            $this->sendStatus($sheet);
 
             return $this->redirectToRoute('emop_sheet_edit', array('id' => $sheet->getId()));
         }
@@ -137,6 +152,17 @@ class SheetController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    public function sendStatus(Sheet $sheet)
+    {
+        $email = $sheet->getUser()->getMail();
+        $body = $this->templating->render('email/status_change.html.twig');
+        $message = (new \Swift_Message('Un statut vient de changer'))
+        ->setFrom($email)
+        ->setTo($email)
+        ->setBody($body, 'text/html');
+        $this->mailer->send($message);
     }
 
     /**

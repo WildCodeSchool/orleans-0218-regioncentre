@@ -6,6 +6,7 @@ use AppBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -108,16 +109,31 @@ class CommentController extends Controller
      */
     public function deleteAction(Request $request, Comment $comment)
     {
-        $form = $this->createDeleteForm($comment);
-        $form->handleRequest($request);
+        if ($this->getUser() !== $comment->getUser()) {
+            throw new AccessDeniedException('Impossible de supprimer ce commentaire');
+        }
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $deleteform = $this->createDeleteForm($comment);
+        $deleteform->handleRequest($request);
+
+        $oldComment = $comment;
+
+        if ($deleteform->isSubmitted() && $deleteform->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($comment);
             $em->flush();
+            $this->addFlash(
+                'comment',
+                'Le message a été supprimé avec succès.'
+            );
+            return $this->redirectToRoute('sheet_show', [
+                'id'=>$oldComment->getSheet()->getId(),
+                '_fragment' => 'msg_anchor',
+            ]);
         }
-
-        return $this->redirectToRoute('comment_index');
+        return $this->render('comment/delete.html.twig', array(
+            'delete_form' => $deleteform->createView(),
+        ));
     }
 
     /**

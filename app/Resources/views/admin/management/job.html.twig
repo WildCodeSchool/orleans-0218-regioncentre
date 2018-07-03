@@ -1,0 +1,30 @@
+{% extends 'admin/management/management_template.html.twig' %}
+{% block listing %}
+    <div class="row">
+        <div class="table-responsive-xl mx-auto w-100">
+            <table class="table table-sm table-light">
+                <thead class="thead-light border-0 mx-auto">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th scope="col">Metier</th>
+                    <th scope="col">Modifier le metier</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for job in job %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{{ job.name }}</td>
+                        <td>
+                            <a class="badge badge-dark mx-1 w-auto p-3" href="{{ path('admin_metier_new') }}">
+                                Modifier le metier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

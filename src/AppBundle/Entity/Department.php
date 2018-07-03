@@ -43,6 +43,12 @@ class Department
      */
     private $shortCode;
 
+    /**
+     * @var int
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="departments")
+     */
+    private $users;
 
     /**
      * @return string
@@ -52,6 +58,11 @@ class Department
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getNameAndCode()
+    {
+        return $this->getShortCode(). ' - ' . $this->getName();
     }
 
     /**
@@ -253,13 +264,48 @@ class Department
         return $this->lycees->removeElement($lycee);
     }
 
+
     /**
-     * Get lycees.
+     * Get lycees
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getLycees()
     {
         return $this->lycees;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Department
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

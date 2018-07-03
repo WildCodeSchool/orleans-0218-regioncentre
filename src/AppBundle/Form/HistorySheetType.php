@@ -20,8 +20,9 @@ class HistorySheetType extends AbstractType
     {
         $builder->add('filter', EntityType::class, array(
             'class' => Department::class,
-            'choice_label' => 'name',
+            'choice_label' => 'nameAndCode',
             'required' => false,
+            'label'=> 'Filtrer',
             'placeholder' => 'Tous les départements',
         ));
     }
