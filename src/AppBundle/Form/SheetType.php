@@ -86,6 +86,13 @@ class SheetType extends AbstractType
                 'class' => Statut::class,
                 'label' => 'Statut',
                 'choice_label' => 'name'
+            ])
+            ->add('contactPeople', TextType::class, [
+                'label' => 'Personne à contacter en cas d\'absence',
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'Nom / Téléphone / Email',
+                )
             ]);
     }
 
