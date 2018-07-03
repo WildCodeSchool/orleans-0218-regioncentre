@@ -62,7 +62,10 @@ class HistorySheetController extends Controller
 
         $departments = $em->getRepository(Department::class)->findAll();
 
-        $sheets = $em->getRepository(Sheet::class)->findBy(['status' => $status,], ['creationDate' => 'ASC'], 5);
+        $sheets = $em->getRepository(Sheet::class)->findBy(
+            ['status' => $status,],
+            ['creationDate' => 'ASC']
+        );
 
 
         return $this->render('admin/home.html.twig', [
