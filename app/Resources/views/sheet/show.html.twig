@@ -149,7 +149,7 @@
                     <div class="col col-lg-9">
                         <div class="card mb-4 my-lg-4 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
                             <div class="card-header {% if comment.user.id == app.user.id %}justify-content-end {% endif %} text-light d-inline-flex border-0 pb-0">
-    <p class="w-500 mx-2 text-light ">{% if comment.user.Roles.0 == 'ROLE_LYCEE' %}{{ comment.user.lycee.name }} {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} ADMIN {% else %}EMOP du {{ comment.user.department }}{% endif %}</p>
+    <p class="w-500 mx-2 text-light ">{% if comment.user.Roles.0 == 'ROLE_LYCEE' %}{{ comment.user.lycee.name }} {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} ADMIN {% else %}L'EMOP {% endif %}</p>
                                 <p class="mx-2 text-light"><strong>{{ comment.date|date('d/m/Y à H:i') }}</strong></p>
                                   {% if loop.last and comment.user.id == app.user.id %}
                                         <div class="col mx-auto d-flex justify-content-end">
