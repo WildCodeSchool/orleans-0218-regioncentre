@@ -34,7 +34,7 @@ class HistorySheetController extends Controller
         $form->handleRequest($request);
 
         $data = $form->getData();
-        $department = $data['filter'];
+        $department = $data['Filtrer'];
         if ($form->isSubmitted() && $form->isValid() && $department != null) {
             $sheets = $em->getRepository(Sheet::class)->findSheetsByDepartment($department->getName());
         } else {
