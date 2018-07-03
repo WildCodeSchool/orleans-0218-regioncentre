@@ -51,7 +51,5 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         } elseif (in_array('ROLE_LYCEE', $rolesTab, true)) {
             return new RedirectResponse($this->router->generate('lycee_sheet_index'));
         }
-
-
     }
 }
