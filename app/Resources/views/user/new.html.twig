@@ -41,15 +41,14 @@
                 <div class="col-md-12 col-lg-6 pt-3">
                     <div class="mx-3">
                         {{ form_label(form.roles) }}
-                        {{ form_widget(form.roles, {'attr': {'class': 'd-inline-flex'}}) }}
+                        {{ form_widget(form.roles, {'attr': {'class': 'd-inline-flex col-12'}}) }}
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
                     {{ form_row(form.lycee) }}
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    {{ form_label(form.departments) }}
-                    {{ form_widget(form.departments, {'attr': {'class': 'd-inline-flex'}}) }}
+                    {{ form_row(form.departments, {'attr': {'class': 'd-flex flex-wrap col-10'}}) }}
                 </div>
             </div>
             <div class="row">

@@ -60,6 +60,11 @@ class Department
         return $this->name;
     }
 
+    public function getNameAndCode()
+    {
+        return $this->getShortCode(). ' - ' . $this->getName();
+    }
+
     /**
      * Get id
      *

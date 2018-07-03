@@ -24,7 +24,7 @@ class UserType extends AbstractType
             ->add('roles', ChoiceType::class, [
                 'label' => 'Type d\'utilisateur',
                 'choices' => [
-                    'Administrateur Region' => 'ROLE_ADMIN',
+                    'Admin Region' => 'ROLE_ADMIN',
                     'EMOP' => 'ROLE_EMOP',
                     'Lycée' => 'ROLE_LYCEE',
                 ],
@@ -71,9 +71,7 @@ class UserType extends AbstractType
                 'class' => Department::class,
                 'label' => 'Departement',
                 'placeholder' => 'Choisir un département',
-                'choice_label' => function ($number) {
-                    return $number->getname(). ' ' .$number->getShortCode();
-                },
+                'choice_label' => 'nameAndCode',
                 'expanded' => true,
                 'multiple' => true,
             ]);
