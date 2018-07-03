@@ -88,7 +88,6 @@ class SheetType extends AbstractType
                 'choice_label' => 'name'
             ])
             ->add('contactPeople', TextType::class, [
-                'attr' => ['maxlength' => '255', 'minlength' => '2'],
                 'label' => 'Personne à contacter en cas d\'absence',
                 'required' => false,
                 'attr' => array(
