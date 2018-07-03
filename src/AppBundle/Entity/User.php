@@ -106,9 +106,9 @@ class User extends BaseUser
     private $lycee;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Department")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Department", inversedBy="users")
      */
-    private $department;
+    private $departments;
 
     public function __construct()
     {
@@ -293,27 +293,39 @@ class User extends BaseUser
         return $this->lycee;
     }
 
+
+
     /**
-     * Set department
+     * Add department
      *
      * @param \AppBundle\Entity\Department $department
      *
      * @return User
      */
-    public function setDepartment(\AppBundle\Entity\Department $department = null)
+    public function addDepartment(\AppBundle\Entity\Department $department)
     {
-        $this->department = $department;
+        $this->departments[] = $department;
 
         return $this;
     }
 
     /**
-     * Get department
+     * Remove department
      *
-     * @return \AppBundle\Entity\Department
+     * @param \AppBundle\Entity\Department $department
      */
-    public function getDepartment()
+    public function removeDepartment(\AppBundle\Entity\Department $department)
     {
-        return $this->department;
+        $this->departments->removeElement($department);
+    }
+
+    /**
+     * Get departments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDepartments()
+    {
+        return $this->departments;
     }
 }

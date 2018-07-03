@@ -8,7 +8,7 @@
                     <h1>FORMULAIRE DE CRÉATION D'UTILISATEURS</h1>
                 </div>
                 <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
-                    <a class="btn btn-warning w-500" href="{{ path('admin_management') }}" role="button">
+                    <a class="btn btn-warning w-500" href="{{ path('admin_manage_user') }}" role="button">
                         <i class="fas fa-arrow-left"></i>
                         Retour
                     </a>
@@ -41,24 +41,14 @@
                 <div class="col-md-12 col-lg-6 pt-3">
                     <div class="mx-3">
                         {{ form_label(form.roles) }}
-                    </div>
-                    <div class="d-inline-flex pt-2">
-                        <div class="mx-3">
-                            {{ form_row(form.roles.0) }}
-                        </div>
-                        <div class="mx-3">
-                            {{ form_row(form.roles.1) }}
-                        </div>
-                        <div class="mx-3">
-                            {{ form_row(form.roles.2) }}
-                        </div>
+                        {{ form_widget(form.roles, {'attr': {'class': 'd-inline-flex col-12'}}) }}
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
                     {{ form_row(form.lycee) }}
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    {{ form_row(form.department) }}
+                    {{ form_row(form.departments, {'attr': {'class': 'd-flex flex-wrap col-10'}}) }}
                 </div>
             </div>
             <div class="row">
@@ -73,8 +63,8 @@
             {{ form_end(form) }}
         </div>
         <div class="row">
-            <div class="col-12 mx-auto my-4 d-flex justify-content-center d-lg-none">
-                <a class="btn btn-warning" href="{{ path('admin_management') }}">
+            <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                <a class="btn btn-warning" href="{{ path('admin_manage_user') }}">
                     <i class="fas fa-arrow-left"></i>
                     Retour à l'accueil
                 </a>
