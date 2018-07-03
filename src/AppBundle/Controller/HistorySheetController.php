@@ -47,6 +47,7 @@ class HistorySheetController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
     /**
      *
      * @Route("/admin/home", name="admin_home_sheets")
@@ -87,6 +88,7 @@ class HistorySheetController extends Controller
             'sheets' => $sheets,
         ]);
     }
+
     /**
      *
      * @Route("/emop/home", name="emop_home_sheets")
@@ -113,23 +115,13 @@ class HistorySheetController extends Controller
     public function historySchoolAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $departments = $em->getRepository(Department::class)->findAll();
 
-        $form = $this->createForm('AppBundle\Form\HistorySheetType');
-        $form->handleRequest($request);
-
-        $data = $form->getData();
-        $department = $data['filter'];
-        if ($form->isSubmitted() && $form->isValid() && $department != null) {
-            $sheets = $em->getRepository(Sheet::class)->findSheetsByDepartment($department->getName());
-        } else {
-            $sheets = $em->getRepository(Sheet::class)->findAll();
-        }
+        $sheets = $em->getRepository(Sheet::class)->findBy([
+            'user' => $this->getUser(),
+        ]);
 
         return $this->render('school/history.html.twig', [
             'sheets' => $sheets,
-            'departments' => $departments,
-            'form' => $form->createView(),
         ]);
     }
 }
