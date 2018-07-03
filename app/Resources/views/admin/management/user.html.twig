@@ -1,0 +1,37 @@
+{% extends 'admin/management/management_template.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block listing %}
+    {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
+    {{ form_widget(form ) }}
+    {{ form_end(form) }}
+    <div class="row">
+        <div class="table-responsive-xl mx-auto w-100">
+            <table class="table table-sm table-light">
+                <thead class="thead-light border-0">
+                <tr>
+                    <th scope="col">Compte utilisateur</th>
+                    <th scope="col">Fonction</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Numéro de téléphone</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in user %}
+                    <tr>
+                        <td>{{ user.firstName }} {{ user.lastName }}</td>
+                        <td>{{ user.Work }} </td>
+                        <td>{{ user.email }} </td>
+                        <td>{{ user.phoneNumber }} </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if user is empty %}
+                <div class="col-12 text-center pb-3">
+                    <p>Aucun utilisateur dans ce département</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

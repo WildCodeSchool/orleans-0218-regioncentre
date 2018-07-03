@@ -36,7 +36,7 @@
                     {# START GESTION #}
                     <li class="nav-item">
                         {% if app.user.hasRole('ROLE_ADMIN') %}
-                            <a class="nav-link" href="/admin/gestion/school">Gestion</a>
+                            <a class="nav-link" href="{{ path('admin_manage_school') }}">Gestion</a>
                         {% endif %}
                     </li>
                     {# END GESTION #}

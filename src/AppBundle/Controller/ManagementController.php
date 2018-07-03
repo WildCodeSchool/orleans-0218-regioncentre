@@ -21,63 +21,126 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ManagementController extends Controller
 {
-
-
     /**
      * Management page
      * Listing of works.
      *
-     * @Route("/{list}", name="admin_management")
-     * @Method({"GET", "POST"})
+     * @Route("/school", name="admin_manage_school")
+     * @Method("GET")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function managementAction(Request $request)
+    public function schoolManageAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $list = $request->attributes->get('_route_params');
         $em = $this->getDoctrine()->getManager();
         $departments = $em->getRepository(Department::class)->findAll();
         $form = $this->createForm('AppBundle\Form\HistorySheetType');
         $form->handleRequest($request);
 
         $data = $form->getData();
-        $department = $data['Filtrer'];
+        $department = $data['filter'];
 
-        if ($list = 'school') {
-            if ($form->isSubmitted() && $form->isValid() && $department != null) {
-                $school = $em->getRepository(Lycee::class)->findByDepartment($department);
-            } else {
-                $school = $em->getRepository(Lycee::class)->findBy([], ['postalCode' => 'ASC'], 5);
-            }
-        }
-        if ($list = 'user') {
-            if ($form->isSubmitted() && $form->isValid() && $department != null) {
-                $user = $em->getRepository(User::class)->findByDepartment($department);
-            } else {
-                $user = $em->getRepository(User::class)->findAll();
-            }
-        }
-        if ($list = 'job') {
-            $job = $em->getRepository(Metier::class)->findAll();
-        }
-        if ($list = 'status') {
-            $status = $em->getRepository(Statut::class)->findAll();
-        }
-        if ($list = 'analysis') {
-            $analysis = $em->getRepository(Analysis::class)->findAll();
+        if ($form->isSubmitted() && $form->isValid() && $department != null) {
+            $school = $em->getRepository(Lycee::class)->findByDepartment($department);
+        } else {
+            $school = $em->getRepository(Lycee::class)->findBy([], ['postalCode' => 'ASC'], 5);
         }
 
-
-        return $this->render('admin/management.html.twig', array(
+        return $this->render('admin/management/school.html.twig', array(
             'school' => $school,
-            'list' => $list,
-            'user' => $user,
-            'job' => $job,
-            'status' => $status,
-            'analysis' => $analysis,
             'departments' => $departments,
             'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Management page
+     * Listing of works.
+     *
+     * @Route("/user", name="admin_manage_user")
+     * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function userManagementAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $departments = $em->getRepository(Department::class)->findAll();
+        $form = $this->createForm('AppBundle\Form\HistorySheetType');
+        $form->handleRequest($request);
+
+        $data = $form->getData();
+        $department = $data['filter'];
+        if ($form->isSubmitted() && $form->isValid() && $department != null) {
+            $user = $em->getRepository(User::class)->findByDepartment($department);
+        } else {
+            $user = $em->getRepository(User::class)->findAll();
+        }
+
+        return $this->render('admin/management/user.html.twig', array(
+            'user' => $user,
+            'departments' => $departments,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Management page
+     * Listing of works.
+     *
+     * @Route("/job", name="admin_manage_job")
+     * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function jobManagementAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $job = $em->getRepository(Metier::class)->findAll();
+
+
+        return $this->render('admin/management/job.html.twig', array(
+            'job' => $job,
+        ));
+    }
+
+    /**
+     * Management page
+     * Listing of works.
+     *
+     * @Route("/analyse", name="admin_manage_analyse")
+     * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function analyseManagementAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $analysis = $em->getRepository(Analysis::class)->findAll();
+
+
+        return $this->render('admin/management/analyse.html.twig', array(
+            'analysis' => $analysis,
+        ));
+    }
+
+    /**
+     * Management page
+     * Listing of works.
+     *
+     * @Route("/status", name="admin_manage_status")
+     * @Method("GET")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function statusManagementAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $status = $em->getRepository(Statut::class)->findAll();
+
+
+        return $this->render('admin/management/status.html.twig', array(
+            'status' => $status,
         ));
     }
 }
