@@ -22,6 +22,7 @@ class HistorySheetType extends AbstractType
             'class' => Department::class,
             'choice_label' => 'name',
             'required' => false,
+            'label'=> 'Filtrer',
             'placeholder' => 'Tous les départements',
         ));
     }

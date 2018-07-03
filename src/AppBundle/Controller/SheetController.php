@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Sheet controller.
@@ -28,7 +27,7 @@ class SheetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
-      
+
         return $this->render('/school/index.html.twig', array(
             'sheets' => $sheets,
         ));
@@ -93,7 +92,7 @@ class SheetController extends Controller
             return $this->redirectToRoute('sheet_show', [
                 'id' => $sheet->getId(),
                 '_fragment' => 'msg_anchor'
-                ]);
+            ]);
         }
 
         return $this->render('sheet/show.html.twig', array(
