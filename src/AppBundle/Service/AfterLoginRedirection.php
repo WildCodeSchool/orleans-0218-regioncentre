@@ -45,9 +45,9 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         }, $roles);
 
         if (in_array('ROLE_ADMIN', $rolesTab, true)) {
-            $redirection = new RedirectResponse($this->router->generate('admin_history_sheets'));
+            $redirection = new RedirectResponse($this->router->generate('admin_home_sheets'));
         } elseif (in_array('ROLE_EMOP', $rolesTab, true)) {
-            $redirection = new RedirectResponse($this->router->generate('emop_history_sheets'));
+            $redirection = new RedirectResponse($this->router->generate('emop_home_sheets'));
         } elseif (in_array('ROLE_LYCEE', $rolesTab, true)) {
             $redirection = new RedirectResponse($this->router->generate('lycee_sheet_index'));
         }

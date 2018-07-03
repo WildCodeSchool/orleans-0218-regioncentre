@@ -20,6 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HistorySheetController extends Controller
 {
+    const WAITING = 'waiting';
+
     /**
      *
      * @Route("/admin/history", name="admin_history_sheets")
@@ -55,23 +57,17 @@ class HistorySheetController extends Controller
     public function homeAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $status = $em->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
+
         $departments = $em->getRepository(Department::class)->findAll();
 
-        $form = $this->createForm('AppBundle\Form\HistorySheetType');
-        $form->handleRequest($request);
+        $sheets = $em->getRepository(Sheet::class)->findBy(['status' => $status,], ['creationDate' => 'ASC'], 5);
 
-        $data = $form->getData();
-        $department = $data['filter'];
-        if ($form->isSubmitted() && $form->isValid() && $department != null) {
-            $sheets = $em->getRepository(Sheet::class)->findSheetsByDepartment($department->getName());
-        } else {
-            $sheets = $em->getRepository(Sheet::class)->findBy([], ['creationDate' => 'ASC'], 5);
-        }
 
         return $this->render('admin/home.html.twig', [
             'sheets' => $sheets,
             'departments' => $departments,
-            'form' => $form->createView(),
         ]);
     }
 
@@ -94,9 +90,13 @@ class HistorySheetController extends Controller
      */
     public function homeEmopAction()
     {
-        $sheets = $this->getDoctrine()->getManager()->getRepository(Sheet::class)
+        $em = $this->getDoctrine()->getManager();
+
+        $status = $em->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
+
+        $sheets = $em->getRepository('AppBundle:Sheet')
             ->findBy(
-                [],
+                ['status'=> $status,],
                 ['creationDate' => 'ASC'],
                 5
             );
