@@ -124,24 +124,30 @@
         <div class="bg-comments my-5 pt-5">
             <div class="row">
                 {% if sheet.comments is empty %}
-                <div class="col-12 text-center pb-3">
-                    <p>aucun commentaire pour le moment</p>
-                </div>
+                    <div class="col-12 text-center pb-3">
+                        <p>aucun commentaire pour le moment</p>
+                    </div>
                 {% endif %}
             </div>
             {% for comment in sheet.comments %}
                 <div class="mx-2 mx-lg-4 py-lg-4 row {% if comment.user.id == app.user.id %}flex-row-reverse{% endif %}">
                     <div class="col-auto d-none d-lg-block">
                         <img class="" src="https://via.placeholder.com/150x150" alt="logo"/>
+                        <p class="w-500 mx-2 userChat pt-2 ">{% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }}
+                                <br> {{ comment.user.phoneNumber }} {% endif %} </p>
                     </div>
                     <div class="col col-lg-9">
                         <div class="card mb-4 my-lg-4 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
                             <div class="card-header {% if comment.user.id == app.user.id %}justify-content-end {% endif %} text-light d-inline-flex border-0 pb-0">
-                                <p class="w-500 mx-2 text-light">{{ comment.user.username|upper }}</p>
-                                <p class="mx-2 text-light"><strong>{{ comment.date|date('d M Y') }}</strong></p>
+                                <p class="w-500 mx-2 text-light ">{% if comment.user.Roles.0 == 'ROLE_LYCEE' %}{{ comment.user.lycee.name }} {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} ADMIN {% else %}EMOP du {{ comment.user.department }}{% endif %}</p>
+                                <p class="mx-2 text-light"><strong>{{ comment.date|date('d/m/Y à H:i') }}</strong></p>
                             </div>
                             <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.Roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
-                                <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo" {% if comment.user.id == app.user.id %}style="float: right"{% else %} style="float: left"{% endif %} />
+                                <div>
+                                    <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo"
+                                         {% if comment.user.id == app.user.id %}style="float: right"{% else %} style="float: left"{% endif %} />
+                                    <span class="col-auto w-500 mx-2 userChat pt-2 d-lg-none "> {% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }} : {{ comment.user.phoneNumber }} {% endif %} </span>
+                                </div>
                                 <div class="col">{{ comment.content }}</div>
                             </div>
                         </div>
@@ -153,7 +159,8 @@
                     {% for message in app.flashes('comment') %}
                         <div class="alert alert-warning alert-dismissible fade show text-center">
                             {{ message }}
-                            <button type="button" class="close position-relative" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="close position-relative" data-dismiss="alert"
+                                    aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -167,14 +174,16 @@
                 <h1> NOUVEAU COMMENTAIRE </h1>
             </div>
             <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
-                <a class="btn btn-primary w-500" href="#"><i class="fas fa-arrow-up mr-4"></i>Retour aux informations de la fiche</a>
+                <a class="btn btn-primary w-500" href="#"><i class="fas fa-arrow-up mr-4"></i>Retour aux informations de
+                    la fiche</a>
             </div>
         </div>
         <hr>
         {{ form_start(form) }}
         <div id="msg_anchor" class="mx-4 py-4 row flex-row-reverse comments">
-            <div class="col-auto">
-                <img class="d-none d-lg-block" src="https://via.placeholder.com/150x150" alt="logo"/>
+            <div class="col-auto d-none d-lg-block">
+                <img class="" src="https://via.placeholder.com/150x150" alt="logo"/>
+                <p class="w-500 mx-2 userChat pt-2"> {{ app.user.firstName }} {{ app.user.lastName }} </p>
             </div>
             <div class="col-lg-9">
                 {{ form_row(form.content) }}
