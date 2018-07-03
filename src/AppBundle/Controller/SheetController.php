@@ -215,8 +215,9 @@ class SheetController extends Controller
 
         if (!empty($emopMails)){
         $body = $this->templating->render('email/sheet_create.html.twig');
-        $message = (new \Swift_Message('Une fiche de travaux a était créée dans votre département.'))
-            ->setFrom($sheet->getUser()->getMail())
+        $message = (new \Swift_Message('Une fiche de travaux a été créée dans votre département.'))
+            ->setFrom([$sheet->getUser()->getMail()=> $sheet->getUser()->getLycee()->getName()])
+            ->setReplyTo($sheet->getUser()->getMail())
             ->setTo($emopMails)
             ->setBody($body, 'text/html');
         $this->mailer->send($message);
