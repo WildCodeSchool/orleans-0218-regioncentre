@@ -66,7 +66,7 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Description de la demande'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5">
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
                     <p>{{ sheet.description }}</p>
                 </div>
             </div>
@@ -76,9 +76,9 @@
                 <p class="h5">{{ 'Bâtiment concerné'|upper }}</p>
                 <p>{{ sheet.buildings }}</p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 text-center">
                 <p class="h5">{{ 'metier concerné'|upper }}</p>
-                <p>{{ sheet.job.name }}</p>
+                    <p>{{ sheet.job.name ?? 'Non renseigné'  }}</p>
             </div>
         </div>
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-3">
@@ -86,7 +86,7 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5">
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
                     <p>{{ sheet.constraintsBuildings ?? 'Non renseigné' }}</p>
                 </div>
             </div>
@@ -94,8 +94,18 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Contraintes techniques'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5">
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
                     <p>{{ sheet.constraintsTechnicals ?? 'Non renseigné' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
+            <div class="card m-2">
+                <div class="card-header justify-content-center">
+                    <p class="h5">{{ 'Personne à contacter en cas d\'abscence'|upper }}</p>
+                </div>
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
+                        <p>{{ sheet.contactPeople ?? 'Non renseigné' }}</p>
                 </div>
             </div>
         </div>

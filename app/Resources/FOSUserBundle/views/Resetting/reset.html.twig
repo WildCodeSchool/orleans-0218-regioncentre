@@ -10,25 +10,18 @@
                     <h1 class="welcome-text mt-3">Bienvenue sur le site de gestion des fiches travaux.</h1>
                 </div>
             </div>
-            <div class="row justify-content-center mb-md-3 mb-lg-3">
-                <p class="h2 mb-3">Première connexion</p>
-            </div>
             <hr>
-
             <div class="row justify-content-center formLogin mt-4">
                 <p>Configurez votre mot de passe.</p>
-
                 <div class="col-12">
                     {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
                     {{ form_widget(form) }}
-                    <div>
-                        <input type="submit" value="Créer son mot de passe" class="btn btn-dark"/>
-                    </div>
+                        <div class="text-center">
+                            <input type="submit" value="Créer le mot de passe" class="btn btn-dark"/>
+                        </div>
                     {{ form_end(form) }}
                 </div>
             </div>
         </div>
-
-
     {% endblock fos_user_content %}
 {% endblock %}
