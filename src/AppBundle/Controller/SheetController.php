@@ -75,6 +75,10 @@ class SheetController extends Controller
                 'La fiche a été ajoutée avec succès.'
             );
 
+            // a partir du user, recup le departemeht du lycee
+            // recup les emops reliés à ce department $department->getUsers();
+            $this->sendSheetCreate($sheet);
+
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
         }
 
@@ -198,5 +202,24 @@ class SheetController extends Controller
             ->setAction($this->generateUrl('sheet_delete', array('id' => $sheet->getId())))
             ->setMethod('DELETE')
             ->getForm();
+    }
+
+    public function sendSheetCreate(Sheet $sheet)
+    {
+        $department = $sheet->getUser()->getLycee()->getDepartment();
+
+        $emops = $department->getUsers();
+        foreach ($emops as $emop) {
+            $emopMails[] = $emop->getMail();
+        }
+
+        if (!empty($emopMails)){
+        $body = $this->templating->render('email/sheet_create.html.twig');
+        $message = (new \Swift_Message('Une fiche de travaux a était créée dans votre département.'))
+            ->setFrom($sheet->getUser()->getMail())
+            ->setTo($emopMails)
+            ->setBody($body, 'text/html');
+        $this->mailer->send($message);
+        }
     }
 }
