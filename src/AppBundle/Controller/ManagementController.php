@@ -26,7 +26,7 @@ class ManagementController extends Controller
      * Listing of works.
      *
      * @Route("/school", name="admin_manage_school")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -58,7 +58,7 @@ class ManagementController extends Controller
      * Listing of works.
      *
      * @Route("/user", name="admin_manage_user")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
