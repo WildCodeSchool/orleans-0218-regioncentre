@@ -19,7 +19,7 @@
                 <hr class="p-3" width="90%">
                 {{ form_start(form) }}
                 <div class="row">
-                     <div class="col-md-12 col-lg-6">
+                    <div class="col-md-12 col-lg-6">
                         {{ form_row(form.firstName) }}
                     </div>
                     <div class="col-md-12 col-lg-6">
@@ -32,6 +32,9 @@
                         {{ form_row(form.work) }}
                     </div>
                     <div class="col-md-12 col-lg-12">
+                        {{ form_row(form.mail) }}
+                    </div>
+                    <div class="col-md-12 col-lg-12">
                         {{ form_row(form.current_password, { 'label': 'Merci de confirmer votre mot de passe' }) }}
                     </div>
                 </div>
@@ -39,7 +42,8 @@
                     <div class="col-12">
                         <div class="d-flex justify-content-center">
                             <div>
-                                <input class="btn btn-dark h-100" type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
+                                <input class="btn btn-dark h-100" type="submit"
+                                       value="{{ 'profile.edit.submit'|trans }}"/>
                             </div>
                         </div>
                     </div>
@@ -49,8 +53,7 @@
             <div class="row">
                 <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
                     <a class="btn btn-warning" href="/">
-                        <i class="fas fa-arrow-left"></i>
-                        Retour à l'accueil
+                        <i class="fas fa-arrow-left"></i>Retour à l'accueil
                     </a>
                 </div>
             </div>
