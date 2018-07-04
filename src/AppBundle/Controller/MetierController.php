@@ -49,7 +49,7 @@ class MetierController extends Controller
             $em->persist($metier);
             $em->flush();
 
-            return $this->redirectToRoute('metier_new');
+            return $this->redirectToRoute('admin_manage_job');
         }
 
         $pm = $this->getDoctrine()->getManager();
