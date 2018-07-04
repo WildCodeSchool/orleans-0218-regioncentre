@@ -16,20 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class LyceeController extends Controller
 {
-    /**
-     * Lists all lycee entities.
-     *
-     * @Route("/", name="admin_lycee_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $lycees = $em->getRepository('AppBundle:Lycee')->findAll();
-        return $this->render('lycee/index.html.twig', array(
-            'lycees' => $lycees,
-        ));
-    }
 
     /**
      * Creates a new lycee entity.
@@ -55,19 +41,6 @@ class LyceeController extends Controller
         return $this->render('lycee/new.html.twig', array(
             'lycee' => $lycee,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a lycee entity.
-     *
-     * @Route("/{id}", name="admin_lycee_show")
-     * @Method("GET")
-     */
-    public function showAction(Lycee $lycee)
-    {
-        return $this->render('lycee/show.html.twig', array(
-            'lycee' => $lycee,
         ));
     }
 
