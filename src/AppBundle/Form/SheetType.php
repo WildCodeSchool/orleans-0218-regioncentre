@@ -8,11 +8,11 @@ use AppBundle\Entity\Statut;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class SheetType extends AbstractType
 {
@@ -22,12 +22,9 @@ class SheetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('urgent', ChoiceType::class, [
-                'required' => true,
-                'choices' => array(
-                    'Cette demande est urgente' => 1,
-                    'Cette demande n\'est pas urgente' => 0),
-                'placeholder' => 'La demande est-elle urgente ?'
+            ->add('urgent', CheckboxType::class, [
+                'required' => false,
+                'label'    => 'La demande est elle urgente ?',
             ])
             ->add('subject', TextType::class, [
                 'required' => true,

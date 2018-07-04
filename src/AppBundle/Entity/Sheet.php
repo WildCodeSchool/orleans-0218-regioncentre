@@ -39,7 +39,7 @@ class Sheet
     /**
      * @var bool
      *
-     * @ORM\Column(name="urgent", type="boolean")
+     * @ORM\Column(name="urgent", type="boolean", nullable=true)
      * @Assert\Choice({1,0})
      */
     private $urgent;
