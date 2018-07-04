@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Department;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,6 +25,10 @@ class HistorySheetType extends AbstractType
             'required' => false,
             'label'=> 'Filtrer',
             'placeholder' => 'Tous les départements',
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('u')
+                    ->orderBy('u.shortCode', 'DESC');
+                }
         ));
     }
 

@@ -42,9 +42,9 @@ class ManagementController extends Controller
 
         if ($form->isSubmitted() && $form->isValid() && $department != null) {
             $school = $em->getRepository(Lycee::class)
-                ->findByDepartment($department, ['department' => 'DESC', 'name' => 'ASC']);
+                ->findByDepartment($department, ['department' => 'ASC   ', 'name' => 'ASC']);
         } else {
-            $school = $em->getRepository(Lycee::class)->findBy([], ['department' => 'DESC', 'name' => 'ASC']);
+            $school = $em->getRepository(Lycee::class)->findBy([], ['department' => 'ASC', 'name' => 'ASC']);
         }
 
         return $this->render('admin/management/school.html.twig', array(
