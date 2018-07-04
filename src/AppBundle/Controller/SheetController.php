@@ -117,6 +117,50 @@ class SheetController extends Controller
         ));
     }
 
+    public function sendNotificationMail(Comment $comment)
+    {
+        $commentSheetSite = $comment->getSheet()->getUser();
+        $commentUserRole = $comment->getUser()->getRoles();
+        $sheetId = $comment->getId();
+
+        if ($commentUserRole == "ROLE_LYCEE") {
+            $mails[] = '';
+            $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
+            $username = "EMOP";
+            $emops = $commentSiteDepartment->getUsers();
+            foreach ($emops as $emop) {
+                $mails[] = $emop->getMail();
+            }
+
+            $renderedTemplate = $this->render('email/forgotten_password.html.twig', [
+                'username' => $username,
+                'sheet_id' => $sheetId,
+            ]);
+
+            $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
+                ->setFrom($mails)
+                ->setTo($mails)
+                ->setBody($renderedTemplate, "text/html");
+            $this->mailer->send($message);
+        }
+
+        if ($commentUserRole == "ROLE_EMOP") {
+            $mail = $comment->getUser()->getMail();
+            $username = $comment->getUser()->getLycee()->getName();
+            
+            $renderedTemplate = $this->render('email/forgotten_password.html.twig', [
+                'username' => $username,
+                'sheet_id' => $sheetId,
+            ]);
+
+            $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
+                ->setFrom($mail)
+                ->setTo($mail)
+                ->setBody($renderedTemplate, "text/html");
+            $this->mailer->send($message);
+        }
+    }
+
     /**
      * Displays a form to edit an existing sheet entity.
      *
