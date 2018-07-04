@@ -128,9 +128,17 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col text-center mt-5 mt-lg-5 pt-lg-5">
-            <h1> COMMENTAIRES </h1>
+
+        <div class="row mx-5">
+            <div class="col d-flex">
+                <h1> LISTE DE COMMENTAIRES </h1>
+            </div>
+            <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
+                <a class="btn btn-primary w-500" href="#write_a_new_comment"><i class="fas fa-arrow-down mr-4"></i>Commenter la fiche</a>
+            </div>
         </div>
+        <hr>
+
         <div class="bg-comments my-5 pt-5">
             <div class="row">
                 {% if sheet.comments is empty %}
@@ -215,7 +223,7 @@
 
         <div class="row mx-5">
             <div class="col d-flex">
-                <h1> NOUVEAU COMMENTAIRE </h1>
+                <h1 id="write_a_new_comment"> NOUVEAU COMMENTAIRE </h1>
             </div>
             <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
                 <a class="btn btn-primary w-500" href="#"><i class="fas fa-arrow-up mr-4"></i>Retour aux informations de
