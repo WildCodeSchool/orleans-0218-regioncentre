@@ -187,12 +187,15 @@
                                     {% endif %}
                                 </div>
                              <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
-                                <div>
-                                    <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo"
-                                          {% if comment.user.id == app.user.id %}class="float-right"{% else %} class="float-left"{% endif %} />
-                                    <span class="col-auto w-500 mx-2 userChat pt-2 d-lg-none "> {% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }} : {{ comment.user.phoneNumber }} {% endif %} </span>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo"
+                                             {% if comment.user.id == app.user.id %}class="float-right"{% else %} class="float-left"{% endif %} />
+                                        <span class="col-auto w-500 userChat pt-2 d-lg-none "> {% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }}
+                                                <span class="col-auto w-500 userChat pt-2 d-lg-none "> {{ comment.user.phoneNumber }}</span> {% endif %} </span>
+                                    </div>
+                                    <div class="col col-md-9 col-lg-12">{{ comment.content }}</div>
                                 </div>
-                                <div class="col">{{ comment.content }}</div>
                             </div>
                         </div>
                     </div>
