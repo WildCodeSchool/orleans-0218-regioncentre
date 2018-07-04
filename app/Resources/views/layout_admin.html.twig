@@ -24,8 +24,8 @@
                     </li>
                     {# END HOMEPAGE #}
                     {# START SHEET HISTORY #}
-                    <li class="nav-item">
-                    <li class="nav-item">
+                    <li class="nav-item mr-0">
+                    <li class="nav-item  mr-0">
                         <a class="nav-link" href=
                         {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_history_sheets') }}"{% endif %}
                         {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_history_sheets') }}"{% endif %}
@@ -34,12 +34,19 @@
                     </li>
                     {# END SHEE HISTORY #}
                     {# START GESTION #}
-                    <li class="nav-item">
+                    <li class="nav-item mr-0">
                         {% if app.user.hasRole('ROLE_ADMIN') %}
                             <a class="nav-link" href="{{ path('admin_manage_school') }}">Gestion</a>
                         {% endif %}
                     </li>
                     {# END GESTION #}
+                    {#START NOUVELLE FICHE#}
+                    <li class="nav-item mr-0">
+                        {% if app.user.hasRole('ROLE_LYCEE') %}
+                            <a class="nav-link ml-0" href="{{ path('lycee_sheet_new') }}">Créée une nouvelle fiche</a>
+                        {% endif %}
+                    </li>
+                    {#END NOUVELLE FICHE#}
                 </ul>
                 <ul class="nav navbar-nav w-100 deconnect justify-content-end">
                     <li class="nav-link  float-md-right">
