@@ -41,9 +41,9 @@ class ManagementController extends Controller
         $department = $data['filter'];
 
         if ($form->isSubmitted() && $form->isValid() && $department != null) {
-            $school = $em->getRepository(Lycee::class)->findByDepartment($department);
+            $school = $em->getRepository(Lycee::class)->findByDepartment($department, ['name' => 'ASC']);
         } else {
-            $school = $em->getRepository(Lycee::class)->findBy([], ['postalCode' => 'ASC'], 5);
+            $school = $em->getRepository(Lycee::class)->findBy([],['name' => 'ASC']);
         }
 
         return $this->render('admin/management/school.html.twig', array(
@@ -96,8 +96,7 @@ class ManagementController extends Controller
     public function jobManagementAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $job = $em->getRepository(Metier::class)->findAll();
-
+        $job = $em->getRepository(Metier::class)->findBy([], ['name' => 'ASC']);
 
         return $this->render('admin/management/job.html.twig', array(
             'job' => $job,
@@ -116,8 +115,7 @@ class ManagementController extends Controller
     public function analyseManagementAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $analysis = $em->getRepository(Analysis::class)->findAll();
-
+        $analysis = $em->getRepository(Analysis::class)->findBy([], ['name' => 'ASC']);
 
         return $this->render('admin/management/analyse.html.twig', array(
             'analysis' => $analysis,
@@ -136,8 +134,7 @@ class ManagementController extends Controller
     public function statusManagementAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $status = $em->getRepository(Statut::class)->findAll();
-
+        $status = $em->getRepository(Statut::class)->findBy([], ['name' => 'ASC']);
 
         return $this->render('admin/management/status.html.twig', array(
             'status' => $status,
