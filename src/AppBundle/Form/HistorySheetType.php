@@ -28,7 +28,7 @@ class HistorySheetType extends AbstractType
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('u')
                     ->orderBy('u.shortCode', 'DESC');
-                }
+            }
         ));
     }
 
