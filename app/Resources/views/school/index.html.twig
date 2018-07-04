@@ -40,17 +40,17 @@
                                 </div>
                                 <div class="card-text row justify-content-between pt-3">
                                     <div class="col-12 col-md-4">
-                                        {#date de la derniére analyse#}
+                                        {% if sheet.analysisDate %}
+                                            {{ sheet.analysisDate|date("d / m / Y") }}
+                                        {% else %}
+                                            la fiche n'a pas était modifié.
+                                        {% endif %}
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <p class="text-center">{{ sheet.status.name }}</p>
                                     </div>
                                     <div class="col-12 col-md-4">
-                                        {% if sheet.analysis %}
-                                            {{ sheet.analysis.name }}
-                                        {% else %}
-                                            La fiche n'a pas encore été analysée.
-                                        {% endif %}
+                                        {{ sheet.analysis.name ?? 'La fiche n\'a pas encore été analysée.' }}
                                     </div>
                                 </div>
                             </div>
