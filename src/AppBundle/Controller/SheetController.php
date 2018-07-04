@@ -45,11 +45,18 @@ class SheetController extends Controller
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findBy([
             'user' => $this->getUser(),
-            'status'=> $status,
-            ]);
+            'status' => $status,
+        ]);
+        foreach ($sheets as $sheet) {
+            $comment = $em->getRepository('AppBundle:Comment')->findoneBy(
+                ['sheet' => $sheet],
+                ['date' => 'DESC']
+            );
+            $sheetsComment[]= ['sheet'=>$sheet,'comment'=>$comment];
+        }
 
         return $this->render('/school/index.html.twig', array(
-            'sheets' => $sheets,
+            'sheetsComment' => $sheetsComment,
         ));
     }
 
@@ -80,8 +87,6 @@ class SheetController extends Controller
                 'La fiche a été ajoutée avec succès.'
             );
 
-            // a partir du user, recup le departemeht du lycee
-            // recup les emops reliés à ce department $department->getUsers();
             $this->sendSheetCreate($sheet);
 
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
