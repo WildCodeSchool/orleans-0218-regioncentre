@@ -53,11 +53,11 @@
         </div>
         <div class="row text-center my-5">
             <div class="col-lg-6">
-                <p class="h5">{{ 'Date souhaitée de début des travaux'|upper }}</p>
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date souhaitée de début des travaux'|upper }}</p>
                 <p>{% if sheet.startWork %}{{ sheet.startWork|date('d / m / Y') }}{% endif %}</p>
             </div>
             <div class="col-lg-6">
-                <p class="h5">{{ 'Date souhaitée de fin des travaux'|upper }}</p>
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date souhaitée de fin des travaux'|upper }}</p>
                 <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
             </div>
         </div>
