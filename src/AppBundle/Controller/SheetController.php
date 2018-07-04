@@ -41,7 +41,12 @@ class SheetController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $sheets = $em->getRepository('AppBundle:Sheet')->findAll();
+        $status = $em->getRepository('AppBundle:Statut')->findOneByCode(self::WAITING);
+
+        $sheets = $em->getRepository('AppBundle:Sheet')->findBy([
+            'user' => $this->getUser(),
+            'status'=> $status,
+            ]);
 
         return $this->render('/school/index.html.twig', array(
             'sheets' => $sheets,

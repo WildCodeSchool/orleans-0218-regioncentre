@@ -3,8 +3,8 @@
     <header>
         <nav class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center">
             <a class="navbar-brand d-flex w-50 mr-auto" href=
-            {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_history_sheets') }}"{% endif %}
-            {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_history_sheets') }}"{% endif %}
+            {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_home_sheets') }}"{% endif %}
+            {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_home_sheets') }}"{% endif %}
             {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_sheet_index') }}"{% endif %}>
             <img src="{{ asset('/images/logo.png') }}" alt="logo"/>
             <div class="text d-none d-lg-block">E-MAINTENANCE</div>
@@ -17,9 +17,9 @@
                     {# START HOMEPAGE #}
                     <li class="nav-item mr-0">
                         <a class="nav-link" href=
-                        {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_history_sheets') }}"{% endif %}
-                        {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_history_sheets') }}"{% endif %}
-                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_sheet_index') }}"{% endif %}>
+                        {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_home_sheets') }}"{% endif %}
+                        {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_home_sheets') }}"{% endif %}
+                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_history_sheets') }}"{% endif %}>
                         Accueil</a>
                     </li>
                     {# END HOMEPAGE #}
