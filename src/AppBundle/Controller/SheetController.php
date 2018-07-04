@@ -103,6 +103,7 @@ class SheetController extends Controller
             $em->persist($comment);
             $em->flush();
             $this->addFlash('comment', 'Nouveau message ajouté avec succès.');
+            $this->sendNotificationMail($comment);
 
             return $this->redirectToRoute('sheet_show', [
                 'id' => $sheet->getId(),
@@ -121,10 +122,10 @@ class SheetController extends Controller
     {
         $commentSheetSite = $comment->getSheet()->getUser();
         $commentUserRole = $comment->getUser()->getRoles();
-        $sheetId = $comment->getId();
+        $sheet = $comment->getSheet();
 
-        if ($commentUserRole == "ROLE_LYCEE") {
-            $mails[] = '';
+
+        if ($commentUserRole[0] == "ROLE_LYCEE") {
             $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
             $username = "EMOP";
             $emops = $commentSiteDepartment->getUsers();
@@ -132,9 +133,9 @@ class SheetController extends Controller
                 $mails[] = $emop->getMail();
             }
 
-            $renderedTemplate = $this->render('email/forgotten_password.html.twig', [
+            $renderedTemplate = $this->render('email/comment_mail.html.twig', [
                 'username' => $username,
-                'sheet_id' => $sheetId,
+                'sheet' => $sheet,
             ]);
 
             $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
@@ -144,13 +145,13 @@ class SheetController extends Controller
             $this->mailer->send($message);
         }
 
-        if ($commentUserRole == "ROLE_EMOP") {
-            $mail = $comment->getUser()->getMail();
-            $username = $comment->getUser()->getLycee()->getName();
-            
-            $renderedTemplate = $this->render('email/forgotten_password.html.twig', [
+        if ($commentUserRole[0] == "ROLE_EMOP") {
+            $mail = $commentSheetSite->getMail();
+            $username = $comment->getSheet()->getUser()->getLycee()->getName();
+
+            $renderedTemplate = $this->render('email/comment_mail.html.twig', [
                 'username' => $username,
-                'sheet_id' => $sheetId,
+                'sheet' => $sheet,
             ]);
 
             $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
