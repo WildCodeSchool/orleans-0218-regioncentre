@@ -93,7 +93,7 @@ class UserController extends Controller
                 'success',
                 'l´Utilisateur a été ajouté avec succes.'
             );
-            return $this->redirectToRoute('admin_user_index');
+            return $this->redirectToRoute('admin_manage_user');
         }
         return $this->render('user/new.html.twig', array(
             'user' => $user,
