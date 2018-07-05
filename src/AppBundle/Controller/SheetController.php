@@ -122,7 +122,7 @@ class SheetController extends Controller
     {
         $commentSheetSite = $comment->getSheet()->getUser();
         $commentUserRole = $comment->getUser()->getRoles();
-        $sheet = $comment->getSheet();
+        $sheetId = $comment->getSheet()->getId();
 
 
         if ($commentUserRole[0] == "ROLE_LYCEE") {
@@ -135,7 +135,7 @@ class SheetController extends Controller
 
             $renderedTemplate = $this->render('email/comment_mail.html.twig', [
                 'username' => $username,
-                'sheet' => $sheet,
+                'sheet_id' => $sheetId,
             ]);
 
             $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
