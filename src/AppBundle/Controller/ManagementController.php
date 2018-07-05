@@ -22,6 +22,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ManagementController extends Controller
 {
+    const LIMIT = 10;
+
     /**
      * Management page
      * Listing of works.
@@ -56,30 +58,38 @@ class ManagementController extends Controller
      * Management page
      * Listing of works.
      *
-     * @Route("/user", name="admin_manage_user")
+     * @Route("/user/{page}", name="admin_manage_user")
      * @Method({"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userManagementAction(Request $request)
+    public function userManagementAction(Request $request, int $page)
     {
         $em = $this->getDoctrine()->getManager();
         $departments = $em->getRepository(Department::class)->findAll();
         $form = $this->createForm('AppBundle\Form\HistorySheetType');
         $form->handleRequest($request);
 
-        $data = $form->getData();
-        $department = $data['filter'];
-        if ($form->isSubmitted() && $form->isValid() && $department != null) {
-            $user = $em->getRepository(User::class)->findByDepartment($department);
-        } else {
-            $user = $em->getRepository(User::class)->findAll();
+        $user = $em->getRepository(User::class)->findAll();
+
+        $nbrUser = count($user);
+        $pageMax = ceil($nbrUser/self::LIMIT);
+        if ($page < 1) {
+            $page = 1;
         }
+        if ($page > $pageMax) {
+            $page = $pageMax;
+        }
+
+        $offset = ($page - 1)*self::LIMIT;
+        $user = $em->getRepository(User::class)->findUserByPage($offset);
 
         return $this->render('admin/management/user.html.twig', array(
             'user' => $user,
             'departments' => $departments,
             'form' => $form->createView(),
+            'page' => $page,
+            'pageMax' => $pageMax,
         ));
     }
 
