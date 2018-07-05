@@ -27,7 +27,7 @@ class HistorySheetType extends AbstractType
             'placeholder' => 'Tous les départements',
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('u')
-                    ->orderBy('u.shortCode', 'DESC');
+                    ->orderBy('u.shortCode', 'ASC');
             }
         ));
     }
