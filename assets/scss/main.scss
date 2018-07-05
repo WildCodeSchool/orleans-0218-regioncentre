@@ -105,6 +105,19 @@ body {
       width: 3vw;
     }
   }
+
+  .avatar-250 {
+    width: 250px;
+    height: 250px;
+  }
+  .avatar-100 {
+    width: 100px;
+    height: 100px;
+  }
+  .avatar-200 {
+    width: 200px;
+    height: 200px;
+  }
     //COMMENTS
     .comment-small {
       font-size: calc(10px + 5px * (100vw - 200px) / 1200);
