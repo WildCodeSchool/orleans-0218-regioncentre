@@ -14,6 +14,5 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         return $this->redirectToRoute('fos_user_security_login');
-
     }
 }
