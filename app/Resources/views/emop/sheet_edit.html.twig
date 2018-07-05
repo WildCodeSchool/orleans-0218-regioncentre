@@ -36,10 +36,12 @@
                             <li><span class="font-weight-bold">Métier concerné :</span> {{ sheet.job.name }}</li>
                             <li><span class="font-weight-bold">Bâtiment concerné :</span> {{ sheet.buildings }}</li>
                             <li><span class="font-weight-bold">Contraintes de fonctionnement de l'établissement
-                    :</span> {{ sheet.constraintsBuildings }}</li>
+                    :</span> {{ sheet.constraintsBuildings ?? 'Non renseigné' }}</li>
                             <li>
-                                <span class="font-weight-bold">Contraintes techniques :</span> {{ sheet.constraintsTechnicals }}
+                                <span class="font-weight-bold">Contraintes techniques :</span> {{ sheet.constraintsTechnicals ?? 'Non renseigné' }}
                             </li>
+                            <li><span class="font-weight-bold">Personne à contacter en cas d'abscence :</span> {{ sheet.contactPeople ?? 'Non renseigné' }}</li>
+
                         </ul>
                     </div>
                 </div>
