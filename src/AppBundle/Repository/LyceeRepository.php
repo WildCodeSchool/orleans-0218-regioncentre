@@ -10,4 +10,24 @@ namespace AppBundle\Repository;
  */
 class LyceeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findSchoolOrderByDepartment(string $department)
+    {
+        if (empty($department)) {
+            return $this->createQueryBuilder('s')
+                ->join('s.department', 'd')
+                ->where('s.department = d.id')
+                ->addOrderBy('d.shortCode', 'ASC')
+                ->addOrderBy('s.name', 'ASC')
+                ->getQuery()
+                ->getResult();
+        }
+        return $this->createQueryBuilder('s')
+            ->join('s.department', 'd')
+            ->where('s.department = d.id')
+            ->andWhere('d.name = :department')
+            ->setParameter(':department', $department)
+            ->addOrderBy('s.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

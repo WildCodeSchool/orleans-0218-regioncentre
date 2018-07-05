@@ -9,6 +9,7 @@ use AppBundle\Entity\Metier;
 use AppBundle\Entity\Sheet;
 use AppBundle\Entity\Statut;
 use AppBundle\Entity\User;
+use AppBundle\Repository\LyceeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -42,9 +43,9 @@ class ManagementController extends Controller
 
         if ($form->isSubmitted() && $form->isValid() && $department != null) {
             $school = $em->getRepository(Lycee::class)
-                ->findByDepartment($department, ['department' => 'ASC   ', 'name' => 'ASC']);
+                ->findSchoolOrderByDepartment($department);
         } else {
-            $school = $em->getRepository(Lycee::class)->findBy([], ['department' => 'ASC', 'name' => 'ASC']);
+            $school = $em->getRepository(Lycee::class)->findSchoolOrderByDepartment('');
         }
 
         return $this->render('admin/management/school.html.twig', array(
