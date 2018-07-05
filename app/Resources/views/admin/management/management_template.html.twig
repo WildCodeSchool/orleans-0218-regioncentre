@@ -1,4 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
+{% block title %}Gestion | E-Maintenance{% endblock %}
 {% block content %}
     <div class="container">
         <div class="formSheet">
@@ -8,49 +9,47 @@
                 </div>
             </div>
             <hr>
-            <div class="col-md-12 col-sm-12 blanc">
-                <div class="row">
-                    <div class=" col-12 col-md-3 col-sm-12 my-auto ">
-                        <a class="btn btn-info btn-block my-2 "
-                           href="{{ path('admin_user_new') }}">Ajouter un nouvel utilisateur</a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-12 my-auto ">
-                        <a class="btn btn-info btn-block my-2 "
-                           href="{{ path('admin_lycee_new') }}">Ajouter un nouveau lycée </a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-12 my-auto ">
-                        <a class="btn btn-info btn-block  my-2 "
-                           href="{{ path('admin_metier_new') }}">Ajouter un metier à la liste</a>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-12 my-auto ">
-                        <a class="btn btn-info btn-block  my-2 "
-                           href="{{ path('admin_analysis_new') }}">Ajouter une analyse à la liste</a>
-                    </div>
+            <div class="row">
+                <div class="col-lg-6 col-xl-3 mt-1 col-md-6 col-sm-12 blanc">
+                    <a class="btn btn-info btn-block"
+                       href="{{ path('admin_user_new') }}">Ajouter un nouvel utilisateur</a>
                 </div>
-                <div class="row my-4 ">
-                    <div class="col-12 col-md-4 my-1 d-inline">
-                        <a href="{{ path('admin_manage_user', { 'page': 1 }) }}" id="user"
-                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les utilisateurs</a>
-                    </div>
-                    <div class="col-12 col-md-4 my-1 d-inline">
-                        <a href="{{ path('admin_manage_school') }}" id="school"
-                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les lycées</a>
-                    </div>
-                    <div class="col-12 col-md-4 my-1 d-inline">
-                        <a href="{{ path('admin_manage_job') }}" id="job"
-                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les corps metiers</a>
-                    </div>
-                    <div class="col-12 col-lg-6 mx-auto col-md-4 my-3 d-inline">
-                        <a href="{{ path('admin_manage_status') }}" id="status"
-                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les statuts</a>
-                    </div>
-                    <div class="col-12 col-lg-6 mx-auto col-md-4 my-3 d-inline">
-                        <a href="{{ path('admin_manage_analyse') }}" id="status"
-                           class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir toutes les analyses</a>
-                    </div>
+                <div class="col-lg-6 col-xl-3 mt-1 col-md-6 col-sm-12 blanc">
+                    <a class="btn btn-info btn-block"
+                       href="{{ path('admin_lycee_new') }}">Ajouter un nouveau lycée </a>
+                </div>
+                <div class="col-lg-6 col-xl-3 mt-1 col-md-6 col-sm-12 blanc">
+                    <a class="btn btn-info btn-block"
+                       href="{{ path('admin_metier_new') }}">Ajouter un metier à la liste</a>
+                </div>
+                <div class="col-lg-6 col-xl-3 mt-1 col-md-6 col-sm-12 blanc">
+                    <a class="btn btn-info btn-block"
+                       href="{{ path('admin_analysis_new') }}">Ajouter une analyse à la liste</a>
                 </div>
             </div>
-            {% block listing %}{% endblock %}
+            <div class="row my-4 ">
+                <div class="col-md-12 col-lg-4 my-1 d-inline">
+                    <a href="{{ path('admin_manage_user', { 'page': 1 }) }}" id="user"
+                       class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les utilisateurs</a>
+                </div>
+                <div class="col-md-12 col-lg-4 my-1 d-inline">
+                    <a href="{{ path('admin_manage_school') }}" id="school"
+                       class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les lycées</a>
+                </div>
+                <div class="col-md-12 col-lg-4 my-1 d-inline">
+                    <a href="{{ path('admin_manage_job') }}" id="job"
+                       class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les corps metiers</a>
+                </div>
+                <div class="col-md-12 col-lg-6 my-1 d-inline">
+                    <a href="{{ path('admin_manage_status') }}" id="status"
+                       class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les statuts</a>
+                </div>
+                <div class="col-md-12 col-lg-6 my-1 d-inline">
+                    <a href="{{ path('admin_manage_analyse') }}" id="status"
+                       class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir toutes les analyses</a>
+                </div>
+            </div>
         </div>
+        <div class="pl-5 pr-5 mt-5">{% block listing %}{% endblock %}</div>
     </div>
 {% endblock %}

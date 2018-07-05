@@ -1,4 +1,6 @@
 {% extends 'layout_admin.html.twig' %}
+{% block title %}Fiche | E-Maintenance{% endblock %}
+
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     <div class="container">
@@ -51,27 +53,27 @@
                 {% endif %}
             </div>
         </div>
-        <div class="row text-center my-5">
+        <div class="row text-center my-2">
             <div class="col-lg-6">
-                <p class="h5">{{ 'Date souhaitée de début des travaux'|upper }}</p>
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date souhaitée de début des travaux'|upper }}</p>
                 <p>{% if sheet.startWork %}{{ sheet.startWork|date('d / m / Y') }}{% endif %}</p>
             </div>
             <div class="col-lg-6">
-                <p class="h5">{{ 'Date souhaitée de fin des travaux'|upper }}</p>
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date souhaitée de fin des travaux'|upper }}</p>
                 <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
             </div>
         </div>
-        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-2">
             <div class="card m-2">
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Description de la demande'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5 text-center">
+                <div class="m-2   mx-lg-5 text-center">
                     <p>{{ sheet.description }}</p>
                 </div>
             </div>
         </div>
-        <div class="row text-center mt-5">
+        <div class="row text-center mt-2">
             <div class="col-lg-6">
                 <p class="h5">{{ 'Bâtiment concerné'|upper }}</p>
                 <p>{{ sheet.buildings }}</p>
@@ -81,12 +83,12 @@
                     <p>{{ sheet.job.name ?? 'Non renseigné'  }}</p>
             </div>
         </div>
-        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-3">
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-2">
             <div class="card m-2 mr-lg-4">
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5 text-center">
+                <div class="m-2 my-lg-2 mx-lg-5 text-center">
                     <p>{{ sheet.constraintsBuildings ?? 'Non renseigné' }}</p>
                 </div>
             </div>
@@ -94,17 +96,17 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Contraintes techniques'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5 text-center">
+                <div class="m-2 my-lg-2 mx-lg-5 text-center">
                     <p>{{ sheet.constraintsTechnicals ?? 'Non renseigné' }}</p>
                 </div>
             </div>
         </div>
-        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-2">
             <div class="card m-2">
-                <div class="card-header justify-content-center">
+                <div class="card-header text-center">
                     <p class="h5">{{ 'Personne à contacter en cas d\'abscence'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5 text-center">
+                <div class="m-2 my-lg-2 mx-lg-2 text-center">
                         <p>{{ sheet.contactPeople ?? 'Non renseigné' }}</p>
                 </div>
             </div>
@@ -128,9 +130,20 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col text-center mt-5 mt-lg-5 pt-lg-5">
-            <h1> COMMENTAIRES </h1>
+
+        <div class="row mx-5">
+            <div class="col d-flex">
+                <h1> LISTE DE COMMENTAIRES </h1>
+            </div>
+            <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
+                {% if sheet.comments is not empty %}<a class="btn btn-primary w-500" href="#write_a_new_comment">
+                    <i class="fas fa-arrow-down mr-4"></i>
+                        Commenter la fiche
+                </a>{% endif %}
+            </div>
         </div>
+        <hr>
+
         <div class="bg-comments my-5 pt-5">
             <div class="row">
                 {% if sheet.comments is empty %}
@@ -209,8 +222,13 @@
                                         <span class="col-auto w-500 userChat pt-2 d-lg-none "> {% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }}
                                                 <span class="col-auto w-500 userChat pt-2 d-lg-none "> {{ comment.user.phoneNumber }}</span> {% endif %} </span>
                                     </div>
-                                    <div class="col col-md-9 col-lg-12">{{ comment.content }}</div>
-                                </div>
+
+                                {% endif %}
+                            </div>
+                            <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
+                                <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo"
+                                     {% if comment.user.id == app.user.id %}class="float-right"{% else %} class="float-left"{% endif %} />
+                                <div class="col">{{ comment.content|nl2br }}</div>
                             </div>
                         </div>
                     </div>
@@ -233,7 +251,7 @@
 
         <div class="row mx-5">
             <div class="col d-flex">
-                <h1> NOUVEAU COMMENTAIRE </h1>
+                <h1 id="write_a_new_comment"> NOUVEAU COMMENTAIRE </h1>
             </div>
             <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
                 <a class="btn btn-primary w-500" href="#"><i class="fas fa-arrow-up mr-4"></i>Retour aux informations de
