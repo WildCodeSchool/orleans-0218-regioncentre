@@ -139,16 +139,16 @@ class SheetController extends Controller
         $sheetId = $comment->getSheet()->getId();
         
         if (in_array('ROLE_EMOP', $commentUserRole)) {
-            $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
             $username = "EMOP";
+            $mails = $commentSheetSite->getMail();
+        }
+
+        if (in_array('ROLE_LYCEE', $commentUserRole)) {
+            $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
             $emops = $commentSiteDepartment->getUsers();
             foreach ($emops as $emop) {
                 $mails[] = $emop->getMail();
             }
-        }
-
-        if (in_array('ROLE_LYCEE', $commentUserRole)) {
-            $mails = $commentSheetSite->getMail();
             $username = $comment->getSheet()->getUser()->getLycee()->getName();
         }
 
