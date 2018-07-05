@@ -10,9 +10,9 @@
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
                 <a class="btn btn-warning w-500" href="
                 {% if app.user.hasRole('ROLE_ADMIN') %}
-                {{ path('admin_history_sheets') }}
+                {{ path('admin_home_sheets') }}
                 {% elseif app.user.hasRole('ROLE_EMOP') %}
-                {{ path('emop_history_sheets') }}
+                {{ path('emop_home_sheets') }}
                 {% elseif app.user.hasRole('ROLE_LYCEE') %}
                 {{ path('lycee_sheet_index') }}
                 {% endif %}

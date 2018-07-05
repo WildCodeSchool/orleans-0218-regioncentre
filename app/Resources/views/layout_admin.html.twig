@@ -19,7 +19,7 @@
                         <a class="nav-link" href=
                         {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_home_sheets') }}"{% endif %}
                         {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_home_sheets') }}"{% endif %}
-                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_history_sheets') }}"{% endif %}>
+                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_sheet_index') }}"{% endif %}>
                         Accueil</a>
                     </li>
                     {# END HOMEPAGE #}
@@ -29,7 +29,7 @@
                         <a class="nav-link" href=
                         {% if app.user.hasRole('ROLE_ADMIN') %}"{{ path('admin_history_sheets') }}"{% endif %}
                         {% if app.user.hasRole('ROLE_EMOP') %}"{{ path('emop_history_sheets') }}"{% endif %}
-                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_sheet_index') }}"{% endif %}>
+                        {% if app.user.hasRole('ROLE_LYCEE') %}"{{ path('lycee_history_sheets') }}"{% endif %}>
                         Historique des fiches</a>
                     </li>
                     {# END SHEE HISTORY #}

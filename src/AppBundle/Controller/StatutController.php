@@ -89,7 +89,7 @@ class StatutController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_statut_index');
+            return $this->redirectToRoute('admin_manage_status');
         }
 
         return $this->render('statut/sheet_edit.html.twig', array(
