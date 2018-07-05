@@ -19,7 +19,7 @@
             {{ form_start(form) }}
             <div class="row">
                 <div class="col-md-12 col-lg-6 mb-2">
-                    {{ form_row(form.email) }}
+                    {{ form_row(form.email,{ 'label': 'Adresse e-mail de connexion' }) }}
                 </div>
                 <div class="col-md-12 col-lg-6 mb-2">
                     {{ form_row(form.username) }}
@@ -44,12 +44,12 @@
                         {{ form_label(form.roles) }}
                         {{ form_widget(form.roles, {'attr': {'class': 'd-inline-flex col-12'}}) }}
                     </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
-                    {{ form_row(form.lycee) }}
-                </div>
-                <div class="col-md-12 col-lg-6">
-                    {{ form_row(form.departments, {'attr': {'class': 'd-flex flex-wrap col-10'}}) }}
+                    <div class="col pt-2" id="lycees">
+                        {{ form_row(form.lycee) }}
+                    </div>
+                    <div class="col pt-2" id="departments">
+                        {{ form_row(form.departments, {'attr': {'class': 'd-flex flex-wrap col-10'}}) }}
+                    </div>
                 </div>
             </div>
             <div class="row">

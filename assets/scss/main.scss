@@ -23,8 +23,8 @@ body {
   }
 
   .alert-dismissible .close {
-    top:-8px;
-}
+    top: -8px;
+  }
 
   hr {
     margin-bottom: 3rem;
@@ -47,19 +47,19 @@ body {
   }
 
   //TEXT
-    .w-300 {
+  .w-300 {
     font-weight: 300;
   }
 
-    .w-400 {
+  .w-400 {
     font-weight: 400;
   }
 
-    .w-500 {
+  .w-500 {
     font-weight: 500;
   }
-  p{
-    color:$colorText;
+  p {
+    color: $colorText;
   }
   //FOSuser
 
@@ -177,6 +177,8 @@ body {
       text-wrap: none;
     }
   }
+}
+
 
 //gestion//
 .blanc  a {
@@ -187,26 +189,31 @@ body {
   padding-left: 3px;
   padding-right: 3px;
 }
+
 //sheet chate//
 .userChat {
-  font-size:  1.3ex;
+  font-size: 1.3ex;
   letter-spacing: 0px;
   text-align: center;
 }
+
 //lycee edit//
 .normalFont {
-  font-size:  1.2ex;
+  font-size: 1.2ex;
   letter-spacing: 0px;
   text-transform: none;
   color: $nomDeLycee;
 }
-.transformFont{
+
+.transformFont {
   letter-spacing: 0px;
 }
+
 .form-check-input {
   position: relative;
 }
-.form-check-label{
+
+.form-check-label {
   min-width: 150px;
 }
 
