@@ -16,20 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class LyceeController extends Controller
 {
-    /**
-     * Lists all lycee entities.
-     *
-     * @Route("/", name="admin_lycee_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $lycees = $em->getRepository('AppBundle:Lycee')->findAll();
-        return $this->render('lycee/index.html.twig', array(
-            'lycees' => $lycees,
-        ));
-    }
 
     /**
      * Creates a new lycee entity.
@@ -50,24 +36,11 @@ class LyceeController extends Controller
                 'success',
                 'Le lycée a été ajouté!'
             );
-            return $this->redirectToRoute('admin_lycee_index');
+            return $this->redirectToRoute('admin_manage_school');
         }
         return $this->render('lycee/new.html.twig', array(
             'lycee' => $lycee,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a lycee entity.
-     *
-     * @Route("/{id}", name="admin_lycee_show")
-     * @Method("GET")
-     */
-    public function showAction(Lycee $lycee)
-    {
-        return $this->render('lycee/show.html.twig', array(
-            'lycee' => $lycee,
         ));
     }
 
@@ -87,7 +60,7 @@ class LyceeController extends Controller
                 'success',
                 'Vos modifications ont été enregistrées!'
             );
-            return $this->redirectToRoute('admin_lycee_edit', array('id' => $lycee->getId()));
+            return $this->redirectToRoute('admin_manage_school');
         }
         return $this->render('lycee/edit.html.twig', array(
             'lycee' => $lycee,

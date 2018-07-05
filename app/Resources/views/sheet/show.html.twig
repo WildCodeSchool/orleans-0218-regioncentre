@@ -10,9 +10,9 @@
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
                 <a class="btn btn-warning w-500" href="
                 {% if app.user.hasRole('ROLE_ADMIN') %}
-                {{ path('admin_history_sheets') }}
+                {{ path('admin_home_sheets') }}
                 {% elseif app.user.hasRole('ROLE_EMOP') %}
-                {{ path('emop_history_sheets') }}
+                {{ path('emop_home_sheets') }}
                 {% elseif app.user.hasRole('ROLE_LYCEE') %}
                 {{ path('lycee_sheet_index') }}
                 {% endif %}
@@ -142,7 +142,13 @@
             {% for comment in sheet.comments %}
                 <div class="mx-2 mx-lg-4 py-lg-4 row {% if comment.user.id == app.user.id %}flex-row-reverse{% endif %}">
                     <div class="col-auto d-none d-lg-block">
-                        <img class="" src="https://via.placeholder.com/150x150" alt="logo"/>
+                        <img class="avatar-100" src="{% if comment.user.roles[0] == 'ROLE_ADMIN' %}
+                    {{ asset('/images/avatar/avatar_ADMIN.png') }}
+                    {% elseif comment.user.roles[0] == 'ROLE_EMOP' %}
+                    {{ asset('/images/avatar/avatar_EMOP.png') }}
+                    {% elseif comment.user.roles[0] == 'ROLE_LYCEE' %}
+                    {{ asset('/images/avatar/avatar_SITE.png') }}
+                    {% endif %}" alt="logo"/>
                         <p class="w-500 mx-2 userChat pt-2 ">{% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }}
                                 <br> {{ comment.user.phoneNumber }} {% endif %} </p>
                     </div>
@@ -187,12 +193,24 @@
                                     {% endif %}
                                 </div>
                              <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
-                                <div>
-                                    <img class="col-auto d-lg-none" src="https://via.placeholder.com/100x100" alt="logo"
-                                          {% if comment.user.id == app.user.id %}class="float-right"{% else %} class="float-left"{% endif %} />
-                                    <span class="col-auto w-500 mx-2 userChat pt-2 d-lg-none "> {% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }} : {{ comment.user.phoneNumber }} {% endif %} </span>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="col-auto d-lg-none avatar-100" src="
+                                        {% if comment.user.roles[0] == 'ROLE_ADMIN' %}
+                                        {{ asset('/images/avatar/avatar_ADMIN.png') }}
+                                        {% elseif comment.user.roles[0] == 'ROLE_EMOP' %}
+                                        {{ asset('/images/avatar/avatar_EMOP.png') }}
+                                        {% elseif comment.user.roles[0] == 'ROLE_LYCEE' %}
+                                        {{ asset('/images/avatar/avatar_SITE.png') }}
+                                        {% endif %}" alt="logo"
+                                             {% if comment.user.id == app.user.id %}
+                                                 class="float-right"{% else %} class="float-left"
+                                             {% endif %} />
+                                        <span class="col-auto w-500 userChat pt-2 d-lg-none "> {% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }}
+                                                <span class="col-auto w-500 userChat pt-2 d-lg-none "> {{ comment.user.phoneNumber }}</span> {% endif %} </span>
+                                    </div>
+                                    <div class="col col-md-9 col-lg-12">{{ comment.content }}</div>
                                 </div>
-                                <div class="col">{{ comment.content }}</div>
                             </div>
                         </div>
                     </div>
@@ -226,7 +244,13 @@
         {{ form_start(form) }}
         <div id="msg_anchor" class="mx-4 py-4 row flex-row-reverse comments">
             <div class="col-auto d-none d-lg-block">
-                <img class="" src="https://via.placeholder.com/150x150" alt="logo"/>
+                <img class="avatar-200" src="{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                    {{ asset('/images/avatar/avatar_ADMIN.png') }}
+                    {% elseif app.user.roles[0] == 'ROLE_EMOP' %}
+                    {{ asset('/images/avatar/avatar_EMOP.png') }}
+                    {% elseif app.user.roles[0] == 'ROLE_LYCEE' %}
+                    {{ asset('/images/avatar/avatar_SITE.png') }}
+                    {% endif %}" alt="logo"/>
                 <p class="w-500 mx-2 userChat pt-2"> {{ app.user.firstName }} {{ app.user.lastName }} </p>
             </div>
             <div class="col-lg-9">

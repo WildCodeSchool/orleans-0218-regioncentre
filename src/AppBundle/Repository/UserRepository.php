@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findUserByPage(string $offset)
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.username', 'ASC')
+            ->setFirstResult($offset)
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 }

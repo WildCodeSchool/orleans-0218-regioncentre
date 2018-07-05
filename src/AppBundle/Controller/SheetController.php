@@ -45,11 +45,18 @@ class SheetController extends Controller
 
         $sheets = $em->getRepository('AppBundle:Sheet')->findBy([
             'user' => $this->getUser(),
-            'status'=> $status,
-            ]);
+            'status' => $status,
+        ]);
+        foreach ($sheets as $sheet) {
+            $comment = $em->getRepository('AppBundle:Comment')->findoneBy(
+                ['sheet' => $sheet],
+                ['date' => 'DESC']
+            );
+            $sheetsComment[]= ['sheet'=>$sheet,'comment'=>$comment];
+        }
 
         return $this->render('/school/index.html.twig', array(
-            'sheets' => $sheets,
+            'sheetsComment' => $sheetsComment,
         ));
     }
 
@@ -80,8 +87,6 @@ class SheetController extends Controller
                 'La fiche a été ajoutée avec succès.'
             );
 
-            // a partir du user, recup le departemeht du lycee
-            // recup les emops reliés à ce department $department->getUsers();
             $this->sendSheetCreate($sheet);
 
             return $this->redirectToRoute('sheet_show', array('id' => $sheet->getId()));
@@ -112,6 +117,7 @@ class SheetController extends Controller
             $em->persist($comment);
             $em->flush();
             $this->addFlash('comment', 'Nouveau message ajouté avec succès.');
+            $this->sendNotificationMail($comment);
 
             return $this->redirectToRoute('sheet_show', [
                 'id' => $sheet->getId(),
@@ -124,6 +130,48 @@ class SheetController extends Controller
             'comment' => $comment,
             'form' => $form->createView(),
         ));
+    }
+
+    public function sendNotificationMail(Comment $comment)
+    {
+        $commentSheetSite = $comment->getSheet()->getUser();
+        $commentUserRole = $comment->getUser()->getRoles();
+        $sheetId = $comment->getSheet()->getId();
+        
+        if (in_array('ROLE_EMOP', $commentUserRole)) {
+            $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
+            $username = "EMOP";
+            $emops = $commentSiteDepartment->getUsers();
+            foreach ($emops as $emop) {
+                $mails[] = $emop->getMail();
+            }
+        }
+
+        if (in_array('ROLE_LYCEE', $commentUserRole)) {
+            $mails = $commentSheetSite->getMail();
+            $username = $comment->getSheet()->getUser()->getLycee()->getName();
+        }
+
+        if (in_array('ROLE_ADMIN', $commentUserRole)) {
+            $username = "ADMIN";
+            $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
+            $emops = $commentSiteDepartment->getUsers();
+            foreach ($emops as $emop) {
+                $mails[] = $emop->getMail();
+            }
+            $mails[] = $commentSheetSite->getMail();
+        }
+
+        $renderedTemplate = $this->render('email/comment_mail.html.twig', [
+            'username' => $username,
+            'sheet_id' => $sheetId,
+        ]);
+
+        $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
+            ->setFrom($this->getParameter('mailer_user'))
+            ->setTo($mails)
+            ->setBody($renderedTemplate, "text/html");
+        $this->mailer->send($message);
     }
 
     /**
@@ -144,7 +192,8 @@ class SheetController extends Controller
             ->remove("buildings")
             ->remove("constraintsBuildings")
             ->remove("constraintsTechnicals")
-            ->remove("description");
+            ->remove("description")
+            ->remove("contactPeople");
 
         $editForm->handleRequest($request);
 

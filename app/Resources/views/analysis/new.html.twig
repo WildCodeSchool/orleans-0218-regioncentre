@@ -8,7 +8,7 @@
                     <h1>Création d'une nouvelle analyse de demande</h1>
                 </div>
                 <div class="ml-auto p-2 d-none d-lg-block d-xs-none">
-                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_manage_school') }}" role="button">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_manage_analyse') }}" role="button">
                         <i class="fas fa-arrow-left"></i>
                         Retour à la liste
                     </a>
@@ -28,14 +28,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex justify-content-center">
-                        <input type="submit" value="Créer la nouvelle analyse de demandes" class="btn btn-dark"/>
+                        <input type="submit" value="Créer l'analyse de demandes" class="btn btn-dark w-500"/>
                         {{ form_end(form) }}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
-                    <a class="btn btn-warning w-500" href="{{ path('admin_management') }}">Retour à la liste</a>
+                    <a class="btn btn-warning w-500" href="{{ path('admin_manage_analyse') }}">Retour à la liste</a>
                 </div>
             </div>
         </div>

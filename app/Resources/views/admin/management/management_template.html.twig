@@ -10,22 +10,26 @@
             <hr>
             <div class="col-md-12 col-sm-12 blanc">
                 <div class="row">
-                    <div class=" col-12 col-md-4 col-sm-12 my-auto ">
+                    <div class=" col-12 col-md-3 col-sm-12 my-auto ">
                         <a class="btn btn-info btn-block my-2 "
                            href="{{ path('admin_user_new') }}">Ajouter un nouvel utilisateur</a>
                     </div>
-                    <div class="col-12 col-md-4 col-sm-12 my-auto ">
+                    <div class="col-12 col-md-3 col-sm-12 my-auto ">
                         <a class="btn btn-info btn-block my-2 "
                            href="{{ path('admin_lycee_new') }}">Ajouter un nouveau lycée </a>
                     </div>
-                    <div class="col-12 col-md-4 col-sm-12 my-auto ">
+                    <div class="col-12 col-md-3 col-sm-12 my-auto ">
                         <a class="btn btn-info btn-block  my-2 "
                            href="{{ path('admin_metier_new') }}">Ajouter un metier à la liste</a>
+                    </div>
+                    <div class="col-12 col-md-3 col-sm-12 my-auto ">
+                        <a class="btn btn-info btn-block  my-2 "
+                           href="{{ path('admin_analysis_new') }}">Ajouter une analyse à la liste</a>
                     </div>
                 </div>
                 <div class="row my-4 ">
                     <div class="col-12 col-md-4 my-1 d-inline">
-                        <a href="{{ path('admin_manage_user') }}" id="user"
+                        <a href="{{ path('admin_manage_user', { 'page': 1 }) }}" id="user"
                            class="btn btn-outline-secondary btn-block btn-sm text-muted">Voir tous les utilisateurs</a>
                     </div>
                     <div class="col-12 col-md-4 my-1 d-inline">
