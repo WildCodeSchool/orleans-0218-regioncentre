@@ -117,6 +117,7 @@ class SheetController extends Controller
             $em->persist($comment);
             $em->flush();
             $this->addFlash('comment', 'Nouveau message ajouté avec succès.');
+            $this->sendNotificationMail($comment);
 
             return $this->redirectToRoute('sheet_show', [
                 'id' => $sheet->getId(),
@@ -129,6 +130,39 @@ class SheetController extends Controller
             'comment' => $comment,
             'form' => $form->createView(),
         ));
+    }
+
+    public function sendNotificationMail(Comment $comment)
+    {
+        $commentSheetSite = $comment->getSheet()->getUser();
+        $commentUserRole = $comment->getUser()->getRoles();
+        $sheetId = $comment->getSheet()->getId();
+
+
+        if (in_array('ROLE_EMOP', $commentUserRole)) {
+            $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
+            $username = "EMOP";
+            $emops = $commentSiteDepartment->getUsers();
+            foreach ($emops as $emop) {
+                $mails[] = $emop->getMail();
+            }
+        }
+
+        if (in_array('ROLE_LYCEE', $commentUserRole)) {
+            $mails = $commentSheetSite->getMail();
+            $username = $comment->getSheet()->getUser()->getLycee()->getName();
+        }
+
+        $renderedTemplate = $this->render('email/comment_mail.html.twig', [
+            'username' => $username,
+            'sheet_id' => $sheetId,
+        ]);
+
+        $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
+            ->setFrom($this->getParameter('mailer_user'))
+            ->setTo($mails)
+            ->setBody($renderedTemplate, "text/html");
+        $this->mailer->send($message);
     }
 
     /**
