@@ -38,15 +38,12 @@ class ManagementController extends Controller
         $form = $this->createForm('AppBundle\Form\HistorySheetType');
         $form->handleRequest($request);
 
-        $data = $form->getData();
-        $department = $data['filter'];
-
-        if ($form->isSubmitted() && $form->isValid() && $department != null) {
-            $school = $em->getRepository(Lycee::class)
-                ->findSchoolOrderByDepartment($department);
-        } else {
-            $school = $em->getRepository(Lycee::class)->findSchoolOrderByDepartment('');
+        $department = null ;
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $department = $data['filter'];
         }
+        $school = $em->getRepository(Lycee::class)->findSchoolOrderByDepartment($department);
 
         return $this->render('admin/management/school.html.twig', array(
             'school' => $school,
