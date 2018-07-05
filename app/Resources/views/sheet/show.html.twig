@@ -134,7 +134,10 @@
                 <h1> LISTE DE COMMENTAIRES </h1>
             </div>
             <div class="col-auto d-none d-lg-flex d-xs-none align-content-start">
-                <a class="btn btn-primary w-500" href="#write_a_new_comment"><i class="fas fa-arrow-down mr-4"></i>Commenter la fiche</a>
+                {% if sheet.comments is not empty %}<a class="btn btn-primary w-500" href="#write_a_new_comment">
+                    <i class="fas fa-arrow-down mr-4"></i>
+                        Commenter la fiche
+                </a>{% endif %}
             </div>
         </div>
         <hr>
