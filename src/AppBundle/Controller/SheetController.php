@@ -137,8 +137,7 @@ class SheetController extends Controller
         $commentSheetSite = $comment->getSheet()->getUser();
         $commentUserRole = $comment->getUser()->getRoles();
         $sheetId = $comment->getSheet()->getId();
-
-
+        
         if (in_array('ROLE_EMOP', $commentUserRole)) {
             $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
             $username = "EMOP";
@@ -151,6 +150,16 @@ class SheetController extends Controller
         if (in_array('ROLE_LYCEE', $commentUserRole)) {
             $mails = $commentSheetSite->getMail();
             $username = $comment->getSheet()->getUser()->getLycee()->getName();
+        }
+
+        if (in_array('ROLE_ADMIN', $commentUserRole)) {
+            $username = "ADMIN";
+            $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
+            $emops = $commentSiteDepartment->getUsers();
+            foreach ($emops as $emop) {
+                $mails[] = $emop->getMail();
+            }
+            $mails[] = $commentSheetSite->getMail();
         }
 
         $renderedTemplate = $this->render('email/comment_mail.html.twig', [
