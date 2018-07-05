@@ -11,15 +11,17 @@
                 <tr>
                     <th scope="col">Nom du site</th>
                     <th scope="col">Adresse</th>
+                    <th scope="col">Département</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for school in school %}
                     <tr>
-                        <td>{{ school.name }}</td>
-                        <td>{{ school.address }},<strong> {{ school.postalCode }} {{ school.city }}</strong>
-                        </td>
+                        <th>{{ school.name }}</th>
+                        <td>{{ school.address }}, {{ school.postalCode }} {{ school.city }}</td>
+                        <td>{{ school.department.shortCode }} - {{ school.department.name }}</td>
+
                         <td>
                             <a class="badge badge-dark mx-1 w-auto p-3"
                                href="{{ path('admin_lycee_edit', { 'id': school.id }) }}">

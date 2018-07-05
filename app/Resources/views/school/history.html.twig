@@ -1,0 +1,89 @@
+{% include 'layout_admin.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div class="formSheet">
+            <div class="row">
+                <div class="col-md-12 col-lg-9 titre">
+                    <h1>Historique des fiches</h1>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="table-responsive-xl mx-auto">
+                    <table class="table table-sm table-light d-none d-xl-block">
+                        <thead class="thead-light border-0">
+                        <tr>
+                            <th></th>
+                            <th scope="col">Date de création</th>
+                            <th scope="col">Objet de la demande</th>
+                            <th scope="col">Analyse de la demande</th>
+                            <th scope="col">Lycée</th>
+                            <th scope="col">Ville</th>
+                            <th scope="col" class="t-date">Modifiée le</th>
+                            <th scope="col" class="t-button"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for sheet in sheets %}
+                            <tr>
+                                <td>
+                                    {% if sheet.urgent == true %}
+                                        <span class="badge badge-warning text-dark mx-1"> URGENT </span>
+                                    {% endif %}
+                                    <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
+
+                                </td>
+                                <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
+                                <td>{{ sheet.subject }}</td>
+                                {% if sheet.analysis %}
+                                    <td>{{ sheet.analysis.name }}</td>
+                                {% else %}
+                                    <td>A venir</td>
+                                {% endif %}
+                                <td>{{ sheet.user.lycee.name }}</td>
+                                <td>{{ sheet.user.lycee.city }}</td>
+                                <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
+                                <td>
+                                    <a class="badge badge-dark mx-1"
+                                       href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row ">
+                {% for sheet in sheets %}
+                    <div class="col-12 col-md-6 mx-auto">
+                        <div class="card mr-2 ml-2 mt-4 d-xl-none">
+                            <div class="card-header text-center">
+                                {% if sheet.urgent == true %}
+                                    <span class="badge badge-warning text-dark mx-1 w-25 mt-1"> URGENT </span>
+                                {% endif %}
+                                <span class="badge badge-info mx-1 mb-2 w-25 mt-1">{{ sheet.status.name }}</span>
+
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Date de création:</strong> {{ sheet.creationDate|date("d/m/Y") }}</p>
+                                <p><strong>Objet de la demande:</strong> {{ sheet.subject }}</p>
+                                <p><strong>Analyse de la demande:</strong>
+                                    {% if sheet.analysis %}
+                                        {{ sheet.analysis.name }}
+                                    {% else %}A venir
+                                    {% endif %}</p>
+                                <p><strong>Nom du lycée:</strong> {{ sheet.user.lycee.name }}</p>
+                                <p><strong>Ville:</strong> {{ sheet.user.lycee.city }}</p>
+                                <p><strong>Modifiée le:</strong> {{ sheet.creationDate|date("d/m/Y") }}</p>
+                            </div>
+                            <div class="card-footer text-muted text-center">
+                                <a class="badge badge-dark mx-auto w-50"
+                                   href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -5,16 +5,18 @@
         <div class="row">
             <div class="col-md-12 pt-4 d-inline">
                 <div class="d-inline col-md-4">
-                    <h1 class="d-inline ">Modification de "{{ lycee.name }}"</h1>
+                    <h1 class="d-inline transformFont">Modification de <span class="normalFont">{{ lycee.name }}</span> </h1>
                 </div>
-                <div class="col-md-4 d-sm-block d-none float-md-right ">
-                    <a class="btn btn-warning" href="{{ path('admin_lycee_index') }}">Retour à la liste des lycées</a>
+                <div class="col-md-4 float-md-right ">
+                    <a class="btn btn-warning" href="{{ path('admin_manage_school') }}">Retour à la liste des lycées</a>
                 </div>
                 <hr/>
-                <div class="col-12 col-md-6 mx-auto form-lycee">
+                <div class="col-12 col-md-6 mx-auto form-lycee ">
                     {{ form_start(edit_form, {'attr':{'class':'d-inline col-m-3'}}) }}
                     {{ form_widget(edit_form) }}
-                    <input class="btn btn-dark col-md-3 float-md-right" type="submit" value="Modifier" />
+                    <div class="d-flex justify-content-center">
+                        <input class="btn btn-dark col-md-3 " type="submit" value="Modifier" />
+                    </div>
                     {{ form_end(edit_form) }}
                 </div>
             </div>

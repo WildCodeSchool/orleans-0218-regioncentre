@@ -49,7 +49,7 @@ class MetierController extends Controller
             $em->persist($metier);
             $em->flush();
 
-            return $this->redirectToRoute('metier_new');
+            return $this->redirectToRoute('admin_manage_job');
         }
 
         $pm = $this->getDoctrine()->getManager();
@@ -87,7 +87,6 @@ class MetierController extends Controller
      */
     public function editAction(Request $request, Metier $metier)
     {
-        $deleteForm = $this->createDeleteForm($metier);
         $editForm = $this->createForm('AppBundle\Form\MetierType', $metier);
         $editForm->handleRequest($request);
 
@@ -98,49 +97,12 @@ class MetierController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-
         $metiers = $em->getRepository('AppBundle:Metier')->findAll();
 
         return $this->render('metier/edit.html.twig', array(
             'metier' => $metier,
             'metiers' => $metiers,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
-    }
-
-    /**
-     * Deletes a metier entity.
-     *
-     * @Route("/{id}", name="admin_metier_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Metier $metier)
-    {
-        $form = $this->createDeleteForm($metier);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($metier);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('admin_metier_new');
-    }
-
-    /**
-     * Creates a form to delete a metier entity.
-     *
-     * @param Metier $metier The metier entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Metier $metier)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_metier_delete', array('id' => $metier->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
     }
 }

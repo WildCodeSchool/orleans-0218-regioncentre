@@ -93,7 +93,7 @@ class UserController extends Controller
                 'success',
                 'l´Utilisateur a été ajouté avec succes.'
             );
-            return $this->redirectToRoute('admin_user_index');
+            return $this->redirectToRoute('admin_manage_user');
         }
         return $this->render('user/new.html.twig', array(
             'user' => $user,
@@ -131,7 +131,7 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('admin_user_edit', array('id' => $user->getId()));
         }
-        return $this->render('user/sheet_edit.html.twig', array(
+        return $this->render('user/edit.html.twig', array(
             'user' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

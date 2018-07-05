@@ -18,7 +18,7 @@
                         <td></td>
                         <td>{{ job.name }}</td>
                         <td>
-                            <a class="badge badge-dark mx-1 w-auto p-3" href="{{ path('admin_metier_new') }}">
+                            <a class="badge badge-dark mx-1 w-auto p-3" href="{{ path('admin_metier_edit', { 'id': job.id }) }}">
                                 Modifier le metier</a>
                         </td>
                     </tr>

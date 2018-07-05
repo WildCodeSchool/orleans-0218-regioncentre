@@ -5,14 +5,14 @@
         <div class="row mx-5">
             <div class="col d-flex">
                 <h1 class="align-self-baseline">FICHE DE TRAVAUX</h1>
-                <p class="align-self-baseline ml-5 w-400 h4">{{ 'Nom du lycée'|upper }}</p>
+                <p class="align-self-baseline ml-5 w-400 h4">{{ sheet.user.lycee.name|upper }}</p>
             </div>
             <div class="col-auto justify-content-end d-none d-lg-flex d-xs-none align-content-start">
                 <a class="btn btn-warning w-500" href="
                 {% if app.user.hasRole('ROLE_ADMIN') %}
-                {{ path('admin_history_sheets') }}
+                {{ path('admin_home_sheets') }}
                 {% elseif app.user.hasRole('ROLE_EMOP') %}
-                {{ path('emop_history_sheets') }}
+                {{ path('emop_home_sheets') }}
                 {% elseif app.user.hasRole('ROLE_LYCEE') %}
                 {{ path('lycee_sheet_index') }}
                 {% endif %}
@@ -66,7 +66,7 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Description de la demande'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5">
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
                     <p>{{ sheet.description }}</p>
                 </div>
             </div>
@@ -76,9 +76,9 @@
                 <p class="h5">{{ 'Bâtiment concerné'|upper }}</p>
                 <p>{{ sheet.buildings }}</p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 text-center">
                 <p class="h5">{{ 'metier concerné'|upper }}</p>
-                <p>{{ sheet.job.name }}</p>
+                    <p>{{ sheet.job.name ?? 'Non renseigné'  }}</p>
             </div>
         </div>
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-3">
@@ -86,7 +86,7 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Contraintes de fonctionnement de l\'établissement'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5">
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
                     <p>{{ sheet.constraintsBuildings ?? 'Non renseigné' }}</p>
                 </div>
             </div>
@@ -94,8 +94,18 @@
                 <div class="card-header text-center">
                     <p class="h5">{{ 'Contraintes techniques'|upper }}</p>
                 </div>
-                <div class="m-3 my-lg-3 mx-lg-5">
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
                     <p>{{ sheet.constraintsTechnicals ?? 'Non renseigné' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-5">
+            <div class="card m-2">
+                <div class="card-header justify-content-center">
+                    <p class="h5">{{ 'Personne à contacter en cas d\'abscence'|upper }}</p>
+                </div>
+                <div class="m-3 my-lg-3 mx-lg-5 text-center">
+                        <p>{{ sheet.contactPeople ?? 'Non renseigné' }}</p>
                 </div>
             </div>
         </div>
@@ -132,46 +142,74 @@
             {% for comment in sheet.comments %}
                 <div class="mx-2 mx-lg-4 py-lg-4 row {% if comment.user.id == app.user.id %}flex-row-reverse{% endif %}">
                     <div class="col-auto d-none d-lg-block">
-                        <img class="" src="https://via.placeholder.com/150x150" alt="logo"/>
+                        <img class="avatar-100" src="{% if comment.user.roles[0] == 'ROLE_ADMIN' %}
+                    {{ asset('/images/avatar/avatar_ADMIN.png') }}
+                    {% elseif comment.user.roles[0] == 'ROLE_EMOP' %}
+                    {{ asset('/images/avatar/avatar_EMOP.png') }}
+                    {% elseif comment.user.roles[0] == 'ROLE_LYCEE' %}
+                    {{ asset('/images/avatar/avatar_SITE.png') }}
+                    {% endif %}" alt="logo"/>
+                        <p class="w-500 mx-2 userChat pt-2 ">{% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }}
+                                <br> {{ comment.user.phoneNumber }} {% endif %} </p>
                     </div>
                     <div class="col col-lg-9">
                         <div class="card mb-4 my-lg-4 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}bg-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} bg-admin {% else %}bg-emop {% endif %} border-0">
                             <div class="card-header {% if comment.user.id == app.user.id %}justify-content-end {% endif %} text-light d-inline-flex border-0 pb-0">
-                                <p class="w-500 mx-2 text-light">{{ comment.user.username|upper }}</p>
-                                <p class="mx-2 text-light"><strong>{{ comment.date|date('d M Y') }}</strong></p>
-                                {% if loop.last and comment.user.id == app.user.id %}
-                                    <div class="col mx-auto d-flex justify-content-end">
-                                        <a href="#deleteModal{{ comment.id }}" data-toggle="modal" class="text-light">Supprimer
-                                            ce commentaire
-                                            <i class="fas fa-trash-alt"></i></a>
-                                    </div>
-                                    <div id="deleteModal{{ comment.id }}" class="modal fade">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Confirmation</h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-hidden="true">&times;
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Voulez-vous vraiment supprimer le message ?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <div class="row mx-auto">
-                                                        <div class="col-4 mr-4">
-                                                            <button type="button" class="btn btn-default"
-                                                                    data-dismiss="modal">Annuler
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-4 ml-4">
-                                                            {{ render(controller('AppBundle:Comment:delete', {'id':comment.id})) }}
+    <p class="w-500 mx-2 text-light ">{% if comment.user.Roles.0 == 'ROLE_LYCEE' %}{{ comment.user.lycee.name }} {% elseif comment.user.roles.0 == "ROLE_ADMIN" %} ADMIN {% else %}L'EMOP {% endif %}</p>
+                                <p class="mx-2 text-light"><strong>{{ comment.date|date('d/m/Y à H:i') }}</strong></p>
+                                  {% if loop.last and comment.user.id == app.user.id %}
+                                        <div class="col mx-auto d-flex justify-content-end">
+                                            <a href="#deleteModal{{ comment.id }}" data-toggle="modal" class="text-light">Supprimer
+                                                ce commentaire
+                                                <i class="fas fa-trash-alt"></i></a>
+                                        </div>
+                                        <div id="deleteModal{{ comment.id }}" class="modal fade">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Confirmation</h4>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">&times;
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Voulez-vous vraiment supprimer le message ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="row mx-auto">
+                                                            <div class="col-4 mr-4">
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">Annuler
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-4 ml-4">
+                                                                {{ render(controller('AppBundle:Comment:delete', {'id':comment.id})) }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    {% endif %}
+                                </div>
+                             <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="col-auto d-lg-none avatar-100" src="
+                                        {% if comment.user.roles[0] == 'ROLE_ADMIN' %}
+                                        {{ asset('/images/avatar/avatar_ADMIN.png') }}
+                                        {% elseif comment.user.roles[0] == 'ROLE_EMOP' %}
+                                        {{ asset('/images/avatar/avatar_EMOP.png') }}
+                                        {% elseif comment.user.roles[0] == 'ROLE_LYCEE' %}
+                                        {{ asset('/images/avatar/avatar_SITE.png') }}
+                                        {% endif %}" alt="logo"
+                                             {% if comment.user.id == app.user.id %}
+                                                 class="float-right"{% else %} class="float-left"
+                                             {% endif %} />
+                                        <span class="col-auto w-500 userChat pt-2 d-lg-none "> {% if comment.user.id == app.user.id %}Moi{% else %}{{ comment.user.firstName }} {{ comment.user.lastName }}
+                                                <span class="col-auto w-500 userChat pt-2 d-lg-none "> {{ comment.user.phoneNumber }}</span> {% endif %} </span>
                                     </div>
+
                                 {% endif %}
                             </div>
                             <div class="card-body bg-light text-dark pt-3 pb-5 px-2 px-lg-5 {% if comment.user.roles.0 == 'ROLE_LYCEE' %}border-site {% elseif comment.user.roles.0 == "ROLE_ADMIN" %}border-admin{% else %} border-emop {% endif %}">
@@ -210,8 +248,15 @@
         <hr>
         {{ form_start(form) }}
         <div id="msg_anchor" class="mx-4 py-4 row flex-row-reverse comments">
-            <div class="col-auto">
-                <img class="d-none d-lg-block" src="https://via.placeholder.com/150x150" alt="logo"/>
+            <div class="col-auto d-none d-lg-block">
+                <img class="avatar-200" src="{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                    {{ asset('/images/avatar/avatar_ADMIN.png') }}
+                    {% elseif app.user.roles[0] == 'ROLE_EMOP' %}
+                    {{ asset('/images/avatar/avatar_EMOP.png') }}
+                    {% elseif app.user.roles[0] == 'ROLE_LYCEE' %}
+                    {{ asset('/images/avatar/avatar_SITE.png') }}
+                    {% endif %}" alt="logo"/>
+                <p class="w-500 mx-2 userChat pt-2"> {{ app.user.firstName }} {{ app.user.lastName }} </p>
             </div>
             <div class="col-lg-9">
                 {{ form_row(form.content) }}

@@ -1,9 +1,6 @@
 {% extends 'admin/management/management_template.html.twig' %}
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block listing %}
-    {{ form_start(form,{'attr':{'onChange':'submit()' }}) }}
-    {{ form_widget(form ) }}
-    {{ form_end(form) }}
+
     <div class="row">
         <div class="table-responsive-xl mx-auto w-100">
             <table class="table table-sm table-light">
@@ -32,6 +29,19 @@
                     <p>Aucun utilisateur dans ce département</p>
                 </div>
             {% endif %}
+        </div>
+        <div class="row mx-auto my-3">
+            <ul class="pagination ">
+                <li class="page-item">
+                    <a class="btn btn-outline-secondary btn-ms text-muted pr-3 pl-3 mr-5 {% if page == 1 %}disabled{% endif %}" href="{{ path('admin_manage_user', { 'page':  page-1  }) }}" role="button">Précédent</a>
+                </li>
+                <li class="page-item mt-3 d-none d-sm-block">
+                    <p>Page {{ page }} sur {{ pageMax }}</p>
+                </li>
+                <li class="page-item">
+                    <a class="btn btn-outline-secondary btn-ms text-muted pr-3 pl-3 ml-5 {% if page == pageMax %}disabled{% endif %}" href="{{ path('admin_manage_user', { 'page': page+1  }) }}" role="button">Suivant</a>
+                </li>
+            </ul>
         </div>
     </div>
 {% endblock %}
