@@ -93,7 +93,7 @@ class AnalysisController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_analysis_edit', array('id' => $analysis->getId()));
+            return $this->redirectToRoute('admin_manage_analyse');
         }
 
         return $this->render('analysis/edit.html.twig', array(

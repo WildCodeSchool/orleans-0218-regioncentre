@@ -149,7 +149,8 @@ class SheetController extends Controller
             ->remove("buildings")
             ->remove("constraintsBuildings")
             ->remove("constraintsTechnicals")
-            ->remove("description");
+            ->remove("description")
+            ->remove("contactPeople");
 
         $editForm->handleRequest($request);
 

@@ -92,7 +92,7 @@ class StatutController extends Controller
             return $this->redirectToRoute('admin_statut_index');
         }
 
-        return $this->render('statut/sheet_edit.html.twig', array(
+        return $this->render('statut/edit.html.twig', array(
             'statut' => $statut,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

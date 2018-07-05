@@ -60,7 +60,7 @@ class LyceeController extends Controller
                 'success',
                 'Vos modifications ont été enregistrées!'
             );
-            return $this->redirectToRoute('admin_lycee_edit', array('id' => $lycee->getId()));
+            return $this->redirectToRoute('admin_manage_school');
         }
         return $this->render('lycee/edit.html.twig', array(
             'lycee' => $lycee,
