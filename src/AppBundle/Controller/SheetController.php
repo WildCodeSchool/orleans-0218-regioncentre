@@ -125,41 +125,30 @@ class SheetController extends Controller
         $sheetId = $comment->getSheet()->getId();
 
 
-        if ($commentUserRole[0] == "ROLE_LYCEE") {
+        if (in_array('ROLE_EMOP', $commentUserRole)) {
             $commentSiteDepartment = $commentSheetSite->getLycee()->getDepartment();
             $username = "EMOP";
             $emops = $commentSiteDepartment->getUsers();
             foreach ($emops as $emop) {
                 $mails[] = $emop->getMail();
             }
-
-            $renderedTemplate = $this->render('email/comment_mail.html.twig', [
-                'username' => $username,
-                'sheet_id' => $sheetId,
-            ]);
-
-            $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
-                ->setFrom($mails)
-                ->setTo($mails)
-                ->setBody($renderedTemplate, "text/html");
-            $this->mailer->send($message);
         }
 
-        if ($commentUserRole[0] == "ROLE_EMOP") {
-            $mail = $commentSheetSite->getMail();
+        if (in_array('ROLE_LYCEE', $commentUserRole)) {
+            $mails = $commentSheetSite->getMail();
             $username = $comment->getSheet()->getUser()->getLycee()->getName();
-
-            $renderedTemplate = $this->render('email/comment_mail.html.twig', [
-                'username' => $username,
-                'sheet' => $sheet,
-            ]);
-
-            $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
-                ->setFrom($mail)
-                ->setTo($mail)
-                ->setBody($renderedTemplate, "text/html");
-            $this->mailer->send($message);
         }
+
+        $renderedTemplate = $this->render('email/comment_mail.html.twig', [
+            'username' => $username,
+            'sheet_id' => $sheetId,
+        ]);
+
+        $message = (new \Swift_Message('E-maintenance | Nouveau commentaire'))
+            ->setFrom($this->getParameter('mailer_user'))
+            ->setTo($mails)
+            ->setBody($renderedTemplate, "text/html");
+        $this->mailer->send($message);
     }
 
     /**
