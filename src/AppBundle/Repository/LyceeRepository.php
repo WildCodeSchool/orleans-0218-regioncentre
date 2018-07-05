@@ -19,7 +19,7 @@ class LyceeRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter(':department', $department);
         }
 
-        $qb->orderBy('d.shortCode','ASC')
+        $qb->orderBy('d.shortCode', 'ASC')
             ->addOrderBy('s.name', 'ASC')
             ;
         return $qb->getQuery()->getResult();
