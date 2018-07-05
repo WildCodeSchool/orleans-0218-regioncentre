@@ -72,7 +72,7 @@ class ManagementController extends Controller
 
         $user = $em->getRepository(User::class)->findAll();
 
-        $nbrUser = sizeof($user);
+        $nbrUser = count($user);
         $pageMax = ceil($nbrUser/self::LIMIT);
         if ($page < 1) {
             $page = 1;
