@@ -24,7 +24,6 @@ var dep = document.getElementsByName('appbundle_user[departments][]');
 var i;
 
 
-
 admin.addEventListener('change', function () {
     if (this.checked) {
         emop.checked = false;
