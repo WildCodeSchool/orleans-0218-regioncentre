@@ -23,6 +23,8 @@ $(lycees).hide();
 var dep = document.getElementsByName('appbundle_user[departments][]');
 var i;
 
+
+
 admin.addEventListener('change', function () {
     if (this.checked) {
         emop.checked = false;
@@ -30,10 +32,7 @@ admin.addEventListener('change', function () {
         $(departments).hide();
         $(lycees).hide();
         $(reqlycee).attr('required', false);
-        for (i = 0; i < dep.length; i++) {
-            $(dep[i]).attr('required', false);
-        }
-
+        unDepReq();
     }
 });
 emop.addEventListener('change', function () {
@@ -61,11 +60,10 @@ lycee.addEventListener('change', function () {
         $(departments).hide();
         $(admin).attr('required', false);
         $(reqlycee).attr('required', true);
-        for (i = 0; i < dep.length; i++) {
-            $(dep[i]).attr('required', false);
-        }
+        unDepReq();
     }
 });
+
 
 function reqDep() {
     var dep = document.getElementsByName('appbundle_user[departments][]');
@@ -85,6 +83,12 @@ function reqDep() {
         for (i = 0; i < dep.length; i++) {
             $(dep[i]).attr('required', true);
         }
+    }
+}
+
+function unDepReq() {
+    for (i = 0; i < dep.length; i++) {
+        $(dep[i]).attr('required', false);
     }
 }
 
