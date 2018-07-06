@@ -208,8 +208,7 @@ class SheetController extends Controller
             $sheet->setStatus($analysis->getStatus());
             $this->getDoctrine()->getManager()->flush();
             $this->sendStatus($sheet);
-            $this->addFlash('success', 'Fiche modifiée avec succès' );
-
+            $this->addFlash('success', 'Fiche modifiée avec succès');
             return $this->redirectToRoute('emop_sheet_edit', array('id' => $sheet->getId()));
         }
 
