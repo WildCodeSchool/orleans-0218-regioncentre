@@ -110,9 +110,28 @@ class CommentController extends Controller
     public function deleteAction(Request $request, Comment $comment)
     {
         if ($this->getUser() !== $comment->getUser()) {
-            throw new AccessDeniedException('Impossible de supprimer ce commentaire');
+            $this->addFlash(
+                'comment',
+                'Impossible de supprimer ce message.'
+            );
+            return $this->redirectToRoute('sheet_show', [
+                'id'=>$comment->getSheet()->getId(),
+                '_fragment' => 'msg_anchor',
+            ]);
         }
+        $em = $this->getDoctrine()->getManager();
+        $lastComment = $em->getRepository('AppBundle:Comment')->findOneBy([], ['id' => 'DESC']);
 
+        if ($lastComment !== $comment) {
+            $this->addFlash(
+                'comment',
+                'Impossible de supprimer ce message.'
+            );
+            return $this->redirectToRoute('sheet_show', [
+                'id'=>$comment->getSheet()->getId(),
+                '_fragment' => 'msg_anchor',
+            ]);
+        }
         $deleteform = $this->createDeleteForm($comment);
         $deleteform->handleRequest($request);
 

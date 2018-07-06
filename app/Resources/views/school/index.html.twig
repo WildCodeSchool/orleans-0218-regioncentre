@@ -1,4 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
+{% block title %}Accueil | E-Maintenance{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -7,25 +8,25 @@
                 <h1 class="pl-5">ACCUEIL</h1>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 justify-content-end">
-                <a class="btn btn-primary" href="{{ path('lycee_sheet_new') }}">Créée une nouvelle fiche</a>
+                <a class="btn btn-primary " href="{{ path('lycee_sheet_new') }}"><i class="fas fa-plus-circle"></i> Créer une nouvelle fiche</a>
             </div>
         </div>
-        {% for sheet in sheets %}
+        {% for sheet in sheetsComment %}
             <div class="row justify-content-center pt-1 pb-5">
                 <div class="col-12 col-md-10">
                     <div class="card">
                         <div class="card-header">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#cardGeneral{{ sheet.id }}" role="tab"
+                                    <a class="nav-link active" href="#cardGeneral{{ sheet.sheet.id }}" role="tab"
                                        data-toggle="tab">Général</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#cardCommentair{{ sheet.id }}" role="tab"
+                                    <a class="nav-link" href="#cardCommentair{{ sheet.sheet.id }}" role="tab"
                                        data-toggle="tab">Dernier commentaire</a>
                                 </li>
                                 <li class="ml-auto">
-                                    {% if sheet.urgent == true %}
+                                    {% if sheet.sheet.urgent == true %}
                                         <span class="badge badge-warning text-dark mx-1 align-self-center text-right">
                                             URGENT
                                         </span>
@@ -34,30 +35,30 @@
                             </ul>
                         </div>
                         <div class="card-body tab-content text-dark">
-                            <div id="cardGeneral{{ sheet.id }}" role="tabpanel" class="tab-pane active">
+                            <div id="cardGeneral{{ sheet.sheet.id }}" role="tabpanel" class="tab-pane active">
                                 <div class="row justify-content-center mx-auto">
-                                    <h4 class="card-title align-self-center">{{ sheet.subject }}</h4>
+                                    <h4 class="card-title align-self-center">{{ sheet.sheet.subject }}</h4>
                                 </div>
                                 <div class="card-text row justify-content-between pt-3">
                                     <div class="col-12 col-md-4">
-                                        {#date de la derniére analyse#}
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <p class="text-center">{{ sheet.status.name }}</p>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        {% if sheet.analysis %}
-                                            {{ sheet.analysis.name }}
+                                        {% if sheet.sheet.analysisDate %}
+                                            {{ sheet.sheet.analysisDate|date("d / m / Y") }}
                                         {% else %}
-                                            La fiche n'a pas encore été analysée.
+                                            La fiche n'a pas été modifiée.
                                         {% endif %}
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p class="text-center">{{ sheet.sheet.status.name }}</p>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        {{ sheet.sheet.analysis.name ?? 'La fiche n\'a pas encore été analysée.' }}
                                     </div>
                                 </div>
                             </div>
-                            <div id="cardCommentair{{ sheet.id }}" role="tabpanel" class="tab-pane">
-                                <h4 class="card-title text-center">{{ sheet.subject }}</h4>
+                            <div id="cardCommentair{{ sheet.sheet.id }}" role="tabpanel" class="tab-pane">
+                                <h4 class="card-title text-center">{{ sheet.sheet.subject }}</h4>
                                 <div class="card-text row justify-content-center pt-3">
-                                    {#commentaire#}
+                                        {{ sheet.comment.content ?? 'La fiche n\'a pas encore de commentaire' }}
                                 </div>
                             </div>
                         </div>
@@ -65,11 +66,11 @@
                             <div class="row justify-content-start justify-content-md-center justify-content-lg-center justify-content-xl-between">
                                 <div class="col-12 col-sm-6 col-md-5 col-lg-7 col-xl-9">
                                     <p class="text-left text-dark">
-                                        Créée le : {{ sheet.creationDate|date("d / m / Y") }}
+                                        Créée le : {{ sheet.sheet.creationDate|date("d / m / Y") }}
                                     </p>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                                    <a class="btn btn-primary" href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir
+                                    <a class="btn btn-primary" href="{{ path('sheet_show', { 'id': sheet.sheet.id }) }}">Voir
                                         les détails</a>
                                 </div>
                             </div>

@@ -1,4 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
+{% block title %}Editer un metier | E-Maintenance{% endblock %}
 {% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     <div class="container">
@@ -8,7 +9,7 @@
                     <h1>Édition de {{ metier.name }}</h1>
                 </div>
                 <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
-                    <a class="btn btn-warning w-500" href="{{ path('admin_management') }}">
+                    <a class="btn btn-warning w-500" href="{{ path('admin_manage_job') }}">
                         <i class="fas fa-arrow-left"></i>
                         Retour
                     </a>
@@ -29,13 +30,9 @@
                         <input class="btn btn-dark " type="submit" value="Éditer ce métier"/>
                         {{ form_end(edit_form) }}
                     </div>
-                    <div class="col mx-auto d-flex justify-content-center">
-                        <a href="#deleteModal" class="btn btn-danger" data-toggle="modal">Supprimer ce métier
-                            <i class="fas fa-trash-alt"></i></a>
-                    </div>
                     {{ form_end(edit_form.name) }}
                     <div class="col mx-auto d-flex justify-content-center d-lg-none">
-                        <a class="btn btn-warning" href="{{ path('admin_management') }}">
+                        <a class="btn btn-warning" href="{{ path('admin_manage_job') }}">
                             <i class="fas fa-arrow-left"></i>
                             Retour
                         </a>
@@ -58,31 +55,6 @@
                             {% endfor %}
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="deleteModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Confirmation</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Voulez-vous vraiment supprimer "{{ metier.name }}" ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="row mx-auto">
-                            <div class="col-4 mr-4">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            </div>
-                            <div class="col-4 ml-4">
-                                {{ form_start(delete_form) }}
-                                <input class="btn btn-danger w-500" type="submit" value="Supprimer">
-                                {{ form_end(delete_form) }}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

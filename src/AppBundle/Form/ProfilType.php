@@ -31,6 +31,10 @@ class ProfilType extends AbstractType
             ->add('phoneNumber', TextType::class, [
                 'label' => 'Téléphone',
                 'attr' => array('rows' => '4', 'cols' => '10')
+            ])
+            ->add('mail', EmailType::class, [
+                'label' => 'Email de contact',
+                'attr' => array('rows' => '4', 'cols' => '10')
             ]);
 
         $builder->remove('username')->remove('email');

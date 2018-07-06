@@ -9,6 +9,7 @@ use AppBundle\Entity\Metier;
 use AppBundle\Entity\Sheet;
 use AppBundle\Entity\Statut;
 use AppBundle\Entity\User;
+use AppBundle\Repository\LyceeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,12 +22,14 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ManagementController extends Controller
 {
+    const LIMIT = 10;
+
     /**
      * Management page
      * Listing of works.
      *
      * @Route("/school", name="admin_manage_school")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -37,14 +40,12 @@ class ManagementController extends Controller
         $form = $this->createForm('AppBundle\Form\HistorySheetType');
         $form->handleRequest($request);
 
-        $data = $form->getData();
-        $department = $data['filter'];
-
-        if ($form->isSubmitted() && $form->isValid() && $department != null) {
-            $school = $em->getRepository(Lycee::class)->findByDepartment($department);
-        } else {
-            $school = $em->getRepository(Lycee::class)->findBy([], ['postalCode' => 'ASC'], 5);
+        $department = null ;
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $department = $data['filter'];
         }
+        $school = $em->getRepository(Lycee::class)->findSchoolOrderByDepartment($department);
 
         return $this->render('admin/management/school.html.twig', array(
             'school' => $school,
@@ -57,30 +58,38 @@ class ManagementController extends Controller
      * Management page
      * Listing of works.
      *
-     * @Route("/user", name="admin_manage_user")
-     * @Method("GET")
+     * @Route("/user/{page}", name="admin_manage_user")
+     * @Method({"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userManagementAction(Request $request)
+    public function userManagementAction(Request $request, int $page)
     {
         $em = $this->getDoctrine()->getManager();
         $departments = $em->getRepository(Department::class)->findAll();
         $form = $this->createForm('AppBundle\Form\HistorySheetType');
         $form->handleRequest($request);
 
-        $data = $form->getData();
-        $department = $data['filter'];
-        if ($form->isSubmitted() && $form->isValid() && $department != null) {
-            $user = $em->getRepository(User::class)->findByDepartment($department);
-        } else {
-            $user = $em->getRepository(User::class)->findAll();
+        $user = $em->getRepository(User::class)->findAll();
+
+        $nbrUser = count($user);
+        $pageMax = ceil($nbrUser/self::LIMIT);
+        if ($page < 1) {
+            $page = 1;
         }
+        if ($page > $pageMax) {
+            $page = $pageMax;
+        }
+
+        $offset = ($page - 1)*self::LIMIT;
+        $user = $em->getRepository(User::class)->findUserByPage($offset);
 
         return $this->render('admin/management/user.html.twig', array(
             'user' => $user,
             'departments' => $departments,
             'form' => $form->createView(),
+            'page' => $page,
+            'pageMax' => $pageMax,
         ));
     }
 
@@ -96,8 +105,7 @@ class ManagementController extends Controller
     public function jobManagementAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $job = $em->getRepository(Metier::class)->findAll();
-
+        $job = $em->getRepository(Metier::class)->findBy([], ['name' => 'ASC']);
 
         return $this->render('admin/management/job.html.twig', array(
             'job' => $job,
@@ -116,8 +124,7 @@ class ManagementController extends Controller
     public function analyseManagementAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $analysis = $em->getRepository(Analysis::class)->findAll();
-
+        $analysis = $em->getRepository(Analysis::class)->findBy([], ['name' => 'ASC']);
 
         return $this->render('admin/management/analyse.html.twig', array(
             'analysis' => $analysis,
@@ -136,8 +143,7 @@ class ManagementController extends Controller
     public function statusManagementAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $status = $em->getRepository(Statut::class)->findAll();
-
+        $status = $em->getRepository(Statut::class)->findBy([], ['name' => 'ASC']);
 
         return $this->render('admin/management/status.html.twig', array(
             'status' => $status,

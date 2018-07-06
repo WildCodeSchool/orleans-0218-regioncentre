@@ -1,4 +1,6 @@
 {% extends 'layout_admin.html.twig' %}
+{% block title %}Editer un statut | E-Maintenance{% endblock %}
+
 {% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 
 {% block content %}
@@ -10,7 +12,7 @@
                     <h1>Edition du statut "{{ statut.name }}"</h1>
                 </div>
                 <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
-                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_management') }}">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_manage_status') }}">
                         <i class="fas fa-arrow-left"></i>
                         Liste des statuts
                     </a>
@@ -39,9 +41,9 @@
             </div>
             <div class="row">
                 <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
-                    <a class="btn btn-warning" href="/">
+                    <a class="btn btn-warning" href="{{ path('admin_manage_status') }}">
                         <i class="fas fa-arrow-left"></i>
-                        Retour à l'accueil
+                        Liste des statuts
                     </a>
                 </div>
             </div>

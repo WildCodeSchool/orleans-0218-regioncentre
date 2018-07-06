@@ -53,7 +53,7 @@ class AnalysisController extends Controller
                 'l\'analyse de la demande a été ajoutée avec succès.'
             );
 
-            return $this->redirectToRoute('admin_analysis_index');
+            return $this->redirectToRoute('admin_manage_analyse');
         }
 
         return $this->render('analysis/new.html.twig', array(
@@ -93,10 +93,10 @@ class AnalysisController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_analysis_edit', array('id' => $analysis->getId()));
+            return $this->redirectToRoute('admin_manage_analyse');
         }
 
-        return $this->render('analysis/sheet_edit.html.twig', array(
+        return $this->render('analysis/edit.html.twig', array(
             'analysis' => $analysis,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

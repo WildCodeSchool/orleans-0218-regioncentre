@@ -1,4 +1,5 @@
 {% extends "layout.html.twig" %}
+{% block title %}E-maintenance{% endblock %}
 {% trans_default_domain 'FOSUserBundle' %}
 {% block content %}
     {% block fos_user_content %}
@@ -27,8 +28,8 @@
                                    value="{{ last_username }}"
                                    required="required"/>
                         </div>
-                        <div class="formgroup">
-                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                        <div class="formgroup my-4">
+                            <label for="password">{{ 'security.login.password'|trans }}</label><a class="float-right mr-1 washed" href="{{ path('fos_user_resetting_check_email') }}">mot de passe oublié ?</a>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-lock"></i></div>

@@ -1,4 +1,5 @@
 {% extends "layout_admin.html.twig" %}
+{% block title %}Mon profil | E-Maintenance{% endblock %}
 {% trans_default_domain 'FOSUserBundle' %}
 {% block content %}
     {% block fos_user_content %}
@@ -11,20 +12,26 @@
                 </div>
                 <hr>
                 <div class="row d-flex justify-content-center">
-                    <img src="https://via.placeholder.com/200x200" alt="logo" class="mb-3"/>
+                    <img src="{% if user.roles[0] == 'ROLE_ADMIN' %}
+                    {{ asset('/images/avatar/avatar_ADMIN.png') }}
+                    {% elseif user.roles[0] == 'ROLE_EMOP' %}
+                    {{ asset('/images/avatar/avatar_EMOP.png') }}
+                    {% elseif user.roles[0] == 'ROLE_LYCEE' %}
+                    {{ asset('/images/avatar/avatar_SITE.png') }}
+                    {% endif %}" alt="logo" class="mb-3 avatar-250"/>
                     <div class="ml-3 mt-2">
                         <p>Nom: {{ user.lastName }}</p>
                         <p>Prénom: {{ user.firstName }}</p>
-                        <p>Adresse mail: {{ user.email }}</p>
+                        <p>Email de connexion: {{ user.email }}</p>
+                        <p>Email de contact: {{ user.mail }}</p>
                         <p>Fonction: {{ user.work }}</p>
                         <p>Téléphone: {{ user.phoneNumber }}</p>
-                        <p>Dernière connexion: {{ user.lastLogin|date("m/d/Y") }}</p>
+                        <p>Dernière connexion: {{ user.lastLogin|date("d/m/Y") }}</p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-dark h-100"><i
-                                class="fas fa-address-card"></i>
-                        Editer le profil</a>
+                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-dark h-100">
+                        <i class="fas fa-address-card"></i>Editer le profil</a>
                 </div>
             </div>
         </div>

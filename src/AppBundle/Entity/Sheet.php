@@ -39,7 +39,7 @@ class Sheet
     /**
      * @var bool
      *
-     * @ORM\Column(name="urgent", type="boolean")
+     * @ORM\Column(name="urgent", type="boolean", nullable=true)
      * @Assert\Choice({1,0})
      */
     private $urgent;
@@ -135,6 +135,12 @@ class Sheet
      *
      */
     private $analysisDate;
+
+    /**
+     * @var string
+     * @ORM\Column(name="contactPeople", type="text", nullable=true)
+     */
+    private $contactPeople;
 
     /**
      * Get id
@@ -535,5 +541,29 @@ class Sheet
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set contactPeople
+     *
+     * @param string $contactPeople
+     *
+     * @return Sheet
+     */
+    public function setContactPeople($contactPeople)
+    {
+        $this->contactPeople = $contactPeople;
+
+        return $this;
+    }
+
+    /**
+     * Get contactPeople
+     *
+     * @return string
+     */
+    public function getContactPeople()
+    {
+        return $this->contactPeople;
     }
 }

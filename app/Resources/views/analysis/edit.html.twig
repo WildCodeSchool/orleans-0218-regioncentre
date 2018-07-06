@@ -1,21 +1,44 @@
 {% extends 'layout_admin.html.twig' %}
-
+{% block title %}Analyse | E-Maintenance{% endblock %}
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
-    <h1>Analysis edit</h1>
+    <div class="container">
+        <div class="default-form">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 text-center title">
+                    <h1>Création d'une nouvelle analyse de demande</h1>
+                </div>
+                <div class="ml-auto p-2 d-none d-lg-block d-xs-none">
+                    <a class="btn btn-lg btn-warning w-500" href="{{ path('admin_manage_analyse') }}" role="button">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à la liste
+                    </a>
+                </div>
+            </div>
+            <hr class="p-3">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_analysis_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            {{ form_start(edit_form) }}
+            <div class="row">
+                <div class="col-md-12 col-lg-7 mb-2">
+                    {{ form_row(edit_form.name) }}
+                </div>
+                <div class="col-md-12 col-lg-5 mb-2">
+                    {{ form_row(edit_form.status) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" value="modifié l'analyse de demandes" class="btn btn-dark w-500"/>
+                        {{ form_end(edit_form) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto d-flex justify-content-center d-lg-none">
+                    <a class="btn btn-warning w-500" href="{{ path('admin_manage_analyse') }}">Retour à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

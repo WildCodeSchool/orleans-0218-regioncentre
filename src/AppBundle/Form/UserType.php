@@ -54,7 +54,7 @@ class UserType extends AbstractType
             ])
             ->add('mail', EmailType::class, [
                 'attr' => ['maxlength' => '255'],
-                'label' => 'Courriel',
+                'label' => 'Courriel de contact',
                 'required' => true,
             ])
             ->add('lycee', EntityType::class, [
