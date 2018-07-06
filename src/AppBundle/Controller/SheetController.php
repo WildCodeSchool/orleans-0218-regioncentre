@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Analysis;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Sheet;
+use AppBundle\Entity\Statut;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -193,14 +195,20 @@ class SheetController extends Controller
             ->remove("constraintsBuildings")
             ->remove("constraintsTechnicals")
             ->remove("description")
+            ->remove("status")
             ->remove("contactPeople");
 
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $sheet->setAnalysisDate(new \DateTime('now'));
+            $analysisId = $request->attributes->get('sheet')->getAnalysis()->getId();
+            $analysis = $em->getRepository(Analysis::class)->findOneById($analysisId);
+            $sheet->setStatus($analysis->getStatus());
             $this->getDoctrine()->getManager()->flush();
             $this->sendStatus($sheet);
+            $this->addFlash('success', 'Fiche modifiée avec succès' );
 
             return $this->redirectToRoute('emop_sheet_edit', array('id' => $sheet->getId()));
         }
