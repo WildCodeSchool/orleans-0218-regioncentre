@@ -83,7 +83,7 @@ fos_user:
         email:
             from_email:
                 address:        "%mailer_user%"
-                sender_name:    Demo Resetting
+                sender_name:    E-Maintenance
             template:   '@FOSUser/Resetting/email.txt.twig'
     profile:
         form:
