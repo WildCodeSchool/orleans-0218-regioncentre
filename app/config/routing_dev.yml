@@ -11,3 +11,7 @@ _main:
 
 fos_user:
       resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /rgstr/admin
