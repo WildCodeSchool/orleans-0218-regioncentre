@@ -53,7 +53,7 @@ class AnalysisController extends Controller
                 'l\'analyse de la demande a été ajoutée avec succès.'
             );
 
-            return $this->redirectToRoute('admin_analysis_index');
+            return $this->redirectToRoute('admin_manage_analyse');
         }
 
         return $this->render('analysis/new.html.twig', array(
