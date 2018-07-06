@@ -16,9 +16,12 @@ var lycees = document.getElementById("lycees");
 var admin = document.getElementById("appbundle_user_roles_0");
 var emop = document.getElementById("appbundle_user_roles_1");
 var lycee = document.getElementById("appbundle_user_roles_2");
+var reqlycee = document.getElementsByName('appbundle_user[lycee]');
 $(admin).attr('required', '');
 $(departments).hide();
 $(lycees).hide();
+var dep = document.getElementsByName('appbundle_user[departments][]');
+var i;
 
 admin.addEventListener('change', function () {
     if (this.checked) {
@@ -26,6 +29,11 @@ admin.addEventListener('change', function () {
         lycee.checked = false;
         $(departments).hide();
         $(lycees).hide();
+        $(reqlycee).attr('required', false);
+        for (i = 0; i < dep.length; i++) {
+            $(dep[i]).attr('required', false);
+        }
+
     }
 });
 emop.addEventListener('change', function () {
@@ -35,6 +43,13 @@ emop.addEventListener('change', function () {
         $(departments).show();
         $(lycees).hide();
         $(admin).attr('required', false);
+        $(reqlycee).attr('required', false);
+        var y;
+        for (y = 0; y < dep.length; y++) {
+            $(dep[y]).click(function () {
+                $(dep[y]).click(reqDep());
+            });
+        }
         reqDep();
     }
 });
@@ -45,6 +60,10 @@ lycee.addEventListener('change', function () {
         $(lycees).show();
         $(departments).hide();
         $(admin).attr('required', false);
+        $(reqlycee).attr('required', true);
+        for (i = 0; i < dep.length; i++) {
+            $(dep[i]).attr('required', false);
+        }
     }
 });
 
@@ -69,10 +88,7 @@ function reqDep() {
     }
 }
 
-var dep = document.getElementsByName('appbundle_user[departments][]');
-var y;
-for (y = 0; y < dep.length; y++) {
-    $(dep[y]).click(function () {
-        $(dep[y]).click(reqDep());
-    });
-}
+
+
+
+
