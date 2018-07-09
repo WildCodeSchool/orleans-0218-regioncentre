@@ -1,48 +1,18 @@
 import $ from "jquery"
 
-$(document).ready(function () {
-    $('input[type="checkbox"]').addClass('toggles').wrap('<label class="switch mr-4"></label>').after('<span class="slider round"></span>');
-    $("#formMessage").hide();
+$('[id ^= appbundle_user_roles_').click(function(e) {
+    $('#appbundle_user_roles_0').prop("checked", false);
+    $('#appbundle_user_roles_1').prop("checked", false);
+    $('#appbundle_user_roles_2').prop("checked", false);
+    $(this).prop("checked", true);
 
-});
+    $('.lycee').hide();
+    $('.department').hide();
 
-$('input[type="checkbox"]').prop("checked", false).change(function () {
-    $("#formMessage").slideToggle(300);
-
-});
-
-var departments = document.getElementById('departments');
-var lycees = document.getElementById("lycees");
-var admin = document.getElementById("appbundle_user_roles_0");
-var emop = document.getElementById("appbundle_user_roles_1");
-var lycee = document.getElementById("appbundle_user_roles_2");
-$(admin).attr('required', '');
-$(departments).hide();
-$(lycees).hide();
-
-admin.addEventListener('change', function () {
-    if (this.checked) {
-        emop.checked = false;
-        lycee.checked = false;
-        $(departments).hide();
-        $(lycees).hide();
+    if ($('#appbundle_user_roles_1').prop("checked")) {
+        $('.department').show();
     }
-});
-emop.addEventListener('change', function () {
-    if (this.checked) {
-        lycee.checked = false;
-        admin.checked = false;
-        $(departments).show();
-        $(lycees).hide();
-        $(admin).attr('required', false);
-    }
-});
-lycee.addEventListener('change', function () {
-    if (this.checked) {
-        emop.checked = false;
-        admin.checked = false;
-        $(lycees).show();
-        $(departments).hide();
-        $(admin).attr('required', false);
+    if ($('#appbundle_user_roles_2').prop("checked")) {
+        $('.lycee').show();
     }
 });

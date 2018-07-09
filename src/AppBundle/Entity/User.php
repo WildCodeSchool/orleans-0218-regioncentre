@@ -5,15 +5,37 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
+ *
  */
 class User extends BaseUser
 {
+    /**
+     * @param ExecutionContextInterface $context
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if (in_array('ROLE_EMOP', $this->getRoles()) and !$this->getDepartments()) {
+            $context->buildViolation('L\'utilisateur EMOP doit être relié à au moins un département !')
+                ->addViolation();
+        }
+
+        if (in_array('ROLE_LYCEE', $this->getRoles()) and !$this->getLycee()) {
+            $context->buildViolation('L\'utilisateur LYCEE doit être relié à au moins un lycée !')
+                ->addViolation();
+        }
+    }
+
     /**
      * @var int
      *
@@ -91,6 +113,7 @@ class User extends BaseUser
      * @Assert\Email(
      *     message = "Le courriel '{{ value }}' ne respecte pas le format"
      * )
+     *
      * @Assert\Length(
      *     max = 255,
      *     maxMessage = "L\'adresse courriel ne peu dépasser {{ limit }} caractères"
