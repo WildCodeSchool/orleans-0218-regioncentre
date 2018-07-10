@@ -62,10 +62,8 @@ class UserType extends AbstractType
                 'class' => Lycee::class,
                 'label' => 'Lycée',
                 'placeholder' => 'Choisir un Lycée',
-                'choice_label' => function ($name) {
-                    return $name->getName();
-                }
-            ])
+                'choice_label' => 'name',
+                          ])
             ->add('departments', EntityType::class, [
                 'required' => false,
                 'class' => Department::class,
