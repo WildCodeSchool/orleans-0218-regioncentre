@@ -43,7 +43,13 @@
                                 {% endif %}
                                 <td>{{ sheet.user.lycee.name }}</td>
                                 <td>{{ sheet.user.lycee.city }}</td>
-                                <td>{{ sheet.creationDate|date("d/m/Y") }}</td>
+                                <td class="text-nowrap">
+                                    {% if sheet.analysisDate %}
+                                        {{ sheet.analysisDate|date("d / m / Y") }}
+                                    {% else %}
+                                        La fiche n'a pas été modifiée.
+                                    {% endif %}
+                                </td>
                                 <td>
                                     <a class="badge badge-dark mx-1"
                                        href="{{ path('sheet_show', { 'id': sheet.id }) }}">Voir</a>
@@ -75,7 +81,14 @@
                                     {% endif %}</p>
                                 <p><strong>Nom du lycée:</strong> {{ sheet.user.lycee.name }}</p>
                                 <p><strong>Ville:</strong> {{ sheet.user.lycee.city }}</p>
-                                <p><strong>Modifiée le:</strong>  {{ sheet.creationDate|date("d/m/Y") }}</p>
+                                <p>
+                                    <strong>Modifiée le:</strong>
+                                    {% if sheet.analysisDate %}
+                                        {{sheet.analysisDate|date("d / m / Y") }}
+                                    {% else %}
+                                        La fiche n'a pas été modifiée.
+                                    {% endif %}
+                                </p>
                             </div>
                             <div class="card-footer text-muted text-center">
                                 <a class="badge badge-dark mx-auto w-50"
