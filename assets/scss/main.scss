@@ -87,6 +87,7 @@ body {
     }
   }
 
+  //TABLES
   table {
     color: $colorTextInArray;
 
@@ -105,6 +106,11 @@ body {
     }
   }
 
+  .wr-1 {
+    width: 1vw;
+  }
+
+// AVATARS
   .avatar-250 {
     width: 250px;
     height: 250px;
