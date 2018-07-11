@@ -96,7 +96,7 @@ class Sheet
      *
      * @ORM\Column(name="endWork", type="date", nullable=true)
      * @Assert\Expression(
-     *     "this.getEndWork() in ['php', 'symfony'] or value >= this.getStartWork()",
+     *     "this.getEndWork() or value >= this.getStartWork()",
      *     message="La fin des travaux ne peut être postérieure au début."
      * )
      * @Assert\Date()
@@ -153,7 +153,7 @@ class Sheet
      * @Assert\Date()
      * @ORM\Column(name="realEndWork", type="date", nullable=true)
      *@Assert\Expression(
-     *     "this.getRealEndWork() in ['php', 'symfony'] or value >= this.getRealStartWork()",
+     *     "this.getRealEndWork() or value >= this.getRealStartWork()",
      *     message="La fin des travaux ne peut être postérieure au début."
      * )
      */
