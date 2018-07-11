@@ -61,6 +61,16 @@
                 <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
             </div>
         </div>
+        <div class="row text-center my-2">
+            <div class="col-lg-6">
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date réel de début des travaux'|upper }}</p>
+                <p>{% if sheet.realStartWork %}{{ sheet.realStartWork|date('d / m / Y') }}{% endif %}</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date réel de fin des travaux'|upper }}</p>
+                <p>{% if sheet.realEndWork %}{{ sheet.realEndWork|date('d / m / Y') }}{% endif %}</p>
+            </div>
+        </div>
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-2">
             <div class="card m-2">
                 <div class="card-header text-center">
