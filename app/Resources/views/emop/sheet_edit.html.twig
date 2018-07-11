@@ -42,7 +42,12 @@
                             <li>
                                 <span class="font-weight-bold">Personne à contacter en cas d'abscence :</span> {{ sheet.contactPeople ?? 'Non renseigné' }}
                             </li>
-
+                            <li>
+                                <span class="font-weight-bold">Date souhaitée de début des travaux :</span> {% if sheet.startWork %}{{ sheet.startWork|date('d / m / Y') }}{% endif %}
+                            </li>
+                            <li>
+                                <span class="font-weight-bold">Date souhaitée de fin des travaux :</span> {% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -53,10 +58,10 @@
 
         <div class="row">
             <div class="col-md-6">
-                {{ form_row(edit_form.startWork) }}
+                {{ form_row(edit_form.realStartWork) }}
             </div>
             <div class="col-md-6">
-                {{ form_row(edit_form.endWork) }}
+                {{ form_row(edit_form.realEndWork) }}
             </div>
             <div class="col-12">
                 {{ form_row(edit_form.analysis) }}

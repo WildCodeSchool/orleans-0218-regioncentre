@@ -90,6 +90,18 @@ class SheetType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Nom / Téléphone / Email',
                 )
+            ])
+            ->add('realStartWork', DateType::class, [
+                'required' => true,
+                'label' => 'Début réel des travaux',
+                'widget' => 'single_text',
+                'html5' => true
+            ])
+            ->add('realEndWork', DateType::class, [
+                'required' => true,
+                'label' => 'Fin réel des travaux',
+                'widget' => 'single_text',
+                'html5' => true
             ]);
     }
 

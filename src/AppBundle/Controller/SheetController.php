@@ -54,7 +54,7 @@ class SheetController extends Controller
                 ['sheet' => $sheet],
                 ['date' => 'DESC']
             );
-            $sheetsComment[]= ['sheet'=>$sheet,'comment'=>$comment];
+            $sheetsComment[] = ['sheet' => $sheet, 'comment' => $comment];
         }
 
         return $this->render('/school/index.html.twig', array(
@@ -76,7 +76,9 @@ class SheetController extends Controller
         $form = $this->createForm('AppBundle\Form\SheetType', $sheet);
         $form
             ->remove("status")
-            ->remove("analysis");
+            ->remove("analysis")
+            ->remove("realStartWork")
+            ->remove("realEndWork");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -139,7 +141,7 @@ class SheetController extends Controller
         $commentSheetSite = $comment->getSheet()->getUser();
         $commentUserRole = $comment->getUser()->getRoles();
         $sheetId = $comment->getSheet()->getId();
-        
+
         if (in_array('ROLE_EMOP', $commentUserRole)) {
             $username = "EMOP";
             $mails = $commentSheetSite->getMail();
@@ -196,7 +198,9 @@ class SheetController extends Controller
             ->remove("constraintsTechnicals")
             ->remove("description")
             ->remove("status")
-            ->remove("contactPeople");
+            ->remove("contactPeople")
+            ->remove("startWork")
+            ->remove("endWork");
 
         $editForm->handleRequest($request);
 
