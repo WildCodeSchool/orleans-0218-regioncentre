@@ -17,6 +17,7 @@
             </div>
             <hr class="p-3" width="90%">
             {{ form_start(form) }}
+            {{ form_errors(form) }}
             <div class="row">
                 <div class="col-md-12 col-lg-6 mb-2">
                     {{ form_row(form.email,{ 'label': 'Adresse e-mail de connexion' }) }}
@@ -44,10 +45,10 @@
                         {{ form_label(form.roles) }}
                         {{ form_widget(form.roles, {'attr': {'class': 'd-inline-flex col-12'}}) }}
                     </div>
-                    <div class="col pt-2" id="lycees">
+                    <div class="col pt-2 lycee" id="lycees">
                         {{ form_row(form.lycee) }}
                     </div>
-                    <div class="col pt-2" id="departments">
+                    <div class="col pt-2 department" id="departments">
                         {{ form_row(form.departments, {'attr': {'class': 'd-flex flex-wrap col-10'}}) }}
                     </div>
                 </div>

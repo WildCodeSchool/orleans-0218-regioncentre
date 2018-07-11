@@ -102,8 +102,7 @@ class HistorySheetController extends Controller
         $sheets = $em->getRepository('AppBundle:Sheet')
             ->findBy(
                 ['status'=> $status,],
-                ['creationDate' => 'ASC'],
-                5
+                ['creationDate' => 'ASC']
             );
         return $this->render('emop/home.html.twig', [
             'sheets' => $sheets,

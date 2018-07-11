@@ -37,8 +37,6 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $sheet2->setUrgent(1);
         $sheet2->setSubject('Travaux dans la classe B15');
         $sheet2->setBuildings('Batiment 50');
-        $sheet2->setConstraintsBuildings('');
-        $sheet2->setConstraintsTechnicals('');
         $sheet2->setDescription('Éléctricité à refaire.');
         $sheet2->setStartWork(new \DateTime(2018-05-14));
         $sheet2->setEndWork(new \DateTime(2019-07-15));
@@ -53,8 +51,6 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $sheet3->setUrgent(1);
         $sheet3->setSubject('Travaux dans le Hall');
         $sheet3->setBuildings('Batiment 3');
-        $sheet3->setConstraintsBuildings('');
-        $sheet3->setConstraintsTechnicals('');
         $sheet3->setDescription('Peinture à refaire');
         $sheet3->setStartWork(new \DateTime(2018-06-14));
         $sheet3->setEndWork(new \DateTime(2019-07-15));
@@ -69,8 +65,6 @@ class SheetFixtures extends Fixture implements DependentFixtureInterface
         $sheet4->setUrgent(1);
         $sheet4->setSubject('Intervention plomberie');
         $sheet4->setBuildings('Batiment 5');
-        $sheet4->setConstraintsBuildings('');
-        $sheet4->setConstraintsTechnicals('');
         $sheet4->setDescription('Fuite toilettes 4ieme étage');
         $sheet4->setStartWork(new \DateTime(2018-06-14));
         $sheet4->setEndWork(new \DateTime(2019-07-15));

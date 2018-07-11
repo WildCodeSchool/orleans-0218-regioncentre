@@ -8,3 +8,7 @@ fos_user:
 _errors:
     resource: '@TwigBundle/Resources/config/routing/errors.xml'
     prefix: /_error
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register/region
