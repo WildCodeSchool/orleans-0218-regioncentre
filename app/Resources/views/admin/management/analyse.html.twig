@@ -5,22 +5,26 @@
             <table class="table table-sm table-light">
                 <thead class="thead-light border-0 mx-auto">
                 <tr>
-                    <th></th>
-                    <th></th>
                     <th scope="col">Analyse</th>
-                    <th scope="col">Modifier l'analyse</th>
+                    <th class="col-auto wr-1" scope="col">Status automatique</th>
+                    <th class="col wr-1" scope="col"><span class="sr-only">Modifier l'analyse</span></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for analysis in analysis %}
                     <tr>
-                        <td></td>
-                        <td></td>
                         <td>{{ analysis.name }}</td>
-                        <td>
-                            <a class="badge badge-dark mx-1 w-auto p-3"
+                        <td>{{ analysis.status.name }}</td>
+                        <td class="justify-content-center">
+                            <a class="badge badge-dark mx-1 w-auto p-3 d-none d-lg-block d-xs-none"
                                href="{{ path('admin_analysis_edit', { 'id': analysis.id }) }}">
-                                Modifier l'analyse</a>
+                                <i class="fas fa-edit mr-2"></i>
+                                Modifier l'analyse
+                            </a>
+                            <a class="badge badge-dark mx-1 w-auto p-3 d-lg-none"
+                               href="{{ path('admin_analysis_edit', { 'id': analysis.id }) }}">
+                                <i class="fas fa-edit p-0"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
