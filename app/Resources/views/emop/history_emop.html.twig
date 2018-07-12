@@ -31,7 +31,7 @@
                                     {% if sheet.urgent == true %}
                                         <span class="badge badge-warning text-dark mx-1"> URGENT </span>
                                     {% endif %}
-                                    <span class="badge badge-info mx-1">{{ sheet.status.name }}</span>
+                                    <span style="background-color: {{ sheet.status.color }}" class="badge badge-info mx-1">{{ sheet.status.name }}</span>
 
                                 </td>
                                 <td>{{ sheet.creationDate|date("d / m / Y") }}</td>
