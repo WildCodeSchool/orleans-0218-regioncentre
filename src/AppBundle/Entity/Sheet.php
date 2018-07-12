@@ -96,7 +96,7 @@ class Sheet
      *
      * @ORM\Column(name="endWork", type="date", nullable=true)
      * @Assert\Expression(
-     *     "this.getEndWork() in ['php', 'symfony'] or value >= this.getStartWork()",
+     *     "this.getEndWork() or value >= this.getStartWork()",
      *     message="La fin des travaux ne peut être postérieure au début."
      * )
      * @Assert\Date()
@@ -141,6 +141,23 @@ class Sheet
      * @ORM\Column(name="contactPeople", type="text", nullable=true)
      */
     private $contactPeople;
+
+    /**
+     * @Assert\Date()
+     * @ORM\Column(name="realStartWork", type="date", nullable=true)
+     * @Assert\GreaterThanOrEqual("today")
+     */
+    private $realStartWork;
+
+    /**
+     * @Assert\Date()
+     * @ORM\Column(name="realEndWork", type="date", nullable=true)
+     *@Assert\Expression(
+     *     "this.getRealEndWork() or value >= this.getRealStartWork()",
+     *     message="La fin des travaux ne peut être postérieure au début."
+     * )
+     */
+    private $realEndWork;
 
     /**
      * Get id
@@ -565,5 +582,53 @@ class Sheet
     public function getContactPeople()
     {
         return $this->contactPeople;
+    }
+
+    /**
+     * Set realStartWork
+     *
+     * @param \DateTime $realStartWork
+     *
+     * @return Sheet
+     */
+    public function setRealStartWork($realStartWork)
+    {
+        $this->realStartWork = $realStartWork;
+
+        return $this;
+    }
+
+    /**
+     * Get realStartWork
+     *
+     * @return \DateTime
+     */
+    public function getRealStartWork()
+    {
+        return $this->realStartWork;
+    }
+
+    /**
+     * Set realEndWork
+     *
+     * @param \DateTime $realEndWork
+     *
+     * @return Sheet
+     */
+    public function setRealEndWork($realEndWork)
+    {
+        $this->realEndWork = $realEndWork;
+
+        return $this;
+    }
+
+    /**
+     * Get realEndWork
+     *
+     * @return \DateTime
+     */
+    public function getRealEndWork()
+    {
+        return $this->realEndWork;
     }
 }
