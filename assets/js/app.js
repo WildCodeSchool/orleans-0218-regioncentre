@@ -23,4 +23,16 @@ $('[id^= appbundle_user_roles_]').click(function (e) {
         let checkboxes = $('.department input[type="checkbox"]');
         $('[id^=appbundle_user_departments_]').prop("checked", false);
     }
+
+});
+
+$(document).ready(function () {
+    $('input[type="checkbox"]').addClass('toggles').wrap('<label class="switch mr-4"></label>').after('<span class="slider round"></span>');
+    $("#formMessage").hide();
+
+});
+
+$('input[type="checkbox"]').prop( "checked", false ).change(function(){
+    $("#formMessage").slideToggle(300);
+
 });
