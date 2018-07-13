@@ -41,11 +41,11 @@ class User extends BaseUser
                 ->addViolation();
         }
 
-        if (in_array('ROLE_LYCEE', $this->getRoles()) and $this->getDepartments()) {
+        if (in_array('ROLE_LYCEE', $this->getRoles()) and (!empty($this->getDepartments()) && !$this->getDepartments()->isEmpty())) {
             $context->buildViolation('L\'utilisateur LYCEE ne doit pas être relié à un département !')
                 ->addViolation();
         }
-        if (in_array('ROLE_ADMIN', $this->getRoles()) and ($this->getDepartments() or $this->getLycee())) {
+        if (in_array('ROLE_ADMIN', $this->getRoles()) and ((!empty($this->getDepartments()) && !$this->getDepartments()->isEmpty()) or $this->getLycee())) {
             $context->buildViolation('L\'utilisateur ADMIN ne doit pas être relié à un département ou à un lycée!')
                 ->addViolation();
         }
