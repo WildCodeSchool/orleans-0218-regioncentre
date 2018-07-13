@@ -41,11 +41,13 @@ class User extends BaseUser
                 ->addViolation();
         }
 
-        if (in_array('ROLE_LYCEE', $this->getRoles()) and $this->getDepartments()) {
+        if (in_array('ROLE_LYCEE', $this->getRoles()) and
+            (!empty($this->getDepartments()) && !$this->getDepartments()->isEmpty())) {
             $context->buildViolation('L\'utilisateur LYCEE ne doit pas être relié à un département !')
                 ->addViolation();
         }
-        if (in_array('ROLE_ADMIN', $this->getRoles()) and ($this->getDepartments() or $this->getLycee())) {
+        if (in_array('ROLE_ADMIN', $this->getRoles()) and
+            ((!empty($this->getDepartments()) && !$this->getDepartments()->isEmpty()) or $this->getLycee())) {
             $context->buildViolation('L\'utilisateur ADMIN ne doit pas être relié à un département ou à un lycée!')
                 ->addViolation();
         }
@@ -66,7 +68,7 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
      */
     private $comments;
-    
+
     /**
      * @var string
      *
@@ -273,7 +275,7 @@ class User extends BaseUser
         return $this->mail;
     }
 
-     /**
+    /**
      * Add comment
      *
      * @param \AppBundle\Entity\Comment $comment
@@ -283,11 +285,11 @@ class User extends BaseUser
     public function addComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
-      
+
         return $this;
     }
-  
-     /**
+
+    /**
      * Remove comment
      *
      * @param \AppBundle\Entity\Comment $comment
@@ -296,8 +298,8 @@ class User extends BaseUser
     {
         $this->comments->removeElement($comment);
     }
-  
-     /**
+
+    /**
      * Get comments
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -306,8 +308,8 @@ class User extends BaseUser
     {
         return $this->comments;
     }
-  
-     /**
+
+    /**
      * Set lycee.
      *
      * @param \AppBundle\Entity\Lycee|null $lycee
@@ -320,8 +322,8 @@ class User extends BaseUser
 
         return $this;
     }
-      
-     /**
+
+    /**
      * Get lycee.
      *
      * @return \AppBundle\Entity\Lycee|null
@@ -330,7 +332,6 @@ class User extends BaseUser
     {
         return $this->lycee;
     }
-
 
 
     /**
