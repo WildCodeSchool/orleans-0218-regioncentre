@@ -53,13 +53,13 @@ class SheetType extends AbstractType
             ])
             ->add('startWork', DateType::class, [
                 'required' => true,
-                'label' => 'Début des travaux',
+                'label' => 'Début souhaité des travaux',
                 'widget' => 'single_text',
                 'html5' => true
             ])
             ->add('endWork', DateType::class, [
                 'required' => false,
-                'label' => 'Fin des travaux',
+                'label' => 'Fin souhaitée des travaux',
                 'widget' => 'single_text',
                 'html5' => true
             ])
@@ -93,13 +93,13 @@ class SheetType extends AbstractType
             ])
             ->add('realStartWork', DateType::class, [
                 'required' => true,
-                'label' => 'Début réel des travaux',
+                'label' => 'Début effectif des travaux',
                 'widget' => 'single_text',
                 'html5' => true
             ])
             ->add('realEndWork', DateType::class, [
                 'required' => true,
-                'label' => 'Fin réel des travaux',
+                'label' => 'Fin effective des travaux',
                 'widget' => 'single_text',
                 'html5' => true
             ]);
