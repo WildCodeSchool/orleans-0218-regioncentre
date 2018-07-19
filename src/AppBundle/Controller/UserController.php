@@ -84,13 +84,16 @@ class UserController extends Controller
             $user->setPlainPassword(uniqid());
             $user->setPasswordRequestedAt(new \DateTime('NOW'));
 
+            $username = $user->getEmail();
+            $user->setUsername($username);
+
             $userManager->updateUser($user);
             $user->setConfirmationToken($token->generateToken());
             $em->flush();
             $this->sendPasswordReset($user);
             $this->addFlash(
                 'success',
-                'l´Utilisateur a été ajouté avec succes.'
+                'l´Utilisateur a été ajouté avec succès.'
             );
             return $this->redirectToRoute('admin_manage_user', array('page' => 1));
         }
