@@ -35,7 +35,7 @@ class Lycee
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\Length(
      *      min = 2,
-     *      minMessage = "Le nom du lycée doit être d'au moins {{ limit }} caractères",
+     *      minMessage = "Le nom du site doit être d'au moins {{ limit }} caractères",
      *
      * )
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")

@@ -26,7 +26,7 @@ class UserType extends AbstractType
                 'choices' => [
                     'Admin Region' => 'ROLE_ADMIN',
                     'EMOP' => 'ROLE_EMOP',
-                    'Lycée' => 'ROLE_LYCEE',
+                    'Site' => 'ROLE_LYCEE',
                 ],
                 'expanded' => true,
                 'multiple' => true,
@@ -60,8 +60,8 @@ class UserType extends AbstractType
             ->add('lycee', EntityType::class, [
                 'required' => false,
                 'class' => Lycee::class,
-                'label' => 'Lycée',
-                'placeholder' => 'Choisir un Lycée',
+                'label' => 'Site',
+                'placeholder' => 'Choisir un site',
                 'choice_label' => 'name',
                           ])
             ->add('departments', EntityType::class, [
