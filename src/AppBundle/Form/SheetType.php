@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -31,7 +32,7 @@ class SheetType extends AbstractType
                 'label' => 'Objet de la demande',
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
-            ->add('link', TextType::class, [
+            ->add('link', UrlType::class, [
                 'required' => false,
                 'label' => 'Ajouter un lien externe vers un fichier (Ex: WeTransfer, OneDrive, Google Drive, etc.)',
             ])
