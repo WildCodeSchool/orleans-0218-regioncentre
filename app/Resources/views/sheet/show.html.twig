@@ -63,11 +63,11 @@
         </div>
         <div class="row text-center my-2">
             <div class="col-lg-6">
-                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Début effectif  des travaux'|upper }}</p>
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date de début effective des travaux'|upper }}</p>
                 <p>{% if sheet.realStartWork %}{{ sheet.realStartWork|date('d / m / Y') }}{% endif %}</p>
             </div>
             <div class="col-lg-6">
-                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Fin effective des travaux'|upper }}</p>
+                <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date de fin effective des travaux'|upper }}</p>
                 <p>{% if sheet.realEndWork %}{{ sheet.realEndWork|date('d / m / Y') }}{% endif %}</p>
             </div>
         </div>
