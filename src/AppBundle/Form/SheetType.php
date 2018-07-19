@@ -31,6 +31,10 @@ class SheetType extends AbstractType
                 'label' => 'Objet de la demande',
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
+            ->add('link', TextType::class, [
+                'required' => false,
+                'label' => 'Ajouter un lien externe vers un fichier (Ex: WeTransfer, OneDrive, Google Drive, etc.)',
+            ])
             ->add('buildings', TextareaType::class, [
                 'required' => true,
                 'label' => 'Bâtiment concerné',

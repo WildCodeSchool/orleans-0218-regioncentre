@@ -61,14 +61,14 @@
                 <p>{% if sheet.endWork %}{{ sheet.endWork|date('d / m / Y') }}{% endif %}</p>
             </div>
         </div>
-        <div class="row text-center my-2">
+        <div class="row text-center my-4">
             <div class="col-lg-6">
                 <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date de début effective des travaux'|upper }}</p>
-                <p>{% if sheet.realStartWork %}{{ sheet.realStartWork|date('d / m / Y') }}{% endif %}</p>
+                <p>{% if sheet.realStartWork %}{{ sheet.realStartWork|date('d / m / Y')  }}{% else %}En attente{% endif %}</p>
             </div>
             <div class="col-lg-6">
                 <p class="h5"><i class="far fa-calendar-alt"></i> {{ 'Date de fin effective des travaux'|upper }}</p>
-                <p>{% if sheet.realEndWork %}{{ sheet.realEndWork|date('d / m / Y') }}{% endif %}</p>
+                <p>{% if sheet.realEndWork %}{{ sheet.realEndWork|date('d / m / Y') }}{% else %}En attente{% endif %}</p>
             </div>
         </div>
         <div class="card-deck mx-1 mt-1 mx-lg-5 mt-lg-2">
@@ -79,6 +79,12 @@
                 <div class="m-2   mx-lg-5 text-center">
                     <p>{{ sheet.description }}</p>
                 </div>
+            </div>
+        </div>
+        <div class="row text-center mt-4">
+            <div class="col-lg-12">
+                <p class="h5">{{ 'Lien externe vers un fichier'|upper }}</p>
+                <p>{{ sheet.link ?? 'Non renseigné' }}</p>
             </div>
         </div>
         <div class="row text-center mt-2">
