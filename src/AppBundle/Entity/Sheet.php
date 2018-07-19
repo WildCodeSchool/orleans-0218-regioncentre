@@ -87,7 +87,7 @@ class Sheet
 
     /**
      * @Assert\Date()
-     * @ORM\Column(name="startWork", type="date")
+     * @ORM\Column(name="startWork", type="date", nullable=true)
      * @Assert\GreaterThanOrEqual("today")
      */
     private $startWork;
@@ -97,7 +97,7 @@ class Sheet
      * @ORM\Column(name="endWork", type="date", nullable=true)
      * @Assert\Expression(
      *     "this.getEndWork() or value >= this.getStartWork()",
-     *     message="La fin des travaux ne peut être postérieure au début."
+     *     message="La fin des travaux ne peut être antérieur au début."
      * )
      * @Assert\Date()
      */
@@ -154,7 +154,7 @@ class Sheet
      * @ORM\Column(name="realEndWork", type="date", nullable=true)
      *@Assert\Expression(
      *     "this.getRealEndWork() or value >= this.getRealStartWork()",
-     *     message="La fin des travaux ne peut être postérieure au début."
+     *     message="La fin effective des travaux ne peut être antérieur au début."
      * )
      */
     private $realEndWork;
