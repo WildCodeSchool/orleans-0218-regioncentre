@@ -223,7 +223,7 @@ class SheetController extends Controller
     public function sendStatus(Sheet $sheet)
     {
         $email = $sheet->getUser()->getMail();
-        $body = $this->templating->render('email/status_change.html.twig',[
+        $body = $this->templating->render('email/status_change.html.twig', [
             'sheet' => $sheet
         ]);
         $message = (new \Swift_Message('Un statut vient de changer'))
@@ -263,7 +263,7 @@ class SheetController extends Controller
     private function createDeleteForm(Sheet $sheet)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('sheet_delete',array('id' => $sheet->getId())))
+            ->setAction($this->generateUrl('sheet_delete', array('id' => $sheet->getId())))
             ->setMethod('DELETE')
             ->getForm();
     }
@@ -278,7 +278,7 @@ class SheetController extends Controller
         }
 
         if (!empty($emopMails)) {
-            $body = $this->templating->render('email/sheet_create.html.twig',[
+            $body = $this->templating->render('email/sheet_create.html.twig', [
                 'sheet' => $sheet
             ]);
             $message = (new \Swift_Message('Une fiche de travaux a été créée dans votre département.'))
