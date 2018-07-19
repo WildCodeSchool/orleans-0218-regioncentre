@@ -46,14 +46,12 @@ class UserController extends Controller
     {
         $confirmationToken = $user->getConfirmationToken();
 
-        $username = $user->getUsername();
         $email = $user->getEmail();
 
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findOneByConfirmationToken($confirmationToken);
 
         $renderedTemplate = $this->render('email/password_resetting.html.twig', array(
-            'username' => $username,
             'token' => $confirmationToken,
             'email' => $email,
             'user' => $users,
@@ -78,6 +76,7 @@ class UserController extends Controller
         $user = new User();
         $form = $this->createForm('AppBundle\Form\UserType', $user);
         $form->remove('plainPassword');
+        $form->remove('username');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
