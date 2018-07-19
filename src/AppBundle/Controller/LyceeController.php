@@ -34,7 +34,7 @@ class LyceeController extends Controller
             $em->flush();
             $this->addFlash(
                 'success',
-                'Le lycée a été ajouté!'
+                'Le site a été ajouté!'
             );
             return $this->redirectToRoute('admin_manage_school');
         }
