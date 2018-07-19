@@ -52,16 +52,18 @@ class SheetType extends AbstractType
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
             ->add('startWork', DateType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Début des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ])
             ->add('endWork', DateType::class, [
                 'required' => false,
                 'label' => 'Fin des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ])
             ->add('job', EntityType::class, [
                 'required' => false,
@@ -95,13 +97,15 @@ class SheetType extends AbstractType
                 'required' => true,
                 'label' => 'Début réel des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ])
             ->add('realEndWork', DateType::class, [
                 'required' => true,
                 'label' => 'Fin réel des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ]);
     }
 
