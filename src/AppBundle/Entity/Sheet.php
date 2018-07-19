@@ -87,7 +87,7 @@ class Sheet
 
     /**
      * @Assert\Date()
-     * @ORM\Column(name="startWork", type="date")
+     * @ORM\Column(name="startWork", type="date", nullable=true)
      * @Assert\GreaterThanOrEqual("today")
      */
     private $startWork;
