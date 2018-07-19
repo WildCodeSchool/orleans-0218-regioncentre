@@ -19,12 +19,12 @@
             {{ form_start(form) }}
             {{ form_errors(form) }}
             <div class="row">
-                <div class="col-md-12 col-lg-6 mb-2">
+                <div class="col-md-12 col-lg-12 mb-2">
                     {{ form_row(form.email,{ 'label': 'Adresse e-mail de connexion' }) }}
                 </div>
-                <div class="col-md-12 col-lg-6 mb-2">
-                    {{ form_row(form.username) }}
-                </div>
+                {#<div class="col-md-12 col-lg-6 mb-2">#}
+                    {#{{ form_row(form.username) }}#}
+                {#</div>#}
                 <div class="col-md-12 col-lg-6">
                     {{ form_row(form.firstName) }}
                 </div>
