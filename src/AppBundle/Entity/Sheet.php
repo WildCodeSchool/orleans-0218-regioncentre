@@ -58,7 +58,6 @@ class Sheet
      *
      * @ORM\Column(name="link", type="text", nullable=true)
      * @Assert\Url()
-     * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
      */
     private $link;
 
@@ -154,17 +153,12 @@ class Sheet
     /**
      * @Assert\Date()
      * @ORM\Column(name="realStartWork", type="date", nullable=true)
-     * @Assert\GreaterThanOrEqual("today")
      */
     private $realStartWork;
 
     /**
      * @Assert\Date()
      * @ORM\Column(name="realEndWork", type="date", nullable=true)
-     *@Assert\Expression(
-     *     "this.getRealEndWork() or value >= this.getRealStartWork()",
-     *     message="La fin effective des travaux ne peut être antérieur au début."
-     * )
      */
     private $realEndWork;
 

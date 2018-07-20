@@ -48,18 +48,27 @@
                     </li>
                     {#END NOUVELLE FICHE#}
                 </ul>
-                <ul class="nav navbar-nav w-100 deconnect justify-content-end">
-                    <li class="nav-link  float-md-right">
-                        <a href="{{ path('fos_user_profile_show') }}"
-                           class="{% if app.user.hasRole('ROLE_ADMIN') %}text_admin{% endif %}
+                <ul class="nav navbar-nav w-100 deconnect justify-content-end align-content-center">
+                    <li class="nav-link float-md-right">
+                        <div class="row">
+                            <div class="col-auto px-0">
+                                <a href="{{ path('fos_user_profile_show') }}">
+                                    <i class="far fa-user-circle fa-2x"></i>
+                                </a>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <a href="{{ path('fos_user_profile_show') }}"
+                                   class="{% if app.user.hasRole('ROLE_ADMIN') %}text_admin{% endif %}
                                     {% if app.user.hasRole('ROLE_EMOP') %}text_emop{% endif %}
                                     {% if app.user.hasRole('ROLE_LYCEE') %}text_site{% endif %}">
-                             <i class="far fa-user-circle"></i> Profil
-                        </a>
-                        |
-                        <a href="{{ path('fos_user_security_logout') }}">
-                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                        </a>
+                                    Profil
+                                </a>|
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            </div>
+                        </div>
+
                     </li>
                 </ul>
             </div>

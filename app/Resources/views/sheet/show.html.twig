@@ -290,8 +290,8 @@
                     {% elseif app.user.roles[0] == 'ROLE_LYCEE' %}
                     {{ asset('/images/avatar/avatar_SITE.png') }}
                     {% endif %}" alt="logo"/>
-                    <p class="w-500 mx-2 userChat my-0">{{ app.user.firstName }}</p>
-                    <p class="w-500 mx-2 userChat my-0">{{ app.user.lastName }} </p>
+                    <p class="w-500 mx-2 userChat my-0 text-center">{{ app.user.firstName }}</p>
+                    <p class="w-500 mx-2 userChat my-0 text-center">{{ app.user.lastName }} </p>
                 </div>
                 <div class="col-lg-8">
                     {{ form_row(form.content, {'label_attr': {'class': 'w-500'}}) }}

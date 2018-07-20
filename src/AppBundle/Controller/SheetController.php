@@ -200,6 +200,7 @@ class SheetController extends Controller
             ->remove("status")
             ->remove("contactPeople")
             ->remove("startWork")
+            ->remove("link")
             ->remove("endWork");
 
         $editForm->handleRequest($request);
