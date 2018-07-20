@@ -1,5 +1,5 @@
-E-Maintenance [Instructions en Français]
-========================================
+E-Maintenance
+=============
 
 Bonjour, voici comment installer et maintenir E-Maintenance, le système de gestion des fiches de travaux de la région *Centre-Val de Loire*.
 
@@ -28,6 +28,11 @@ https://github.com/WildCodeSchool/orleans-0218-regioncentre
 
 5) Mettre à jour la base de données, éxécuter la commande :
 	```
+	[Optionnel - Pour information]
+	php bin/console doctrine schema:update --dump-sql
+	```
+
+	```
 	php bin/console doctrine schema:update --force
 	```
 
@@ -35,11 +40,14 @@ https://github.com/WildCodeSchool/orleans-0218-regioncentre
 	```
 	./node_modules/.bin/encore production
 	```
-
+7) Les paramètres pour la connexion au serveur d'envoi de courriels sont définis dans **parameters.yml**
+	```
+    ~app/config/parameters.yml
+	```
 
 A propos / About
 ================
 **E-Maintenance...**
->...et un projet Symfony créé le 16 mai 2018.
+>...et un projet PHP/Symfony 3.4 créé le 16 mai 2018.
 
->...is a Symfony project created on May 16, 2018.
+>...is a PHP/Symfony 3.4 project created on May 16, 2018.
