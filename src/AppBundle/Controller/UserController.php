@@ -72,7 +72,7 @@ class UserController extends Controller
      * @Route("/resend/{id}", name="admin_user_resend")
      * @Method("GET")
      */
-    public function resendEmail (User $user, TokenGeneratorInterface $token)
+    public function resendEmail(User $user, TokenGeneratorInterface $token)
     {
         $em = $this->getDoctrine()->getManager();
         $newToken = $token->generateToken();
