@@ -85,13 +85,11 @@ class UserController extends Controller
             'email' => $email,
             'user' => $users,
         ]);
-
         $message = (new \Swift_Message('Bienvenue sur E-Maintenance'))
             ->setFrom($email)
             ->setTo($email)
             ->setBody($renderedTemplate, "text/html");
         $this->mailer->send($message);
-
         return $this->redirectToRoute('admin_manage_user', array('page' => 1));
     }
 
