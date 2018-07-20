@@ -54,7 +54,7 @@
                            class="{% if app.user.hasRole('ROLE_ADMIN') %}text_admin{% endif %}
                                     {% if app.user.hasRole('ROLE_EMOP') %}text_emop{% endif %}
                                     {% if app.user.hasRole('ROLE_LYCEE') %}text_site{% endif %}">
-                             <i class="far fa-user-circle"></i>Profil
+                             <i class="far fa-user-circle"></i> Profil
                         </a>
                         |
                         <a href="{{ path('fos_user_security_logout') }}">
