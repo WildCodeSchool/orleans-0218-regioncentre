@@ -31,24 +31,24 @@ class User extends BaseUser
         }
 
         if (in_array('ROLE_EMOP', $this->getRoles()) and $this->getLycee()) {
-            $context->buildViolation('L\'utilisateur EMOP ne doit pas être relié à un lycée !')
+            $context->buildViolation('L\'utilisateur EMOP ne doit pas être relié à un site !')
                 ->addViolation();
         }
 
 
         if (in_array('ROLE_LYCEE', $this->getRoles()) and !$this->getLycee()) {
-            $context->buildViolation('L\'utilisateur LYCEE doit être relié à au moins un lycée !')
+            $context->buildViolation('L\'utilisateur SITE doit être relié à au moins un site !')
                 ->addViolation();
         }
 
         if (in_array('ROLE_LYCEE', $this->getRoles()) and
             (!empty($this->getDepartments()) && !$this->getDepartments()->isEmpty())) {
-            $context->buildViolation('L\'utilisateur LYCEE ne doit pas être relié à un département !')
+            $context->buildViolation('L\'utilisateur SITE ne doit pas être relié à un département !')
                 ->addViolation();
         }
         if (in_array('ROLE_ADMIN', $this->getRoles()) and
             ((!empty($this->getDepartments()) && !$this->getDepartments()->isEmpty()) or $this->getLycee())) {
-            $context->buildViolation('L\'utilisateur ADMIN ne doit pas être relié à un département ou à un lycée!')
+            $context->buildViolation('L\'utilisateur ADMIN ne doit pas être relié à un département ou à un site!')
                 ->addViolation();
         }
     }

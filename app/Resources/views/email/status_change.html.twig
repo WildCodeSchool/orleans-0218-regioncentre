@@ -6,8 +6,15 @@
                  style=" max-width: 70%; height: auto;"/>
             <h1 style="font-size:1em">Service E-Maintenance</h1>
             <p>Le statut d'une fiche viens d'être modifiée.</p>
-            <p>Pour la visualiser, <a href="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('fos_user_security_login') }}" style="text-decoration: none">connectez-vous ici </a>.</p>
-            <p>Cordialement, L'équipe.</p>
+            <p>
+                Assurez-vous de bien être connecté(e) au site E-maintenace puis pour voir le nouveau statut cliquez sur
+                <a href="{{ app.request.scheme ~'://' ~ app.request.httpHost ~
+                path('sheet_show', {'id': sheet.id}) }}" style="text-decoration: none">
+                    ce lien
+                </a>
+                .
+            </p>
+            <p>Cordialement, L'équipe E-Maintenance.</p>
         </div>
     </div>
 

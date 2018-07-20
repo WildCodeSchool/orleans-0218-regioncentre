@@ -46,14 +46,12 @@ class UserController extends Controller
     {
         $confirmationToken = $user->getConfirmationToken();
 
-        $username = $user->getUsername();
         $email = $user->getEmail();
 
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findOneByConfirmationToken($confirmationToken);
 
         $renderedTemplate = $this->render('email/password_resetting.html.twig', array(
-            'username' => $username,
             'token' => $confirmationToken,
             'email' => $email,
             'user' => $users,
@@ -68,6 +66,34 @@ class UserController extends Controller
     }
 
     /**
+     * @param User $user
+     * @Route("/resend/{id}", name="admin_user_resend")
+     * @Method("GET")
+     */
+    public function resendEmail(User $user, TokenGeneratorInterface $token)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $newToken = $token->generateToken();
+        $user->setConfirmationToken($newToken);
+        $em->flush();
+        $username = $user->getUsername();
+        $email = $user->getEmail();
+        $users = $em->getRepository('AppBundle:User')->findOneByConfirmationToken($newToken);
+        $renderedTemplate = $this->render('email/password_resetting.html.twig', [
+            'username' => $username,
+            'token' => $newToken,
+            'email' => $email,
+            'user' => $users,
+        ]);
+        $message = (new \Swift_Message('Bienvenue sur E-Maintenance'))
+            ->setFrom($email)
+            ->setTo($email)
+            ->setBody($renderedTemplate, "text/html");
+        $this->mailer->send($message);
+        return $this->redirectToRoute('admin_manage_user', array('page' => 1));
+    }
+
+    /**
      * Creates a new user entity.
      *
      * @Route("/new", name="admin_user_new")
@@ -78,6 +104,7 @@ class UserController extends Controller
         $user = new User();
         $form = $this->createForm('AppBundle\Form\UserType', $user);
         $form->remove('plainPassword');
+        $form->remove('username');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -85,13 +112,16 @@ class UserController extends Controller
             $user->setPlainPassword(uniqid());
             $user->setPasswordRequestedAt(new \DateTime('NOW'));
 
+            $username = $user->getEmail();
+            $user->setUsername($username);
+
             $userManager->updateUser($user);
             $user->setConfirmationToken($token->generateToken());
             $em->flush();
             $this->sendPasswordReset($user);
             $this->addFlash(
                 'success',
-                'l´Utilisateur a été ajouté avec succes.'
+                'l´Utilisateur a été ajouté avec succès.'
             );
             return $this->redirectToRoute('admin_manage_user', array('page' => 1));
         }

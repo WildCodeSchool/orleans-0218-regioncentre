@@ -200,6 +200,7 @@ class SheetController extends Controller
             ->remove("status")
             ->remove("contactPeople")
             ->remove("startWork")
+            ->remove("link")
             ->remove("endWork");
 
         $editForm->handleRequest($request);
@@ -223,7 +224,9 @@ class SheetController extends Controller
     public function sendStatus(Sheet $sheet)
     {
         $email = $sheet->getUser()->getMail();
-        $body = $this->templating->render('email/status_change.html.twig');
+        $body = $this->templating->render('email/status_change.html.twig', [
+            'sheet' => $sheet
+        ]);
         $message = (new \Swift_Message('Un statut vient de changer'))
             ->setFrom($email)
             ->setTo($email)
@@ -276,7 +279,9 @@ class SheetController extends Controller
         }
 
         if (!empty($emopMails)) {
-            $body = $this->templating->render('email/sheet_create.html.twig');
+            $body = $this->templating->render('email/sheet_create.html.twig', [
+                'sheet' => $sheet
+            ]);
             $message = (new \Swift_Message('Une fiche de travaux a été créée dans votre département.'))
                 ->setFrom([$sheet->getUser()->getMail() => $sheet->getUser()->getLycee()->getName()])
                 ->setReplyTo($sheet->getUser()->getMail())

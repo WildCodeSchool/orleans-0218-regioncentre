@@ -56,6 +56,14 @@ class Sheet
     /**
      * @var string
      *
+     * @ORM\Column(name="link", type="text", nullable=true)
+     * @Assert\Url()
+     */
+    private $link;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="buildings", type="string", length=255)
      * @Assert\NotNull(message="Le champ ne peut pas être vide !")
      * @Assert\NotBlank(message="Vous ne pouvez pas envoyer juste un espace !")
@@ -87,7 +95,7 @@ class Sheet
 
     /**
      * @Assert\Date()
-     * @ORM\Column(name="startWork", type="date")
+     * @ORM\Column(name="startWork", type="date", nullable=true)
      * @Assert\GreaterThanOrEqual("today")
      */
     private $startWork;
@@ -97,7 +105,7 @@ class Sheet
      * @ORM\Column(name="endWork", type="date", nullable=true)
      * @Assert\Expression(
      *     "this.getEndWork() or value >= this.getStartWork()",
-     *     message="La fin des travaux ne peut être postérieure au début."
+     *     message="La fin des travaux ne peut être antérieur au début."
      * )
      * @Assert\Date()
      */
@@ -145,17 +153,12 @@ class Sheet
     /**
      * @Assert\Date()
      * @ORM\Column(name="realStartWork", type="date", nullable=true)
-     * @Assert\GreaterThanOrEqual("today")
      */
     private $realStartWork;
 
     /**
      * @Assert\Date()
      * @ORM\Column(name="realEndWork", type="date", nullable=true)
-     *@Assert\Expression(
-     *     "this.getRealEndWork() or value >= this.getRealStartWork()",
-     *     message="La fin des travaux ne peut être postérieure au début."
-     * )
      */
     private $realEndWork;
 
@@ -630,5 +633,23 @@ class Sheet
     public function getRealEndWork()
     {
         return $this->realEndWork;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $link
+     * @return Sheet
+     */
+    public function setLink(string $link): Sheet
+    {
+        $this->link = $link;
+        return $this;
     }
 }
