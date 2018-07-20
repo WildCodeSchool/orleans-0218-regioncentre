@@ -11,6 +11,7 @@
                     <th class="text-center" scope="col">Fonction</th>
                     <th class="text-center" scope="col">Numéro de téléphone</th>
                     <th class="text-center" scope="col">Email de contact</th>
+                    <th class="text-center" scope="col">Email<br>d'activation</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -34,6 +35,11 @@
                         <td>{{ user.Work }} </td>
                         <td>{{ user.phoneNumber }} </td>
                         <td>{{ user.mail }} </td>
+                        <td class="text-center">
+
+                            {% if user.enabled == false %}<a class="btn btn-primary py-1 px-2" href="{{ path('admin_user_resend', {'id':user.id})}}">Renvoyer</a>{% else %}<span class="text-muted">Activé</span>{% endif %}
+
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

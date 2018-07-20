@@ -66,6 +66,34 @@ class UserController extends Controller
     }
 
     /**
+     * @param User $user
+     * @Route("/resend/{id}", name="admin_user_resend")
+     * @Method("GET")
+     */
+    public function resendEmail(User $user, TokenGeneratorInterface $token)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $newToken = $token->generateToken();
+        $user->setConfirmationToken($newToken);
+        $em->flush();
+        $username = $user->getUsername();
+        $email = $user->getEmail();
+        $users = $em->getRepository('AppBundle:User')->findOneByConfirmationToken($newToken);
+        $renderedTemplate = $this->render('email/password_resetting.html.twig', [
+            'username' => $username,
+            'token' => $newToken,
+            'email' => $email,
+            'user' => $users,
+        ]);
+        $message = (new \Swift_Message('Bienvenue sur E-Maintenance'))
+            ->setFrom($email)
+            ->setTo($email)
+            ->setBody($renderedTemplate, "text/html");
+        $this->mailer->send($message);
+        return $this->redirectToRoute('admin_manage_user', array('page' => 1));
+    }
+
+    /**
      * Creates a new user entity.
      *
      * @Route("/new", name="admin_user_new")
