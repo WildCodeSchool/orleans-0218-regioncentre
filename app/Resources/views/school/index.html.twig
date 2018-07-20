@@ -58,7 +58,22 @@
                             <div id="cardCommentair{{ sheet.sheet.id }}" role="tabpanel" class="tab-pane">
                                 <h4 class="card-title text-center">{{ sheet.sheet.subject }}</h4>
                                 <div class="card-text row justify-content-center pt-3">
-                                        {{ sheet.comment.content ?? 'La fiche n\'a pas encore de commentaire' }}
+                                    {% if sheet.comment %}
+                                    <div class="col-2">
+                                        {% if sheet.comment.user.id == app.user.id %}
+                                            <p class="w-500 userChat my-0">Moi</p>
+                                        {% else %}
+                                            <p class="w-500 userChat my-0">{{ sheet.comment.user.firstName }}</p>
+                                            <p class="w-500 userChat my-0">{{ sheet.comment.user.lastName }}</p>
+                                            <p class="w-500 userChat my-0">{{- sheet.comment.user.roles.0|replace({'ROLE_': ''})|lower -}}</p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-10">
+                                        {{ sheet.comment.content }}
+                                    </div>
+                                    {% else %}
+                                        La fiche n'a pas encore de commentaire
+                                        {% endif %}
                                 </div>
                             </div>
                         </div>
