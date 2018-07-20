@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -30,6 +31,10 @@ class SheetType extends AbstractType
                 'required' => true,
                 'label' => 'Objet de la demande',
                 'attr' => array('rows' => '4', 'cols' => '10')
+            ])
+            ->add('link', UrlType::class, [
+                'required' => false,
+                'label' => 'Ajouter un lien externe vers un fichier (Ex: WeTransfer, OneDrive, Google Drive, etc.)',
             ])
             ->add('buildings', TextareaType::class, [
                 'required' => true,
@@ -52,16 +57,18 @@ class SheetType extends AbstractType
                 'attr' => array('rows' => '4', 'cols' => '10')
             ])
             ->add('startWork', DateType::class, [
-                'required' => true,
-                'label' => 'Début des travaux',
+                'required' => false,
+                'label' => 'Début souhaité des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ])
             ->add('endWork', DateType::class, [
                 'required' => false,
-                'label' => 'Fin des travaux',
+                'label' => 'Fin souhaitée des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ])
             ->add('job', EntityType::class, [
                 'required' => false,
@@ -92,16 +99,18 @@ class SheetType extends AbstractType
                 )
             ])
             ->add('realStartWork', DateType::class, [
-                'required' => true,
-                'label' => 'Début réel des travaux',
+                'label' => 'Début effectif des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'required' => false,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ])
             ->add('realEndWork', DateType::class, [
-                'required' => true,
-                'label' => 'Fin réel des travaux',
+                'label' => 'Fin effective des travaux',
                 'widget' => 'single_text',
-                'html5' => true
+                'html5' => true,
+                'required' => false,
+                'attr' => ['placeholder' => 'AAAA-MM-JJ']
             ]);
     }
 

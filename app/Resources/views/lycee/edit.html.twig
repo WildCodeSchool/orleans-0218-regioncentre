@@ -1,5 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
-{% block title %}Editer un lycée | E-Maintenance{% endblock %}
+{% block title %}Editer un site | E-Maintenance{% endblock %}
 {% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     <div class="container p-5">
@@ -9,7 +9,7 @@
                     <h1 class="d-inline transformFont">Modification de <span class="normalFont">{{ lycee.name }}</span> </h1>
                 </div>
                 <div class="col-md-4 float-md-right ">
-                    <a class="btn btn-warning" href="{{ path('admin_manage_school') }}">Retour à la liste des lycées</a>
+                    <a class="btn btn-warning" href="{{ path('admin_manage_school') }}">Retour à la liste des sites</a>
                 </div>
                 <hr/>
                 <div class="col-12 col-md-6 mx-auto form-lycee ">

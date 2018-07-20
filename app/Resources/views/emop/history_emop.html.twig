@@ -17,10 +17,10 @@
                             <th></th>
                             <th scope="col">Statut</th>
                             <th scope="col">Date de création</th>
+                            <th scope="col">Site</th>
+                            <th scope="col">Ville</th>
                             <th scope="col">Objet de la demande</th>
                             <th scope="col">Analyse de la demande</th>
-                            <th scope="col">Lycée</th>
-                            <th scope="col">Ville</th>
                             <th scope="col" class="t-date">Modifiée le</th>
                             <th scope="col" class="t-button"></th>
                         </tr>
@@ -37,15 +37,15 @@
                                     <span style="background-color: {{ sheet.status.color }}" class="badge badge-info mx-1">{{ sheet.status.name }}</span>
 
                                 </td>
-                                <td>{{ sheet.creationDate|date("d / m / Y") }}</td>
+                                <td class="text-nowrap">{{ sheet.creationDate|date("d / m / Y") }}</td>
+                                    <td>{{ sheet.user.lycee.name }}</td>
+                                    <td>{{ sheet.user.lycee.city }}</td>
                                 <td>{{ sheet.subject }}</td>
                                 {% if sheet.analysis %}
                                     <td>{{ sheet.analysis.name }}</td>
                                 {% else %}
                                     <td>A venir</td>
                                 {% endif %}
-                                <td>{{ sheet.user.lycee.name }}</td>
-                                <td>{{ sheet.user.lycee.city }}</td>
                                 <td class="text-nowrap">
                                     {% if sheet.analysisDate %}
                                         {{ sheet.analysisDate|date("d / m / Y") }}
@@ -82,7 +82,7 @@
                                         {{ sheet.analysis.name }}
                                     {% else %}A venir
                                     {% endif %}</p>
-                                <p><strong>Nom du lycée:</strong> {{ sheet.user.lycee.name }}</p>
+                                <p><strong>Nom du site:</strong> {{ sheet.user.lycee.name }}</p>
                                 <p><strong>Ville:</strong> {{ sheet.user.lycee.city }}</p>
                                 <p>
                                     <strong>Modifiée le:</strong>

@@ -46,8 +46,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $userEmop->setEmail('emop@region.com');
         $userEmop->setUsername('emop');
-        $userEmop->setFirstName('Prenom de l\'emop');
-        $userEmop->setLastName('Nom de l\'emop');
+        $userEmop->setFirstName('Prenom');
+        $userEmop->setLastName('Nom');
         $userEmop->setWork('Emop');
         $userEmop->setMail('emp@region.com');
         $userEmop->setPhoneNumber('1234547891');
@@ -63,8 +63,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $userSchool->setEmail('lycee@region.com');
         $userSchool->setUsername('lycee');
-        $userSchool->setFirstName('Prenom du responsable lycée');
-        $userSchool->setLastName('Nom du responsable lycée');
+        $userSchool->setFirstName('Prenom');
+        $userSchool->setLastName('Nom');
         $userSchool->setWork('Lycée');
         $userSchool->setMail('lycee@region.com');
         $userSchool->setPhoneNumber('1234568891');

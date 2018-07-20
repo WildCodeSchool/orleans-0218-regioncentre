@@ -1,17 +1,17 @@
 {% extends 'layout_admin.html.twig' %}
-{% block title %}Ajouter un lycée | E-Maintenance{% endblock %}
+{% block title %}Ajouter un site | E-Maintenance{% endblock %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block content %}
     <div class="container">
         <div class="default-form">
             <div class="row">
                 <div class="col-12 col-md-9 mx-auto">
-                    <h1>Création d'un lycée</h1>
+                    <h1>Création d'un site</h1>
                 </div>
                 <div class="col-12 col-md-3 justify-content-end d-none d-lg-flex d-xs-none">
                     <a class="btn btn-warning w-500" href="{{ path('admin_manage_school') }}" role="button">
                         <i class="fas fa-arrow-left"></i>
-                        Retour à la liste des lycées
+                        Retour à la liste des sites
                     </a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         {{ form_row(form.department) }}
                     </div>
                     <div class="d-flex justify-content-center pt-5">
-                        <input class="btn btn-dark" type="submit" value="Ajouter un lycée"/>
+                        <input class="btn btn-dark" type="submit" value="Ajouter un site"/>
                     </div>
                     {{ form_end(form) }}
                 </div>
