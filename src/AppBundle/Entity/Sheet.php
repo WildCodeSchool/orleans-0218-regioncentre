@@ -104,7 +104,7 @@ class Sheet
      *
      * @ORM\Column(name="endWork", type="date", nullable=true)
      * @Assert\Expression(
-     *     "this.getEndWork() or value >= this.getStartWork()",
+     *     "value >= this.getStartWork()",
      *     message="La fin des travaux ne peut être antérieur au début."
      * )
      * @Assert\Date()
