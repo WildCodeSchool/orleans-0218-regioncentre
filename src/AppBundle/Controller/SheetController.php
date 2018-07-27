@@ -69,8 +69,6 @@ class SheetController extends Controller
                 'empty' => $empty,
             ));
         }
-
-
     }
 
     /**
