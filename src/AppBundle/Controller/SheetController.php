@@ -49,7 +49,7 @@ class SheetController extends Controller
             'user' => $this->getUser(),
             'status' => $status,
         ]);
-        if(!empty($sheets)) {
+        if (!empty($sheets)) {
             foreach ($sheets as $sheet) {
                 $comment = $em->getRepository('AppBundle:Comment')->findoneBy(
                     ['sheet' => $sheet],
@@ -60,13 +60,13 @@ class SheetController extends Controller
             $empty = 0;
             return $this->render('/school/index.html.twig', array(
                 'sheetsComment' => $sheetsComment,
-                'empty'=> $empty,
+                'empty' => $empty,
             ));
-        }else{
+        } else {
             $empty = 1;
 
             return $this->render('/school/index.html.twig', array(
-                'empty'=> $empty,
+                'empty' => $empty,
             ));
         }
 
