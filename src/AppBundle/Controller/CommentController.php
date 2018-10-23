@@ -120,7 +120,8 @@ class CommentController extends Controller
             ]);
         }
         $em = $this->getDoctrine()->getManager();
-        $lastComments = $em->getRepository('AppBundle:Comment')->findBy(['sheet'=>$comment->getSheet()], ['date' => 'DESC'], 1);
+        $lastComments = $em->getRepository('AppBundle:Comment')
+                           ->findBy(['sheet'=>$comment->getSheet()], ['date' => 'DESC'], 1);
         $lastComment = $lastComments[0] ?? null;
 
         if ($lastComment !== $comment) {
