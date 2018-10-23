@@ -96,7 +96,6 @@ class Sheet
     /**
      * @Assert\Date()
      * @ORM\Column(name="startWork", type="date", nullable=true)
-     * @Assert\GreaterThanOrEqual("today")
      */
     private $startWork;
 
@@ -159,6 +158,11 @@ class Sheet
     /**
      * @Assert\Date()
      * @ORM\Column(name="realEndWork", type="date", nullable=true)
+     * @Assert\Expression(
+     *     "value >= this.getRealStartWork()",
+     *     message="La fin des travaux effectifs ne peut être antérieur au début."
+     * )
+
      */
     private $realEndWork;
 
@@ -171,6 +175,7 @@ class Sheet
     {
         return $this->id;
     }
+
 
     /**
      * Set urgent
