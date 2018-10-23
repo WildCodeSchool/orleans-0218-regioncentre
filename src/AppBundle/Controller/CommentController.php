@@ -120,7 +120,8 @@ class CommentController extends Controller
             ]);
         }
         $em = $this->getDoctrine()->getManager();
-        $lastComment = $em->getRepository('AppBundle:Comment')->findOneBy([], ['id' => 'DESC']);
+        $lastComments = $em->getRepository('AppBundle:Comment')->findBy(['sheet'=>$comment->getSheet()], ['date' => 'DESC'], 1);
+        $lastComment = $lastComments[0] ?? null;
 
         if ($lastComment !== $comment) {
             $this->addFlash(
