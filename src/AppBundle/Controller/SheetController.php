@@ -207,7 +207,12 @@ class SheetController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $sheet->setAnalysisDate(new \DateTime('now'));
-            $sheet->setStatus($sheet->getAnalysis()->getStatus());
+            $status = null;
+            if ($sheet->getAnalysis())
+            {
+                $status = $sheet->getAnalysis()->getStatus();
+            }
+            $sheet->setStatus($status);
             $this->getDoctrine()->getManager()->flush();
             $this->sendStatus($sheet);
             $this->addFlash('success', 'Fiche modifiée avec succès');
