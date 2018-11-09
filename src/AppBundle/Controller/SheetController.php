@@ -49,17 +49,26 @@ class SheetController extends Controller
             'user' => $this->getUser(),
             'status' => $status,
         ]);
-        foreach ($sheets as $sheet) {
-            $comment = $em->getRepository('AppBundle:Comment')->findoneBy(
-                ['sheet' => $sheet],
-                ['date' => 'DESC']
-            );
-            $sheetsComment[] = ['sheet' => $sheet, 'comment' => $comment];
-        }
+        if (!empty($sheets)) {
+            foreach ($sheets as $sheet) {
+                $comment = $em->getRepository('AppBundle:Comment')->findoneBy(
+                    ['sheet' => $sheet],
+                    ['date' => 'DESC']
+                );
+                $sheetsComment[] = ['sheet' => $sheet, 'comment' => $comment];
+            }
+            $empty = 0;
+            return $this->render('/school/index.html.twig', array(
+                'sheetsComment' => $sheetsComment,
+                'empty' => $empty,
+            ));
+        } else {
+            $empty = 1;
 
-        return $this->render('/school/index.html.twig', array(
-            'sheetsComment' => $sheetsComment,
-        ));
+            return $this->render('/school/index.html.twig', array(
+                'empty' => $empty,
+            ));
+        }
     }
 
     /**
